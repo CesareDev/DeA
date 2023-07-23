@@ -163,9 +163,6 @@
     <Text Include="res\font.txt" />
     <Text Include="res\LICENSE.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Font Include="res\DungeonFont.ttf" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
