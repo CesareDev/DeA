@@ -207,4 +207,7 @@
     <Text Include="res\font.txt" />
     <Text Include="res\LICENSE.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="res\DungeonFont.ttf" />
+  </ItemGroup>
 </Project>
