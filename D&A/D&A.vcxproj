@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{bf62f1ba-28e0-4b5d-9ca6-23525add525d}</ProjectGuid>
+    <RootNamespace>D_A</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>SFML_STATIC;DEBUG</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>src;$(SolutionDir)Dependencies\include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ws2_32.lib;winmm.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;flac.lib;gdi32.lib;sfml-system-s-d.lib;freetype.lib;opengl32.lib;libtmxlite-s-d.lib;sfml-window-s-d.lib;sfml-graphics-s-d.lib;sfml-audio-s-d.lib;sfml-network-s-d.lib;sfml-main-d.lib;sfml-extensions-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>SFML_STATIC</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>src;$(SolutionDir)Dependencies\include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>winmm.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;flac.lib;gdi32.lib;sfml-system-s.lib;freetype.lib;opengl32.lib;libtmxlite-s.lib;sfml-window-s.lib;sfml-graphics-s.lib;sfml-audio-s.lib;sfml-network-s.lib;sfml-main.lib;sfml-extensions-s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Hud\Hud.cpp" />
+    <ClCompile Include="src\UI\Components\SaveForm.cpp" />
+    <ClCompile Include="src\UI\Menu\SelectModeMenu.cpp" />
+    <ClCompile Include="src\States\SelectModeState.cpp" />
+    <ClCompile Include="src\States\MainTitleState.cpp" />
+    <ClCompile Include="src\UI\Components\CheckBox.cpp" />
+    <ClCompile Include="src\UI\Components\ScrollBar.cpp" />
+    <ClCompile Include="src\States\OptionsMenuState.cpp" />
+    <ClCompile Include="src\UI\Menu\OptionsMenu.cpp" />
+    <ClCompile Include="src\States\ExitState.cpp" />
+    <ClCompile Include="src\UI\Components\Button.cpp" />
+    <ClCompile Include="src\States\StartMenuState.cpp" />
+    <ClCompile Include="src\UI\Menu\PauseMenu.cpp" />
+    <ClCompile Include="src\UI\Menu\Menu.cpp" />
+    <ClCompile Include="src\Entities\Player.cpp" />
+    <ClCompile Include="src\Entities\Entity.cpp" />
+    <ClCompile Include="src\Core\Camera.cpp" />
+    <ClCompile Include="src\States\GameState.cpp" />
+    <ClCompile Include="src\States\BeginState.cpp" />
+    <ClCompile Include="src\Core\Application.cpp" />
+    <ClCompile Include="src\Core\main.cpp" />
+    <ClCompile Include="src\pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\Core\StateManager.cpp" />
+    <ClCompile Include="src\Core\TextureManager.cpp" />
+    <ClCompile Include="src\States\State.cpp" />
+    <ClCompile Include="src\UI\Menu\StartMenu.cpp" />
+    <ClCompile Include="src\Effects\Transition.cpp" />
+    <ClCompile Include="src\Core\Window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Hud\Hud.h" />
+    <ClInclude Include="src\UI\Components\SaveForm.h" />
+    <ClInclude Include="src\UI\Menu\SelectModeMenu.h" />
+    <ClInclude Include="src\States\SelectModeState.h" />
+    <ClInclude Include="src\States\MainTitleState.h" />
+    <ClInclude Include="src\UI\Components\CheckBox.h" />
+    <ClInclude Include="src\UI\Components\ScrollBar.h" />
+    <ClInclude Include="src\States\OptionsMenuState.h" />
+    <ClInclude Include="src\UI\Menu\OptionsMenu.h" />
+    <ClInclude Include="src\States\ExitState.h" />
+    <ClInclude Include="src\UI\Components\Button.h" />
+    <ClInclude Include="src\UI\Menu\PauseMenu.h" />
+    <ClInclude Include="src\UI\Menu\Menu.h" />
+    <ClInclude Include="src\Entities\Player.h" />
+    <ClInclude Include="src\Entities\Entity.h" />
+    <ClInclude Include="src\Core\Camera.h" />
+    <ClInclude Include="src\Level\LevelID.h" />
+    <ClInclude Include="src\States\GameState.h" />
+    <ClInclude Include="src\States\BeginState.h" />
+    <ClInclude Include="src\Core\Application.h" />
+    <ClInclude Include="src\pch.h" />
+    <ClInclude Include="src\States\State.h" />
+    <ClInclude Include="src\States\StateID.h" />
+    <ClInclude Include="src\Core\StateManager.h" />
+    <ClInclude Include="src\Core\TextureManager.h" />
+    <ClInclude Include="src\States\StartMenuState.h" />
+    <ClInclude Include="src\UI\Menu\StartMenu.h" />
+    <ClInclude Include="src\Effects\Transition.h" />
+    <ClInclude Include="src\Core\Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\cursor.png" />
+    <Image Include="res\cursor64.png" />
+    <Image Include="res\icon.png" />
+    <Image Include="res\tileset.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="res\font.txt" />
+    <Text Include="res\LICENSE.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="res\DungeonFont.ttf" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
