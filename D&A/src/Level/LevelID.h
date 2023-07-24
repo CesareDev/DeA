@@ -3,6 +3,4 @@
 enum class LevelID
 {
 	Null,
-	Hub,
-	First
 };

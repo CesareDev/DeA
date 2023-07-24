@@ -90,6 +90,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\States\ArenaState.cpp" />
+    <ClCompile Include="src\Level\Level.cpp" />
     <ClCompile Include="src\Hud\Hud.cpp" />
     <ClCompile Include="src\UI\Components\SaveForm.cpp" />
     <ClCompile Include="src\UI\Menu\SelectModeMenu.cpp" />
@@ -123,6 +125,8 @@
     <ClCompile Include="src\Core\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\States\ArenaState.h" />
+    <ClInclude Include="src\Level\Level.h" />
     <ClInclude Include="src\Hud\Hud.h" />
     <ClInclude Include="src\UI\Components\SaveForm.h" />
     <ClInclude Include="src\UI\Menu\SelectModeMenu.h" />

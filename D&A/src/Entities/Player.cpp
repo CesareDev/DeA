@@ -119,9 +119,6 @@ void Player::Movement(UpdateArgs args, float dt)
 
 	setPosition(potentialPos);
 	setCenter(posCenter);
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-		args.currentLevel = LevelID::First;
 }
 
 void Player::UpdateAnimation(float dt)

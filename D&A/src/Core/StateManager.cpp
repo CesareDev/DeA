@@ -5,6 +5,7 @@
 #include "States/MainTitleState.h"
 #include "States/StartMenuState.h"
 #include "States/GameState.h"
+#include "States/ArenaState.h"
 #include "States/ExitState.h"
 #include "States/OptionsMenuState.h"
 #include "States/SelectModeState.h"
@@ -63,6 +64,9 @@ void StateManager::ChangeState(float dt)
 				break;
 			case StateID::GameState:
 				m_CurrentState.reset(new GameState());
+				break;
+			case StateID::ArenaState:
+				m_CurrentState.reset(new ArenaState());
 				break;
 			case StateID::ExitState:
 				m_CurrentState.reset(new ExitState());

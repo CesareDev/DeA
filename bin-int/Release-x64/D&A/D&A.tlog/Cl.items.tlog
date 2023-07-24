@@ -1,3 +1,5 @@
+C:\Dev\VisualStudioProjects\D&A\D&A\src\States\ArenaState.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\ArenaState.obj
+C:\Dev\VisualStudioProjects\D&A\D&A\src\Level\Level.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\Level.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Hud\Hud.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\Hud.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\UI\Components\SaveForm.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\SaveForm.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\UI\Menu\SelectModeMenu.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\SelectModeMenu.obj
@@ -15,7 +17,6 @@ C:\Dev\VisualStudioProjects\D&A\D&A\src\UI\Menu\Menu.cpp;C:\Dev\VisualStudioProj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Player.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\Player.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Entity.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\Entity.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Core\Camera.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\Camera.obj
-C:\Dev\VisualStudioProjects\D&A\D&A\src\Level\Level.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\Level.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\States\GameState.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\GameState.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\States\BeginState.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\BeginState.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Core\Application.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\Application.obj

@@ -10,5 +10,6 @@ enum class StateID
 	OptionsMenu,
 	PauseMenu,
 	GameState,
+	ArenaState,
 	ExitState
 };
