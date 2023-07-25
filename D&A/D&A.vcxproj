@@ -125,6 +125,7 @@
     <ClCompile Include="src\Core\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Entities\EntityID.h" />
     <ClInclude Include="src\States\ArenaState.h" />
     <ClInclude Include="src\Level\Level.h" />
     <ClInclude Include="src\Hud\Hud.h" />

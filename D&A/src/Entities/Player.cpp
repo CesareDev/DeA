@@ -9,13 +9,13 @@ Player::~Player()
 {
 }
 
-void Player::Init(const TextureManager& textureManager)
+void Player::Init(const TextureManager& textureManager, const sf::Vector2f& position)
 {
 	setTexture(textureManager.GetTilesetTexture());
 	setOrigin(0.f, 8.f);
 	setTextureRect({ 0, 464, 16, 24 });
 	setRadius(8.f);
-	setCenter({ 128.f, 64.f });
+	setCenter(position);
 
 	m_IsMoving = false;
 	m_ElapsedAnimationTime = 0.f;
@@ -37,6 +37,11 @@ void Player::Render(sf::RenderTarget& target)
 	c.setFillColor(sf::Color::Red);
 	target.draw(c);
 	target.draw(*this);	
+}
+
+EntityID Player::GetId() const
+{
+	return EntityID::Player;
 }
 
 void Player::Movement(UpdateArgs args, float dt)

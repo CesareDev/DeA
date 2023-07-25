@@ -79,7 +79,7 @@ void SelectModeMenu::Update(StateID& currentState, float dt)
 	if (m_BackButton.isClicked())
 		currentState = StateID::StartMenuState;
 	else if (m_ArenaButton.isClicked())
-		currentState = StateID::GameState;
+		currentState = StateID::ArenaState;
 	if (m_StoryButton.isClicked() && !m_Animation)
 	{
 		m_Animation = true;

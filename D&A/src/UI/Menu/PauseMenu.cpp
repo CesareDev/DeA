@@ -25,27 +25,33 @@ void PauseMenu::Init(const TextureManager& textureManager)
 
 void PauseMenu::Update(StateID& currentState, float dt)
 {
-	if (m_MenuButton.isClicked())
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && !m_Pause)
+		m_Pause = true;
+	else if (m_ResumeButton.isClicked())
+		m_Pause = false;
+	else if (m_MenuButton.isClicked())
 		currentState = StateID::StartMenuState;
 }
 
 void PauseMenu::Render(sf::RenderTarget& target)
 {
-	target.draw(m_BackGround);
+	if (m_Pause)
+	{
+		target.draw(m_BackGround);
 
-	sf::View prevView = target.getView();
-	sf::View zoom({ 0.f, 0.f, WIN_WIDTH / 5.f, WIN_HEIGHT / 5.f });
-	target.setView(zoom);
+		sf::View prevView = target.getView();
+		sf::View zoom({ 0.f, 0.f, WIN_WIDTH / 5.f, WIN_HEIGHT / 5.f });
+		target.setView(zoom);
 
-	target.draw(m_Frame);
-	m_ResumeButton.Render(target);
-	m_MenuButton.Render(target);
+		target.draw(m_Frame);
+		m_ResumeButton.Render(target);
+		m_MenuButton.Render(target);
 
-	target.setView(prevView);
+		target.setView(prevView);
+	}
 }
 
-void PauseMenu::Resume(bool& pauseFlag)
+bool PauseMenu::IsPaused() const
 {
-	if (m_ResumeButton.isClicked())
-		pauseFlag = false;
+	return m_Pause;
 }

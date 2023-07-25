@@ -28,31 +28,11 @@ bool GameState::OnExit(float dt)
 
 void GameState::Update(StateID& currentState, float dt)
 {
-	if (!m_Pause) {}
-		//TODO: Update Level
-
-	if (m_Pause)
-	{
-		m_PauseMenu.Update(currentState, dt);
-		m_PauseMenu.Resume(m_Pause);
-	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && !m_EnterPress)
-	{
-		m_EnterPress = true;
-		m_Pause = true;
-	}
-
-	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && !m_Pause)
-		m_EnterPress = false;
 }
 
 void GameState::Render(sf::RenderTarget& target)
 {
 	//Render Level
-
-	if (m_Pause)
-		m_PauseMenu.Render(target);
 
 	m_Transition.Render(target);
 }

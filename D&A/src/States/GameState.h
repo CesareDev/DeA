@@ -23,7 +23,5 @@ public:
 private:
 	
 	PauseMenu m_PauseMenu;
-	bool m_EnterPress = false;
-	bool m_Pause = false;
 };
 

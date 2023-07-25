@@ -14,9 +14,11 @@ public:
 	void Update(StateID& currentState, float dt) override;
 	void Render(sf::RenderTarget& target) override;
 
-	void Resume(bool& pauseFlag);
+	bool IsPaused() const;
 
 private:
+
+	bool m_Pause = false;
 
 	sf::RectangleShape m_BackGround;
 
