@@ -11,7 +11,7 @@ protected:
 		sf::DynamicQuadTree<Entity>& qTree;
 		sf::TileMap& tileMap;
 		StateID& currentState;
-		LevelID* currentLevel = nullptr;
+		LevelID& currentLevel;
 	};
 
 public:
@@ -19,7 +19,7 @@ public:
 	Entity();
 	virtual ~Entity();
 
-	virtual void Init(const TextureManager& textureManager, const sf::Vector2f& position) = 0;
+	virtual void Init(const TextureManager& textureManager, const sf::Vector2f& centerPosition) = 0;
 	virtual void Update(UpdateArgs args, float dt) = 0;
 	virtual void Render(sf::RenderTarget& target) = 0;
 	virtual EntityID GetId() const = 0;

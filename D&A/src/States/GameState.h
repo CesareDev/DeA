@@ -1,5 +1,6 @@
 #pragma once
 #include "State.h"
+#include "Core/LevelManager.h"
 #include "UI/Menu/PauseMenu.h"
 
 class GameState : public State
@@ -22,6 +23,7 @@ public:
 
 private:
 	
+	LevelManager m_LevelManager;
 	PauseMenu m_PauseMenu;
 };
 

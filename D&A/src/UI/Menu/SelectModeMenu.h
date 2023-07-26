@@ -28,9 +28,9 @@ private:
 	Button m_StoryButton;
 	Button m_ArenaButton;
 
+	SaveForm m_Save0;
 	SaveForm m_Save1;
 	SaveForm m_Save2;
-	SaveForm m_Save3;
 	sf::Color m_FadeColor;
 
 	bool m_SelectSave = false;

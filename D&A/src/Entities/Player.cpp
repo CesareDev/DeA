@@ -9,13 +9,13 @@ Player::~Player()
 {
 }
 
-void Player::Init(const TextureManager& textureManager, const sf::Vector2f& position)
+void Player::Init(const TextureManager& textureManager, const sf::Vector2f& centerPosition)
 {
 	setTexture(textureManager.GetTilesetTexture());
 	setOrigin(0.f, 8.f);
 	setTextureRect({ 0, 464, 16, 24 });
 	setRadius(8.f);
-	setCenter(position);
+	setCenter(centerPosition);
 
 	m_IsMoving = false;
 	m_ElapsedAnimationTime = 0.f;

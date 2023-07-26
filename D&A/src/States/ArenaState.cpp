@@ -18,7 +18,7 @@ void ArenaState::Init(const TextureManager& textureManger)
 	m_Tree.create(4, { 0.f, 0.f, (float)m_Arena.getMapSize().x, (float)m_Arena.getMapSize().y });
 	m_Player = new Player();
 	m_Player->Init(textureManger, { m_Arena.getMapSize().x / 2.f, m_Arena.getMapSize().y / 2.f });
-	m_Camera.Init(m_Player->getCenter(), { 0.f, 0.f, (float)m_Arena.getMapSize().x, (float)m_Arena.getMapSize().y }, { 0.f, 0.f, WIN_WIDTH / 4.f, WIN_HEIGHT / 4.f });
+	m_Camera.Init(m_Player->getCenter(), { 0.f, 0.f, (float)m_Arena.getMapSize().x, (float)m_Arena.getMapSize().y }, { 0.f, 0.f, GLOBAL::WIN_WIDTH / 4.f, GLOBAL::WIN_HEIGHT / 4.f });
 
 	m_Tree.insert(m_Player, m_Player->getGlobalBounds());
 }
@@ -41,7 +41,8 @@ void ArenaState::Update(StateID& currentState, float dt)
 		m_Arena.update(dt);
 		for (auto it = m_Tree.begin(); it != m_Tree.end(); ++it)
 		{
-			it->obj->Update({ m_Tree, m_Arena, currentState }, dt);
+			auto l = LevelID::Arena;
+			it->obj->Update({ m_Tree, m_Arena, currentState, l }, dt);
 			m_Tree.relocate(it, it->obj->getGlobalBounds());
 		}
 		m_Camera.Update(m_Player->getCenter(), dt);

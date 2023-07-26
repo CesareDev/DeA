@@ -99,10 +99,22 @@
     <ClCompile Include="src\Hud\Hud.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Level.cpp">
+    <ClCompile Include="src\Levels\Level.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\States\ArenaState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\LevelManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Levels\Hub.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Levels\Room.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entities\Ladder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -134,7 +146,7 @@
     <ClInclude Include="src\States\GameState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\LevelID.h">
+    <ClInclude Include="src\Levels\LevelID.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Core\Camera.h">
@@ -194,13 +206,28 @@
     <ClInclude Include="src\Hud\Hud.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Level.h">
+    <ClInclude Include="src\Levels\Level.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\States\ArenaState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Entities\EntityID.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\LevelManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Levels\Hub.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Levels\Room.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\GlobalVariables.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entities\Ladder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

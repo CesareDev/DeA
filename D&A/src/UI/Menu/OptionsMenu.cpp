@@ -11,7 +11,7 @@ OptionsMenu::~OptionsMenu()
 
 void OptionsMenu::Init(const TextureManager& textureManager)
 {
-	m_StaticCamera.Init({ 0.f, 0.f }, { 0.f, 0.f, WIN_WIDTH / 5.f, WIN_HEIGHT / 5.f }, { 0.f, 0.f, WIN_WIDTH / 5.f, WIN_HEIGHT / 5.f });
+	m_StaticCamera.Init({ 0.f, 0.f }, { 0.f, 0.f, GLOBAL::WIN_WIDTH / 5.f, GLOBAL::WIN_HEIGHT / 5.f }, { 0.f, 0.f, GLOBAL::WIN_WIDTH / 5.f, GLOBAL::WIN_HEIGHT / 5.f });
 
 	m_Border.resize(96);
 	m_Batch.Create(&textureManager.GetTilesetTexture());
@@ -72,7 +72,7 @@ void OptionsMenu::Init(const TextureManager& textureManager)
 	m_Title.setFont(font);
 	m_Title.setCharacterSize(120);
 	m_Title.setString("Options");
-	int x = (WIN_WIDTH / 2.f) - (m_Title.getGlobalBounds().width / 2.f);
+	int x = (GLOBAL::WIN_WIDTH / 2.f) - (m_Title.getGlobalBounds().width / 2.f);
 	m_Title.setPosition(x, 60.f);
 
 	m_MusicText.setFont(font);
@@ -94,8 +94,8 @@ void OptionsMenu::Init(const TextureManager& textureManager)
 	int mscrolly = m_MusicText.getGlobalBounds().top;
 	int sscrolly = m_SoundText.getGlobalBounds().top;
 
-	m_MusicScrollBar.Init(textureManager, { scrollx, mscrolly / 5.f}, &MUSIC_VOLUME);
-	m_SoundScrollBar.Init(textureManager, { scrollx, sscrolly / 5.f}, &SOUND_VOLUME);
+	m_MusicScrollBar.Init(textureManager, { scrollx, mscrolly / 5.f}, &GLOBAL::MUSIC_VOLUME);
+	m_SoundScrollBar.Init(textureManager, { scrollx, sscrolly / 5.f}, &GLOBAL::SOUND_VOLUME);
 
 	m_MusicValue.setFont(font);
 	m_MusicValue.setCharacterSize(80);
@@ -109,7 +109,7 @@ void OptionsMenu::Init(const TextureManager& textureManager)
 
 	float cx = ((m_FullScreenText.getGlobalBounds().left + m_FullScreenText.getGlobalBounds().width) / 5.f) + 8.f;
 	float cy = m_FullScreenText.getGlobalBounds().top / 5.f;
-	m_FSCheckBox.Init(textureManager, { cx, cy}, FULLSCREEN);
+	m_FSCheckBox.Init(textureManager, { cx, cy}, GLOBAL::FULLSCREEN);
 }
 
 void OptionsMenu::Update(StateID& currentState, float dt)
@@ -118,8 +118,8 @@ void OptionsMenu::Update(StateID& currentState, float dt)
 		currentState = StateID::StartMenuState;
 	m_MusicScrollBar.Update(dt);
 	m_SoundScrollBar.Update(dt);
-	m_MusicValue.setString(std::to_string(MUSIC_VOLUME));
-	m_SoundValue.setString(std::to_string(SOUND_VOLUME));
+	m_MusicValue.setString(std::to_string(GLOBAL::MUSIC_VOLUME));
+	m_SoundValue.setString(std::to_string(GLOBAL::SOUND_VOLUME));
 }
 
 void OptionsMenu::Render(sf::RenderTarget& target)
@@ -136,7 +136,7 @@ void OptionsMenu::Render(sf::RenderTarget& target)
 	m_SoundScrollBar.Render(target);
 	m_FSCheckBox.Render(target);
 
-	sf::View view({ 0.f, 0.f, (float)WIN_WIDTH, (float)WIN_HEIGHT });
+	sf::View view({ 0.f, 0.f, (float)GLOBAL::WIN_WIDTH, (float)GLOBAL::WIN_HEIGHT });
 
 	target.setView(view);
 
@@ -154,12 +154,12 @@ void OptionsMenu::Render(sf::RenderTarget& target)
 		if (m_FSCheckBox.isChecked())
 		{
 			((sf::RenderWindow&)target).create(sf::VideoMode::getFullscreenModes()[0], "D&A", sf::Style::Fullscreen);
-			FULLSCREEN = true;
+			GLOBAL::FULLSCREEN = true;
 		}
 		else
 		{
-			((sf::RenderWindow&)target).create(sf::VideoMode(WIN_WIDTH, WIN_HEIGHT), "D&A", sf::Style::Default);
-			FULLSCREEN = false;
+			((sf::RenderWindow&)target).create(sf::VideoMode(GLOBAL::WIN_WIDTH, GLOBAL::WIN_HEIGHT), "D&A", sf::Style::Default);
+			GLOBAL::FULLSCREEN = false;
 		}
 	}
 }

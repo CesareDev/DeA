@@ -13,7 +13,7 @@ StartMenu::~StartMenu()
 
 void StartMenu::Init(const TextureManager& textureManager)
 {
-	m_StaticCamera.Init({ 0.f, 0.f }, { 0.f, 0.f, WIN_WIDTH / 5.f, WIN_HEIGHT / 5.f }, { 0.f, 0.f, WIN_WIDTH / 5.f, WIN_HEIGHT / 5.f });
+	m_StaticCamera.Init({ 0.f, 0.f }, { 0.f, 0.f, GLOBAL::WIN_WIDTH / 5.f, GLOBAL::WIN_HEIGHT / 5.f }, { 0.f, 0.f, GLOBAL::WIN_WIDTH / 5.f, GLOBAL::WIN_HEIGHT / 5.f });
 
 	m_Border.resize(96);
 	m_Batch.Create(&textureManager.GetTilesetTexture());

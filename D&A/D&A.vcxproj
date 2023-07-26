@@ -60,6 +60,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>src;$(SolutionDir)Dependencies\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -79,6 +80,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>src;$(SolutionDir)Dependencies\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -90,8 +92,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Entities\Ladder.cpp" />
+    <ClCompile Include="src\Levels\Room.cpp" />
+    <ClCompile Include="src\Levels\Hub.cpp" />
+    <ClCompile Include="src\Core\LevelManager.cpp" />
     <ClCompile Include="src\States\ArenaState.cpp" />
-    <ClCompile Include="src\Level\Level.cpp" />
+    <ClCompile Include="src\Levels\Level.cpp" />
     <ClCompile Include="src\Hud\Hud.cpp" />
     <ClCompile Include="src\UI\Components\SaveForm.cpp" />
     <ClCompile Include="src\UI\Menu\SelectModeMenu.cpp" />
@@ -125,9 +131,14 @@
     <ClCompile Include="src\Core\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Entities\Ladder.h" />
+    <ClInclude Include="src\Core\GlobalVariables.h" />
+    <ClInclude Include="src\Levels\Room.h" />
+    <ClInclude Include="src\Levels\Hub.h" />
+    <ClInclude Include="src\Core\LevelManager.h" />
     <ClInclude Include="src\Entities\EntityID.h" />
     <ClInclude Include="src\States\ArenaState.h" />
-    <ClInclude Include="src\Level\Level.h" />
+    <ClInclude Include="src\Levels\Level.h" />
     <ClInclude Include="src\Hud\Hud.h" />
     <ClInclude Include="src\UI\Components\SaveForm.h" />
     <ClInclude Include="src\UI\Menu\SelectModeMenu.h" />
@@ -144,7 +155,7 @@
     <ClInclude Include="src\Entities\Player.h" />
     <ClInclude Include="src\Entities\Entity.h" />
     <ClInclude Include="src\Core\Camera.h" />
-    <ClInclude Include="src\Level\LevelID.h" />
+    <ClInclude Include="src\Levels\LevelID.h" />
     <ClInclude Include="src\States\GameState.h" />
     <ClInclude Include="src\States\BeginState.h" />
     <ClInclude Include="src\Core\Application.h" />

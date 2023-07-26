@@ -17,8 +17,8 @@ void MainTitleState::Init(const TextureManager& textureManger)
 	m_Title.setFont(font);
 	m_Title.setCharacterSize(150);
 	m_Title.setString("Dungeons&Arena");
-	int x = (WIN_WIDTH / 2) - (m_Title.getGlobalBounds().width / 2);
-	int y = (WIN_HEIGHT / 2) - m_Title.getGlobalBounds().height;
+	int x = (GLOBAL::WIN_WIDTH / 2) - (m_Title.getGlobalBounds().width / 2);
+	int y = (GLOBAL::WIN_HEIGHT / 2) - m_Title.getGlobalBounds().height;
 	m_Title.setPosition(x, y);
 }
 

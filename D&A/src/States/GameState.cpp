@@ -12,6 +12,7 @@ GameState::~GameState()
 
 void GameState::Init(const TextureManager& textureManger)
 {
+	m_LevelManager.Init(textureManger);
 	m_PauseMenu.Init(textureManger);
 	m_Transition.Init(textureManger);
 }
@@ -28,12 +29,21 @@ bool GameState::OnExit(float dt)
 
 void GameState::Update(StateID& currentState, float dt)
 {
+	if (!m_LevelManager.IsChanging())
+	{
+		m_PauseMenu.Update(currentState, dt);
+	}
+	if (!m_PauseMenu.IsPaused())
+	{
+		m_LevelManager.Update(currentState, dt);
+	}
 }
 
 void GameState::Render(sf::RenderTarget& target)
 {
 	//Render Level
-
+	m_LevelManager.Render(target);
+	m_PauseMenu.Render(target);
 	m_Transition.Render(target);
 }
 

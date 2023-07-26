@@ -3,7 +3,7 @@
 
 Application::Application()
 {
-	m_Window.create(sf::VideoMode(WIN_WIDTH, WIN_HEIGHT), "D&A", sf::Style::Default);
+	m_Window.create(sf::VideoMode(GLOBAL::WIN_WIDTH, GLOBAL::WIN_HEIGHT), "D&A", sf::Style::Default);
 	m_StateManager.Init();
 }
 

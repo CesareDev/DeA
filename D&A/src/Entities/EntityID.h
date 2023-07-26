@@ -3,5 +3,6 @@
 enum class EntityID
 {
 	Null,
-	Player
+	Player,
+	Ladder,
 };

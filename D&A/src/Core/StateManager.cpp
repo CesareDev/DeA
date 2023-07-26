@@ -73,6 +73,7 @@ void StateManager::ChangeState(float dt)
 				break;
 			case StateID::OptionsMenu:
 				m_CurrentState.reset(new OptionsMenuState());
+				break;
 			default:
 				break;
 			}

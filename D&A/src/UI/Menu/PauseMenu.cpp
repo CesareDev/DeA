@@ -13,7 +13,7 @@ PauseMenu::~PauseMenu()
 void PauseMenu::Init(const TextureManager& textureManager)
 {
 	m_BackGround.setPosition(0.f, 0.f);
-	m_BackGround.setSize(sf::Vector2f(WIN_WIDTH, WIN_HEIGHT));
+	m_BackGround.setSize(sf::Vector2f(GLOBAL::WIN_WIDTH, GLOBAL::WIN_HEIGHT));
 	m_BackGround.setFillColor(sf::Color(0.f, 0.f, 0.f, 128.f));
 
 	m_Frame.setTexture(textureManager.GetTilesetTexture());
@@ -40,7 +40,7 @@ void PauseMenu::Render(sf::RenderTarget& target)
 		target.draw(m_BackGround);
 
 		sf::View prevView = target.getView();
-		sf::View zoom({ 0.f, 0.f, WIN_WIDTH / 5.f, WIN_HEIGHT / 5.f });
+		sf::View zoom({ 0.f, 0.f, GLOBAL::WIN_WIDTH / 5.f, GLOBAL::WIN_HEIGHT / 5.f });
 		target.setView(zoom);
 
 		target.draw(m_Frame);

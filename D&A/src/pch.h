@@ -12,12 +12,6 @@
 #include <SFML/Extensions/SpriteBatch.h>
 
 #include "States/StateID.h"
-#include "Level/LevelID.h"
+#include "Levels/LevelID.h"
 
-static unsigned int WIN_WIDTH = 1280;
-static unsigned int WIN_HEIGHT = 720;
-
-static unsigned int SOUND_VOLUME = 0;
-static unsigned int MUSIC_VOLUME = 0;
-
-static bool FULLSCREEN = false;
+#include "Core/GlobalVariables.h"

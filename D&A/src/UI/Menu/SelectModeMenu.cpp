@@ -11,7 +11,7 @@ SelectModeMenu::~SelectModeMenu()
 
 void SelectModeMenu::Init(const TextureManager& textureManager)
 {
-	m_StaticCamera.Init({ 0.f, 0.f }, { 0.f, 0.f, WIN_WIDTH / 5.f, WIN_HEIGHT / 5.f }, { 0.f, 0.f, WIN_WIDTH / 5.f, WIN_HEIGHT / 5.f });
+	m_StaticCamera.Init({ 0.f, 0.f }, { 0.f, 0.f, GLOBAL::WIN_WIDTH / 5.f, GLOBAL::WIN_HEIGHT / 5.f }, { 0.f, 0.f, GLOBAL::WIN_WIDTH / 5.f, GLOBAL::WIN_HEIGHT / 5.f });
 
 	m_Border.resize(96);
 	m_Batch.Create(&textureManager.GetTilesetTexture());
@@ -68,9 +68,9 @@ void SelectModeMenu::Init(const TextureManager& textureManager)
 	m_BackButton.Init(textureManager, { 776, 357, 16, 16 }, { 16.f, 16.f });
 	m_StoryButton.Init(textureManager, { 776, 195, 45, 22 }, { 105.5f, 48.f });
 	m_ArenaButton.Init(textureManager, { 776, 171, 45, 22 }, { 105.5f, 80.f });
-	m_Save1.Init(textureManager, { 128.f, 16.f }, 0);
-	m_Save2.Init(textureManager, { 128.f, 56.f }, 1);
-	m_Save3.Init(textureManager, { 128.f, 96.f }, 2);
+	m_Save0.Init(textureManager, { 128.f, 16.f }, 0);
+	m_Save1.Init(textureManager, { 128.f, 56.f }, 1);
+	m_Save2.Init(textureManager, { 128.f, 96.f }, 2);
 	m_FadeColor = m_Save1.getColor();
 }
 
@@ -79,12 +79,31 @@ void SelectModeMenu::Update(StateID& currentState, float dt)
 	if (m_BackButton.isClicked())
 		currentState = StateID::StartMenuState;
 	else if (m_ArenaButton.isClicked())
+	{
 		currentState = StateID::ArenaState;
+		GLOBAL::SAVE_INDEX = -1;
+	}
 	if (m_StoryButton.isClicked() && !m_Animation)
 	{
 		m_Animation = true;
 		m_FadeColor.a = 0;
 	}
+	if (m_Save0.isClicked())
+	{
+		GLOBAL::SAVE_INDEX = 0;
+		currentState = StateID::GameState;
+	}
+	else if (m_Save1.isClicked())
+	{
+		GLOBAL::SAVE_INDEX = 1;
+		currentState = StateID::GameState;
+	}
+	else if (m_Save2.isClicked())
+	{
+		GLOBAL::SAVE_INDEX = 2;
+		currentState = StateID::GameState;
+	}
+
 	MoveButton(currentState, dt);
 }
 
@@ -104,15 +123,15 @@ void SelectModeMenu::Render(sf::RenderTarget& target)
 
 	if (m_SelectSave)
 	{
+		m_Save0.Render(target);
 		m_Save1.Render(target);
 		m_Save2.Render(target);
-		m_Save3.Render(target);
 
-		sf::View view({ 0.f, 0.f, (float)WIN_WIDTH, (float)WIN_HEIGHT });
+		sf::View view({ 0.f, 0.f, (float)GLOBAL::WIN_WIDTH, (float)GLOBAL::WIN_HEIGHT });
 		target.setView(view);
+		target.draw(m_Save0.GetText());
 		target.draw(m_Save1.GetText());
 		target.draw(m_Save2.GetText());
-		target.draw(m_Save3.GetText());
 
 		target.setView(m_StaticCamera);
 	}
@@ -139,9 +158,9 @@ void SelectModeMenu::MoveButton(StateID& currentState, float dt)
 					m_FadeColor.a = 255;
 				const auto& color = m_Frame.getColor();
 				m_Frame.setColor(sf::Color(color.r, color.g, color.b, 255 - m_FadeColor.a));
+				m_Save0.setColor(m_FadeColor);
 				m_Save1.setColor(m_FadeColor);
 				m_Save2.setColor(m_FadeColor);
-				m_Save3.setColor(m_FadeColor);
 			}
 			if (m_StoryButton.GetPosition().x < 48.05f)
 			{
