@@ -1,6 +1,7 @@
 #pragma once
 #include "StateManager.h"
 #include "Window.h"
+#include "ResourceManager.h"
 
 class Application
 {
@@ -24,6 +25,7 @@ private:
 
 	float m_ElapsedTime = 0.f;
 
+	ResourceManager m_ResourceManager;
 	StateManager m_StateManager;
 };
 

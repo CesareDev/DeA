@@ -148,7 +148,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\Core\StateManager.cpp" />
-    <ClCompile Include="src\Core\TextureManager.cpp" />
+    <ClCompile Include="src\Core\ResourceManager.cpp" />
     <ClCompile Include="src\States\State.cpp" />
     <ClCompile Include="src\UI\Menu\StartMenu.cpp" />
     <ClCompile Include="src\Effects\Transition.cpp" />
@@ -187,7 +187,7 @@
     <ClInclude Include="src\States\State.h" />
     <ClInclude Include="src\States\StateID.h" />
     <ClInclude Include="src\Core\StateManager.h" />
-    <ClInclude Include="src\Core\TextureManager.h" />
+    <ClInclude Include="src\Core\ResourceManager.h" />
     <ClInclude Include="src\States\StartMenuState.h" />
     <ClInclude Include="src\UI\Menu\StartMenu.h" />
     <ClInclude Include="src\Effects\Transition.h" />

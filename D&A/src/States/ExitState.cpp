@@ -9,7 +9,7 @@ ExitState::~ExitState()
 {
 }
 
-void ExitState::Init(const TextureManager& textureManger)
+void ExitState::Init(const ResourceManager& resourceManager)
 {
 }
 

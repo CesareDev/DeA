@@ -1,4 +1,5 @@
 #pragma once
+#include "ResourceManager.h"
 
 class Window : public sf::RenderWindow
 {
@@ -7,14 +8,15 @@ public:
 	Window();
 	~Window();
 
+	void Init(const ResourceManager& resourceManager);
+
 protected:
 
 	void onCreate() override;
 
 private:
 
-	sf::Image m_CursorImg;
+	const ResourceManager* m_ResourceManager;
 	sf::Cursor m_Cursor;
-	sf::Image m_Icon;
 };
 

@@ -1,5 +1,5 @@
 #pragma once
-#include "Core/TextureManager.h"
+#include "Core/ResourceManager.h"
 
 class Button : public sf::Sprite
 {
@@ -8,7 +8,7 @@ public:
 	Button();
 	~Button();
 
-	void Init(const TextureManager& textureManager, const sf::IntRect& textureRect, const sf::Vector2f& position);
+	void Init(const ResourceManager& resourceManager, const sf::IntRect& textureRect, const sf::Vector2f& position);
 	bool isClicked();
 	void Move(float offsetX, float offsetY);
 	void SetPosition(float x, float y);

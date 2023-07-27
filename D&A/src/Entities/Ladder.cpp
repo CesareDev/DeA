@@ -9,7 +9,7 @@ Ladder::~Ladder()
 {
 }
 
-void Ladder::Init(const TextureManager& textureManager, const sf::Vector2f& centerPosition)
+void Ladder::Init(const ResourceManager& resourceManager, const sf::Vector2f& centerPosition)
 {
     setCenter(centerPosition);
     setRadius(8.f);

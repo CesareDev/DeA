@@ -9,7 +9,7 @@ public:
 	~Player();
 
 	// Inherited via Entity
-	void Init(const TextureManager& textureManager, const sf::Vector2f& centerPosition) override;
+	void Init(const ResourceManager& resourceManager, const sf::Vector2f& centerPosition) override;
 	void Update(UpdateArgs args, float dt) override;
 	void Render(sf::RenderTarget& target) override;
 	EntityID GetId() const override;

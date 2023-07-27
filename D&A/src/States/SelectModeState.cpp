@@ -9,10 +9,10 @@ SelectModeState::~SelectModeState()
 {
 }
 
-void SelectModeState::Init(const TextureManager& textureManger)
+void SelectModeState::Init(const ResourceManager& resourceManager)
 {
-    m_Menu.Init(textureManger);
-    m_Transition.Init(textureManger);
+    m_Menu.Init(resourceManager);
+    m_Transition.Init(resourceManager);
 }
 
 bool SelectModeState::OnEnter(float dt)

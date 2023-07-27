@@ -19,7 +19,7 @@ bool Hub::OnExit(float dt)
 	return m_Transition.FadeOut(dt, 0.5f);
 }
 
-void Hub::Init(const TextureManager& textureManager, Player* player, unsigned int entranceIndex)
+void Hub::Init(const ResourceManager& resourceManager, Player* player, unsigned int entranceIndex)
 {
 	m_Player = player;
 	if (entranceIndex == 0)
@@ -27,11 +27,11 @@ void Hub::Init(const TextureManager& textureManager, Player* player, unsigned in
 	else if (entranceIndex == 1)
 		m_Player->setCenter({ 424.f, 440.f }); //from undeground
 
-	m_Transition.Init(textureManager);
-	m_Map.load("../res/map/hub.tmx", &textureManager.GetTilesetTexture());
+	m_Transition.Init(resourceManager);
+	m_Map.load("../res/map/hub.tmx", &resourceManager.GetTilesetTexture());
 	m_Camera.Init(m_Player->getCenter(), { 0.f, 0.f, (float)m_Map.getMapSize().x, (float)m_Map.getMapSize().y }, { 0.f, 0.f, GLOBAL::WIN_WIDTH / 5.f, GLOBAL::WIN_HEIGHT / 5.f });
 	
-	m_Ladder0.Init(textureManager, { 408.f, 440.f });
+	m_Ladder0.Init(resourceManager, { 408.f, 440.f });
 	m_Ladder0.SetTeleportLevel(LevelID::UnderGround_Zero);
 
 	//TODO Tree;

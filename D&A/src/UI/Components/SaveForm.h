@@ -1,5 +1,5 @@
 #pragma once
-#include "Core/TextureManager.h"
+#include "Core/ResourceManager.h"
 
 class SaveForm : public sf::Sprite
 {
@@ -8,7 +8,7 @@ public:
 	SaveForm();
 	~SaveForm();
 
-	void Init(const TextureManager& textureManager, const sf::Vector2f& position, unsigned int saveNumber);
+	void Init(const ResourceManager& resourceManager, const sf::Vector2f& position, unsigned int saveNumber);
 	bool isClicked();
 	void Render(sf::RenderTarget& target);
 

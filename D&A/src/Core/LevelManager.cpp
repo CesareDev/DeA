@@ -11,13 +11,13 @@ LevelManager::~LevelManager()
 {
 }
 
-void LevelManager::Init(const TextureManager& textureManager)
+void LevelManager::Init(const ResourceManager& resourceManager)
 {
-	m_Player.Init(textureManager, { 0.f, 0.f });
-	m_TextureManager = &textureManager;
+	m_Player.Init(resourceManager, { 0.f, 0.f });
+	m_ResourceManager = &resourceManager;
 
 	m_CurrentLevel = std::make_unique<Hub>();
-	m_CurrentLevel->Init(textureManager, &m_Player, 0);
+	m_CurrentLevel->Init(resourceManager, &m_Player, 0);
 
 	m_ChangingLevel = true;
 }
@@ -78,7 +78,7 @@ void LevelManager::ChangeLevel(float dt)
 					break;
 			}
 
-			m_CurrentLevel->Init(*m_TextureManager, &m_Player, entanceIndex);
+			m_CurrentLevel->Init(*m_ResourceManager, &m_Player, entanceIndex);
 			m_OldState = m_CurrentLevelId;
 		}
 	}

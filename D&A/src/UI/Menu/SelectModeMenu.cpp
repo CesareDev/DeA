@@ -9,16 +9,16 @@ SelectModeMenu::~SelectModeMenu()
 {
 }
 
-void SelectModeMenu::Init(const TextureManager& textureManager)
+void SelectModeMenu::Init(const ResourceManager& resourceManager)
 {
 	m_StaticCamera.Init({ 0.f, 0.f }, { 0.f, 0.f, GLOBAL::WIN_WIDTH / 5.f, GLOBAL::WIN_HEIGHT / 5.f }, { 0.f, 0.f, GLOBAL::WIN_WIDTH / 5.f, GLOBAL::WIN_HEIGHT / 5.f });
 
 	m_Border.resize(96);
-	m_Batch.Create(&textureManager.GetTilesetTexture());
+	m_Batch.Create(&resourceManager.GetTilesetTexture());
 
 	for (int i = 0; i < m_Border.size(); ++i)
 	{
-		m_Border[i].setTexture(textureManager.GetTilesetTexture());
+		m_Border[i].setTexture(resourceManager.GetTilesetTexture());
 
 		if (i == 0)
 		{
@@ -62,15 +62,15 @@ void SelectModeMenu::Init(const TextureManager& textureManager)
 		}
 	}
 
-	m_Frame.setTexture(textureManager.GetTilesetTexture());
+	m_Frame.setTexture(resourceManager.GetTilesetTexture());
 	m_Frame.setTextureRect({ 946, 318, 78, 76 });
 	m_Frame.setPosition(89.f, 37.f);
-	m_BackButton.Init(textureManager, { 776, 357, 16, 16 }, { 16.f, 16.f });
-	m_StoryButton.Init(textureManager, { 776, 195, 45, 22 }, { 105.5f, 48.f });
-	m_ArenaButton.Init(textureManager, { 776, 171, 45, 22 }, { 105.5f, 80.f });
-	m_Save0.Init(textureManager, { 128.f, 16.f }, 0);
-	m_Save1.Init(textureManager, { 128.f, 56.f }, 1);
-	m_Save2.Init(textureManager, { 128.f, 96.f }, 2);
+	m_BackButton.Init(resourceManager, { 776, 357, 16, 16 }, { 16.f, 16.f });
+	m_StoryButton.Init(resourceManager, { 776, 195, 45, 22 }, { 105.5f, 48.f });
+	m_ArenaButton.Init(resourceManager, { 776, 171, 45, 22 }, { 105.5f, 80.f });
+	m_Save0.Init(resourceManager, { 128.f, 16.f }, 0);
+	m_Save1.Init(resourceManager, { 128.f, 56.f }, 1);
+	m_Save2.Init(resourceManager, { 128.f, 96.f }, 2);
 	m_FadeColor = m_Save1.getColor();
 }
 

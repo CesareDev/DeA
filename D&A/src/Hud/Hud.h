@@ -1,5 +1,5 @@
 #pragma once
-#include "Core/TextureManager.h"
+#include "Core/ResourceManager.h"
 #include "Entities/Player.h"
 
 class Hud
@@ -9,7 +9,7 @@ public:
 	Hud();
 	~Hud();
 
-	void Init(const TextureManager& textureManager, const Player* player);
+	void Init(const ResourceManager& resourceManager, const Player* player);
 	void Update(float dt);
 	void Render(sf::RenderTarget& target);
 

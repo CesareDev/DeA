@@ -10,13 +10,13 @@
 #include "States/OptionsMenuState.h"
 #include "States/SelectModeState.h"
 
-void StateManager::Init()
+void StateManager::Init(const ResourceManager& resourceManager)
 {
-	m_TextureManager.Init();
+	m_ResourceManager = &resourceManager;
 
 	m_CurrentState = std::make_unique<BeginState>();
 	m_CurrentStateId = StateID::BeginState;
-	m_CurrentState->Init(m_TextureManager);
+	m_CurrentState->Init(*m_ResourceManager);
 
 	m_ChangingState = true;
 }
@@ -78,7 +78,7 @@ void StateManager::ChangeState(float dt)
 				break;
 			}
 
-			m_CurrentState->Init(m_TextureManager);
+			m_CurrentState->Init(*m_ResourceManager);
 			m_OldState = m_CurrentStateId;
 		}
 	}

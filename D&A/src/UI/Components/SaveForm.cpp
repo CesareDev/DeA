@@ -9,15 +9,15 @@ SaveForm::~SaveForm()
 {
 }
 
-void SaveForm::Init(const TextureManager& textureManager, const sf::Vector2f& position, unsigned int saveNumber)
+void SaveForm::Init(const ResourceManager& resourceManager, const sf::Vector2f& position, unsigned int saveNumber)
 {
 	m_TextureRect = {722, 123, 80, 32};
 	m_Position = position;
-	setTexture(textureManager.GetTilesetTexture());
+	setTexture(resourceManager.GetTilesetTexture());
 	setPosition(m_Position);
 	setTextureRect(m_TextureRect);
 
-	const auto& font = textureManager.GetFont();
+	const auto& font = resourceManager.GetFont();
 	const_cast<sf::Texture&>(font.getTexture(100)).setSmooth(false);
 	m_Text.setFont(font);
 	m_Text.setCharacterSize(100);

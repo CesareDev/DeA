@@ -10,7 +10,7 @@ BeginState::~BeginState()
 {
 }
 
-void BeginState::Init(const TextureManager& textureManger)
+void BeginState::Init(const ResourceManager& resourceManager)
 {
 }
 

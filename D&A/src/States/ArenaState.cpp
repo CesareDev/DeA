@@ -9,15 +9,15 @@ ArenaState::~ArenaState()
 {
 }
 
-void ArenaState::Init(const TextureManager& textureManger)
+void ArenaState::Init(const ResourceManager& resourceManager)
 {
-	m_Transition.Init(textureManger);
-	m_PauseMenu.Init(textureManger);
+	m_Transition.Init(resourceManager);
+	m_PauseMenu.Init(resourceManager);
 
-	m_Arena.load("../res/map/arena.tmx", &textureManger.GetTilesetTexture());
+	m_Arena.load("../res/map/arena.tmx", &resourceManager.GetTilesetTexture());
 	m_Tree.create(4, { 0.f, 0.f, (float)m_Arena.getMapSize().x, (float)m_Arena.getMapSize().y });
 	m_Player = new Player();
-	m_Player->Init(textureManger, { m_Arena.getMapSize().x / 2.f, m_Arena.getMapSize().y / 2.f });
+	m_Player->Init(resourceManager, { m_Arena.getMapSize().x / 2.f, m_Arena.getMapSize().y / 2.f });
 	m_Camera.Init(m_Player->getCenter(), { 0.f, 0.f, (float)m_Arena.getMapSize().x, (float)m_Arena.getMapSize().y }, { 0.f, 0.f, GLOBAL::WIN_WIDTH / 4.f, GLOBAL::WIN_HEIGHT / 4.f });
 
 	m_Tree.insert(m_Player, m_Player->getGlobalBounds());

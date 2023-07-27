@@ -10,11 +10,11 @@ GameState::~GameState()
 {
 }
 
-void GameState::Init(const TextureManager& textureManger)
+void GameState::Init(const ResourceManager& resourceManager)
 {
-	m_LevelManager.Init(textureManger);
-	m_PauseMenu.Init(textureManger);
-	m_Transition.Init(textureManger);
+	m_LevelManager.Init(resourceManager);
+	m_PauseMenu.Init(resourceManager);
+	m_Transition.Init(resourceManager);
 }
 
 bool GameState::OnEnter(float dt)

@@ -10,7 +10,7 @@ public:
 	~SelectModeState();
 
 	// Inherited via State
-	void Init(const TextureManager& textureManger) override;
+	void Init(const ResourceManager& resourceManager) override;
 	bool OnEnter(float dt) override;
 	bool OnExit(float dt) override;
 	void Update(StateID& currentState, float dt) override;

@@ -11,16 +11,16 @@ StartMenu::~StartMenu()
 {
 }
 
-void StartMenu::Init(const TextureManager& textureManager)
+void StartMenu::Init(const ResourceManager& resourceManager)
 {
 	m_StaticCamera.Init({ 0.f, 0.f }, { 0.f, 0.f, GLOBAL::WIN_WIDTH / 5.f, GLOBAL::WIN_HEIGHT / 5.f }, { 0.f, 0.f, GLOBAL::WIN_WIDTH / 5.f, GLOBAL::WIN_HEIGHT / 5.f });
 
 	m_Border.resize(96);
-	m_Batch.Create(&textureManager.GetTilesetTexture());
+	m_Batch.Create(&resourceManager.GetTilesetTexture());
 
 	for (int i = 0; i < m_Border.size(); ++i)
 	{
-		m_Border[i].setTexture(textureManager.GetTilesetTexture());
+		m_Border[i].setTexture(resourceManager.GetTilesetTexture());
 
 		if (i == 0)
 		{
@@ -64,13 +64,13 @@ void StartMenu::Init(const TextureManager& textureManager)
 		}
 	}
 
-	m_Frame.setTexture(textureManager.GetTilesetTexture());
+	m_Frame.setTexture(resourceManager.GetTilesetTexture());
 	m_Frame.setTextureRect({ 946, 220, 78, 98 });
 	m_Frame.setPosition(89.f, 17.f);
 
-	m_PlayButton.Init(textureManager, {776, 219, 45, 22}, {105.5f, 28.f});
-	m_OptionsButton.Init(textureManager, { 774, 243, 50, 22 }, { 103, 56 });
-	m_ExitButton.Init(textureManager, { 776, 267, 45, 22 }, { 105.5f, 84 });
+	m_PlayButton.Init(resourceManager, {776, 219, 45, 22}, {105.5f, 28.f});
+	m_OptionsButton.Init(resourceManager, { 774, 243, 50, 22 }, { 103, 56 });
+	m_ExitButton.Init(resourceManager, { 776, 267, 45, 22 }, { 105.5f, 84 });
 }
 
 void StartMenu::Update(StateID& currentState, float dt)

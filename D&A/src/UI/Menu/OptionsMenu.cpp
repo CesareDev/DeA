@@ -9,16 +9,16 @@ OptionsMenu::~OptionsMenu()
 {
 }
 
-void OptionsMenu::Init(const TextureManager& textureManager)
+void OptionsMenu::Init(const ResourceManager& resourceManager)
 {
 	m_StaticCamera.Init({ 0.f, 0.f }, { 0.f, 0.f, GLOBAL::WIN_WIDTH / 5.f, GLOBAL::WIN_HEIGHT / 5.f }, { 0.f, 0.f, GLOBAL::WIN_WIDTH / 5.f, GLOBAL::WIN_HEIGHT / 5.f });
 
 	m_Border.resize(96);
-	m_Batch.Create(&textureManager.GetTilesetTexture());
+	m_Batch.Create(&resourceManager.GetTilesetTexture());
 
 	for (int i = 0; i < m_Border.size(); ++i)
 	{
-		m_Border[i].setTexture(textureManager.GetTilesetTexture());
+		m_Border[i].setTexture(resourceManager.GetTilesetTexture());
 
 		if (i == 0)
 		{
@@ -62,9 +62,9 @@ void OptionsMenu::Init(const TextureManager& textureManager)
 		}
 	}
 
-	m_BackButton.Init(textureManager, { 776, 357, 16, 16 }, { 16.f, 16.f });
+	m_BackButton.Init(resourceManager, { 776, 357, 16, 16 }, { 16.f, 16.f });
 
-	const auto& font = textureManager.GetFont();
+	const auto& font = resourceManager.GetFont();
 	const_cast<sf::Texture&>(font.getTexture(120)).setSmooth(false);
 	const_cast<sf::Texture&>(font.getTexture(100)).setSmooth(false);
 	const_cast<sf::Texture&>(font.getTexture(80)).setSmooth(false);
@@ -94,8 +94,8 @@ void OptionsMenu::Init(const TextureManager& textureManager)
 	int mscrolly = m_MusicText.getGlobalBounds().top;
 	int sscrolly = m_SoundText.getGlobalBounds().top;
 
-	m_MusicScrollBar.Init(textureManager, { scrollx, mscrolly / 5.f}, &GLOBAL::MUSIC_VOLUME);
-	m_SoundScrollBar.Init(textureManager, { scrollx, sscrolly / 5.f}, &GLOBAL::SOUND_VOLUME);
+	m_MusicScrollBar.Init(resourceManager, { scrollx, mscrolly / 5.f}, &GLOBAL::MUSIC_VOLUME);
+	m_SoundScrollBar.Init(resourceManager, { scrollx, sscrolly / 5.f}, &GLOBAL::SOUND_VOLUME);
 
 	m_MusicValue.setFont(font);
 	m_MusicValue.setCharacterSize(80);
@@ -109,7 +109,7 @@ void OptionsMenu::Init(const TextureManager& textureManager)
 
 	float cx = ((m_FullScreenText.getGlobalBounds().left + m_FullScreenText.getGlobalBounds().width) / 5.f) + 8.f;
 	float cy = m_FullScreenText.getGlobalBounds().top / 5.f;
-	m_FSCheckBox.Init(textureManager, { cx, cy}, GLOBAL::FULLSCREEN);
+	m_FSCheckBox.Init(resourceManager, { cx, cy}, GLOBAL::FULLSCREEN);
 }
 
 void OptionsMenu::Update(StateID& currentState, float dt)

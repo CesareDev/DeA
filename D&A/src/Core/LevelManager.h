@@ -1,5 +1,5 @@
 #pragma once
-#include "Core/TextureManager.h"
+#include "Core/ResourceManager.h"
 #include "Levels/Level.h"
 #include "Entities/Player.h"
 
@@ -10,7 +10,7 @@ public:
 	LevelManager();
 	~LevelManager();
 
-	void Init(const TextureManager& textureManager);
+	void Init(const ResourceManager& resourceManager);
 	void Update(StateID& currentState, float dt);
 	void Render(sf::RenderTarget& target);
 	bool IsChanging();
@@ -21,7 +21,7 @@ private:
 
 private:
 
-	const TextureManager* m_TextureManager;
+	const ResourceManager* m_ResourceManager;
 
 	std::unique_ptr<Level> m_CurrentLevel;
 	LevelID m_CurrentLevelId;

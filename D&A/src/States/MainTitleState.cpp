@@ -9,10 +9,10 @@ MainTitleState::~MainTitleState()
 {
 }
 
-void MainTitleState::Init(const TextureManager& textureManger)
+void MainTitleState::Init(const ResourceManager& resourceManager)
 {
-	m_Transition.Init(textureManger);
-	const auto& font = textureManger.GetFont();
+	m_Transition.Init(resourceManager);
+	const auto& font = resourceManager.GetFont();
 	const_cast<sf::Texture&>(font.getTexture(150)).setSmooth(false);
 	m_Title.setFont(font);
 	m_Title.setCharacterSize(150);

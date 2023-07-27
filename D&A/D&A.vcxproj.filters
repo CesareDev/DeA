@@ -27,7 +27,7 @@
     <ClCompile Include="src\Core\StateManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Core\TextureManager.cpp">
+    <ClCompile Include="src\Core\ResourceManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\States\BeginState.cpp">
@@ -134,7 +134,7 @@
     <ClInclude Include="src\States\State.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Core\TextureManager.h">
+    <ClInclude Include="src\Core\ResourceManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\States\StartMenuState.h">

@@ -9,10 +9,10 @@ StartMenuState::~StartMenuState()
 {
 }
 
-void StartMenuState::Init(const TextureManager& textureManger)
+void StartMenuState::Init(const ResourceManager& resourceManager)
 {
-	m_StartMenu.Init(textureManger);
-	m_Transition.Init(textureManger);
+	m_StartMenu.Init(resourceManager);
+	m_Transition.Init(resourceManager);
 }
 
 bool StartMenuState::OnEnter(float dt)

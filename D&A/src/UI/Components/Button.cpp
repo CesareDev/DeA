@@ -9,11 +9,11 @@ Button::~Button()
 {
 }
 
-void Button::Init(const TextureManager& textureManager, const sf::IntRect& textureRect, const sf::Vector2f& position)
+void Button::Init(const ResourceManager& resourceManager, const sf::IntRect& textureRect, const sf::Vector2f& position)
 {
 	m_TextureRect = textureRect;
 	m_Position = position;
-	setTexture(textureManager.GetTilesetTexture());
+	setTexture(resourceManager.GetTilesetTexture());
 	setPosition(m_Position);
 	setTextureRect(m_TextureRect);
 }

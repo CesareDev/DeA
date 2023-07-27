@@ -1,5 +1,5 @@
 #pragma once 
-#include "Core/TextureManager.h"
+#include "Core/ResourceManager.h"
 
 class Transition
 {
@@ -8,7 +8,7 @@ public:
 	Transition();
 	~Transition();
 
-	void Init(const TextureManager& textureManager);
+	void Init(const ResourceManager& resourceManager);
 	void Render(sf::RenderTarget& target);
 	bool FadeIn(float dt, float animatinTimeInSeconds = 1.f);
 	bool FadeOut(float dt, float animatinTimeInSeconds = 1.f);

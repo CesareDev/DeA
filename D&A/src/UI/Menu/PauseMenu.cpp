@@ -10,17 +10,17 @@ PauseMenu::~PauseMenu()
 {
 }
 
-void PauseMenu::Init(const TextureManager& textureManager)
+void PauseMenu::Init(const ResourceManager& resourceManager)
 {
 	m_BackGround.setPosition(0.f, 0.f);
 	m_BackGround.setSize(sf::Vector2f(GLOBAL::WIN_WIDTH, GLOBAL::WIN_HEIGHT));
 	m_BackGround.setFillColor(sf::Color(0.f, 0.f, 0.f, 128.f));
 
-	m_Frame.setTexture(textureManager.GetTilesetTexture());
+	m_Frame.setTexture(resourceManager.GetTilesetTexture());
 	m_Frame.setTextureRect({ 946, 318, 78, 76 });
 	m_Frame.setPosition(89.f, 37.f);
-	m_ResumeButton.Init(textureManager, { 773, 291, 52, 22 }, { 102.f, 48.f });
-	m_MenuButton.Init(textureManager, { 776, 315, 45, 22 }, { 105.5f, 80.f });
+	m_ResumeButton.Init(resourceManager, { 773, 291, 52, 22 }, { 102.f, 48.f });
+	m_MenuButton.Init(resourceManager, { 776, 315, 45, 22 }, { 105.5f, 80.f });
 }
 
 void PauseMenu::Update(StateID& currentState, float dt)

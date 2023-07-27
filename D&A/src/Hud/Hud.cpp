@@ -9,7 +9,7 @@ Hud::~Hud()
 {
 }
 
-void Hud::Init(const TextureManager& textureManager, const Player* player)
+void Hud::Init(const ResourceManager& resourceManager, const Player* player)
 {
 	m_Player = player;
 }

@@ -1,12 +1,12 @@
 #pragma once
-#include "TextureManager.h"
+#include "ResourceManager.h"
 #include "States/State.h"
 
 class StateManager
 {
 public:
 
-	void Init();
+	void Init(const ResourceManager& resourceManager);
 	void Update(float dt);
 	void Render(sf::RenderTarget& target);
 
@@ -16,7 +16,7 @@ private:
 
 private:
 
-	TextureManager m_TextureManager;
+	const ResourceManager* m_ResourceManager;
 
 	std::unique_ptr<State> m_CurrentState;
 	StateID m_CurrentStateId;

@@ -9,7 +9,7 @@ Transition::~Transition()
 {
 }
 
-void Transition::Init(const TextureManager& textureManager)
+void Transition::Init(const ResourceManager& resourceManager)
 {
 	m_FadeRect.setPosition(0.f, 0.f);
 	m_FadeRect.setSize(sf::Vector2f(GLOBAL::WIN_WIDTH, GLOBAL::WIN_HEIGHT));

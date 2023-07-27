@@ -3,8 +3,12 @@
 
 Application::Application()
 {
+	m_ResourceManager.Init();
+	
+	m_Window.Init(m_ResourceManager);
 	m_Window.create(sf::VideoMode(GLOBAL::WIN_WIDTH, GLOBAL::WIN_HEIGHT), "D&A", sf::Style::Default);
-	m_StateManager.Init();
+
+	m_StateManager.Init(m_ResourceManager);
 }
 
 Application::~Application()

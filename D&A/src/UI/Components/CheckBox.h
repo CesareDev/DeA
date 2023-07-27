@@ -1,5 +1,5 @@
 #pragma once
-#include "Core/TextureManager.h"
+#include "Core/ResourceManager.h"
 
 class CheckBox : public sf::Sprite
 {
@@ -8,7 +8,7 @@ public:
 	CheckBox();
 	~CheckBox();
 
-	void Init(const TextureManager& textureManager, const sf::Vector2f& position, bool checked);
+	void Init(const ResourceManager& resourceManager, const sf::Vector2f& position, bool checked);
 	void Update(float dt);
 	void Render(sf::RenderTarget& target);
 	bool isChecked();

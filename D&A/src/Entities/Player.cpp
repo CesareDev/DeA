@@ -9,9 +9,9 @@ Player::~Player()
 {
 }
 
-void Player::Init(const TextureManager& textureManager, const sf::Vector2f& centerPosition)
+void Player::Init(const ResourceManager& resourceManager, const sf::Vector2f& centerPosition)
 {
-	setTexture(textureManager.GetTilesetTexture());
+	setTexture(resourceManager.GetTilesetTexture());
 	setOrigin(0.f, 8.f);
 	setTextureRect({ 0, 464, 16, 24 });
 	setRadius(8.f);

@@ -9,16 +9,16 @@ ScrollBar::~ScrollBar()
 {
 }
 
-void ScrollBar::Init(const TextureManager& textureManager, const sf::Vector2f& position, unsigned int* value)
+void ScrollBar::Init(const ResourceManager& resourceManager, const sf::Vector2f& position, unsigned int* value)
 {
 	m_Value = value;
 
 	m_SliderPosition = { position.x + 6.f + *m_Value, position.y + 6.f };
-	m_Bar.setTexture(textureManager.GetTilesetTexture());
+	m_Bar.setTexture(resourceManager.GetTilesetTexture());
     m_Bar.setTextureRect({ 776, 379, 132, 18 });
     m_Bar.setPosition(position);
 
-    m_Slider.setTexture(textureManager.GetTilesetTexture());
+    m_Slider.setTexture(resourceManager.GetTilesetTexture());
     m_SliderTextureRect = { 776, 399, 20, 6 };
     m_Slider.setTextureRect(m_SliderTextureRect);
     m_Slider.setPosition(m_SliderPosition);

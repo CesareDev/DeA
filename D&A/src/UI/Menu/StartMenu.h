@@ -11,7 +11,7 @@ public:
 	~StartMenu();
 
 	// Inherited via Menu
-	void Init(const TextureManager& textureManager) override;
+	void Init(const ResourceManager& resourceManager) override;
 	void Update(StateID& currentState, float dt) override;
 	void Render(sf::RenderTarget& target) override;
 

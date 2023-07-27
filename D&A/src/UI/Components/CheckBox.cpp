@@ -9,12 +9,12 @@ CheckBox::~CheckBox()
 {
 }
 
-void CheckBox::Init(const TextureManager& textureManager, const sf::Vector2f& position, bool checked)
+void CheckBox::Init(const ResourceManager& resourceManager, const sf::Vector2f& position, bool checked)
 {
 	m_Position = position;
 	m_Checked = checked;
 	m_TextureRect = { 776, 409, 14, 14 };
-	setTexture(textureManager.GetTilesetTexture());
+	setTexture(resourceManager.GetTilesetTexture());
 	setTextureRect(m_TextureRect);
 	setPosition(m_Position);
 }
