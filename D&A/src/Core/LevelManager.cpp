@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "LevelManager.h"
 #include "Levels/Hub.h"
-#include "Levels/Room.h"
+#include "Levels/Underground.h"
 
 LevelManager::LevelManager()
 {
@@ -56,28 +56,22 @@ void LevelManager::ChangeLevel(float dt)
 			unsigned int entanceIndex = 0;
 			switch (m_CurrentLevelId)
 			{
+				case LevelID::Hub_Starting:
+				{
+					m_CurrentLevel.reset(new Hub());
+					entanceIndex = 0;
+					break;
+				}
 				case LevelID::Hub_Zero:
 				{
 					m_CurrentLevel.reset(new Hub());
-					entanceIndex = 0;
-					break;
-				}
-				case LevelID::Hub_One:
-				{
-					m_CurrentLevel.reset(new Hub());
 					entanceIndex = 1;
 					break;
 				}
-				case LevelID::Room_Zero:
+				case LevelID::UnderGround_Zero:
 				{
-					m_CurrentLevel.reset(new Room());
+					m_CurrentLevel.reset(new Underground());
 					entanceIndex = 0;
-					break;
-				}
-				case LevelID::Room_One:
-				{
-					m_CurrentLevel.reset(new Room());
-					entanceIndex = 1;
 					break;
 				}
 				default:

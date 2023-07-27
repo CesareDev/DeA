@@ -4,8 +4,7 @@ enum class LevelID
 {
 	Null,
 	Arena,
+	Hub_Starting,
 	Hub_Zero,
-	Hub_One,
-	Room_Zero,
-	Room_One
+	UnderGround_Zero
 };

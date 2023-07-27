@@ -3,8 +3,8 @@
 
 void TextureManager::Init()
 {
-    m_TilesetTexture.loadFromFile("res/tileset.png");
-    m_Font.loadFromFile("res/DungeonFont.ttf");
+    m_TilesetTexture.loadFromFile("../res/map/tileset.png");
+    m_Font.loadFromFile("../res/DungeonFont.ttf");
 }
 
 const sf::Texture& TextureManager::GetTilesetTexture() const 

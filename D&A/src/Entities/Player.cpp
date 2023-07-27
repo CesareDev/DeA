@@ -31,11 +31,6 @@ void Player::Update(UpdateArgs args, float dt)
 
 void Player::Render(sf::RenderTarget& target)
 {
-	sf::CircleShape c;
-	c.setRadius(getRadius());
-	c.setPosition(getPosition());
-	c.setFillColor(sf::Color::Red);
-	target.draw(c);
 	target.draw(*this);	
 }
 

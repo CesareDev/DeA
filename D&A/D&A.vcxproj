@@ -5,6 +5,10 @@
       <Configuration>Debug</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Dist|x64">
+      <Configuration>Dist</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|x64">
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
@@ -31,6 +35,9 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
@@ -48,7 +55,11 @@
     <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
+    <OutDir>$(SolutionDir)dist</OutDir>
+    <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
+    <OutDir>$(SolutionDir)dist</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -91,9 +102,22 @@
       <AdditionalDependencies>winmm.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;flac.lib;gdi32.lib;sfml-system-s.lib;freetype.lib;opengl32.lib;libtmxlite-s.lib;sfml-window-s.lib;sfml-graphics-s.lib;sfml-audio-s.lib;sfml-network-s.lib;sfml-main.lib;sfml-extensions-s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
+    <ClCompile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>src;$(SolutionDir)Dependencies\include</AdditionalIncludeDirectories>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <PreprocessorDefinitions>SFML_STATIC</PreprocessorDefinitions>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Entities\Ladder.cpp" />
-    <ClCompile Include="src\Levels\Room.cpp" />
     <ClCompile Include="src\Levels\Hub.cpp" />
     <ClCompile Include="src\Core\LevelManager.cpp" />
     <ClCompile Include="src\States\ArenaState.cpp" />
@@ -129,11 +153,11 @@
     <ClCompile Include="src\UI\Menu\StartMenu.cpp" />
     <ClCompile Include="src\Effects\Transition.cpp" />
     <ClCompile Include="src\Core\Window.cpp" />
+    <ClCompile Include="src\Levels\Underground.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Entities\Ladder.h" />
     <ClInclude Include="src\Core\GlobalVariables.h" />
-    <ClInclude Include="src\Levels\Room.h" />
     <ClInclude Include="src\Levels\Hub.h" />
     <ClInclude Include="src\Core\LevelManager.h" />
     <ClInclude Include="src\Entities\EntityID.h" />
@@ -168,12 +192,13 @@
     <ClInclude Include="src\UI\Menu\StartMenu.h" />
     <ClInclude Include="src\Effects\Transition.h" />
     <ClInclude Include="src\Core\Window.h" />
+    <ClInclude Include="src\Levels\Underground.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\cursor.png" />
     <Image Include="res\cursor64.png" />
     <Image Include="res\icon.png" />
-    <Image Include="res\tileset.png" />
+    <Image Include="res\map\tileset.png" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="res\font.txt" />
@@ -181,6 +206,11 @@
   </ItemGroup>
   <ItemGroup>
     <Font Include="res\DungeonFont.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\map\arena.tmx" />
+    <None Include="res\map\hub.tmx" />
+    <None Include="res\map\underground.tmx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

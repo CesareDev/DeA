@@ -111,10 +111,10 @@
     <ClCompile Include="src\Levels\Hub.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Levels\Room.cpp">
+    <ClCompile Include="src\Entities\Ladder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Entities\Ladder.cpp">
+    <ClCompile Include="src\Levels\Underground.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -221,20 +221,17 @@
     <ClInclude Include="src\Levels\Hub.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Levels\Room.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Core\GlobalVariables.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Entities\Ladder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Levels\Underground.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\tileset.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\cursor.png">
       <Filter>Resource Files</Filter>
     </Image>
@@ -244,6 +241,9 @@
     <Image Include="res\icon.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\map\tileset.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="res\font.txt" />
@@ -251,5 +251,10 @@
   </ItemGroup>
   <ItemGroup>
     <Font Include="res\DungeonFont.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\map\arena.tmx" />
+    <None Include="res\map\hub.tmx" />
+    <None Include="res\map\underground.tmx" />
   </ItemGroup>
 </Project>

@@ -15,6 +15,7 @@ public:
 	EntityID GetId() const override;
 
 	void SetTeleportLevel(LevelID teleportLevel);
+	void Teleport(LevelID& currentLevel);
 
 private:
 

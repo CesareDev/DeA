@@ -14,7 +14,7 @@ void ArenaState::Init(const TextureManager& textureManger)
 	m_Transition.Init(textureManger);
 	m_PauseMenu.Init(textureManger);
 
-	m_Arena.load("res/arena.tmx", &textureManger.GetTilesetTexture());
+	m_Arena.load("../res/map/arena.tmx", &textureManger.GetTilesetTexture());
 	m_Tree.create(4, { 0.f, 0.f, (float)m_Arena.getMapSize().x, (float)m_Arena.getMapSize().y });
 	m_Player = new Player();
 	m_Player->Init(textureManger, { m_Arena.getMapSize().x / 2.f, m_Arena.getMapSize().y / 2.f });

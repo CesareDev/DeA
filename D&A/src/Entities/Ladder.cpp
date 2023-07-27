@@ -17,8 +17,6 @@ void Ladder::Init(const TextureManager& textureManager, const sf::Vector2f& cent
 
 void Ladder::Update(UpdateArgs args, float dt)
 {
-    if (m_Teleport != LevelID::Null)
-        args.currentLevel = m_Teleport;
 }
 
 void Ladder::Render(sf::RenderTarget& target)
@@ -33,4 +31,10 @@ EntityID Ladder::GetId() const
 void Ladder::SetTeleportLevel(LevelID teleportLevel)
 {
     m_Teleport = teleportLevel;
+}
+
+void Ladder::Teleport(LevelID& currentLevel)
+{
+    if (m_Teleport != LevelID::Null)
+        currentLevel = m_Teleport;
 }

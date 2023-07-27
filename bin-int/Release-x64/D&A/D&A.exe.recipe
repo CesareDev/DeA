@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Dev\VisualStudioProjects\D&amp;A\bin\Release-x64\D&amp;A\D&amp;A.exe</FullPath>
+      <FullPath>C:\Dev\VisualStudioProjects\D&amp;A\dist\D&amp;A.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
