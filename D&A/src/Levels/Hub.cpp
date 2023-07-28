@@ -27,6 +27,8 @@ void Hub::Init(const ResourceManager& resourceManager, Player* player, unsigned 
 	else if (entranceIndex == 1)
 		m_Player->setCenter({ 424.f, 440.f }); //from undeground
 
+	m_Hud.Init(resourceManager, m_Player);
+	m_Label.Init(resourceManager, "Hub");
 	m_Transition.Init(resourceManager);
 	m_Map.load("../res/map/hub.tmx", &resourceManager.GetTilesetTexture());
 	m_Camera.Init(m_Player->getCenter(), { 0.f, 0.f, (float)m_Map.getMapSize().x, (float)m_Map.getMapSize().y }, { 0.f, 0.f, GLOBAL::WIN_WIDTH / 5.f, GLOBAL::WIN_HEIGHT / 5.f });
@@ -45,6 +47,9 @@ void Hub::Update(StateID& currentState, LevelID& currentLevel, float dt)
 
 	if (m_Ladder0.contains(m_Player->getCenter()))
 		m_Ladder0.Teleport(currentLevel);
+
+	m_Hud.Update(dt);
+	m_Label.Update(dt);
 }
 
 void Hub::Render(sf::RenderTarget& target)
@@ -54,5 +59,7 @@ void Hub::Render(sf::RenderTarget& target)
 	m_Map.drawLayer(target, 1);
 	m_Player->Render(target);
 	m_Map.drawLayer(target, 2);
+	m_Hud.Render(target);
+	m_Label.Render(target);
 	m_Transition.Render(target);
 }

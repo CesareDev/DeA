@@ -1,4 +1,5 @@
-C:\Dev\VisualStudioProjects\D&A\D&A\src\Levels\Room.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\Room.obj
+C:\Dev\VisualStudioProjects\D&A\D&A\src\UI\Components\LevelLabel.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\LevelLabel.obj
+C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Ladder.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\Ladder.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Levels\Hub.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\Hub.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Core\LevelManager.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\LevelManager.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\States\ArenaState.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\ArenaState.obj
@@ -26,8 +27,9 @@ C:\Dev\VisualStudioProjects\D&A\D&A\src\Core\Application.cpp;C:\Dev\VisualStudio
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Core\main.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\main.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\pch.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\pch.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Core\StateManager.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\StateManager.obj
-C:\Dev\VisualStudioProjects\D&A\D&A\src\Core\TextureManager.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\TextureManager.obj
+C:\Dev\VisualStudioProjects\D&A\D&A\src\Core\ResourceManager.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\ResourceManager.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\States\State.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\State.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\UI\Menu\StartMenu.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\StartMenu.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Effects\Transition.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\Transition.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Core\Window.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\Window.obj
+C:\Dev\VisualStudioProjects\D&A\D&A\src\Levels\Underground.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\Underground.obj

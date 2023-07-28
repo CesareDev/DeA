@@ -47,27 +47,32 @@ void Player::Movement(UpdateArgs args, float dt)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		m_IsMoving = true;
-		m_Velocity.y = -64.f;
+		m_Velocity.y = -1.f;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		setOrigin(m_TextureRect.width, 8.f);
 		setScale(-1.f, 1.f);
 		m_IsMoving = true;
-		m_Velocity.x = -64.f;
+		m_Velocity.x = -1.f;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 		m_IsMoving = true;
-		m_Velocity.y = 64.f;
+		m_Velocity.y = 1.f;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		setOrigin(0.f, 8.f);
 		setScale(1.f, 1.f);
 		m_IsMoving = true;
-		m_Velocity.x = 64.f;
+		m_Velocity.x = 1.f;
 	}
+
+	float mag = std::sqrtf(m_Velocity.x * m_Velocity.x + m_Velocity.y * m_Velocity.y);
+	if (mag != 0.f)
+		m_Velocity /= mag;
+	m_Velocity *= 64.f;
 
 	sf::Vector2f potentialPos = getPosition() + m_Velocity * dt;
 

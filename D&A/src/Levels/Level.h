@@ -2,6 +2,8 @@
 #include "Core/ResourceManager.h"
 #include "Core/Camera.h"
 #include "Effects/Transition.h"
+#include "UI/Components/LevelLabel.h"
+#include "Hud/Hud.h"
 #include "Entities/Player.h"
 #include "LevelID.h"
 
@@ -23,6 +25,8 @@ protected:
 	Camera m_Camera;
 	Transition m_Transition;
 	Player* m_Player;
+	LevelLabel m_Label;
+	Hud m_Hud;
 	sf::TileMap m_Map;
 	sf::DynamicQuadTree<Entity> m_Tree;
 };
