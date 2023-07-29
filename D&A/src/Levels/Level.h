@@ -4,7 +4,7 @@
 #include "Effects/Transition.h"
 #include "UI/Components/LevelLabel.h"
 #include "Hud/Hud.h"
-#include "Entities/Player.h"
+#include "Entities/Characters/Player.h"
 #include "LevelID.h"
 
 class Level

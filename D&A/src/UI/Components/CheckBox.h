@@ -11,6 +11,8 @@ public:
 	void Init(const ResourceManager& resourceManager, const sf::Vector2f& position, bool checked);
 	void Update(float dt);
 	void Render(sf::RenderTarget& target);
+
+	void SetChecked(bool value);
 	bool isChecked();
 	bool isClicked();
 

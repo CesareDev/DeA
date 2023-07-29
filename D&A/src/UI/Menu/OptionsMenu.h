@@ -25,6 +25,7 @@ private:
 	sf::Text m_MusicText;
 	sf::Text m_SoundText;
 	sf::Text m_FullScreenText;
+	sf::Sprite m_JoystickIcon;
 	sf::Text m_MusicValue;
 	sf::Text m_SoundValue;
 
@@ -32,6 +33,7 @@ private:
 	ScrollBar m_MusicScrollBar;
 	ScrollBar m_SoundScrollBar;
 	CheckBox m_FSCheckBox;
+	CheckBox m_JoystickCheckBox;
 
 	std::vector<sf::Sprite> m_Border;
 	sf::SpriteBatch m_Batch;

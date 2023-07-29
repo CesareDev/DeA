@@ -90,6 +90,10 @@ void OptionsMenu::Init(const ResourceManager& resourceManager)
 	m_FullScreenText.setPosition(80, 440);
 	m_FullScreenText.setString("Fullscreen");
 
+	m_JoystickIcon.setTexture(resourceManager.GetTilesetTexture());
+	m_JoystickIcon.setPosition(16.f, 114.f);
+	m_JoystickIcon.setTextureRect({ 880, 410, 24, 15 });
+
 	float scrollx = ((m_MusicText.getGlobalBounds().left + m_MusicText.getGlobalBounds().width) / 5.f) + 8.f;
 	int mscrolly = m_MusicText.getGlobalBounds().top;
 	int sscrolly = m_SoundText.getGlobalBounds().top;
@@ -110,6 +114,10 @@ void OptionsMenu::Init(const ResourceManager& resourceManager)
 	float cx = ((m_FullScreenText.getGlobalBounds().left + m_FullScreenText.getGlobalBounds().width) / 5.f) + 8.f;
 	float cy = m_FullScreenText.getGlobalBounds().top / 5.f;
 	m_FSCheckBox.Init(resourceManager, { cx, cy}, GLOBAL::FULLSCREEN);
+
+	float jx = ((m_JoystickIcon.getPosition().x + m_JoystickIcon.getGlobalBounds().width) + 8.f);
+	float jy = m_JoystickIcon.getPosition().y;
+	m_JoystickCheckBox.Init(resourceManager, { jx, jy }, GLOBAL::JOYSTICK_AVAILABLE);
 }
 
 void OptionsMenu::Update(StateID& currentState, float dt)
@@ -135,6 +143,7 @@ void OptionsMenu::Render(sf::RenderTarget& target)
 	m_MusicScrollBar.Render(target);
 	m_SoundScrollBar.Render(target);
 	m_FSCheckBox.Render(target);
+	m_JoystickCheckBox.Render(target);
 
 	sf::View view({ 0.f, 0.f, (float)GLOBAL::WIN_WIDTH, (float)GLOBAL::WIN_HEIGHT });
 
@@ -149,6 +158,8 @@ void OptionsMenu::Render(sf::RenderTarget& target)
 
 	target.setView(m_StaticCamera);
 
+	target.draw(m_JoystickIcon);
+
 	if (m_FSCheckBox.isClicked())
 	{
 		if (m_FSCheckBox.isChecked())
@@ -162,4 +173,7 @@ void OptionsMenu::Render(sf::RenderTarget& target)
 			GLOBAL::FULLSCREEN = false;
 		}
 	}
+
+	GLOBAL::JOYSTICK_AVAILABLE = sf::Joystick::isConnected(0);
+	m_JoystickCheckBox.SetChecked(GLOBAL::JOYSTICK_AVAILABLE);
 }

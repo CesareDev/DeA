@@ -1,6 +1,6 @@
 #pragma once
 #include "Level.h"
-#include "Entities/Ladder.h"
+#include "Entities/Environments/Ladder.h"
 
 class Underground : public Level
 {

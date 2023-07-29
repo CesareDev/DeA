@@ -1,5 +1,5 @@
 C:\Dev\VisualStudioProjects\D&A\D&A\src\UI\Components\LevelLabel.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\LevelLabel.obj
-C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Ladder.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\Ladder.obj
+C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Environments\Ladder.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\Ladder.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Levels\Hub.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\Hub.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Core\LevelManager.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\LevelManager.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\States\ArenaState.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\ArenaState.obj
@@ -18,7 +18,7 @@ C:\Dev\VisualStudioProjects\D&A\D&A\src\UI\Components\Button.cpp;C:\Dev\VisualSt
 C:\Dev\VisualStudioProjects\D&A\D&A\src\States\StartMenuState.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\StartMenuState.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\UI\Menu\PauseMenu.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\PauseMenu.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\UI\Menu\Menu.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\Menu.obj
-C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Player.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\Player.obj
+C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Characters\Player.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\Player.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Entity.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\Entity.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Core\Camera.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\Camera.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\States\GameState.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\GameState.obj

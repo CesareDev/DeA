@@ -1,12 +1,12 @@
 #pragma once
-#include "Entity.h"
+#include "Entities/Entity.h"
 
-class Ladder : public Entity
+class Player : public Entity
 {
 public:
-
-	Ladder();
-	~Ladder();
+	 
+	Player();
+	~Player();
 
 	// Inherited via Entity
 	void Init(const ResourceManager& resourceManager, const sf::Vector2f& centerPosition) override;
@@ -14,11 +14,17 @@ public:
 	void Render(sf::RenderTarget& target) override;
 	EntityID GetId() const override;
 
-	void SetTeleportLevel(LevelID teleportLevel);
-	void Teleport(LevelID& currentLevel);
+private:
+
+	void Movement(UpdateArgs args, float dt);
+	void UpdateAnimation(float dt);
 
 private:
 
-	LevelID m_Teleport = LevelID::Null;
+	bool m_IsMoving;
+	float m_ElapsedAnimationTime;
+	sf::IntRect m_TextureRect;
+
+	sf::Vector2f m_Velocity;
 };
 

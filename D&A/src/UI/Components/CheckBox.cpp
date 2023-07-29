@@ -82,6 +82,11 @@ void CheckBox::Render(sf::RenderTarget& target)
 	target.draw(*this);
 }
 
+void CheckBox::SetChecked(bool value)
+{
+	m_Checked = value;
+}
+
 bool CheckBox::isChecked()
 {
 	return m_Checked;

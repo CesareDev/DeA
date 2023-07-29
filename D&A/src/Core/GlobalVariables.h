@@ -9,6 +9,7 @@ namespace GLOBAL
 	inline unsigned int MUSIC_VOLUME = 0;
 
 	inline bool FULLSCREEN = false;
+	inline bool JOYSTICK_AVAILABLE = false;
 
 	inline int SAVE_INDEX = -1;
 };

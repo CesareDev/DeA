@@ -45,7 +45,7 @@
     <ClCompile Include="src\Entities\Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Entities\Player.cpp">
+    <ClCompile Include="src\Entities\Characters\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\UI\Menu\Menu.cpp">
@@ -111,7 +111,7 @@
     <ClCompile Include="src\Levels\Hub.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Entities\Ladder.cpp">
+    <ClCompile Include="src\Entities\Environments\Ladder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Levels\Underground.cpp">
@@ -158,7 +158,7 @@
     <ClInclude Include="src\Entities\Entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Entities\Player.h">
+    <ClInclude Include="src\Entities\Characters\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\UI\Menu\Menu.h">
@@ -227,7 +227,7 @@
     <ClInclude Include="src\Core\GlobalVariables.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Entities\Ladder.h">
+    <ClInclude Include="src\Entities\Environments\Ladder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Levels\Underground.h">

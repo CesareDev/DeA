@@ -1,6 +1,6 @@
 #pragma once
 #include "Core/ResourceManager.h"
-#include "Entities/Player.h"
+#include "Entities/Characters/Player.h"
 
 class Hud
 {

@@ -1,6 +1,6 @@
 #pragma once
 #include "State.h"
-#include "Entities/Player.h"
+#include "Entities/Characters/Player.h"
 #include "Core/Camera.h"
 #include "UI/Menu/PauseMenu.h"
 
