@@ -209,8 +209,12 @@ namespace sf
 		template <typename OBJ_ITEM>
 		struct Item
 		{
-			std::unique_ptr<OBJ_ITEM> obj;
-			std::tuple<typename std::list<std::pair<typename std::list<Item<OBJ_ITEM>>::iterator, Rectangle>>*, typename std::list<std::pair<typename std::list<Item<OBJ_ITEM>>::iterator, Rectangle>>::iterator, RealQuadTree<typename std::list<Item<OBJ_ITEM>>::iterator>*> location;
+			OBJ_ITEM* obj;
+			std::tuple<
+				typename std::list<std::pair<typename std::list<Item<OBJ_ITEM>>::iterator, Rectangle>>*,
+				typename std::list<std::pair<typename std::list<Item<OBJ_ITEM>>::iterator, Rectangle>>::iterator,
+				RealQuadTree<typename std::list<Item<OBJ_ITEM>>::iterator>*
+			> location;
 		};
 
 		//Members
@@ -279,6 +283,7 @@ namespace sf
 
 		inline void resize(const Rectangle& area)
 		{
+			clear();
 			m_Root.resize(area);
 		}
 
@@ -287,13 +292,9 @@ namespace sf
 			if (m_Root.getArea().contains(objArea))
 			{
 				Item<T> item;
-				item.obj.reset(obj);
+				item.obj = obj;
 				m_AllObjects.emplace_back(std::move(item));
 				m_AllObjects.back().location = m_Root.insert(std::prev(m_AllObjects.end()), objArea, m_MaxDepth);
-			}
-			else
-			{
-				delete obj;
 			}
 		}
 
@@ -308,12 +309,12 @@ namespace sf
 			}
 		}
 
-		inline void remove(typename std::list<Item<T>>::iterator& obj_it)
+		inline typename std::list<Item<T>>::iterator remove(typename std::list<Item<T>>::iterator& obj_it)
 		{
 			std::get<0>(obj_it->location)->erase(std::get<1>(obj_it->location));
 			std::get<2>(obj_it->location)->updateSize();
 			m_Root.update();
-			m_AllObjects.erase(obj_it);
+			return m_AllObjects.erase(obj_it);
 		}
 
 		inline std::list<typename std::list<Item<T>>::iterator> search(const Rectangle& searchArea) const

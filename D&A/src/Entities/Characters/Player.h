@@ -1,14 +1,14 @@
 #pragma once
-#include "Entities/Entity.h"
+#include "Character.h"
 
-class Player : public Entity
+class Player : public Character
 {
 public:
 	 
 	Player();
 	~Player();
 
-	// Inherited via Entity
+	// Inherited via Character
 	void Init(const ResourceManager& resourceManager, const sf::Vector2f& centerPosition) override;
 	void Update(UpdateArgs args, float dt) override;
 	void Render(sf::RenderTarget& target) override;
@@ -18,13 +18,5 @@ private:
 
 	void Movement(UpdateArgs args, float dt);
 	void UpdateAnimation(float dt);
-
-private:
-
-	bool m_IsMoving;
-	float m_ElapsedAnimationTime;
-	sf::IntRect m_TextureRect;
-
-	sf::Vector2f m_Velocity;
 };
 

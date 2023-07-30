@@ -29,5 +29,6 @@ private:
 	bool m_ChangingLevel;
 
 	Player m_Player;
+	sf::DynamicQuadTree<Entity> m_Tree;
 };
 

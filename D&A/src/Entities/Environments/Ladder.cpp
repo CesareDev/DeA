@@ -17,6 +17,16 @@ void Ladder::Init(const ResourceManager& resourceManager, const sf::Vector2f& ce
 
 void Ladder::Update(UpdateArgs args, float dt)
 {
+    for (const auto& en : args.qTree.search(getGlobalBounds()))
+    {
+        if (en->obj->GetId() == EntityID::Player)
+        {
+            if (contains(en->obj->getCenter()))
+            {
+                args.currentLevel = m_Teleport;
+            }
+        }
+    }
 }
 
 void Ladder::Render(sf::RenderTarget& target)
@@ -31,10 +41,4 @@ EntityID Ladder::GetId() const
 void Ladder::SetTeleportLevel(LevelID teleportLevel)
 {
     m_Teleport = teleportLevel;
-}
-
-void Ladder::Teleport(LevelID& currentLevel)
-{
-    if (m_Teleport != LevelID::Null)
-        currentLevel = m_Teleport;
 }

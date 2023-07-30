@@ -6,3 +6,11 @@ enum class EntityID
 	Player,
 	Ladder,
 };
+
+enum class EntityType
+{
+	Null,
+	Character,
+	Weapon,
+	Environment
+};

@@ -1,3 +1,6 @@
+C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Characters\Character.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\Character.obj
+C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Environments\Environment.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\Environment.obj
+C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Weapons\Knife.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\Knife.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\UI\Components\LevelLabel.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\LevelLabel.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Environments\Ladder.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\Ladder.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Levels\Hub.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\Hub.obj
@@ -33,3 +36,4 @@ C:\Dev\VisualStudioProjects\D&A\D&A\src\UI\Menu\StartMenu.cpp;C:\Dev\VisualStudi
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Effects\Transition.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\Transition.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Core\Window.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\Window.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Levels\Underground.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\Underground.obj
+C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Weapons\Weapon.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Release-x64\D&A\Weapon.obj

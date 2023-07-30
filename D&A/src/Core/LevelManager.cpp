@@ -14,10 +14,11 @@ LevelManager::~LevelManager()
 void LevelManager::Init(const ResourceManager& resourceManager)
 {
 	m_Player.Init(resourceManager, { 0.f, 0.f });
+	m_Tree.create(4, {-100.f, -100.f, 200.f, 200.f });
 	m_ResourceManager = &resourceManager;
 
 	m_CurrentLevel = std::make_unique<Hub>();
-	m_CurrentLevel->Init(resourceManager, &m_Player, 0);
+	m_CurrentLevel->Init(resourceManager, m_Tree, m_Player, 0);
 
 	m_ChangingLevel = true;
 }
@@ -78,7 +79,7 @@ void LevelManager::ChangeLevel(float dt)
 					break;
 			}
 
-			m_CurrentLevel->Init(*m_ResourceManager, &m_Player, entanceIndex);
+			m_CurrentLevel->Init(*m_ResourceManager, m_Tree, m_Player, entanceIndex);
 			m_OldState = m_CurrentLevelId;
 		}
 	}
