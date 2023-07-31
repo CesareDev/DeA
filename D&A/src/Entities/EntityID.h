@@ -5,6 +5,7 @@ enum class EntityID
 	Null,
 	Player,
 	Ladder,
+	Knife
 };
 
 enum class EntityType

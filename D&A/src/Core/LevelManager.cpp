@@ -19,7 +19,8 @@ void LevelManager::Init(const ResourceManager& resourceManager)
 
 	m_CurrentLevel = std::make_unique<Hub>();
 	m_CurrentLevel->Init(resourceManager, m_Tree, m_Player, 0);
-
+	m_OldLevelId = LevelID::Hub_Starting;
+	m_CurrentLevelId = LevelID::Hub_Starting;
 	m_ChangingLevel = true;
 }
 
@@ -27,9 +28,9 @@ void LevelManager::Update(StateID& currentState, float dt)
 {
 	if (!m_ChangingLevel)
 	{
-		m_OldState = m_CurrentLevelId;
+		m_OldLevelId = m_CurrentLevelId;
 
-		//Udpate State
+		//Udpate Level
 		m_CurrentLevel->Update(currentState, m_CurrentLevelId, dt);
 	}
 
@@ -48,7 +49,7 @@ bool LevelManager::IsChanging()
 
 void LevelManager::ChangeLevel(float dt)
 {
-	if (m_CurrentLevelId != m_OldState)
+	if (m_CurrentLevelId != m_OldLevelId)
 	{
 		m_ChangingLevel = true;
 
@@ -80,7 +81,7 @@ void LevelManager::ChangeLevel(float dt)
 			}
 
 			m_CurrentLevel->Init(*m_ResourceManager, m_Tree, m_Player, entanceIndex);
-			m_OldState = m_CurrentLevelId;
+			m_OldLevelId = m_CurrentLevelId;
 		}
 	}
 	else if (!m_CurrentLevel->OnEnter(dt))

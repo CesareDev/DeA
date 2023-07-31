@@ -9,29 +9,52 @@ Player::~Player()
 {
 }
 
-void Player::Init(const ResourceManager& resourceManager, const sf::Vector2f& centerPosition)
+void Player::Init(const ResourceManager& resourceManager, const sf::Vector2f& position)
 {
 	setTexture(resourceManager.GetTilesetTexture());
 	setOrigin(0.f, 8.f);
 	setTextureRect({ 0, 464, 16, 24 });
-	setRadius(8.f);
-	setCenter(centerPosition);
+	setPosition(position);
 
+	m_Center = getPosition() + sf::Vector2f(8.f, 8.f);
+	m_Bounds = { getPosition(), {16.f, 16.f} };
 	m_IsMoving = false;
 	m_ElapsedAnimationTime = 0.f;
 	m_TextureRect = getTextureRect();
 	m_Velocity = { 0.f, 0.f };
+
+	knife.Init(resourceManager, GetCenter());
 }
 
 void Player::Update(UpdateArgs args, float dt)
 {
 	Movement(args, dt);
 	UpdateAnimation(dt);
+
+	knife.Update(args, dt);
 }
 
 void Player::Render(sf::RenderTarget& target)
 {
+	knife.Render(target);
 	target.draw(*this);	
+}
+
+void Player::SetPosition(const sf::Vector2f& position)
+{
+	setPosition(position);
+	m_Center = position + sf::Vector2f(8.f, 8.f);
+	m_Bounds = { getPosition(), {16.f, 16.f} };
+}
+
+const sf::Vector2f& Player::GetCenter() const
+{
+	return m_Center;
+}
+
+const sf::Rectangle& Player::GetBounds() const
+{
+	return m_Bounds;
 }
 
 EntityID Player::GetId() const
@@ -120,10 +143,7 @@ void Player::Movement(UpdateArgs args, float dt)
 	potentialPos.x = potentialPosInUnit.x * m_TextureRect.width;
 	potentialPos.y = potentialPosInUnit.y * m_TextureRect.width;
 
-	sf::Vector2f posCenter = potentialPos + sf::Vector2f(m_TextureRect.width, m_TextureRect.width) / 2.f;
-
-	setPosition(potentialPos);
-	setCenter(posCenter);
+	SetPosition(potentialPos);
 }
 
 void Player::UpdateAnimation(float dt)

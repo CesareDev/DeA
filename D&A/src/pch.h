@@ -1,10 +1,10 @@
 #pragma once
 
 #ifdef DEBUG
-#include <iostream>
+
 #endif // DEBUG
 
-
+#include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Extensions/DynamicQuadTree.hpp>
 #include <SFML/Extensions/Shapes.h>

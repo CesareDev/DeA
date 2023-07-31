@@ -29,15 +29,15 @@ void Underground::Init(const ResourceManager& resourceManager, sf::DynamicQuadTr
 	m_Tree->resize({ 0.f, 0.f, (float)m_Map.getMapSize().x, (float)m_Map.getMapSize().y });
 
 	if (entranceIndex == 0)
-		player.setCenter({ 56.f, 56.f }); //from hub
+		player.SetPosition({ 48.f, 48.f }); //from hub
 
-	m_Camera.Init(player.getCenter(), { 0.f, 0.f, (float)m_Map.getMapSize().x, (float)m_Map.getMapSize().y }, { 0.f, 0.f, GLOBAL::WIN_WIDTH / 5.f, GLOBAL::WIN_HEIGHT / 5.f });
-	m_Tree->insert(&player, player.getGlobalBounds());
+	m_Camera.Init(player.GetCenter(), { 0.f, 0.f, (float)m_Map.getMapSize().x, (float)m_Map.getMapSize().y }, { 0.f, 0.f, GLOBAL::WIN_WIDTH / 5.f, GLOBAL::WIN_HEIGHT / 5.f });
+	m_Tree->insert(&player, player.GetBounds());
 
-	m_Ladder0.Init(resourceManager, { 40.f, 56.f });
+	m_Ladder0.Init(resourceManager, { 32.f, 48.f });
 	m_Ladder0.SetTeleportLevel(LevelID::Hub_Zero);
 
-	m_Tree->insert(&m_Ladder0, m_Ladder0.getGlobalBounds());
+	m_Tree->insert(&m_Ladder0, m_Ladder0.GetBounds());
 }
 
 void Underground::Update(StateID& currentState, LevelID& currentLevel, float dt)
@@ -57,9 +57,9 @@ void Underground::Update(StateID& currentState, LevelID& currentLevel, float dt)
 			else
 			{
 				if (((Character*)it->obj)->IsMoving())
-					m_Tree->relocate(it, it->obj->getGlobalBounds());
+					m_Tree->relocate(it, it->obj->GetBounds());
 				if (it->obj->GetId() == EntityID::Player)
-					m_Camera.Update(it->obj->getCenter(), dt);
+					m_Camera.Update(it->obj->GetCenter(), dt);
 			}
 			break;
 		}

@@ -20,7 +20,7 @@ private:
 
 	std::unique_ptr<State> m_CurrentState;
 	StateID m_CurrentStateId;
-	StateID m_OldState;
+	StateID m_OldStateId;
 	bool m_ChangingState;
 };
 

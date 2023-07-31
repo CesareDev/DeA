@@ -25,7 +25,7 @@ private:
 
 	std::unique_ptr<Level> m_CurrentLevel;
 	LevelID m_CurrentLevelId;
-	LevelID m_OldState;
+	LevelID m_OldLevelId;
 	bool m_ChangingLevel;
 
 	Player m_Player;

@@ -15,9 +15,9 @@ void StateManager::Init(const ResourceManager& resourceManager)
 	m_ResourceManager = &resourceManager;
 
 	m_CurrentState = std::make_unique<BeginState>();
+	m_CurrentState->Init(resourceManager);
 	m_CurrentStateId = StateID::BeginState;
-	m_CurrentState->Init(*m_ResourceManager);
-
+	m_OldStateId = StateID::BeginState;
 	m_ChangingState = true;
 }
 
@@ -25,7 +25,7 @@ void StateManager::Update(float dt)
 {
 	if (!m_ChangingState)
 	{
-		m_OldState = m_CurrentStateId;
+		m_OldStateId = m_CurrentStateId;
 		
 		//Udpate State
 		m_CurrentState->Update(m_CurrentStateId, dt);
@@ -42,7 +42,7 @@ void StateManager::Render(sf::RenderTarget& target)
 
 void StateManager::ChangeState(float dt)
 {
-	if (m_CurrentStateId != m_OldState)
+	if (m_CurrentStateId != m_OldStateId)
 	{
 		m_ChangingState = true;
 
@@ -79,7 +79,7 @@ void StateManager::ChangeState(float dt)
 			}
 
 			m_CurrentState->Init(*m_ResourceManager);
-			m_OldState = m_CurrentStateId;
+			m_OldStateId = m_CurrentStateId;
 		}
 	}
 	else if (!m_CurrentState->OnEnter(dt))
