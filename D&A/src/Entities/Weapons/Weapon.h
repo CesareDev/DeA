@@ -20,6 +20,16 @@ public:
 
 protected:
 
-	float m_RecoveryTime;
+	virtual void Attack(float dt) = 0;
+	float Lerp(float a, float b, float f);
+
+protected:
+
+	float m_Angle;
+	float m_AttackAngle;
+	float m_ElapsedTime;
 	unsigned int m_AttackPower;
+	bool m_IsAttacking;
+	sf::Vector2f m_PlayerCenter;
+	std::vector<sf::Vector2f> m_HitPoints;
 };

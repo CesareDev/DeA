@@ -60,7 +60,7 @@ void Hub::Update(StateID& currentState, LevelID& currentLevel, float dt)
 				{
 					if (((Character*)it->obj)->IsMoving())
 						m_Tree->relocate(it, it->obj->GetBounds());
-					if (it->obj->GetId() == EntityID::Player)
+					if (it->obj->GetId() == EntityID::Player) {}
 						m_Camera.Update(it->obj->GetCenter(), dt);
 				}
 				break;

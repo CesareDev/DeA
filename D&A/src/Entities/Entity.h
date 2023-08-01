@@ -32,6 +32,5 @@ protected:
 
 	sf::Vector2f m_Center;
 	sf::Rectangle m_Bounds;
-
 };
 

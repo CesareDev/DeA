@@ -123,7 +123,7 @@
     <ClCompile Include="src\Entities\Weapons\Weapon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Entities\Weapons\Knife.cpp">
+    <ClCompile Include="src\Entities\Weapons\Mace.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Entities\Environments\Environment.cpp">
@@ -251,7 +251,7 @@
     <ClInclude Include="src\Entities\Weapons\Weapon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Entities\Weapons\Knife.h">
+    <ClInclude Include="src\Entities\Weapons\Mace.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Entities\Environments\Environment.h">

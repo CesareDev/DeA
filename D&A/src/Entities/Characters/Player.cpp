@@ -23,7 +23,7 @@ void Player::Init(const ResourceManager& resourceManager, const sf::Vector2f& po
 	m_TextureRect = getTextureRect();
 	m_Velocity = { 0.f, 0.f };
 
-	knife.Init(resourceManager, GetCenter());
+	mace.Init(resourceManager, GetCenter());
 }
 
 void Player::Update(UpdateArgs args, float dt)
@@ -31,20 +31,20 @@ void Player::Update(UpdateArgs args, float dt)
 	Movement(args, dt);
 	UpdateAnimation(dt);
 
-	knife.Update(args, dt);
+	mace.Update(args, dt);
 }
 
 void Player::Render(sf::RenderTarget& target)
 {
-	knife.Render(target);
 	target.draw(*this);	
+	mace.Render(target);
 }
 
 void Player::SetPosition(const sf::Vector2f& position)
 {
 	setPosition(position);
 	m_Center = position + sf::Vector2f(8.f, 8.f);
-	m_Bounds = { getPosition(), {16.f, 16.f} };
+	m_Bounds.position = getPosition();
 }
 
 const sf::Vector2f& Player::GetCenter() const

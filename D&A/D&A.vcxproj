@@ -119,7 +119,7 @@
   <ItemGroup>
     <ClCompile Include="src\Entities\Characters\Character.cpp" />
     <ClCompile Include="src\Entities\Environments\Environment.cpp" />
-    <ClCompile Include="src\Entities\Weapons\Knife.cpp" />
+    <ClCompile Include="src\Entities\Weapons\Mace.cpp" />
     <ClCompile Include="src\UI\Components\LevelLabel.cpp" />
     <ClCompile Include="src\Entities\Environments\Ladder.cpp" />
     <ClCompile Include="src\Levels\Hub.cpp" />
@@ -163,7 +163,7 @@
   <ItemGroup>
     <ClInclude Include="src\Entities\Characters\Character.h" />
     <ClInclude Include="src\Entities\Environments\Environment.h" />
-    <ClInclude Include="src\Entities\Weapons\Knife.h" />
+    <ClInclude Include="src\Entities\Weapons\Mace.h" />
     <ClInclude Include="src\UI\Components\LevelLabel.h" />
     <ClInclude Include="src\Entities\Environments\Ladder.h" />
     <ClInclude Include="src\Core\GlobalVariables.h" />
