@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Mace.h"
 #include "Core/Camera.h"
+#include "Entities/Characters/Character.h"
 
 Mace::Mace()
 {
@@ -16,8 +17,8 @@ void Mace::Init(const ResourceManager& resourceManager, const sf::Vector2f& posi
 	setTextureRect({ 323, 57, 10, 22 });
 	setOrigin(5.f, 29.f);
 
-	m_Bounds.size = { 32.f, 32.f };
-	m_HitPoints.resize(3);
+	m_Bounds.size = { 58.f, 58.f };
+	m_HitPoints.resize(2);
 
 	SetPosition(position);
 }
@@ -33,9 +34,21 @@ void Mace::Update(UpdateArgs args, float dt)
 		}
 	}
 	Attack(dt);
+	for (const auto& it : args.qTree.search(m_Bounds))
+	{
+		if (m_IsAttacking && it->obj->GetId() != EntityID::Player && it->obj->GetType() == EntityType::Character)
+		{
+			Character* en = (Character*)it->obj;
+			for (const auto& p : m_HitPoints)
+			{
+				if (en->GetBounds().contains(p))
+				{
+					en->TakeDamage(2);
+				}
+			}
+		}
+	}
 }
-
-static int count = 0;
 
 void Mace::Render(sf::RenderTarget& target)
 {
@@ -59,12 +72,11 @@ void Mace::SetPosition(const sf::Vector2f& position)
 	{
 		setOrigin(5.f, 29.f);
 		setPosition(position);
-		m_Center = { getPosition().x + 14.f * cosf((m_Angle -90.f) * acos(-1.f) / 180.f), getPosition().y + 14.f * sinf((m_Angle - 90.f) * acos(-1.f) / 180.f)};
+		m_Center = { getPosition().x + 17.f * cosf((m_Angle -90.f) * acos(-1.f) / 180.f), getPosition().y + 17.f * sinf((m_Angle - 90.f) * acos(-1.f) / 180.f)};
 	}
 	m_HitPoints[0] = m_Center;
-	m_HitPoints[1] = m_HitPoints[0] + sf::Vector2f(7.f * cosf((m_Angle - 90.f) * acos(-1.f) / 180.f), 7.f * sinf((m_Angle - 90.f) * acos(-1.f) / 180.f));
-	m_HitPoints[2] = m_HitPoints[1] + sf::Vector2f(7.f * cosf((m_Angle - 90.f) * acos(-1.f) / 180.f), 7.f * sinf((m_Angle - 90.f) * acos(-1.f) / 180.f));;
-	m_Bounds.position = getPosition() - sf::Vector2f(16.f, 16.f);
+	m_HitPoints[1] = m_Center + sf::Vector2f(9.f * cosf((m_Angle - 90.f) * acos(-1.f) / 180.f), 9.f * sinf((m_Angle - 90.f) * acos(-1.f) / 180.f));
+	m_Bounds.position = getPosition() - sf::Vector2f(29.f, 29.f);
 }
 
 const sf::Vector2f& Mace::GetCenter() const
@@ -98,10 +110,14 @@ void Mace::Attack(float dt)
 		m_ElapsedTime += dt;
 		if (m_ElapsedTime < 0.5f)
 		{
-			if (m_AttackAngle < 0)
+			if (std::abs(m_AttackAngle) < 90.f)
+			{
 				m_Angle = m_AttackAngle - 120 * sinf(4 * acos(-1.f) * m_ElapsedTime) + 90.f;
+			}
 			else
+			{
 				m_Angle = m_AttackAngle + 120 * sinf(4 * acos(-1.f) * m_ElapsedTime) + 90.f;
+			}
 			setRotation(m_Angle);
 		}
 		else

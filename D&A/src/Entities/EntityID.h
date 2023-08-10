@@ -4,8 +4,10 @@ enum class EntityID
 {
 	Null,
 	Player,
+	Slug,
 	Ladder,
 	Knife,
+	RustySword,
 	Mace
 };
 

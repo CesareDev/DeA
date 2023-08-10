@@ -23,7 +23,7 @@ void Player::Init(const ResourceManager& resourceManager, const sf::Vector2f& po
 	m_TextureRect = getTextureRect();
 	m_Velocity = { 0.f, 0.f };
 
-	mace.Init(resourceManager, GetCenter());
+	sword.Init(resourceManager, GetCenter());
 }
 
 void Player::Update(UpdateArgs args, float dt)
@@ -31,13 +31,12 @@ void Player::Update(UpdateArgs args, float dt)
 	Movement(args, dt);
 	UpdateAnimation(dt);
 
-	mace.Update(args, dt);
+	sword.Update(args, dt);
 }
 
 void Player::Render(sf::RenderTarget& target)
 {
 	target.draw(*this);	
-	mace.Render(target);
 }
 
 void Player::SetPosition(const sf::Vector2f& position)
@@ -57,9 +56,18 @@ const sf::Rectangle& Player::GetBounds() const
 	return m_Bounds;
 }
 
+void Player::TakeDamage(unsigned int damage)
+{
+}
+
 EntityID Player::GetId() const
 {
 	return EntityID::Player;
+}
+
+Weapon* Player::GetWeapon()
+{
+	return &sword;
 }
 
 void Player::Movement(UpdateArgs args, float dt)

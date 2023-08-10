@@ -26,4 +26,5 @@ protected:
 	LevelLabel m_Label;
 	sf::TileMap m_Map;
 	sf::DynamicQuadTree<Entity>* m_Tree;
+	Weapon* m_Weapon; //Pointer to player's weapon because it needs to be rendered on top of the map
 };

@@ -13,7 +13,7 @@ Window::~Window()
 void Window::Init(const ResourceManager& resourceManager)
 {
 	m_ResourceManager = &resourceManager;
-	m_Cursor.loadFromPixels(m_ResourceManager->GetCursoImg().getPixelsPtr(), sf::Vector2u(64, 64), sf::Vector2u(0, 0));
+	m_Cursor.loadFromPixels(m_ResourceManager->GetCursoImg().getPixelsPtr(), sf::Vector2u(32, 32), sf::Vector2u(0, 0));
 }
 
 void Window::onCreate()

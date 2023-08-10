@@ -15,12 +15,12 @@ public:
 	virtual void SetPosition(const sf::Vector2f& position) = 0;
 	const sf::Vector2f& GetCenter() const override = 0;
 	virtual const sf::Rectangle& GetBounds() const = 0;
+	virtual void TakeDamage(unsigned int damage) = 0;
 	virtual EntityID GetId() const override = 0;
 	EntityType GetType() const override;
 
 	inline bool IsDead() const { return m_IsDead; }
 	inline bool IsMoving() const { return m_IsMoving; }
-	inline void TakeDamage(unsigned int damage) { m_Health -= damage; }
 
 protected:
 
@@ -30,7 +30,7 @@ protected:
 	bool m_IsMoving;
 	sf::Vector2f m_Velocity;
 
-	unsigned int m_Health;
+	int m_Health;
 	bool m_IsDead = false;
 };
 

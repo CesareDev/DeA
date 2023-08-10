@@ -24,6 +24,7 @@ private:
 	sf::Event m_Event;
 
 	float m_ElapsedTime = 0.f;
+	bool m_ChangingCursor = false;
 
 	ResourceManager m_ResourceManager;
 	StateManager m_StateManager;

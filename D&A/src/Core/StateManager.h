@@ -10,6 +10,8 @@ public:
 	void Update(float dt);
 	void Render(sf::RenderTarget& target);
 
+	StateID GetCurrentState() const;
+
 private:
 
 	void ChangeState(float dt);

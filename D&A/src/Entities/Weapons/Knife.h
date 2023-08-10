@@ -1,33 +1,28 @@
 #pragma once
-#include "Character.h"
-#include "Entities/Weapons/Mace.h"
+#include "Weapon.h"
 
-class Player : public Character
+class Knife : public Weapon
 {
 public:
-	 
-	Player();
-	~Player();
 
-	// Inherited via Character
+	Knife();
+	~Knife();
+
+	// Inherited via Weapon
 	void Init(const ResourceManager& resourceManager, const sf::Vector2f& position) override;
 	void Update(UpdateArgs args, float dt) override;
 	void Render(sf::RenderTarget& target) override;
-	void SetPosition(const sf::Vector2f& position);
+	void SetPosition(const sf::Vector2f& position) override;
 	const sf::Vector2f& GetCenter() const override;
 	const sf::Rectangle& GetBounds() const override;
-	void TakeDamage(unsigned int damage) override;
 	EntityID GetId() const override;
 
-	Weapon* GetWeapon();
+protected:
+
+	void Attack(float dt) override;
 
 private:
 
-	void Movement(UpdateArgs args, float dt);
-	void UpdateAnimation(float dt);
-
-private:
-
-	Mace sword;
+	bool m_MousePressed = false;
 };
 

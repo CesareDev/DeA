@@ -46,6 +46,11 @@ void StateManager::Render(sf::RenderTarget& target)
 	m_CurrentState->Render(target);
 }
 
+StateID StateManager::GetCurrentState() const
+{
+	return m_CurrentStateId;
+}
+
 void StateManager::ChangeState(float dt)
 {
 	if (m_CurrentStateId != m_OldStateId)

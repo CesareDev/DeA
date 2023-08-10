@@ -28,18 +28,23 @@ void Hub::Init(const ResourceManager& resourceManager, sf::DynamicQuadTree<Entit
 	m_Tree = &tree;
 	m_Tree->resize({ 0.f, 0.f, (float)m_Map.getMapSize().x, (float)m_Map.getMapSize().y });
 
+	m_Weapon = player.GetWeapon();
+
 	if (entranceIndex == 0)
 		player.SetPosition({ 240.f, 416.f }); //starting point
 	else if (entranceIndex == 1)
 		player.SetPosition({ 416.f, 432.f }); //from undeground
 
 	m_Camera.Init(player.GetCenter(), { 0.f, 0.f, (float)m_Map.getMapSize().x, (float)m_Map.getMapSize().y }, { 0.f, 0.f, GLOBAL::WIN_WIDTH / 5.f, GLOBAL::WIN_HEIGHT / 5.f });
-	m_Tree->insert(&player, player.GetBounds());
 	
 	m_Ladder0.Init(resourceManager, { 400.f, 432.f });
 	m_Ladder0.SetTeleportLevel(LevelID::UnderGround_Zero);
 
+	slug.Init(resourceManager, { 384.f, 224.f });
+
+	m_Tree->insert(&player, player.GetBounds());
 	m_Tree->insert(&m_Ladder0, m_Ladder0.GetBounds());
+	m_Tree->insert(&slug, slug.GetBounds());
 }
 
 void Hub::Update(StateID& currentState, LevelID& currentLevel, float dt)
@@ -60,7 +65,7 @@ void Hub::Update(StateID& currentState, LevelID& currentLevel, float dt)
 				{
 					if (((Character*)it->obj)->IsMoving())
 						m_Tree->relocate(it, it->obj->GetBounds());
-					if (it->obj->GetId() == EntityID::Player) {}
+					if (it->obj->GetId() == EntityID::Player)
 						m_Camera.Update(it->obj->GetCenter(), dt);
 				}
 				break;
@@ -95,6 +100,9 @@ void Hub::Render(sf::RenderTarget& target)
 	}
 
 	m_Map.drawLayer(target, 2);
+
+	m_Weapon->Render(target);
+
 	m_Label.Render(target);
 	m_Transition.Render(target);
 }

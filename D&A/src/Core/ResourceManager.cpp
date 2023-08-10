@@ -13,7 +13,7 @@ void ResourceManager::Init()
 {
     m_TilesetTexture.loadFromFile("../res/map/tileset.png");
     m_Font.loadFromFile("../res/DungeonFont.ttf");
-    m_CursorImg.loadFromFile("../res/cursor64.png");
+    m_CursorImg.loadFromFile("../res/cursor.png");
     m_Icon.loadFromFile("../res/icon.png");
 }
 
