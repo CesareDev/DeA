@@ -40,11 +40,14 @@ void Hub::Init(const ResourceManager& resourceManager, sf::DynamicQuadTree<Entit
 	m_Ladder0.Init(resourceManager, { 400.f, 432.f });
 	m_Ladder0.SetTeleportLevel(LevelID::UnderGround_Zero);
 
-	slug.Init(resourceManager, { 384.f, 224.f });
+	slug1.Init(resourceManager, { 384.f, 224.f });
+	slug2.Init(resourceManager, { 144.f, 224.f });
+
 
 	m_Tree->insert(&player, player.GetBounds());
 	m_Tree->insert(&m_Ladder0, m_Ladder0.GetBounds());
-	m_Tree->insert(&slug, slug.GetBounds());
+	m_Tree->insert(&slug1, slug1.GetBounds());
+	m_Tree->insert(&slug2, slug2.GetBounds());
 }
 
 void Hub::Update(StateID& currentState, LevelID& currentLevel, float dt)

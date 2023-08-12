@@ -84,8 +84,11 @@ void Slug::Update(UpdateArgs args, float dt)
 			{
 				potentialPosInUnit.x = (int)potentialPosInUnit.x + 1;
 				m_Velocity.x = 0.f;
-				m_Velocity.y = (m_Velocity.y > 0 ? 1 : -1) * 8.f; //fixed vel
-				wallx = true;
+				if (m_IsMoving)
+				{
+					m_Velocity.y = (m_Velocity.y > 0 ? 1 : -1) * 8.f; //fixed vel
+					wallx = true;
+				}
 			}
 		}
 		//Right
@@ -95,8 +98,11 @@ void Slug::Update(UpdateArgs args, float dt)
 			{
 				potentialPosInUnit.x = (int)potentialPosInUnit.x;
 				m_Velocity.x = 0.f;
-				m_Velocity.y = (m_Velocity.y > 0 ? 1 : -1) * 8.f;
-				wallx = true;
+				if (m_IsMoving)
+				{
+					m_Velocity.y = (m_Velocity.y > 0 ? 1 : -1) * 8.f;
+					wallx = true;
+				}
 			}
 		}
 
@@ -107,8 +113,11 @@ void Slug::Update(UpdateArgs args, float dt)
 			{
 				potentialPosInUnit.y = (int)potentialPosInUnit.y + 1;
 				m_Velocity.y = 0.f;
-				m_Velocity.x = (m_Velocity.x > 0 ? 1 : -1) * 8.f;
-				wally = true;
+				if (m_IsMoving)
+				{
+					m_Velocity.x = (m_Velocity.x > 0 ? 1 : -1) * 8.f;
+					wally = true;
+				}
 			}
 		}
 		//Down
@@ -118,8 +127,11 @@ void Slug::Update(UpdateArgs args, float dt)
 			{
 				potentialPosInUnit.y = (int)potentialPosInUnit.y;
 				m_Velocity.y = 0.f;
-				m_Velocity.x = (m_Velocity.x > 0 ? 1 : -1) * 8.f;
-				wally = true;
+				if (m_IsMoving)
+				{
+					m_Velocity.x = (m_Velocity.x > 0 ? 1 : -1) * 8.f;
+					wally = true;
+				}
 			}
 		}
 
@@ -225,16 +237,6 @@ void Slug::SetPosition(const sf::Vector2f& position)
 	setPosition(position);
 	m_Center = position + sf::Vector2f(8.f, 8.f);
 	m_Bounds.position = getPosition();
-}
-
-const sf::Vector2f& Slug::GetCenter() const
-{
-	return m_Center;
-}
-
-const sf::Rectangle& Slug::GetBounds() const
-{
-	return m_Bounds;
 }
 
 void Slug::TakeDamage(unsigned int damage)

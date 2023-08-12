@@ -20,6 +20,7 @@ public:
 private:
 
 	Ladder m_Ladder0;
-	Slug slug;
+	Slug slug1;
+	Slug slug2;
 };
 

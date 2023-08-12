@@ -1,12 +1,12 @@
 #pragma once
 #include "Weapon.h"
 
-class Knife : public Weapon
+class GreatAxe : public Weapon
 {
 public:
-
-	Knife();
-	~Knife();
+	
+	GreatAxe();
+	~GreatAxe();
 
 	// Inherited via Weapon
 	void Init(const ResourceManager& resourceManager, const sf::Vector2f& position) override;
@@ -14,13 +14,6 @@ public:
 	void Render(sf::RenderTarget& target) override;
 	void SetPosition(const sf::Vector2f& position) override;
 	EntityID GetId() const override;
-
-protected:
-
 	void Attack(float dt) override;
-
-private:
-
-	bool m_MousePressed = false;
 };
 

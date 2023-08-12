@@ -1,6 +1,6 @@
 #pragma once
 #include "Character.h"
-#include "Entities/Weapons/Mace.h"
+#include "Entities/Weapons/GreatAxe.h"
 
 class Player : public Character
 {
@@ -14,8 +14,6 @@ public:
 	void Update(UpdateArgs args, float dt) override;
 	void Render(sf::RenderTarget& target) override;
 	void SetPosition(const sf::Vector2f& position);
-	const sf::Vector2f& GetCenter() const override;
-	const sf::Rectangle& GetBounds() const override;
 	void TakeDamage(unsigned int damage) override;
 	EntityID GetId() const override;
 
@@ -28,6 +26,5 @@ private:
 
 private:
 
-	Mace sword;
+	GreatAxe sword;
 };
-

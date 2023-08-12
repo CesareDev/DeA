@@ -117,6 +117,7 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Entities\Weapons\GreatAxe.cpp" />
     <ClCompile Include="src\Entities\Weapons\RustySword.cpp" />
     <ClCompile Include="src\Entities\Weapons\Knife.cpp" />
     <ClCompile Include="src\Entities\Characters\Slug.cpp" />
@@ -164,6 +165,7 @@
     <ClCompile Include="src\Entities\Weapons\Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Entities\Weapons\GreatAxe.h" />
     <ClInclude Include="src\Entities\Weapons\RustySword.h" />
     <ClInclude Include="src\Entities\Weapons\Knife.h" />
     <ClInclude Include="src\Entities\Characters\Slug.h" />

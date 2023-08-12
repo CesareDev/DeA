@@ -13,8 +13,6 @@ public:
 	virtual void Update(UpdateArgs args, float dt) override = 0;
 	virtual void Render(sf::RenderTarget& target) override = 0;
 	virtual void SetPosition(const sf::Vector2f& position) = 0;
-	virtual const sf::Vector2f& GetCenter() const override = 0;
-	virtual const sf::Rectangle& GetBounds() const override = 0;
 	virtual EntityID GetId() const override = 0;
 	EntityType GetType() const override;
 };

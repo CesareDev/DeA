@@ -27,10 +27,7 @@ void Knife::Update(UpdateArgs args, float dt)
 	for (auto it = args.qTree.begin(); it != args.qTree.end(); ++it)
 	{
 		if (it->obj->GetId() == EntityID::Player)
-		{
-			m_PlayerCenter = it->obj->GetCenter();
-			SetPosition(m_PlayerCenter);
-		}
+			SetPosition(it->obj->GetCenter());
 	}
 	Attack(dt);
 	for (const auto& it : args.qTree.search(m_Bounds))
@@ -49,7 +46,7 @@ void Knife::Render(sf::RenderTarget& target)
 	sf::Vector2i pixelPos = sf::Mouse::getPosition((sf::RenderWindow&)target);
 	sf::Vector2f mpos = target.mapPixelToCoords(pixelPos);
 	if (!m_IsAttacking)
-		m_Angle = (atan2f(mpos.y - m_PlayerCenter.y, mpos.x - m_PlayerCenter.x) * 180.f / acos(-1.f)) + 90.f;
+		m_Angle = (atan2f(mpos.y - getPosition().y, mpos.x - getPosition().x) * 180.f / acos(-1.f)) + 90.f;
 
 	target.draw(*this);
 }
@@ -57,19 +54,9 @@ void Knife::Render(sf::RenderTarget& target)
 void Knife::SetPosition(const sf::Vector2f& position)
 {
 	setPosition(position);
-	m_Center = { getPosition().x + 17.f * cosf((m_Angle - 90.f) * acos(-1.f) / 180.f), getPosition().y + 17.f * sinf((m_Angle - 90.f) * acos(-1.f) / 180.f) };
+	m_Center = { position.x + 17.f * cosf((m_Angle - 90.f) * acos(-1.f) / 180.f), position.y + 17.f * sinf((m_Angle - 90.f) * acos(-1.f) / 180.f) };
 	m_HitPoints[0] = m_Center;
-	m_Bounds.position = getPosition() - sf::Vector2f(20.f, 20.f);
-}
-
-const sf::Vector2f& Knife::GetCenter() const
-{
-	return m_Center;
-}
-
-const sf::Rectangle& Knife::GetBounds() const
-{
-	return m_Bounds;
+	m_Bounds.position = position - sf::Vector2f(20.f, 20.f);
 }
 
 EntityID Knife::GetId() const

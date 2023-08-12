@@ -8,6 +8,7 @@ enum class EntityID
 	Ladder,
 	Knife,
 	RustySword,
+	GreatAxe,
 	Mace
 };
 

@@ -46,16 +46,6 @@ void Player::SetPosition(const sf::Vector2f& position)
 	m_Bounds.position = getPosition();
 }
 
-const sf::Vector2f& Player::GetCenter() const
-{
-	return m_Center;
-}
-
-const sf::Rectangle& Player::GetBounds() const
-{
-	return m_Bounds;
-}
-
 void Player::TakeDamage(unsigned int damage)
 {
 }

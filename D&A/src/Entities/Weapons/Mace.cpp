@@ -28,10 +28,7 @@ void Mace::Update(UpdateArgs args, float dt)
 	for (auto it = args.qTree.begin(); it != args.qTree.end(); ++it)
 	{
 		if (it->obj->GetId() == EntityID::Player)
-		{
-			m_PlayerCenter = it->obj->GetCenter();
-			SetPosition(m_PlayerCenter);
-		}
+			SetPosition(it->obj->GetCenter());
 	}
 	Attack(dt);
 	for (const auto& it : args.qTree.search(m_Bounds))
@@ -55,7 +52,7 @@ void Mace::Render(sf::RenderTarget& target)
 	sf::Vector2i pixelPos = sf::Mouse::getPosition((sf::RenderWindow&)target);
 	sf::Vector2f mpos = target.mapPixelToCoords(pixelPos);
 	if (!m_IsAttacking)
-		m_Angle = (atan2f(mpos.y - m_PlayerCenter.y, mpos.x - m_PlayerCenter.x) * 180.f / acos(-1.f)) + 90.f;
+		m_Angle = (atan2f(mpos.y - getPosition().y, mpos.x - getPosition().x) * 180.f / acos(-1.f)) + 90.f;
 
 	target.draw(*this);
 }
@@ -77,16 +74,6 @@ void Mace::SetPosition(const sf::Vector2f& position)
 	m_HitPoints[0] = m_Center;
 	m_HitPoints[1] = m_Center + sf::Vector2f(9.f * cosf((m_Angle - 90.f) * acos(-1.f) / 180.f), 9.f * sinf((m_Angle - 90.f) * acos(-1.f) / 180.f));
 	m_Bounds.position = getPosition() - sf::Vector2f(29.f, 29.f);
-}
-
-const sf::Vector2f& Mace::GetCenter() const
-{ 
-	return m_Center;
-}
-
-const sf::Rectangle& Mace::GetBounds() const
-{
-	return m_Bounds;
 }
 
 EntityID Mace::GetId() const

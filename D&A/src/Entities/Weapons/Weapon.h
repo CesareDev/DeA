@@ -13,23 +13,18 @@ public:
 	virtual void Update(UpdateArgs args, float dt) override = 0;
 	virtual void Render(sf::RenderTarget& target) override = 0;
 	virtual void SetPosition(const sf::Vector2f& position) = 0;
-	const sf::Vector2f& GetCenter() const override = 0;
-	virtual const sf::Rectangle& GetBounds() const override = 0;
 	virtual EntityID GetId() const override = 0;
 	EntityType GetType() const override;
 
 protected:
 
 	virtual void Attack(float dt) = 0;
-	float Lerp(float a, float b, float f);
 
 protected:
 
 	float m_Angle;
 	float m_AttackAngle;
 	float m_ElapsedTime;
-	unsigned int m_AttackPower;
 	bool m_IsAttacking;
-	sf::Vector2f m_PlayerCenter;
 	std::vector<sf::Vector2f> m_HitPoints;
 };

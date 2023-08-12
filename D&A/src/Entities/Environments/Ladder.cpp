@@ -38,16 +38,6 @@ void Ladder::SetPosition(const sf::Vector2f& position)
     m_Bounds = { position, {16.f, 16.f} };
 }
 
-const sf::Vector2f& Ladder::GetCenter() const
-{
-    return m_Center;
-}
-
-const sf::Rectangle& Ladder::GetBounds() const
-{
-    return m_Bounds;
-}
-
 EntityID Ladder::GetId() const
 {
     return EntityID::Ladder;
