@@ -117,6 +117,9 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Entities\Weapons\ColossalSword.cpp" />
+    <ClCompile Include="src\Entities\Weapons\Katana.cpp" />
+    <ClCompile Include="src\Entities\Weapons\MagicSword.cpp" />
     <ClCompile Include="src\Entities\Weapons\GreatAxe.cpp" />
     <ClCompile Include="src\Entities\Weapons\RustySword.cpp" />
     <ClCompile Include="src\Entities\Weapons\Knife.cpp" />
@@ -124,6 +127,7 @@
     <ClCompile Include="src\Entities\Characters\Character.cpp" />
     <ClCompile Include="src\Entities\Environments\Environment.cpp" />
     <ClCompile Include="src\Entities\Weapons\Mace.cpp" />
+    <ClCompile Include="src\Entities\Weapons\Sword.cpp" />
     <ClCompile Include="src\UI\Components\LevelLabel.cpp" />
     <ClCompile Include="src\Entities\Environments\Ladder.cpp" />
     <ClCompile Include="src\Levels\Hub.cpp" />
@@ -165,6 +169,9 @@
     <ClCompile Include="src\Entities\Weapons\Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Entities\Weapons\ColossalSword.h" />
+    <ClInclude Include="src\Entities\Weapons\Katana.h" />
+    <ClInclude Include="src\Entities\Weapons\MagicSword.h" />
     <ClInclude Include="src\Entities\Weapons\GreatAxe.h" />
     <ClInclude Include="src\Entities\Weapons\RustySword.h" />
     <ClInclude Include="src\Entities\Weapons\Knife.h" />
@@ -211,6 +218,7 @@
     <ClInclude Include="src\Core\Window.h" />
     <ClInclude Include="src\Levels\Underground.h" />
     <ClInclude Include="src\Entities\Weapons\Weapon.h" />
+    <ClInclude Include="src\Entities\Weapons\Sword.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\cursor.png" />

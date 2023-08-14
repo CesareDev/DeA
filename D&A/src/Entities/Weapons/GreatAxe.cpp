@@ -29,17 +29,20 @@ void GreatAxe::Update(UpdateArgs args, float dt)
 		if (it->obj->GetId() == EntityID::Player)
 			SetPosition(it->obj->GetCenter());
 	}
-	for (const auto& it : args.qTree.search(m_Bounds))
+	Attack(dt);
+	if (m_CanHit)
 	{
-		if (m_IsAttacking && it->obj->GetId() != EntityID::Player && it->obj->GetType() == EntityType::Character)
+		for (const auto& it : args.qTree.search(m_Bounds))
 		{
-			Character* en = (Character*)it->obj;
-			for (const auto& p : m_HitPoints)
-				if (en->GetBounds().contains(p))
-					en->TakeDamage(4);
+			if (it->obj->GetId() != EntityID::Player && it->obj->GetType() == EntityType::Character)
+			{
+				Character* en = (Character*)it->obj;
+				for (const auto& p : m_HitPoints)
+					if (en->GetBounds().contains(p))
+						en->TakeDamage(4);
+			}
 		}
 	}
-	Attack(dt);
 }
 
 void GreatAxe::Render(sf::RenderTarget& target)
@@ -95,6 +98,7 @@ void GreatAxe::Attack(float dt)
 		}
 		if (m_ElapsedTime > 0.75f && m_ElapsedTime <= 1.15f)
 		{
+			m_CanHit = true;
 			m_Angle = 450.f * sinf((5.f / 4.f) * acos(-1.f) * (m_ElapsedTime - 0.75f)) - 90.f + m_AttackAngle;
 			setRotation(m_Angle + 90.f);
 		}
@@ -102,6 +106,7 @@ void GreatAxe::Attack(float dt)
 		{
 			m_ElapsedTime = 0.f;
 			m_IsAttacking = false;
+			m_CanHit = false;
 		}
 	}
 }

@@ -23,7 +23,9 @@ namespace sf {
 		void drawLayer(sf::RenderTarget& target, uint32_t layerIndex);
 		void draw(sf::RenderTarget& target);
 		void clean();
+		void setColor(const sf::Color& color);
 
+		const sf::Color& getColor() const;
 		uint32_t getLayerCount() const;
 		const sf::Vector2u& getMapSize() const;
 		const sf::Vector2u& getTileSize() const;

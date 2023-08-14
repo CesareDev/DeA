@@ -46,10 +46,6 @@ void Player::SetPosition(const sf::Vector2f& position)
 	m_Bounds.position = getPosition();
 }
 
-void Player::TakeDamage(unsigned int damage)
-{
-}
-
 EntityID Player::GetId() const
 {
 	return EntityID::Player;

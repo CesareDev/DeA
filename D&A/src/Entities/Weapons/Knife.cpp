@@ -32,7 +32,7 @@ void Knife::Update(UpdateArgs args, float dt)
 	Attack(dt);
 	for (const auto& it : args.qTree.search(m_Bounds))
 	{
-		if (m_IsAttacking && it->obj->GetId() != EntityID::Player && it->obj->GetType() == EntityType::Character)
+		if (m_CanHit && it->obj->GetId() != EntityID::Player && it->obj->GetType() == EntityType::Character)
 		{
 			Character* en = (Character*)it->obj;
 			if (en->GetBounds().contains(m_HitPoints[0]))
@@ -82,12 +82,14 @@ void Knife::Attack(float dt)
 		m_ElapsedTime += dt;
 		if (m_ElapsedTime < 0.2f)
 		{
-			float mag = 5.f * sinf(10.f * acos(-1.f) * m_ElapsedTime);
+			m_CanHit = true;
+			float mag = 5.f * sinf((5.f /2.f) * acos(-1.f) * m_ElapsedTime);
 			const auto& pos = getPosition();
 			SetPosition({ pos.x + mag * cosf((m_Angle - 90.f) * acos(-1.f) / 180.f), pos.y + mag * sinf((m_Angle - 90.f) * acos(-1.f) / 180.f) });
 		}
 		else if (!m_MousePressed)
 		{
+			m_CanHit = false;
 			m_ElapsedTime = 0.f;
 			m_IsAttacking = false;
 		}

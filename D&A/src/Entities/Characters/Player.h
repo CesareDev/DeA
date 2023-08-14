@@ -1,6 +1,6 @@
 #pragma once
 #include "Character.h"
-#include "Entities/Weapons/GreatAxe.h"
+#include "Entities/Weapons/ColossalSword.h"
 
 class Player : public Character
 {
@@ -14,7 +14,6 @@ public:
 	void Update(UpdateArgs args, float dt) override;
 	void Render(sf::RenderTarget& target) override;
 	void SetPosition(const sf::Vector2f& position);
-	void TakeDamage(unsigned int damage) override;
 	EntityID GetId() const override;
 
 	Weapon* GetWeapon();
@@ -26,5 +25,5 @@ private:
 
 private:
 
-	GreatAxe sword;
+	ColossalSword sword;
 };

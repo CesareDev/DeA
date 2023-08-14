@@ -17,9 +17,6 @@ void LevelLabel::Init(const ResourceManager& resourceManager, const std::string&
 	setCharacterSize(80);
 	setOutlineThickness(5.f);
 
-	float x = (GLOBAL::WIN_WIDTH / 2.f) - (getGlobalBounds().width / 2.f);
-	setPosition(x, 32.f);
-
 	m_FillColor = getFillColor();
 	m_FillColor.a = m_Alpha;
 	setFillColor(m_FillColor);
@@ -72,8 +69,10 @@ void LevelLabel::Render(sf::RenderTarget& target)
 {
 	if (!m_Finish)
 	{
-		const auto& currView = target.getView();
+		sf::View currView = target.getView();
 		target.setView(target.getDefaultView());
+		float x = (target.getView().getSize().x / 2.f) - (getGlobalBounds().width / 2.f);
+		setPosition(x, 32.f);
 		target.draw(*this);
 		target.setView(currView);
 	}

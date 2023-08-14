@@ -1,3 +1,6 @@
+C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Weapons\ColossalSword.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\ColossalSword.obj
+C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Weapons\Katana.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\Katana.obj
+C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Weapons\MagicSword.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\MagicSword.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Weapons\GreatAxe.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\GreatAxe.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Weapons\RustySword.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\RustySword.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Weapons\Knife.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\Knife.obj
@@ -5,6 +8,7 @@ C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Characters\Slug.cpp;C:\Dev\Visu
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Characters\Character.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\Character.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Environments\Environment.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\Environment.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Weapons\Mace.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\Mace.obj
+C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Weapons\Sword.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\Sword.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\UI\Components\LevelLabel.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\LevelLabel.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Environments\Ladder.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\Ladder.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Levels\Hub.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\Hub.obj

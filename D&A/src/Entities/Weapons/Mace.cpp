@@ -31,16 +31,19 @@ void Mace::Update(UpdateArgs args, float dt)
 			SetPosition(it->obj->GetCenter());
 	}
 	Attack(dt);
-	for (const auto& it : args.qTree.search(m_Bounds))
+	if (m_CanHit)
 	{
-		if (m_IsAttacking && it->obj->GetId() != EntityID::Player && it->obj->GetType() == EntityType::Character)
+		for (const auto& it : args.qTree.search(m_Bounds))
 		{
-			Character* en = (Character*)it->obj;
-			for (const auto& p : m_HitPoints)
+			if (it->obj->GetId() != EntityID::Player && it->obj->GetType() == EntityType::Character)
 			{
-				if (en->GetBounds().contains(p))
+				Character* en = (Character*)it->obj;
+				for (const auto& p : m_HitPoints)
 				{
-					en->TakeDamage(2);
+					if (en->GetBounds().contains(p))
+					{
+						en->TakeDamage(2);
+					}
 				}
 			}
 		}
@@ -59,20 +62,21 @@ void Mace::Render(sf::RenderTarget& target)
 
 void Mace::SetPosition(const sf::Vector2f& position)
 {
+	sf::Vector2f dir = { cosf(m_AttackAngle * acos(-1.f) / 180.f), sinf(m_AttackAngle * acos(-1.f) / 180.f) };
 	if (m_IsAttacking)
 	{
 		setOrigin(5.f, 22.f);
-		setPosition(position.x + 7.f * cosf(m_AttackAngle * acos(-1.f) / 180.f), position.y + 7.f * sinf(m_AttackAngle * acos(-1.f) / 180.f));
-		m_Center = { getPosition().x + 9 * cosf((m_Angle - 90.f) * acos(-1.f) / 180.f), getPosition().y + 9 * sinf((m_Angle - 90.f) * acos(-1.f) / 180.f) };
+		setPosition(position + 7.f * dir);
+		m_Center = getPosition() + 9.f * dir;
 	}
 	else
 	{
 		setOrigin(5.f, 29.f);
 		setPosition(position);
-		m_Center = { getPosition().x + 17.f * cosf((m_Angle -90.f) * acos(-1.f) / 180.f), getPosition().y + 17.f * sinf((m_Angle - 90.f) * acos(-1.f) / 180.f)};
+		m_Center = position + 17.f * dir;
 	}
 	m_HitPoints[0] = m_Center;
-	m_HitPoints[1] = m_Center + sf::Vector2f(9.f * cosf((m_Angle - 90.f) * acos(-1.f) / 180.f), 9.f * sinf((m_Angle - 90.f) * acos(-1.f) / 180.f));
+	m_HitPoints[1] = m_Center + 9.f * dir;
 	m_Bounds.position = getPosition() - sf::Vector2f(29.f, 29.f);
 }
 
@@ -95,15 +99,41 @@ void Mace::Attack(float dt)
 	if (m_IsAttacking)
 	{
 		m_ElapsedTime += dt;
-		if (m_ElapsedTime < 0.5f)
+		if (m_ElapsedTime <= 0.25f)
 		{
 			if (std::abs(m_AttackAngle) < 90.f)
 			{
-				m_Angle = m_AttackAngle - 120 * sinf(4 * acos(-1.f) * m_ElapsedTime) + 90.f;
+				m_Angle = m_AttackAngle - 60 * sinf(2 * acos(-1.f) * m_ElapsedTime) + 90.f;
 			}
 			else
 			{
-				m_Angle = m_AttackAngle + 120 * sinf(4 * acos(-1.f) * m_ElapsedTime) + 90.f;
+				m_Angle = m_AttackAngle + 60 * sinf(2 * acos(-1.f) * m_ElapsedTime) + 90.f;
+			}
+			setRotation(m_Angle);
+		}
+		else if (m_ElapsedTime > 0.25f && m_ElapsedTime <= 0.35f)
+		{
+			m_CanHit = true;
+			if (std::abs(m_AttackAngle) < 90.f)
+			{
+				m_Angle = m_AttackAngle - 60.f + 120 * sinf(5 * acos(-1.f) * (m_ElapsedTime - 0.25f)) + 90.f;
+			}
+			else
+			{
+				m_Angle = m_AttackAngle + 60.f - 120 * sinf(5 * acos(-1.f) * (m_ElapsedTime - 0.25f)) + 90.f;
+			}
+			setRotation(m_Angle);
+		}
+		else if (m_ElapsedTime > 0.35f && m_ElapsedTime <= 0.5f)
+		{
+			m_CanHit = false;
+			if (std::abs(m_AttackAngle) < 90.f)
+			{
+				m_Angle = m_AttackAngle + 60.f - 60 * sinf((10.f / 3.f) * acos(-1.f) * (m_ElapsedTime - 0.35f)) + 90.f;
+			}
+			else
+			{
+				m_Angle = m_AttackAngle - 60.f + 60 * sinf((10.f / 3.f) * acos(-1.f) * (m_ElapsedTime - 0.35f)) + 90.f;
 			}
 			setRotation(m_Angle);
 		}

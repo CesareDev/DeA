@@ -1,19 +1,19 @@
 #include "pch.h"
-#include "RustySword.h"
+#include "MagicSword.h"
 #include "Entities/Characters/Character.h"
 
-RustySword::RustySword()
+MagicSword::MagicSword()
 {
 }
 
-RustySword::~RustySword()
+MagicSword::~MagicSword()
 {
 }
 
-void RustySword::Init(const ResourceManager& resourceManager, const sf::Vector2f& position)
+void MagicSword::Init(const ResourceManager& resourceManager, const sf::Vector2f& position)
 {
 	setTexture(resourceManager.GetTilesetTexture());
-	setTextureRect({ 307, 26, 10, 21 });
+	setTextureRect({ 339, 26, 10, 21 });
 	setOrigin(5.f, 28.f);
 
 	m_Bounds.size = { 56.f, 56.f };
@@ -22,7 +22,7 @@ void RustySword::Init(const ResourceManager& resourceManager, const sf::Vector2f
 	SetPosition(position);
 }
 
-void RustySword::Update(UpdateArgs args, float dt)
+void MagicSword::Update(UpdateArgs args, float dt)
 {
 	for (auto it = args.qTree.begin(); it != args.qTree.end(); ++it)
 	{
@@ -45,7 +45,7 @@ void RustySword::Update(UpdateArgs args, float dt)
 	}
 }
 
-void RustySword::Render(sf::RenderTarget& target)
+void MagicSword::Render(sf::RenderTarget& target)
 {
 	sf::Vector2i pixelPos = sf::Mouse::getPosition((sf::RenderWindow&)target);
 	sf::Vector2f mpos = target.mapPixelToCoords(pixelPos);
@@ -55,7 +55,7 @@ void RustySword::Render(sf::RenderTarget& target)
 	target.draw(*this);
 }
 
-void RustySword::SetPosition(const sf::Vector2f& position)
+void MagicSword::SetPosition(const sf::Vector2f& position)
 {
 	setPosition(position);
 	sf::Vector2f dir = { cosf(m_Angle * acos(-1.f) / 180.f), sinf(m_Angle * acos(-1.f) / 180.f) };
@@ -65,12 +65,12 @@ void RustySword::SetPosition(const sf::Vector2f& position)
 	m_Bounds.position = position - sf::Vector2f(28.f, 28.f);
 }
 
-EntityID RustySword::GetId() const
+EntityID MagicSword::GetId() const
 {
-	return EntityID::RustySword;
+	return EntityID::MagicSword;
 }
 
-void RustySword::Attack(float dt)
+void MagicSword::Attack(float dt)
 {
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !m_IsAttacking)
 	{

@@ -149,6 +149,7 @@ void Slug::Update(UpdateArgs args, float dt)
 		SetPosition(potentialPos);
 																											 //40 perchè il testo deve stare al centro dell'entità per questo deve essere slittato di 8 (metà della lunghezza dell'entità) verso destra poi * 5
 		m_DamageTaken.setPosition(int(getPosition().x * 5.f - m_DamageTaken.getGlobalBounds().width / 2.f + 40.f), int(getPosition().y * 5.f - m_DamageTaken.getGlobalBounds().height));
+		
 		//Animation
 		m_ElapsedAnimationTime += dt;
 		if (m_ElapsedAnimationTime > 0.25f)
@@ -178,43 +179,11 @@ void Slug::Update(UpdateArgs args, float dt)
 		}
 
 		//Damage
-		if (!m_Vulnerable)
-		{
-			m_VulnerableTime += dt;
-			sf::Vector2f s = m_DamageTaken.getScale();
-			setColor(sf::Color::Red);
-			if (s.x <= 1.f)
-				m_DamageTaken.setScale(s.x + 4.f * dt, s.y + 4.f * dt);
-			if (m_VulnerableTime > 1.f)
-			{
-				setColor(sf::Color::White);
-				m_DamageTaken.setScale(0.f, 0.f);
-				m_Vulnerable = true;
-				m_VulnerableTime = 0.f;
-			}
-		}
+		DamageAnimation(dt);
 	}
 	else
 	{
-		m_VulnerableTime += dt;
-		m_DamageTaken.setPosition(int(getPosition().x * 5.f - m_DamageTaken.getGlobalBounds().width / 2.f + 40.f), int(getPosition().y * 5.f - m_DamageTaken.getGlobalBounds().height - 80.f));
-		sf::Vector2f st = m_DamageTaken.getScale();
-		if (st.x <= 1.f)
-			m_DamageTaken.setScale(st.x + 4.f * dt, st.y + 4.f * dt);
-		sf::Vector2f o = getOrigin();
-		setOrigin(o.x, 24.f);
-		sf::Vector2f s = getScale();
-		setColor(sf::Color::Blue);
-		if (s.y == 1.f)
-			setPosition({ getPosition().x, getPosition().y + 16.f });
-		if (s.y > 0.f)
-			setScale(s.x, s.y - dt);
-		else
-		{
-			m_DamageTaken.setScale(0.f, 0.f);
-			m_VulnerableTime = 0.f;
-			m_IsDead = true;
-		}
+		DeathAnimation(dt);
 	}
 }
 
@@ -236,17 +205,7 @@ void Slug::SetPosition(const sf::Vector2f& position)
 {
 	setPosition(position);
 	m_Center = position + sf::Vector2f(8.f, 8.f);
-	m_Bounds.position = getPosition();
-}
-
-void Slug::TakeDamage(unsigned int damage)
-{
-	if (m_Vulnerable)
-	{
-		m_DamageTaken.setString(std::to_string(damage));
-		m_Health -= damage;
-		m_Vulnerable = false;
-	}
+	m_Bounds.position = position;
 }
 
 EntityID Slug::GetId() const

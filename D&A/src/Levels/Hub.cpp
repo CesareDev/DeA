@@ -43,7 +43,6 @@ void Hub::Init(const ResourceManager& resourceManager, sf::DynamicQuadTree<Entit
 	slug1.Init(resourceManager, { 384.f, 224.f });
 	slug2.Init(resourceManager, { 144.f, 224.f });
 
-
 	m_Tree->insert(&player, player.GetBounds());
 	m_Tree->insert(&m_Ladder0, m_Ladder0.GetBounds());
 	m_Tree->insert(&slug1, slug1.GetBounds());

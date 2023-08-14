@@ -13,12 +13,17 @@ public:
 	virtual void Update(UpdateArgs args, float dt) override = 0;
 	virtual void Render(sf::RenderTarget& target) override = 0;
 	virtual void SetPosition(const sf::Vector2f& position) = 0;
-	virtual void TakeDamage(unsigned int damage) = 0;
 	virtual EntityID GetId() const override = 0;
 	EntityType GetType() const override;
 
+	void TakeDamage(unsigned int damage);
 	inline bool IsDead() const { return m_IsDead; }
 	inline bool IsMoving() const { return m_IsMoving; }
+
+protected:
+
+	void DamageAnimation(float dt);
+	void DeathAnimation(float dt);
 
 protected:
 
@@ -30,5 +35,11 @@ protected:
 
 	int m_Health;
 	bool m_IsDead = false;
+
+	float m_VulnerableTime;
+	float m_IntervalTime;
+	bool m_Vulnerable;
+
+	sf::Text m_DamageTaken;
 };
 

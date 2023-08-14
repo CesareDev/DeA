@@ -5,7 +5,7 @@
 int main() 
 {
     std::string spritePath;
-    std::string texturePath = "C:\\Dev\\VisualStudioProjects\\D&A\\D&A\\res\\tileset.png";
+    std::string texturePath = "..\\..\\..\\res\\map\\tileset.png";
 
     SetThreadDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2);
 

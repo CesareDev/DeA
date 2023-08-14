@@ -26,5 +26,6 @@ protected:
 	float m_AttackAngle;
 	float m_ElapsedTime;
 	bool m_IsAttacking;
+	bool m_CanHit;
 	std::vector<sf::Vector2f> m_HitPoints;
 };
