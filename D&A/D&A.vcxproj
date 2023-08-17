@@ -117,6 +117,12 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Entities\Weapons\Spear.cpp" />
+    <ClCompile Include="src\Entities\Weapons\GreatSword.cpp" />
+    <ClCompile Include="src\Entities\Weapons\GreatMace.cpp" />
+    <ClCompile Include="src\Entities\Weapons\GreatHammer.cpp" />
+    <ClCompile Include="src\Entities\Weapons\Hammer.cpp" />
+    <ClCompile Include="src\Entities\Characters\DemonBoss.cpp" />
     <ClCompile Include="src\Entities\Weapons\ColossalSword.cpp" />
     <ClCompile Include="src\Entities\Weapons\Katana.cpp" />
     <ClCompile Include="src\Entities\Weapons\MagicSword.cpp" />
@@ -130,7 +136,7 @@
     <ClCompile Include="src\Entities\Weapons\Sword.cpp" />
     <ClCompile Include="src\UI\Components\LevelLabel.cpp" />
     <ClCompile Include="src\Entities\Environments\Ladder.cpp" />
-    <ClCompile Include="src\Levels\Hub.cpp" />
+    <ClCompile Include="src\Levels\Entrance.cpp" />
     <ClCompile Include="src\Core\LevelManager.cpp" />
     <ClCompile Include="src\States\ArenaState.cpp" />
     <ClCompile Include="src\Levels\Level.cpp" />
@@ -165,10 +171,15 @@
     <ClCompile Include="src\UI\Menu\StartMenu.cpp" />
     <ClCompile Include="src\Effects\Transition.cpp" />
     <ClCompile Include="src\Core\Window.cpp" />
-    <ClCompile Include="src\Levels\Underground.cpp" />
     <ClCompile Include="src\Entities\Weapons\Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Entities\Weapons\Spear.h" />
+    <ClInclude Include="src\Entities\Weapons\GreatSword.h" />
+    <ClInclude Include="src\Entities\Weapons\GreatMace.h" />
+    <ClInclude Include="src\Entities\Weapons\GreatHammer.h" />
+    <ClInclude Include="src\Entities\Weapons\Hammer.h" />
+    <ClInclude Include="src\Entities\Characters\DemonBoss.h" />
     <ClInclude Include="src\Entities\Weapons\ColossalSword.h" />
     <ClInclude Include="src\Entities\Weapons\Katana.h" />
     <ClInclude Include="src\Entities\Weapons\MagicSword.h" />
@@ -182,7 +193,7 @@
     <ClInclude Include="src\UI\Components\LevelLabel.h" />
     <ClInclude Include="src\Entities\Environments\Ladder.h" />
     <ClInclude Include="src\Core\GlobalVariables.h" />
-    <ClInclude Include="src\Levels\Hub.h" />
+    <ClInclude Include="src\Levels\Entrance.h" />
     <ClInclude Include="src\Core\LevelManager.h" />
     <ClInclude Include="src\Entities\EntityID.h" />
     <ClInclude Include="src\States\ArenaState.h" />
@@ -216,7 +227,6 @@
     <ClInclude Include="src\UI\Menu\StartMenu.h" />
     <ClInclude Include="src\Effects\Transition.h" />
     <ClInclude Include="src\Core\Window.h" />
-    <ClInclude Include="src\Levels\Underground.h" />
     <ClInclude Include="src\Entities\Weapons\Weapon.h" />
     <ClInclude Include="src\Entities\Weapons\Sword.h" />
   </ItemGroup>

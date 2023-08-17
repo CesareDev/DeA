@@ -24,19 +24,17 @@ void Knife::Init(const ResourceManager& resourceManager, const sf::Vector2f& pos
 
 void Knife::Update(UpdateArgs args, float dt)
 {
-	for (auto it = args.qTree.begin(); it != args.qTree.end(); ++it)
-	{
-		if (it->obj->GetId() == EntityID::Player)
-			SetPosition(it->obj->GetCenter());
-	}
 	Attack(dt);
 	for (const auto& it : args.qTree.search(m_Bounds))
 	{
-		if (m_CanHit && it->obj->GetId() != EntityID::Player && it->obj->GetType() == EntityType::Character)
+		if (m_CanHit)
 		{
-			Character* en = (Character*)it->obj;
-			if (en->GetBounds().contains(m_HitPoints[0]))
-				en->TakeDamage(1);
+			if(it->obj->GetId() != EntityID::Player && it->obj->GetType() == EntityType::Character)
+			{
+				Character* en = (Character*)it->obj;
+				if (en->GetBounds().contains(m_HitPoints[0]))
+					en->TakeDamage(1);
+			}
 		}
 	}
 }

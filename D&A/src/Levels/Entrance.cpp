@@ -1,29 +1,31 @@
 #include "pch.h"
-#include "Hub.h"
+#include "Entrance.h"
 
-Hub::Hub()
+Entrance::Entrance()
 {
 }
 
-Hub::~Hub()
+Entrance::~Entrance()
 {
 }
 
-bool Hub::OnEnter(float dt)
+bool Entrance::OnEnter(float dt)
 {
 	return m_Transition.FadeIn(dt, 0.5f);
 }
 
-bool Hub::OnExit(float dt)
+bool Entrance::OnExit(float dt)
 {
 	return m_Transition.FadeOut(dt, 0.5f);
 }
 
-void Hub::Init(const ResourceManager& resourceManager, sf::DynamicQuadTree<Entity>& tree, Player& player, unsigned int entranceIndex)
+void Entrance::Init(const ResourceManager& resourceManager, sf::DynamicQuadTree<Entity>& tree, Player& player, unsigned int entranceIndex)
 {
-	m_Label.Init(resourceManager, "Hub");
+	m_Label.Init(resourceManager, "Entrance");
 	m_Transition.Init(resourceManager);
-	m_Map.load("../res/map/hub.tmx", &resourceManager.GetTilesetTexture());
+	m_Map.load("../res/map/entrance.tmx", &resourceManager.GetTilesetTexture());
+
+	m_Hud.Init(resourceManager, player);
 
 	m_Tree = &tree;
 	m_Tree->resize({ 0.f, 0.f, (float)m_Map.getMapSize().x, (float)m_Map.getMapSize().y });
@@ -36,20 +38,18 @@ void Hub::Init(const ResourceManager& resourceManager, sf::DynamicQuadTree<Entit
 		player.SetPosition({ 416.f, 432.f }); //from undeground
 
 	m_Camera.Init(player.GetCenter(), { 0.f, 0.f, (float)m_Map.getMapSize().x, (float)m_Map.getMapSize().y }, { 0.f, 0.f, GLOBAL::WIN_WIDTH / 5.f, GLOBAL::WIN_HEIGHT / 5.f });
-	
-	m_Ladder0.Init(resourceManager, { 400.f, 432.f });
-	m_Ladder0.SetTeleportLevel(LevelID::UnderGround_Zero);
 
 	slug1.Init(resourceManager, { 384.f, 224.f });
-	slug2.Init(resourceManager, { 144.f, 224.f });
+	slug2.Init(resourceManager, { 290.f, 224.f });
+	demon.Init(resourceManager, { 320.f, 200.f });
 
 	m_Tree->insert(&player, player.GetBounds());
-	m_Tree->insert(&m_Ladder0, m_Ladder0.GetBounds());
-	m_Tree->insert(&slug1, slug1.GetBounds());
 	m_Tree->insert(&slug2, slug2.GetBounds());
+	m_Tree->insert(&slug1, slug1.GetBounds());
+	m_Tree->insert(&demon, demon.GetBounds());
 }
 
-void Hub::Update(StateID& currentState, LevelID& currentLevel, float dt)
+void Entrance::Update(StateID& currentState, LevelID& currentLevel, float dt)
 {
 	for (auto it = m_Tree->begin(); it != m_Tree->end();)
 	{
@@ -72,14 +72,6 @@ void Hub::Update(StateID& currentState, LevelID& currentLevel, float dt)
 				}
 				break;
 			}
-			case EntityType::Weapon:
-			{
-				break;
-			}
-			case EntityType::Environment:
-			{
-				break;
-			}
 			default:
 				break;
 		}
@@ -87,10 +79,11 @@ void Hub::Update(StateID& currentState, LevelID& currentLevel, float dt)
 	}
 
 	m_Map.update(dt);
+	m_Hud.Update(dt);
 	m_Label.Update(dt);
 }
 
-void Hub::Render(sf::RenderTarget& target)
+void Entrance::Render(sf::RenderTarget& target)
 {
 	target.setView(m_Camera);
 	m_Map.drawLayer(target, 0);
@@ -104,6 +97,8 @@ void Hub::Render(sf::RenderTarget& target)
 	m_Map.drawLayer(target, 2);
 
 	m_Weapon->Render(target);
+
+	m_Hud.Render(target);
 
 	m_Label.Render(target);
 	m_Transition.Render(target);

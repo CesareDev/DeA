@@ -1,12 +1,12 @@
 #pragma once
 #include "Weapon.h"
 
-class MagicSword : public Weapon
+class Spear : public Weapon
 {
 public:
 
-	MagicSword();
-	~MagicSword();
+	Spear();
+	~Spear();
 
 	// Inherited via Weapon
 	void Init(const ResourceManager& resourceManager, const sf::Vector2f& position) override;
@@ -18,5 +18,9 @@ public:
 protected:
 
 	void Attack(float dt) override;
+
+private:
+
+	bool m_MousePressed = false;
 };
 

@@ -1,6 +1,6 @@
 #pragma once
 #include "Character.h"
-#include "Entities/Weapons/ColossalSword.h"
+#include "Entities/Weapons/Spear.h"
 
 class Player : public Character
 {
@@ -25,5 +25,5 @@ private:
 
 private:
 
-	ColossalSword sword;
+	Spear weapon;
 };

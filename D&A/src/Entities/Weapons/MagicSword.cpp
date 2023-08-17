@@ -24,15 +24,10 @@ void MagicSword::Init(const ResourceManager& resourceManager, const sf::Vector2f
 
 void MagicSword::Update(UpdateArgs args, float dt)
 {
-	for (auto it = args.qTree.begin(); it != args.qTree.end(); ++it)
-	{
-		if (it->obj->GetId() == EntityID::Player)
-			SetPosition(it->obj->GetCenter());
-	}
 	Attack(dt);
-	if (m_CanHit)
+	for (const auto& it : args.qTree.search(m_Bounds))
 	{
-		for (const auto& it : args.qTree.search(m_Bounds))
+		if (m_CanHit)
 		{
 			if (it->obj->GetId() != EntityID::Player && it->obj->GetType() == EntityType::Character)
 			{
@@ -99,15 +94,15 @@ void MagicSword::Attack(float dt)
 			else
 				m_Angle = -180.f * sinf(5 * acos(-1.f) * (m_ElapsedTime - 0.25f)) + 90.f + m_AttackAngle;
 		}
-		else if (m_ElapsedTime > 0.35f && m_ElapsedTime <= 0.5f)
+		else if (m_ElapsedTime > 0.45f && m_ElapsedTime <= 0.6f)
 		{
 			m_CanHit = false;
 			if (std::abs(m_AttackAngle) < 90.f)
-				m_Angle = -90.f * sinf((10.f / 3.f) * acos(-1.f) * (m_ElapsedTime - 0.35f)) + 90.f + m_AttackAngle;
+				m_Angle = -90.f * sinf((10.f / 3.f) * acos(-1.f) * (m_ElapsedTime - 0.45f)) + 90.f + m_AttackAngle;
 			else
-				m_Angle = 90.f * sinf((10.f / 3.f) * acos(-1.f) * (m_ElapsedTime - 0.35f)) - 90.f + m_AttackAngle;
+				m_Angle = 90.f * sinf((10.f / 3.f) * acos(-1.f) * (m_ElapsedTime - 0.45f)) - 90.f + m_AttackAngle;
 		}
-		else
+		else if (m_ElapsedTime > 0.6f)
 		{
 			m_ElapsedTime = 0.f;
 			m_IsAttacking = false;

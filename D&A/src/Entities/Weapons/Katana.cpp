@@ -24,15 +24,10 @@ void Katana::Init(const ResourceManager& resourceManager, const sf::Vector2f& po
 
 void Katana::Update(UpdateArgs args, float dt)
 {
-    for (auto it = args.qTree.begin(); it != args.qTree.end(); ++it)
-    {
-        if (it->obj->GetId() == EntityID::Player)
-            SetPosition(it->obj->GetCenter());
-    }
     Attack(dt);
-    if (m_CanHit)
+    for (const auto& it : args.qTree.search(m_Bounds))
     {
-        for (const auto& it : args.qTree.search(m_Bounds))
+        if (m_CanHit)
         {
             if (it->obj->GetId() != EntityID::Player && it->obj->GetType() == EntityType::Character)
             {

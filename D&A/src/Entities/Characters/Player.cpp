@@ -22,8 +22,9 @@ void Player::Init(const ResourceManager& resourceManager, const sf::Vector2f& po
 	m_ElapsedAnimationTime = 0.f;
 	m_TextureRect = getTextureRect();
 	m_Velocity = { 0.f, 0.f };
+	m_Health = 100;
 
-	sword.Init(resourceManager, GetCenter());
+	weapon.Init(resourceManager, m_Center);
 }
 
 void Player::Update(UpdateArgs args, float dt)
@@ -31,7 +32,7 @@ void Player::Update(UpdateArgs args, float dt)
 	Movement(args, dt);
 	UpdateAnimation(dt);
 
-	sword.Update(args, dt);
+	weapon.Update(args, dt);
 }
 
 void Player::Render(sf::RenderTarget& target)
@@ -42,6 +43,7 @@ void Player::Render(sf::RenderTarget& target)
 void Player::SetPosition(const sf::Vector2f& position)
 {
 	setPosition(position);
+	weapon.SetPosition(m_Center);
 	m_Center = position + sf::Vector2f(8.f, 8.f);
 	m_Bounds.position = getPosition();
 }
@@ -53,7 +55,7 @@ EntityID Player::GetId() const
 
 Weapon* Player::GetWeapon()
 {
-	return &sword;
+	return &weapon;
 }
 
 void Player::Movement(UpdateArgs args, float dt)

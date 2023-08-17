@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "LevelManager.h"
-#include "Levels/Hub.h"
-#include "Levels/Underground.h"
+#include "Levels/Entrance.h"
 
 LevelManager::LevelManager()
 {
@@ -17,10 +16,10 @@ void LevelManager::Init(const ResourceManager& resourceManager)
 	m_Tree.create(4, {-100.f, -100.f, 200.f, 200.f });
 	m_ResourceManager = &resourceManager;
 
-	m_CurrentLevel = std::make_unique<Hub>();
+	m_CurrentLevel = std::make_unique<Entrance>();
 	m_CurrentLevel->Init(resourceManager, m_Tree, m_Player, 0);
-	m_OldLevelId = LevelID::Hub_Starting;
-	m_CurrentLevelId = LevelID::Hub_Starting;
+	m_OldLevelId = LevelID::EntranceZero;
+	m_CurrentLevelId = LevelID::EntranceZero;
 	m_ChangingLevel = true;
 }
 
@@ -58,21 +57,9 @@ void LevelManager::ChangeLevel(float dt)
 			unsigned int entanceIndex = 0;
 			switch (m_CurrentLevelId)
 			{
-				case LevelID::Hub_Starting:
+				case LevelID::EntranceZero:
 				{
-					m_CurrentLevel.reset(new Hub());
-					entanceIndex = 0;
-					break;
-				}
-				case LevelID::Hub_Zero:
-				{
-					m_CurrentLevel.reset(new Hub());
-					entanceIndex = 1;
-					break;
-				}
-				case LevelID::UnderGround_Zero:
-				{
-					m_CurrentLevel.reset(new Underground());
+					m_CurrentLevel.reset(new Entrance());
 					entanceIndex = 0;
 					break;
 				}

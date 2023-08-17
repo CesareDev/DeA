@@ -1,22 +1,18 @@
 #pragma once
-#include "Weapon.h"
+#include "Character.h"
 
-class MagicSword : public Weapon
+class DemonBoss : public Character
 {
 public:
 
-	MagicSword();
-	~MagicSword();
+	DemonBoss();
+	~DemonBoss();
 
-	// Inherited via Weapon
+	// Inherited via Character
 	void Init(const ResourceManager& resourceManager, const sf::Vector2f& position) override;
 	void Update(UpdateArgs args, float dt) override;
 	void Render(sf::RenderTarget& target) override;
 	void SetPosition(const sf::Vector2f& position) override;
 	EntityID GetId() const override;
-
-protected:
-
-	void Attack(float dt) override;
 };
 

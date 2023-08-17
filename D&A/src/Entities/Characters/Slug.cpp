@@ -13,11 +13,10 @@ void Slug::Init(const ResourceManager& resourceManager, const sf::Vector2f& posi
 {
     setTexture(resourceManager.GetTilesetTexture());
     setOrigin(0.f, 8.f);
-    setTextureRect({ 368, 431, 16, 24 });
-    setPosition(position);
+    setTextureRect({ 320, 328, 16, 24 });
+    SetPosition(position);
 
-    m_Center = getPosition() + sf::Vector2f(8.f, 8.f);
-    m_Bounds = { getPosition(), {16.f, 16.f} };
+    m_Bounds.size = {16.f, 16.f};
     m_IsMoving = false;
     m_ElapsedAnimationTime = 0.f;
     m_TextureRect = getTextureRect();
@@ -39,22 +38,41 @@ void Slug::Update(UpdateArgs args, float dt)
 	{
 		//Moving
 		m_IsMoving = false;
-		sf::Rectangle attackArea = { GetCenter() - sf::Vector2f(64.f, 64.f), {128.f, 128.f} };
+		sf::Rectangle attackArea = { m_Center - sf::Vector2f(64.f, 64.f), {128.f, 128.f} };
 		m_Velocity = { 0.f, 0.f };
+		sf::Vector2f dir = { 0.f, 0.f };
 
 		for (const auto& it : args.qTree.search(attackArea))
 		{
-			if (it->obj->GetId() == EntityID::Player)
+			if (it->obj->GetType() == EntityType::Character)
 			{
-				const auto& ppos = it->obj->GetCenter();
-				float mag = sf::distance(ppos, GetCenter());
-				sf::Vector2f dir = { 0.f, 0.f };
-				if (mag > 0.5f)
+				if (it->obj->GetId() == EntityID::Player)
 				{
-					dir = (ppos - GetCenter()) / mag;
-					m_IsMoving = true;
+					const auto& ppos = it->obj->GetCenter();
+					float mag = sf::distance(ppos, m_Center);
+					if (mag > 0.5f)
+					{
+						dir = (ppos - m_Center) / mag;
+						m_IsMoving = true;
+					}
+					m_Velocity = dir * 8.f;
 				}
-				m_Velocity = dir * 8.f;
+				if (it->obj != this && it->obj->GetId() != EntityID::Player)
+				{
+					if (m_Bounds.overlaps(it->obj->GetBounds()))
+					{
+						const auto& epos = it->obj->GetCenter();
+						float d = sf::distance(m_Center, epos);
+						float radsum = 8.f + (it->obj->GetBounds().size.x / 2.f);
+						if (d < radsum)
+						{
+							sf::Vector2f normal = (m_Center - epos) / d;
+							float depth = radsum - d;
+							SetPosition(getPosition() + normal * depth / 2.f);
+							m_IsMoving = true;
+						}
+					}
+				}
 			}
 		}
 
@@ -86,7 +104,7 @@ void Slug::Update(UpdateArgs args, float dt)
 				m_Velocity.x = 0.f;
 				if (m_IsMoving)
 				{
-					m_Velocity.y = (m_Velocity.y > 0 ? 1 : -1) * 8.f; //fixed vel
+					m_Velocity.y = m_Velocity.y > 0.f ? 8.f : -8.f;
 					wallx = true;
 				}
 			}
@@ -100,7 +118,7 @@ void Slug::Update(UpdateArgs args, float dt)
 				m_Velocity.x = 0.f;
 				if (m_IsMoving)
 				{
-					m_Velocity.y = (m_Velocity.y > 0 ? 1 : -1) * 8.f;
+					m_Velocity.y = m_Velocity.y > 0 ? 8.f : -8.f;
 					wallx = true;
 				}
 			}
@@ -115,7 +133,7 @@ void Slug::Update(UpdateArgs args, float dt)
 				m_Velocity.y = 0.f;
 				if (m_IsMoving)
 				{
-					m_Velocity.x = (m_Velocity.x > 0 ? 1 : -1) * 8.f;
+					m_Velocity.x = m_Velocity.x > 0.f ? 8.f : -8.f;
 					wally = true;
 				}
 			}
@@ -129,7 +147,7 @@ void Slug::Update(UpdateArgs args, float dt)
 				m_Velocity.y = 0.f;
 				if (m_IsMoving)
 				{
-					m_Velocity.x = (m_Velocity.x > 0 ? 1 : -1) * 8.f;
+					m_Velocity.x = m_Velocity.x > 0.f ? 8.f : -8.f;
 					wally = true;
 				}
 			}
@@ -147,8 +165,6 @@ void Slug::Update(UpdateArgs args, float dt)
 
 
 		SetPosition(potentialPos);
-																											 //40 perchè il testo deve stare al centro dell'entità per questo deve essere slittato di 8 (metà della lunghezza dell'entità) verso destra poi * 5
-		m_DamageTaken.setPosition(int(getPosition().x * 5.f - m_DamageTaken.getGlobalBounds().width / 2.f + 40.f), int(getPosition().y * 5.f - m_DamageTaken.getGlobalBounds().height));
 		
 		//Animation
 		m_ElapsedAnimationTime += dt;
@@ -156,23 +172,23 @@ void Slug::Update(UpdateArgs args, float dt)
 		{
 			if (m_IsMoving)
 			{
-				m_TextureRect.top = 455;
+				m_TextureRect.top = 352;
 				setTextureRect(m_TextureRect);
 				m_TextureRect.left += 16;
-				if (m_TextureRect.left >= 416)
+				if (m_TextureRect.left >= 384)
 				{
-					m_TextureRect.left = 368;
+					m_TextureRect.left = 320;
 				}
 				m_ElapsedAnimationTime = 0.f;
 			}
 			else
 			{
-				m_TextureRect.top = 431;
+				m_TextureRect.top = 328;
 				setTextureRect(m_TextureRect);
 				m_TextureRect.left += 16;
-				if (m_TextureRect.left >= 416)
+				if (m_TextureRect.left >= 384)
 				{
-					m_TextureRect.left = 368;
+					m_TextureRect.left = 320;
 				}
 				m_ElapsedAnimationTime = 0.f;
 			}

@@ -1,12 +1,12 @@
 #pragma once
 #include "Weapon.h"
 
-class MagicSword : public Weapon
+class Hammer : public Weapon
 {
 public:
 
-	MagicSword();
-	~MagicSword();
+	Hammer();
+	~Hammer();
 
 	// Inherited via Weapon
 	void Init(const ResourceManager& resourceManager, const sf::Vector2f& position) override;

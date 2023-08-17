@@ -14,6 +14,9 @@ public:
 	void Render(sf::RenderTarget& target) override;
 	void SetPosition(const sf::Vector2f& position) override;
 	EntityID GetId() const override;
+
+protected:
+
 	void Attack(float dt) override;
 };
 
