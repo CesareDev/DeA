@@ -29,5 +29,6 @@ protected:
 	sf::TileMap m_Map;
 	sf::DynamicQuadTree<Entity>* m_Tree;
 	Hud m_Hud;
-	Weapon* m_Weapon; //Pointer to player's weapon because it needs to be rendered on top of the map
+
+	Player* m_Player;
 };

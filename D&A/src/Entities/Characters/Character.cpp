@@ -56,16 +56,16 @@ void Character::DamageAnimation(float dt)
 void Character::DeathAnimation(float dt)
 {
 	m_VulnerableTime += dt;
-	m_DamageTaken.setPosition(int(getPosition().x * 5.f - m_DamageTaken.getGlobalBounds().width / 2.f + (m_Bounds.size.x / 2.f * 5.f)), int(getPosition().y * 5.f - m_DamageTaken.getGlobalBounds().height - 80.f));
+	m_DamageTaken.setPosition(int(getPosition().x * 5.f - m_DamageTaken.getGlobalBounds().width / 2.f + (m_Bounds.size.x / 2.f * 5.f)), int(getPosition().y * 5.f - m_DamageTaken.getGlobalBounds().height - (m_Bounds.size.y * 5.f)));
 	sf::Vector2f st = m_DamageTaken.getScale();
 	if (st.x <= 1.f)
 		m_DamageTaken.setScale(st.x + 4.f * dt, st.y + 4.f * dt);
 	sf::Vector2f o = getOrigin();
-	setOrigin(o.x, 24.f);
+	setOrigin(o.x, getTextureRect().height);
 	sf::Vector2f s = getScale();
 	setColor(sf::Color(50, 50, 50, 255)); //darkgrey
 	if (s.y == 1.f)
-		setPosition({ getPosition().x, getPosition().y + m_Bounds.size.y });
+		setPosition({ getPosition().x, getPosition().y + m_Bounds.size.y});
 	if (s.y > 0.f)
 		setScale(s.x, s.y - dt);
 	else

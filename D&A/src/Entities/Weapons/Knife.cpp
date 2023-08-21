@@ -41,18 +41,13 @@ void Knife::Update(UpdateArgs args, float dt)
 
 void Knife::Render(sf::RenderTarget& target)
 {
-	sf::Vector2i pixelPos = sf::Mouse::getPosition((sf::RenderWindow&)target);
-	sf::Vector2f mpos = target.mapPixelToCoords(pixelPos);
-	if (!m_IsAttacking)
-		m_Angle = (atan2f(mpos.y - getPosition().y, mpos.x - getPosition().x) * 180.f / acos(-1.f)) + 90.f;
-
 	target.draw(*this);
 }
 
 void Knife::SetPosition(const sf::Vector2f& position)
 {
 	setPosition(position);
-	m_Center = { position.x + 17.f * cosf((m_Angle - 90.f) * acos(-1.f) / 180.f), position.y + 17.f * sinf((m_Angle - 90.f) * acos(-1.f) / 180.f) };
+	m_Center = { position.x + 17.f * cosf((m_Angle) * acos(-1.f) / 180.f), position.y + 17.f * sinf((m_Angle) * acos(-1.f) / 180.f) };
 	m_HitPoints[0] = m_Center;
 	m_Bounds.position = position - sf::Vector2f(20.f, 20.f);
 }
@@ -73,7 +68,6 @@ void Knife::Attack(float dt)
 	else if (!sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
 		m_MousePressed = false;
-		setRotation(m_Angle);
 	}
 	if (m_IsAttacking)
 	{
@@ -83,7 +77,7 @@ void Knife::Attack(float dt)
 			m_CanHit = true;
 			float mag = 5.f * sinf((5.f /2.f) * acos(-1.f) * m_ElapsedTime);
 			const auto& pos = getPosition();
-			SetPosition({ pos.x + mag * cosf((m_Angle - 90.f) * acos(-1.f) / 180.f), pos.y + mag * sinf((m_Angle - 90.f) * acos(-1.f) / 180.f) });
+			SetPosition({ pos.x + mag * cosf((m_Angle) * acos(-1.f) / 180.f), pos.y + mag * sinf((m_Angle) * acos(-1.f) / 180.f) });
 		}
 		else if (!m_MousePressed)
 		{

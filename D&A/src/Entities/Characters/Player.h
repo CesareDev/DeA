@@ -1,6 +1,6 @@
 #pragma once
 #include "Character.h"
-#include "Entities/Weapons/Spear.h"
+#include "Entities/Weapons/Weapon.h"
 
 class Player : public Character
 {
@@ -16,7 +16,11 @@ public:
 	void SetPosition(const sf::Vector2f& position);
 	EntityID GetId() const override;
 
-	Weapon* GetWeapon();
+	void SetCurrentWeaponIndex(unsigned int index);
+	inline unsigned int GetCurrentWeaponIndex() { return m_WeaponIndex; }
+	EntityID GetWeaponID(unsigned int index);
+	bool IsAttacking();
+	void RenderWeapon(sf::RenderTarget& target);	
 
 private:
 
@@ -25,5 +29,7 @@ private:
 
 private:
 
-	Spear weapon;
+	unsigned int m_WeaponIndex = 0;
+	std::vector<std::unique_ptr<Weapon>> m_Weapons;
+	bool m_Paused = false; //for stop weapon rotation
 };

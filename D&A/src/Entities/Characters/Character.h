@@ -17,6 +17,7 @@ public:
 	EntityType GetType() const override;
 
 	void TakeDamage(unsigned int damage);
+	inline bool IsVulnerable() const { return m_Vulnerable; }
 	inline bool IsDead() const { return m_IsDead; }
 	inline bool IsMoving() const { return m_IsMoving; }
 
@@ -38,7 +39,7 @@ protected:
 
 	float m_VulnerableTime;
 	float m_IntervalTime;
-	bool m_Vulnerable;
+	bool m_Vulnerable = true;
 
 	sf::Text m_DamageTaken;
 };

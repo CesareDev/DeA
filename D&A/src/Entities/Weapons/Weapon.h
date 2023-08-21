@@ -16,6 +16,9 @@ public:
 	virtual EntityID GetId() const override = 0;
 	EntityType GetType() const override;
 
+	void SetAngle(sf::RenderTarget& target);
+	inline bool IsAttacking() { return m_IsAttacking; }
+
 protected:
 
 	virtual void Attack(float dt) = 0;
@@ -25,7 +28,7 @@ protected:
 	float m_Angle;
 	float m_AttackAngle;
 	float m_ElapsedTime;
-	bool m_IsAttacking;
-	bool m_CanHit;
+	bool m_IsAttacking = false;
+	bool m_CanHit = false;
 	std::vector<sf::Vector2f> m_HitPoints;
 };

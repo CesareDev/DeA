@@ -12,4 +12,6 @@ namespace GLOBAL
 	inline bool JOYSTICK_AVAILABLE = false;
 
 	inline int SAVE_INDEX = -1;
+
+	inline int MOUSEWHELL_OFFSET = 0; //9 WHEN THE PLAYER ATTACK
 };

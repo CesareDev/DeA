@@ -43,19 +43,7 @@ void Mace::Update(UpdateArgs args, float dt)
 
 void Mace::Render(sf::RenderTarget& target)
 {
-	sf::Vector2i pixelPos = sf::Mouse::getPosition((sf::RenderWindow&)target);
-	sf::Vector2f mpos = target.mapPixelToCoords(pixelPos);
-	if (!m_IsAttacking)
-		m_Angle = (atan2f(mpos.y - getPosition().y, mpos.x - getPosition().x) * 180.f / acos(-1.f));
-
 	target.draw(*this);
-	sf::RectangleShape r({ 1.f, 1.f });
-	r.setFillColor(sf::Color::Green);
-
-	r.setPosition(m_HitPoints[0]);
-	target.draw(r);
-	r.setPosition(m_HitPoints[1]);
-	target.draw(r);
 }
 
 void Mace::SetPosition(const sf::Vector2f& position)
@@ -79,10 +67,6 @@ void Mace::Attack(float dt)
 	{
 		m_IsAttacking = true;
 		m_AttackAngle = m_Angle;
-	}
-	else if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && !m_IsAttacking)
-	{
-		setRotation(m_Angle + 90.f);
 	}
 	if (m_IsAttacking)
 	{

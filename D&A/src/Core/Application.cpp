@@ -30,9 +30,9 @@ void Application::PollEvent()
 	while (m_Window.pollEvent(m_Event))
 	{
 		if (m_Event.type == sf::Event::Closed)
-		{
 			m_Window.close();
-		}
+		if (m_Event.mouseWheelScroll.wheel == sf::Mouse::VerticalWheel)
+			GLOBAL::MOUSEWHELL_OFFSET -= m_Event.mouseWheelScroll.delta;
 	}
 }
 

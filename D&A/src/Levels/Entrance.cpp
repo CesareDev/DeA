@@ -27,23 +27,22 @@ void Entrance::Init(const ResourceManager& resourceManager, sf::DynamicQuadTree<
 
 	m_Hud.Init(resourceManager, player);
 
+	m_Player = &player;
+
 	m_Tree = &tree;
 	m_Tree->resize({ 0.f, 0.f, (float)m_Map.getMapSize().x, (float)m_Map.getMapSize().y });
 
-	m_Weapon = player.GetWeapon();
 
 	if (entranceIndex == 0)
-		player.SetPosition({ 240.f, 416.f }); //starting point
-	else if (entranceIndex == 1)
-		player.SetPosition({ 416.f, 432.f }); //from undeground
+		m_Player->SetPosition({ 240.f, 416.f }); //starting point
 
-	m_Camera.Init(player.GetCenter(), { 0.f, 0.f, (float)m_Map.getMapSize().x, (float)m_Map.getMapSize().y }, { 0.f, 0.f, GLOBAL::WIN_WIDTH / 5.f, GLOBAL::WIN_HEIGHT / 5.f });
+	m_Camera.Init(m_Player->GetCenter(), { 0.f, 0.f, (float)m_Map.getMapSize().x, (float)m_Map.getMapSize().y }, { 0.f, 0.f, GLOBAL::WIN_WIDTH / 5.f, GLOBAL::WIN_HEIGHT / 5.f });
 
 	slug1.Init(resourceManager, { 384.f, 224.f });
 	slug2.Init(resourceManager, { 290.f, 224.f });
 	demon.Init(resourceManager, { 320.f, 200.f });
 
-	m_Tree->insert(&player, player.GetBounds());
+	m_Tree->insert(m_Player, m_Player->GetBounds());
 	m_Tree->insert(&slug2, slug2.GetBounds());
 	m_Tree->insert(&slug1, slug1.GetBounds());
 	m_Tree->insert(&demon, demon.GetBounds());
@@ -96,7 +95,7 @@ void Entrance::Render(sf::RenderTarget& target)
 
 	m_Map.drawLayer(target, 2);
 
-	m_Weapon->Render(target);
+	m_Player->RenderWeapon(target);
 
 	m_Hud.Render(target);
 

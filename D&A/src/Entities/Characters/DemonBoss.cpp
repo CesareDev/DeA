@@ -34,42 +34,60 @@ void DemonBoss::Init(const ResourceManager& resourceManager, const sf::Vector2f&
 
 void DemonBoss::Update(UpdateArgs args, float dt)
 {
-	//Moving
-	m_IsMoving = false;
-	m_Velocity = { 0.f, 0.f };
-
-	//Animation
-	m_ElapsedAnimationTime += dt;
-	if (m_ElapsedAnimationTime > 0.1f)
+	if (m_Health > 0)
 	{
-		if (m_IsMoving)
+		//Moving
+		m_IsMoving = false;
+		m_Velocity = { 0.f, 0.f };
+
+		//Animation
+		m_ElapsedAnimationTime += dt;
+		if (m_ElapsedAnimationTime > 0.1f)
 		{
-			m_TextureRect.top = 400;
-			setTextureRect(m_TextureRect);
-			m_TextureRect.left += 32;
-			if (m_TextureRect.left >= 128)
+			if (m_IsMoving)
 			{
-				m_TextureRect.left = 0;
+				m_TextureRect.top = 400;
+				setTextureRect(m_TextureRect);
+				m_TextureRect.left += 32;
+				if (m_TextureRect.left >= 128)
+				{
+					m_TextureRect.left = 0;
+				}
+				m_ElapsedAnimationTime = 0.f;
 			}
-			m_ElapsedAnimationTime = 0.f;
-		}
-		else
-		{
-			m_TextureRect.top = 352;
-			setTextureRect(m_TextureRect);
-			m_TextureRect.left += 32;
-			if (m_TextureRect.left >= 128)
+			else
 			{
-				m_TextureRect.left = 0;
+				m_TextureRect.top = 352;
+				setTextureRect(m_TextureRect);
+				m_TextureRect.left += 32;
+				if (m_TextureRect.left >= 128)
+				{
+					m_TextureRect.left = 0;
+				}
+				m_ElapsedAnimationTime = 0.f;
 			}
-			m_ElapsedAnimationTime = 0.f;
 		}
+
+		DamageAnimation(dt);
+	}
+	else
+	{
+		DeathAnimation(dt);
 	}
 }
 
 void DemonBoss::Render(sf::RenderTarget& target)
 {
     target.draw(*this);
+	if (m_VulnerableTime > 0.f)
+	{
+		sf::View currentCamera = target.getView();
+		sf::View v(currentCamera.getCenter() * 5.f, currentCamera.getSize() * 5.f);
+		target.setView(v);
+		target.draw(m_DamageTaken);
+
+		target.setView(currentCamera);
+	}
 }
 
 void DemonBoss::SetPosition(const sf::Vector2f& position)

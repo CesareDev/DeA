@@ -22,7 +22,6 @@ void Slug::Init(const ResourceManager& resourceManager, const sf::Vector2f& posi
     m_TextureRect = getTextureRect();
 
 	m_Health = 5;
-	m_Vulnerable = true;
 	const auto& font = resourceManager.GetFont();
 	const_cast<sf::Texture&>(font.getTexture(40)).setSmooth(false);
 	m_DamageTaken.setFont(font);
@@ -57,7 +56,7 @@ void Slug::Update(UpdateArgs args, float dt)
 					}
 					m_Velocity = dir * 8.f;
 				}
-				if (it->obj != this && it->obj->GetId() != EntityID::Player)
+				if (it->obj != this && it->obj->GetId() != EntityID::Player && it->obj->GetId() != EntityID::Arrow)
 				{
 					if (m_Bounds.overlaps(it->obj->GetBounds()))
 					{

@@ -42,11 +42,6 @@ void GreatSword::Update(UpdateArgs args, float dt)
 
 void GreatSword::Render(sf::RenderTarget& target)
 {
-	sf::Vector2i pixelPos = sf::Mouse::getPosition((sf::RenderWindow&)target);
-	sf::Vector2f mpos = target.mapPixelToCoords(pixelPos);
-	if (!m_IsAttacking)
-		m_Angle = (atan2f(mpos.y - getPosition().y, mpos.x - getPosition().x) * 180.f / acos(-1.f));
-
 	target.draw(*this);
 }
 
@@ -72,10 +67,6 @@ void GreatSword::Attack(float dt)
 	{
 		m_IsAttacking = true;
 		m_AttackAngle = m_Angle;
-	}
-	else if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && !m_IsAttacking)
-	{
-		setRotation(m_Angle + 90.f);
 	}
 	if (m_IsAttacking)
 	{

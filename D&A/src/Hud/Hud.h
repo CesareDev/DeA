@@ -1,5 +1,6 @@
 #pragma once
 #include "Core/ResourceManager.h"
+#include "Inventory.h"
 #include "Entities/Characters/Player.h"
 
 class Hud
@@ -13,14 +14,18 @@ public:
 	void Update(float dt);
 	void Render(sf::RenderTarget& target);
 
-	void SetHealth(unsigned int m_Health);
-
 private:
 
 	const Player* m_Player;
 	
 	sf::View m_StaticCamera;
-	sf::Sprite m_HealthBarFrame;
-	sf::Sprite m_BarTail;
+	sf::Sprite m_BarFrame;
+	sf::Sprite m_HealthTail;
+	sf::Sprite m_ManaTail;
 	sf::RectangleShape m_HealthBar;
+	sf::RectangleShape m_ManaBar;
+
+	sf::Text m_CoinQuantity;
+
+	Inventory m_Inv;
 };

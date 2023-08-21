@@ -1,5 +1,9 @@
 #include "pch.h"
 #include "Player.h"
+#include "Entities/Weapons/Bow.h"
+#include "Entities/Weapons/ColossalSword.h"
+#include "Entities/Weapons/BigDamagePotion.h"
+#include "Entities/Weapons/DamagePotion.h"
 
 Player::Player()
 {
@@ -24,27 +28,45 @@ void Player::Init(const ResourceManager& resourceManager, const sf::Vector2f& po
 	m_Velocity = { 0.f, 0.f };
 	m_Health = 100;
 
-	weapon.Init(resourceManager, m_Center);
+	m_Weapons.resize(8);
+	m_Weapons[m_WeaponIndex].reset(new Bow());
+	m_Weapons[m_WeaponIndex]->Init(resourceManager, position);
+	m_Weapons[m_WeaponIndex + 1].reset(new DamagePotion());
+	m_Weapons[m_WeaponIndex + 1]->Init(resourceManager, position);
+	m_Weapons[m_WeaponIndex + 2].reset(new ColossalSword());
+	m_Weapons[m_WeaponIndex + 2]->Init(resourceManager, position);
 }
 
 void Player::Update(UpdateArgs args, float dt)
 {
+	m_Paused = false;
 	Movement(args, dt);
 	UpdateAnimation(dt);
 
-	weapon.Update(args, dt);
+	if (m_Weapons[m_WeaponIndex])
+		m_Weapons[m_WeaponIndex]->Update(args, dt);
+
+	for (const auto& weapon : m_Weapons)
+		if (weapon)
+			if (weapon->GetId() == EntityID::BigDamagePotion)
+				((BigDamagePotion*)weapon.get())->UpdateAttackZone(args, dt);
+			else if (weapon->GetId() == EntityID::DamagePotion)
+				((DamagePotion*)weapon.get())->UpdateAttackZone(args, dt);
+
 }
 
 void Player::Render(sf::RenderTarget& target)
 {
-	target.draw(*this);	
+	target.draw(*this);
 }
 
 void Player::SetPosition(const sf::Vector2f& position)
 {
 	setPosition(position);
-	weapon.SetPosition(m_Center);
 	m_Center = position + sf::Vector2f(8.f, 8.f);
+	for (const auto& weapon : m_Weapons)
+		if (weapon)
+			weapon->SetPosition(m_Center);
 	m_Bounds.position = getPosition();
 }
 
@@ -53,9 +75,40 @@ EntityID Player::GetId() const
 	return EntityID::Player;
 }
 
-Weapon* Player::GetWeapon()
+void Player::SetCurrentWeaponIndex(unsigned int index)
 {
-	return &weapon;
+	m_WeaponIndex = index;
+}
+
+EntityID Player::GetWeaponID(unsigned int index)
+{
+	if (m_Weapons[index])
+		return m_Weapons[index]->GetId();
+	return EntityID::Null;
+}
+
+bool Player::IsAttacking()
+{ 
+	if (m_Weapons[m_WeaponIndex])
+		return m_Weapons[m_WeaponIndex]->IsAttacking();
+	return false;
+}
+
+void Player::RenderWeapon(sf::RenderTarget& target)
+{
+	if (!m_Paused)
+		for (auto& weapon : m_Weapons)
+			if (weapon)
+				weapon->SetAngle(target);
+	if (m_Weapons[m_WeaponIndex])
+		m_Weapons[m_WeaponIndex]->Render(target);
+	for (const auto& weapon : m_Weapons)
+		if (weapon)
+			if (weapon->GetId() == EntityID::BigDamagePotion)
+				((BigDamagePotion*)weapon.get())->RenderAttackZone(target);
+			else if (weapon->GetId() == EntityID::DamagePotion)
+				((DamagePotion*)weapon.get())->RenderAttackZone(target);
+	m_Paused = true;
 }
 
 void Player::Movement(UpdateArgs args, float dt)

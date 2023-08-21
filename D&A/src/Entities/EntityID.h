@@ -19,7 +19,13 @@ enum class EntityID
 	GreatSword,
 	ColossalSword,
 	GreatAxe,
-	Spear
+	Spear,
+	Bow,
+	Arrow,
+	HealthPotion,
+	BigHealthPotion,
+	DamagePotion,
+	BigDamagePotion
 };
 
 enum class EntityType
