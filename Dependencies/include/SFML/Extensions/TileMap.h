@@ -30,6 +30,7 @@ namespace sf {
 		const sf::Vector2u& getMapSize() const;
 		const sf::Vector2u& getTileSize() const;
 		bool isCellWall(const sf::Vector2i& posInUnit) const;
+		bool isCellTile(const sf::Vector2i& posInUnit) const;
 
 	private:
 
@@ -57,6 +58,7 @@ namespace sf {
 		std::vector<std::vector<sf::Vertex>> m_TileMap;
 		std::vector<AnimationState> m_AnimatedTiles;
 		std::vector<bool> m_Walls;
+		std::vector<bool> m_VectorForMiniMap;
 
 		sf::Texture* m_TileSet;
 		sf::RenderStates m_States;

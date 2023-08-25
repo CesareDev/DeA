@@ -28,5 +28,6 @@ private:
 	Camera m_Camera;
 	sf::TileMap m_Arena;
 	sf::DynamicQuadTree<Entity> m_Tree;
+	sf::AStar m_AStar;
 };
 

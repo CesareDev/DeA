@@ -10,6 +10,7 @@
 #include <SFML/Extensions/Utility.h>
 #include <SFML/Extensions/TileMap.h>
 #include <SFML/Extensions/SpriteBatch.h>
+#include <SFML/Extensions/AStar.h>
 
 #include "States/StateID.h"
 #include "Levels/LevelID.h"

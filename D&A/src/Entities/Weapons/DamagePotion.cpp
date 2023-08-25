@@ -21,7 +21,9 @@ void DamagePotion::Init(const ResourceManager& resourceManager, const sf::Vector
 	SetPosition(position);
 
 	m_DamageArea.setRadius(0.f);
-	m_DamageArea.setFillColor(sf::Color(250, 203, 52, 128));
+	m_DamageArea.setFillColor(sf::Color::Transparent);
+	m_DamageArea.setOutlineThickness(1.f);
+	m_DamageArea.setOutlineColor(sf::Color(250, 203, 52, 128));
 }
 
 void DamagePotion::Update(UpdateArgs args, float dt)
@@ -69,8 +71,8 @@ void DamagePotion::UpdateAttackZone(UpdateArgs args, float dt)
 	if (m_Drinked)
 	{
 		m_ElapsedTime += dt;
-		if (m_DamageArea.getRadius() < 16.f)
-			m_DamageArea.setRadius(m_DamageArea.getRadius() + 16.f * dt);
+		if (m_DamageArea.getRadius() < 15.f)
+			m_DamageArea.setRadius(m_DamageArea.getRadius() + 15.f * dt);
 		else
 			m_DamageArea.setRadius(0.f);
 		for (const auto& en : args.qTree.search(m_Bounds))
@@ -78,7 +80,7 @@ void DamagePotion::UpdateAttackZone(UpdateArgs args, float dt)
 			if (en->obj->GetType() == EntityType::Character && en->obj->GetId() != EntityID::Player)
 			{
 				Character* c = (Character*)en->obj;
-				if (sf::distance(c->GetCenter(), getPosition()) < m_DamageArea.getRadius() + (c->GetBounds().size.x / 2.f))
+				if (sf::distance(c->GetCenter(), getPosition()) < 16.f + (c->GetBounds().size.x / 2.f))
 					c->TakeDamage(1);
 			}
 		}

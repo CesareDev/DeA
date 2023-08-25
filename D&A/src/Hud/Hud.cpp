@@ -9,7 +9,7 @@ Hud::~Hud()
 {
 }
 
-void Hud::Init(const ResourceManager& resourceManager, const Player& player)
+void Hud::Init(const ResourceManager& resourceManager, const Player& player, const sf::TileMap& map)
 {
 	m_Player = &player;
 
@@ -44,11 +44,14 @@ void Hud::Init(const ResourceManager& resourceManager, const Player& player)
 	m_StaticCamera.reset({ 0.f, 0.f, GLOBAL::WIN_WIDTH / 5.f, GLOBAL::WIN_HEIGHT / 5.f });
 
 	m_Inv.Init(resourceManager, player);
+
+	m_MiniMap.Init(resourceManager, map, player);
 }
 
 void Hud::Update(float dt)
 {
 	m_Inv.Update(dt);
+	m_MiniMap.Update(dt);
 }
 
 void Hud::Render(sf::RenderTarget& target)
@@ -70,6 +73,8 @@ void Hud::Render(sf::RenderTarget& target)
 	sf::View v({ 0.f, 0.f, 1280, 720 });
 	target.setView(v);
 	target.draw(m_CoinQuantity);
+	m_MiniMap.Render(target);
+
 	target.setView(m_StaticCamera);
 
 	m_Inv.Render(target);

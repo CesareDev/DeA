@@ -24,9 +24,21 @@ void Character::TakeDamage(unsigned int damage)
 	}
 }
 
+void Character::RenderDamage(sf::RenderTarget& target)
+{
+	if (m_VulnerableTime > 0.f)
+	{
+		sf::View currentCamera = target.getView();
+		sf::View v(currentCamera.getCenter() * 5.f, currentCamera.getSize() * 5.f);
+		target.setView(v);
+		target.draw(m_DamageTaken);
+		target.setView(currentCamera);
+	}
+}
+
 void Character::DamageAnimation(float dt)
 {
-	m_DamageTaken.setPosition(int(getPosition().x * 5.f - m_DamageTaken.getGlobalBounds().width / 2.f + (m_Bounds.size.x / 2.f * 5.f)), int(getPosition().y * 5.f - m_DamageTaken.getGlobalBounds().height));
+	m_DamageTaken.setPosition(int(getPosition().x * 5.f - m_DamageTaken.getGlobalBounds().width / 2.f + (m_TextureRect.width / 2.f * 5.f)), int(getPosition().y * 5.f - m_DamageTaken.getGlobalBounds().height));
 	if (!m_Vulnerable)
 	{
 		m_VulnerableTime += dt;
@@ -56,7 +68,7 @@ void Character::DamageAnimation(float dt)
 void Character::DeathAnimation(float dt)
 {
 	m_VulnerableTime += dt;
-	m_DamageTaken.setPosition(int(getPosition().x * 5.f - m_DamageTaken.getGlobalBounds().width / 2.f + (m_Bounds.size.x / 2.f * 5.f)), int(getPosition().y * 5.f - m_DamageTaken.getGlobalBounds().height - (m_Bounds.size.y * 5.f)));
+	m_DamageTaken.setPosition(int(getPosition().x * 5.f - m_DamageTaken.getGlobalBounds().width / 2.f + (m_TextureRect.width / 2.f * 5.f)), int(getPosition().y * 5.f - m_DamageTaken.getGlobalBounds().height - (m_TextureRect.height * 5.f)));
 	sf::Vector2f st = m_DamageTaken.getScale();
 	if (st.x <= 1.f)
 		m_DamageTaken.setScale(st.x + 4.f * dt, st.y + 4.f * dt);

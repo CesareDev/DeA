@@ -31,7 +31,7 @@ void Player::Init(const ResourceManager& resourceManager, const sf::Vector2f& po
 	m_Weapons.resize(8);
 	m_Weapons[m_WeaponIndex].reset(new Bow());
 	m_Weapons[m_WeaponIndex]->Init(resourceManager, position);
-	m_Weapons[m_WeaponIndex + 1].reset(new DamagePotion());
+	m_Weapons[m_WeaponIndex + 1].reset(new BigDamagePotion());
 	m_Weapons[m_WeaponIndex + 1]->Init(resourceManager, position);
 	m_Weapons[m_WeaponIndex + 2].reset(new ColossalSword());
 	m_Weapons[m_WeaponIndex + 2]->Init(resourceManager, position);

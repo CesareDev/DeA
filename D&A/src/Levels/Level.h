@@ -28,6 +28,7 @@ protected:
 	LevelLabel m_Label;
 	sf::TileMap m_Map;
 	sf::DynamicQuadTree<Entity>* m_Tree;
+	sf::AStar m_AStar;
 	Hud m_Hud;
 
 	Player* m_Player;

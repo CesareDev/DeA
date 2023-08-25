@@ -3,10 +3,19 @@
 enum class EntityID
 {
 	Null,
+
+	//Characters
 	Player,
 	Slug,
 	DemonBoss,
+	SmallDemon,
+	HalfDemon,
+	Demon,
+
+	//Env
 	Ladder,
+
+	//Weapon
 	Knife,
 	RustySword,
 	Sword,

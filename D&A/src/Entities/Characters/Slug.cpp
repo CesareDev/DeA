@@ -16,7 +16,6 @@ void Slug::Init(const ResourceManager& resourceManager, const sf::Vector2f& posi
     setTextureRect({ 320, 328, 16, 24 });
     SetPosition(position);
 
-    m_Bounds.size = {16.f, 16.f};
     m_IsMoving = false;
     m_ElapsedAnimationTime = 0.f;
     m_TextureRect = getTextureRect();
@@ -205,22 +204,23 @@ void Slug::Update(UpdateArgs args, float dt)
 void Slug::Render(sf::RenderTarget& target)
 {
 	target.draw(*this);
-	if (m_VulnerableTime > 0.f)
-	{
-		sf::View currentCamera = target.getView();
-		sf::View v(currentCamera.getCenter() * 5.f, currentCamera.getSize() * 5.f);
-		target.setView(v);
-		target.draw(m_DamageTaken);
-
-		target.setView(currentCamera);
-	}
+	RenderDamage(target);
 }
 
 void Slug::SetPosition(const sf::Vector2f& position)
 {
 	setPosition(position);
 	m_Center = position + sf::Vector2f(8.f, 8.f);
-	m_Bounds.position = position;
+	if (m_IsMoving)
+	{
+		m_Bounds.position = position + sf::Vector2f(2.f, 4.f);
+		m_Bounds.size = { 12.f, 12.f };
+	}
+	else
+	{
+		m_Bounds.position = position + sf::Vector2f(2.f, 0);
+		m_Bounds.size = { 12.f, 16.f };
+	}
 }
 
 EntityID Slug::GetId() const

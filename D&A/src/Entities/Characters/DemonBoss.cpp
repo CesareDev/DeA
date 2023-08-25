@@ -79,15 +79,7 @@ void DemonBoss::Update(UpdateArgs args, float dt)
 void DemonBoss::Render(sf::RenderTarget& target)
 {
     target.draw(*this);
-	if (m_VulnerableTime > 0.f)
-	{
-		sf::View currentCamera = target.getView();
-		sf::View v(currentCamera.getCenter() * 5.f, currentCamera.getSize() * 5.f);
-		target.setView(v);
-		target.draw(m_DamageTaken);
-
-		target.setView(currentCamera);
-	}
+	RenderDamage(target);
 }
 
 void DemonBoss::SetPosition(const sf::Vector2f& position)

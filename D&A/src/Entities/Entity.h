@@ -10,6 +10,7 @@ protected:
 	{
 		sf::DynamicQuadTree<Entity>& qTree;
 		sf::TileMap& tileMap;
+		sf::AStar& astar;
 		StateID& currentState;
 		LevelID& currentLevel;
 	};

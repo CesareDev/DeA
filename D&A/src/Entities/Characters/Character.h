@@ -25,6 +25,7 @@ protected:
 
 	void DamageAnimation(float dt);
 	void DeathAnimation(float dt);
+	void RenderDamage(sf::RenderTarget& target);
 
 protected:
 

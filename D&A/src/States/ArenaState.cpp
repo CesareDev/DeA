@@ -15,6 +15,7 @@ void ArenaState::Init(const ResourceManager& resourceManager)
 	m_PauseMenu.Init(resourceManager);
 
 	m_Arena.load("../res/map/arena.tmx", &resourceManager.GetTilesetTexture());
+	m_AStar.init(m_Arena);
 	m_Tree.create(4, { 0.f, 0.f, (float)m_Arena.getMapSize().x, (float)m_Arena.getMapSize().y });
 	m_Player = new Player();
 	m_Player->Init(resourceManager, { m_Arena.getMapSize().x / 2.f, m_Arena.getMapSize().y / 2.f });
@@ -42,7 +43,7 @@ void ArenaState::Update(StateID& currentState, float dt)
 		for (auto it = m_Tree.begin(); it != m_Tree.end(); ++it)
 		{
 			auto l = LevelID::Arena;
-			it->obj->Update({ m_Tree, m_Arena, currentState, l }, dt);
+			it->obj->Update({ m_Tree, m_Arena, m_AStar, currentState, l }, dt);
 			m_Tree.relocate(it, it->obj->getGlobalBounds());
 		}
 		m_Camera.Update(m_Player->GetCenter(), dt);

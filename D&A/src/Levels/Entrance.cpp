@@ -21,38 +21,30 @@ bool Entrance::OnExit(float dt)
 
 void Entrance::Init(const ResourceManager& resourceManager, sf::DynamicQuadTree<Entity>& tree, Player& player, unsigned int entranceIndex)
 {
-	m_Label.Init(resourceManager, "Entrance");
 	m_Transition.Init(resourceManager);
+	m_Label.Init(resourceManager, "Entrance");
 	m_Map.load("../res/map/entrance.tmx", &resourceManager.GetTilesetTexture());
-
-	m_Hud.Init(resourceManager, player);
 
 	m_Player = &player;
 
 	m_Tree = &tree;
 	m_Tree->resize({ 0.f, 0.f, (float)m_Map.getMapSize().x, (float)m_Map.getMapSize().y });
 
-
 	if (entranceIndex == 0)
-		m_Player->SetPosition({ 240.f, 416.f }); //starting point
+		m_Player->SetPosition({ 224.f, 432.f }); //starting point
 
+	m_AStar.init(m_Map);
+	m_Hud.Init(resourceManager, player, m_Map);
 	m_Camera.Init(m_Player->GetCenter(), { 0.f, 0.f, (float)m_Map.getMapSize().x, (float)m_Map.getMapSize().y }, { 0.f, 0.f, GLOBAL::WIN_WIDTH / 5.f, GLOBAL::WIN_HEIGHT / 5.f });
 
-	slug1.Init(resourceManager, { 384.f, 224.f });
-	slug2.Init(resourceManager, { 290.f, 224.f });
-	demon.Init(resourceManager, { 320.f, 200.f });
-
 	m_Tree->insert(m_Player, m_Player->GetBounds());
-	m_Tree->insert(&slug2, slug2.GetBounds());
-	m_Tree->insert(&slug1, slug1.GetBounds());
-	m_Tree->insert(&demon, demon.GetBounds());
 }
 
 void Entrance::Update(StateID& currentState, LevelID& currentLevel, float dt)
 {
 	for (auto it = m_Tree->begin(); it != m_Tree->end();)
 	{
-		it->obj->Update({ *m_Tree, m_Map, currentState, currentLevel }, dt);
+		it->obj->Update({ *m_Tree, m_Map, m_AStar, currentState, currentLevel }, dt);
 		switch (it->obj->GetType())
 		{
 			case EntityType::Character:

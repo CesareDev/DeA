@@ -27,6 +27,9 @@ void Arrow::Update(UpdateArgs args, float dt)
 {
     if (m_Shooted && !m_Stopped)
     {
+        m_ElapsedAnimationTime += dt;
+        if (m_ElapsedAnimationTime > 10.f)
+            m_Stopped = true;
         SetPosition(getPosition() + m_Velocity * dt);
         if (args.tileMap.isCellWall(sf::Vector2i(m_HitPoint.x / 16.f, m_HitPoint.y / 16.f)))
             m_Stopped = true;
@@ -36,7 +39,7 @@ void Arrow::Update(UpdateArgs args, float dt)
             {
                 if (en->obj->GetType() == EntityType::Character && en->obj->GetId() != EntityID::Player && en->obj->GetId() != EntityID::Arrow && en->obj != this)
                 {
-                    if (sf::distance(m_HitPoint, en->obj->GetCenter()) < en->obj->GetBounds().size.x / 2.f)
+                    if (en->obj->GetBounds().contains(m_HitPoint))
                     {
                         Character* c = (Character*)en->obj;
                         if (c->IsVulnerable())
