@@ -13,6 +13,7 @@ protected:
 		sf::AStar& astar;
 		StateID& currentState;
 		LevelID& currentLevel;
+		int& entranceIndex;
 	};
 
 public:

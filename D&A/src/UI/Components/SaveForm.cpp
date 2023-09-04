@@ -21,6 +21,7 @@ void SaveForm::Init(const ResourceManager& resourceManager, const sf::Vector2f& 
 	const_cast<sf::Texture&>(font.getTexture(100)).setSmooth(false);
 	m_Text.setFont(font);
 	m_Text.setCharacterSize(100);
+	//SAVE::INFO
 	std::string s = "Save " + std::to_string(saveNumber);
 	m_Text.setString(s);
 

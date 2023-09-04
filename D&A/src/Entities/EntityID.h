@@ -14,6 +14,8 @@ enum class EntityID
 
 	//Env
 	Ladder,
+	Door,
+	Coin,
 
 	//Weapon
 	Knife,

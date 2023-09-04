@@ -72,6 +72,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>src;$(SolutionDir)Dependencies\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -92,6 +93,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>src;$(SolutionDir)Dependencies\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -114,9 +116,14 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <SDLCheck>true</SDLCheck>
+      <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Levels\OrchsOne.cpp" />
+    <ClCompile Include="src\Core\SaveManager.cpp" />
+    <ClCompile Include="src\Entities\Environments\Coin.cpp" />
+    <ClCompile Include="src\Entities\Environments\Door.cpp" />
     <ClCompile Include="src\Hud\MiniMap.cpp" />
     <ClCompile Include="src\Entities\Characters\SmallDemon.cpp" />
     <ClCompile Include="src\Entities\Characters\HalfDemon.cpp" />
@@ -185,6 +192,11 @@
     <ClCompile Include="src\Entities\Weapons\Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Levels\OrchsOne.h" />
+    <ClInclude Include="src\Core\SaveManager.h" />
+    <ClInclude Include="src\Core\SaveVariables.h" />
+    <ClInclude Include="src\Entities\Environments\Coin.h" />
+    <ClInclude Include="src\Entities\Environments\Door.h" />
     <ClInclude Include="src\Hud\MiniMap.h" />
     <ClInclude Include="src\Entities\Characters\SmallDemon.h" />
     <ClInclude Include="src\Entities\Characters\HalfDemon.h" />

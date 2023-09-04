@@ -17,6 +17,6 @@ private:
 
 	sf::RectangleShape m_FadeRect;
 	bool m_EnterOrExit = true;
-	float m_Alpha = 255.f;
+	float m_Alpha;
 };
 

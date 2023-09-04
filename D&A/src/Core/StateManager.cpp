@@ -13,18 +13,14 @@
 void StateManager::Init(const ResourceManager& resourceManager)
 {
 	m_ResourceManager = &resourceManager;
-#if DEBUG
-	m_CurrentState = std::make_unique<GameState>();
-	m_CurrentStateId = StateID::GameState;
-	m_OldStateId = StateID::GameState;
-#else
+
 	m_CurrentState = std::make_unique<BeginState>();
 	m_CurrentStateId = StateID::BeginState;
 	m_OldStateId = StateID::BeginState;
-#endif // DEBUG
 
 	m_CurrentState->Init(resourceManager);
 	m_ChangingState = true;
+	m_Initialized = false;
 }
 
 void StateManager::Update(float dt)
@@ -91,9 +87,14 @@ void StateManager::ChangeState(float dt)
 
 			m_CurrentState->Init(*m_ResourceManager);
 			m_OldStateId = m_CurrentStateId;
+			m_Initialized = true;
 		}
 	}
-	else if (!m_CurrentState->OnEnter(dt))
+	else if (m_Initialized)
+	{
+		m_Initialized = false;
+	}
+	else if (!m_CurrentState->OnEnter(dt) && m_ChangingState)
 	{
 		m_ChangingState = false;
 	}

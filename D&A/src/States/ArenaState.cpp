@@ -40,10 +40,12 @@ void ArenaState::Update(StateID& currentState, float dt)
 	if (!m_PauseMenu.IsPaused())
 	{	
 		m_Arena.update(dt);
+		auto l = LevelID::Arena;
+		int e = 0;
 		for (auto it = m_Tree.begin(); it != m_Tree.end(); ++it)
 		{
-			auto l = LevelID::Arena;
-			it->obj->Update({ m_Tree, m_Arena, m_AStar, currentState, l }, dt);
+			
+			it->obj->Update({ m_Tree, m_Arena, m_AStar, currentState, l, e }, dt);
 			m_Tree.relocate(it, it->obj->getGlobalBounds());
 		}
 		m_Camera.Update(m_Player->GetCenter(), dt);

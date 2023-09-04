@@ -4,5 +4,6 @@ enum class LevelID
 {
 	Null,
 	Arena,
-	EntranceZero
+	Entrance,
+	OrchsOne,
 };

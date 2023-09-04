@@ -24,5 +24,6 @@ private:
 	StateID m_CurrentStateId;
 	StateID m_OldStateId;
 	bool m_ChangingState;
+	bool m_Initialized;
 };
 

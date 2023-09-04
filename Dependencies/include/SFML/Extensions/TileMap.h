@@ -23,6 +23,7 @@ namespace sf {
 		void drawLayer(sf::RenderTarget& target, uint32_t layerIndex);
 		void draw(sf::RenderTarget& target);
 		void clean();
+		void setWall(const sf::Vector2i& posInUnit, bool isWall);
 		void setColor(const sf::Color& color);
 
 		const sf::Color& getColor() const;

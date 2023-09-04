@@ -18,7 +18,7 @@ void Player::Init(const ResourceManager& resourceManager, const sf::Vector2f& po
 	setTexture(resourceManager.GetTilesetTexture());
 	setOrigin(0.f, 8.f);
 	setTextureRect({ 0, 464, 16, 24 });
-	setPosition(position);
+	SetPosition(position);
 
 	m_Center = getPosition() + sf::Vector2f(8.f, 8.f);
 	m_Bounds = { getPosition(), {16.f, 16.f} };
@@ -26,15 +26,19 @@ void Player::Init(const ResourceManager& resourceManager, const sf::Vector2f& po
 	m_ElapsedAnimationTime = 0.f;
 	m_TextureRect = getTextureRect();
 	m_Velocity = { 0.f, 0.f };
-	m_Health = 100;
 
+	//SAVE::HEALTH
+	m_Health = SAVE::PLAYER_HEALTH;
+	m_Coin = SAVE::COIN_NUMBER;
+
+	//Switch SAVE::WEAPONS
 	m_Weapons.resize(8);
 	m_Weapons[m_WeaponIndex].reset(new Bow());
-	m_Weapons[m_WeaponIndex]->Init(resourceManager, position);
+	m_Weapons[m_WeaponIndex]->Init(resourceManager, m_Center);
 	m_Weapons[m_WeaponIndex + 1].reset(new BigDamagePotion());
-	m_Weapons[m_WeaponIndex + 1]->Init(resourceManager, position);
+	m_Weapons[m_WeaponIndex + 1]->Init(resourceManager, m_Center);
 	m_Weapons[m_WeaponIndex + 2].reset(new ColossalSword());
-	m_Weapons[m_WeaponIndex + 2]->Init(resourceManager, position);
+	m_Weapons[m_WeaponIndex + 2]->Init(resourceManager, m_Center);
 }
 
 void Player::Update(UpdateArgs args, float dt)
@@ -53,6 +57,16 @@ void Player::Update(UpdateArgs args, float dt)
 			else if (weapon->GetId() == EntityID::DamagePotion)
 				((DamagePotion*)weapon.get())->UpdateAttackZone(args, dt);
 
+	for (auto& en : args.qTree.search(m_Bounds))
+	{
+		if (en->obj->GetId() == EntityID::Coin)
+		{
+			Entity* p = en->obj;
+			args.qTree.remove(en);
+			m_Coin++;
+			delete p;
+		}
+	}
 }
 
 void Player::Render(sf::RenderTarget& target)
@@ -193,6 +207,14 @@ void Player::Movement(UpdateArgs args, float dt)
 	potentialPos.y = potentialPosInUnit.y * m_TextureRect.width;
 
 	SetPosition(potentialPos);
+
+	SAVE::PLAYER_POS = getPosition();
+	SAVE::PLAYER_HEALTH = m_Health;
+	SAVE::COIN_NUMBER = m_Coin;
+	SAVE::LEVEL_ID = args.currentLevel;
+	for (int i = 0; i < m_Weapons.size(); ++i)
+		if (m_Weapons[i])
+			SAVE::WEAPON[i] = m_Weapons[i]->GetId();
 }
 
 void Player::UpdateAnimation(float dt)

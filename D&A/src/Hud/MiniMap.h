@@ -15,12 +15,16 @@ public:
 
 private:
 
+	sf::View m_StaticCamera;
+
 	const Player* m_Player;
+	const sf::TileMap* m_TileMap;
+
 	std::vector<sf::Vertex> m_Map;
 	sf::RenderTexture m_RenderTexture;
 	sf::Sprite m_Sprite;
-	sf::CircleShape m_PlayerPos;
 	sf::RenderStates m_States;
-	sf::View m_StaticCamera;
+
+	sf::CircleShape m_PlayerPos;
 };
 

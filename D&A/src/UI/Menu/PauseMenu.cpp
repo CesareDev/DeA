@@ -30,7 +30,10 @@ void PauseMenu::Update(StateID& currentState, float dt)
 	else if (m_ResumeButton.isClicked())
 		m_Pause = false;
 	else if (m_MenuButton.isClicked())
+	{
 		currentState = StateID::StartMenuState;
+		SAVE::SAVE_MANAGER.Save();
+	}
 }
 
 void PauseMenu::Render(sf::RenderTarget& target)

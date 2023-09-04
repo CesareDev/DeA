@@ -12,9 +12,9 @@ ResourceManager::~ResourceManager()
 void ResourceManager::Init()
 {
     m_TilesetTexture.loadFromFile("../res/map/tileset.png");
-    m_Font.loadFromFile("../res/DungeonFont.ttf");
-    m_CursorImg.loadFromFile("../res/cursor.png");
-    m_Icon.loadFromFile("../res/icon.png");
+    m_Font.loadFromFile("../res/ico-font/DungeonFont.ttf");
+    m_CursorImg.loadFromFile("../res/ico-font/cursor.png");
+    m_Icon.loadFromFile("../res/ico-font/icon.png");
 }
 
 const sf::Texture& ResourceManager::GetTilesetTexture() const

@@ -21,4 +21,3 @@ private:
 	sf::Image m_CursorImg;
 	sf::Image m_Icon;
 };
-

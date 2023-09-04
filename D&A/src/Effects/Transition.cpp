@@ -11,6 +11,8 @@ Transition::~Transition()
 
 void Transition::Init(const ResourceManager& resourceManager)
 {
+	m_Alpha = 255.f;
+
 	m_FadeRect.setPosition(0.f, 0.f);
 	m_FadeRect.setSize(sf::Vector2f(GLOBAL::WIN_WIDTH, GLOBAL::WIN_HEIGHT));
 	m_FadeRect.setFillColor(sf::Color(0, 0, 0, m_Alpha));
@@ -26,9 +28,9 @@ bool Transition::FadeIn(float dt, float animatinTimeInSeconds)
 	m_EnterOrExit = true;
 	if (m_Alpha > 0.f)
 	{
-		m_Alpha -= 255 * dt / animatinTimeInSeconds;
+		m_Alpha -= 255 * (dt / animatinTimeInSeconds);
 		if (m_Alpha < 0.f)
-			m_Alpha = 0.f;
+			m_Alpha = 0.f; 
 		m_FadeRect.setFillColor(sf::Color(0, 0, 0, m_Alpha));
 		return true;
 	}
@@ -46,7 +48,7 @@ bool Transition::FadeOut(float dt, float animatinTimeInSeconds)
 	m_EnterOrExit = true;
 	if (m_Alpha < 255.f)
 	{
-		m_Alpha += 255 * dt / animatinTimeInSeconds;
+		m_Alpha += 255 * (dt / animatinTimeInSeconds);
 		if (m_Alpha > 255.f)
 			m_Alpha = 255.f;
 		m_FadeRect.setFillColor(sf::Color(0, 0, 0, m_Alpha));

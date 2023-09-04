@@ -26,7 +26,9 @@ private:
 	std::unique_ptr<Level> m_CurrentLevel;
 	LevelID m_CurrentLevelId;
 	LevelID m_OldLevelId;
+	int m_EntranceIndex;
 	bool m_ChangingLevel;
+	bool m_Initialized;
 
 	Player m_Player;
 	sf::DynamicQuadTree<Entity> m_Tree;

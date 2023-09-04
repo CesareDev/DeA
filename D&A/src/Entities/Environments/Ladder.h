@@ -15,10 +15,11 @@ public:
 	void SetPosition(const sf::Vector2f& position);
 	EntityID GetId() const override;
 
-	void SetTeleportLevel(LevelID teleportLevel);
+	void SetTeleportLevel(LevelID teleportLevel, unsigned int entranceIndex);
 
 private:
 
 	LevelID m_Teleport = LevelID::Null;
+	unsigned int m_EntranceIndex = 0;
 };
 

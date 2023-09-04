@@ -45,6 +45,14 @@ void Inventory::Init(const ResourceManager& resourceManager, const Player& playe
 	m_CurrentIconFrame.setPosition(m_IconPos[m_CurrentIndex]);
 	m_CurrentIconFrame.setSize({ 10.f, 10.f });
 	m_CurrentIconFrame.setFillColor(sf::Color(238, 142, 46, 80));
+
+	if (GLOBAL::MOUSEWHELL_OFFSET > 7)
+		GLOBAL::MOUSEWHELL_OFFSET = 0;
+	if (GLOBAL::MOUSEWHELL_OFFSET < 0)
+		GLOBAL::MOUSEWHELL_OFFSET = 7;
+	m_CurrentIndex = GLOBAL::MOUSEWHELL_OFFSET;
+	m_Player->SetCurrentWeaponIndex(m_CurrentIndex);
+	m_CurrentIconFrame.setPosition(m_IconPos[m_CurrentIndex]);
 }
 
 void Inventory::Update(float dt)

@@ -16,3 +16,4 @@
 #include "Levels/LevelID.h"
 
 #include "Core/GlobalVariables.h"
+#include "Core/SaveVariables.h"

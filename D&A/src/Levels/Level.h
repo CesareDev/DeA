@@ -17,8 +17,8 @@ public:
 
 	virtual bool OnEnter(float dt) = 0;
 	virtual bool OnExit(float dt) = 0;
-	virtual void Init(const ResourceManager& resourceManager, sf::DynamicQuadTree<Entity>& tree, Player& player, unsigned int entranceIndex) = 0;
-	virtual void Update(StateID& currentState, LevelID& currentLevel, float dt) = 0;
+	virtual void Init(const ResourceManager& resourceManager, sf::DynamicQuadTree<Entity>& tree, Player& player, int entranceIndex) = 0;
+	virtual void Update(StateID& currentState, LevelID& currentLevel, int& entranceIndex, float dt) = 0;
 	virtual void Render(sf::RenderTarget& target) = 0;
 
 protected:

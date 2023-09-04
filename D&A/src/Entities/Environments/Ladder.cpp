@@ -22,7 +22,10 @@ void Ladder::Update(UpdateArgs args, float dt)
         {
             auto d = sf::distance(en->obj->GetCenter(), GetCenter());
             if (d < 4.f)
+            {
                 args.currentLevel = m_Teleport;
+                args.entranceIndex = m_EntranceIndex;
+            }
         }
     }
 }
@@ -43,7 +46,8 @@ EntityID Ladder::GetId() const
     return EntityID::Ladder;
 }
 
-void Ladder::SetTeleportLevel(LevelID teleportLevel)
+void Ladder::SetTeleportLevel(LevelID teleportLevel, unsigned int entranceIndex)
 {
     m_Teleport = teleportLevel;
+    m_EntranceIndex = entranceIndex;
 }

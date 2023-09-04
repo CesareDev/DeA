@@ -12,6 +12,7 @@ MiniMap::~MiniMap()
 void MiniMap::Init(const ResourceManager& resourceManager, const sf::TileMap& map, const Player& player)
 {
 	m_Player = &player;
+	m_TileMap = &map;
 	unsigned int tw = map.getTileSize().x;
 	unsigned int th = map.getTileSize().y;
 	unsigned int w = map.getMapSize().x / tw;
@@ -58,6 +59,37 @@ void MiniMap::Init(const ResourceManager& resourceManager, const sf::TileMap& ma
 void MiniMap::Update(float dt)
 {
 	m_PlayerPos.setPosition(m_Player->getPosition());
+
+	unsigned int tw = m_TileMap->getTileSize().x;
+	unsigned int th = m_TileMap->getTileSize().y;
+	unsigned int w = m_TileMap->getMapSize().x / tw;
+	unsigned int h = m_TileMap->getMapSize().y / th;
+	for (unsigned int j = 0; j < h; ++j)
+	{
+		for (unsigned int i = 0; i < w; ++i)
+		{
+			sf::Vertex* v = &m_Map[(j * w + i) * 4];
+			sf::Vector2f pos = sf::Vector2f(i * tw, j * th);
+			v[0].position = pos;
+			v[1].position = pos + sf::Vector2f(tw, 0.f);
+			v[2].position = pos + sf::Vector2f(tw, th);
+			v[3].position = pos + sf::Vector2f(0.f, th);
+			if (m_TileMap->isCellTile(sf::Vector2i(i, j)) && !m_TileMap->isCellWall(sf::Vector2i(i, j)))
+			{
+				v[0].color = sf::Color(238, 142, 46);
+				v[1].color = sf::Color(238, 142, 46);
+				v[2].color = sf::Color(238, 142, 46);
+				v[3].color = sf::Color(238, 142, 46);
+			}
+			else
+			{
+				v[0].color = sf::Color::Transparent;
+				v[1].color = sf::Color::Transparent;
+				v[2].color = sf::Color::Transparent;
+				v[3].color = sf::Color::Transparent;
+			}
+		}
+	}
 }
 
 void MiniMap::Render(sf::RenderTarget& target)

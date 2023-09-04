@@ -21,9 +21,7 @@ private:
 	sf::View m_StaticCamera;
 	sf::Sprite m_BarFrame;
 	sf::Sprite m_HealthTail;
-	sf::Sprite m_ManaTail;
 	sf::RectangleShape m_HealthBar;
-	sf::RectangleShape m_ManaBar;
 
 	sf::Text m_CoinQuantity;
 

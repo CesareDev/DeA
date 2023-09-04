@@ -81,7 +81,6 @@ void SelectModeMenu::Update(StateID& currentState, float dt)
 	else if (m_ArenaButton.isClicked())
 	{
 		currentState = StateID::ArenaState;
-		GLOBAL::SAVE_INDEX = -1;
 	}
 	if (m_StoryButton.isClicked() && !m_Animation)
 	{
@@ -90,18 +89,18 @@ void SelectModeMenu::Update(StateID& currentState, float dt)
 	}
 	if (m_Save0.isClicked())
 	{
-		GLOBAL::SAVE_INDEX = 0;
 		currentState = StateID::GameState;
+		SAVE::SAVE_MANAGER.LoadSave(0);
 	}
 	else if (m_Save1.isClicked())
 	{
-		GLOBAL::SAVE_INDEX = 1;
 		currentState = StateID::GameState;
+		SAVE::SAVE_MANAGER.LoadSave(1);
 	}
 	else if (m_Save2.isClicked())
 	{
-		GLOBAL::SAVE_INDEX = 2;
 		currentState = StateID::GameState;
+		SAVE::SAVE_MANAGER.LoadSave(2);
 	}
 
 	MoveButton(currentState, dt);
