@@ -23,5 +23,6 @@ private:
 	sf::Vector2f m_SliderPosition;
 	sf::IntRect m_SliderTextureRect;
 	bool m_Pressed = false;
+	bool m_IsDraggable = false;
 	unsigned int* m_Value;
 };

@@ -3,6 +3,7 @@
 #include "Core/Camera.h"
 #include "UI/Components/Button.h"
 #include "UI/Components/SaveForm.h"
+#include "UI/Components/DeleteForm.h"
 
 class SelectModeMenu : public Menu
 {
@@ -33,10 +34,14 @@ private:
 	SaveForm m_Save2;
 	sf::Color m_FadeColor;
 
+	bool m_RenderDeleteForm = false;
+	DeleteForm m_DeleteForm;
+
 	bool m_SelectSave = false;
 	bool m_Animation = false;
 	float m_DurationTime = 0.f;
 	std::vector<sf::Sprite> m_Border;
 	sf::SpriteBatch m_Batch;
+
 };
 

@@ -19,9 +19,8 @@ void Player::Init(const ResourceManager& resourceManager, const sf::Vector2f& po
 	setOrigin(0.f, 8.f);
 	setTextureRect({ 0, 464, 16, 24 });
 	SetPosition(position);
+	m_Bounds.size = {16.f, 16.f};
 
-	m_Center = getPosition() + sf::Vector2f(8.f, 8.f);
-	m_Bounds = { getPosition(), {16.f, 16.f} };
 	m_IsMoving = false;
 	m_ElapsedAnimationTime = 0.f;
 	m_TextureRect = getTextureRect();
@@ -81,7 +80,7 @@ void Player::SetPosition(const sf::Vector2f& position)
 	for (const auto& weapon : m_Weapons)
 		if (weapon)
 			weapon->SetPosition(m_Center);
-	m_Bounds.position = getPosition();
+	m_Bounds.position = position;
 }
 
 EntityID Player::GetId() const

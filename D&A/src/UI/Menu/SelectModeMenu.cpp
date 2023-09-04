@@ -72,6 +72,8 @@ void SelectModeMenu::Init(const ResourceManager& resourceManager)
 	m_Save1.Init(resourceManager, { 128.f, 56.f }, 1);
 	m_Save2.Init(resourceManager, { 128.f, 96.f }, 2);
 	m_FadeColor = m_Save1.getColor();
+
+	m_DeleteForm.Init(resourceManager, { 89.f,  34.f });
 }
 
 void SelectModeMenu::Update(StateID& currentState, float dt)
@@ -103,6 +105,31 @@ void SelectModeMenu::Update(StateID& currentState, float dt)
 		SAVE::SAVE_MANAGER.LoadSave(2);
 	}
 
+	if (m_Save0.SubmitDelete())
+	{
+		m_RenderDeleteForm = true;
+		if (m_DeleteForm.IsYesClicked())
+			m_Save0.PerformDelete(true);
+		else if (m_DeleteForm.IsNoClicked())
+			m_Save0.PerformDelete(false);
+	}
+	else if (m_Save1.SubmitDelete())
+	{
+		m_RenderDeleteForm = true;
+		if (m_DeleteForm.IsYesClicked())
+			m_Save1.PerformDelete(true);
+		else if (m_DeleteForm.IsNoClicked())
+			m_Save1.PerformDelete(false);
+	}
+	else if (m_Save2.SubmitDelete())
+	{
+		m_RenderDeleteForm = true;
+		if (m_DeleteForm.IsYesClicked())
+			m_Save2.PerformDelete(true);
+		else if (m_DeleteForm.IsNoClicked())
+			m_Save2.PerformDelete(false);
+	}
+
 	MoveButton(currentState, dt);
 }
 
@@ -115,25 +142,35 @@ void SelectModeMenu::Render(sf::RenderTarget& target)
 		m_Batch.Submit(s);
 	m_Batch.Render(target);
 
-	target.draw(m_Frame);
-	m_BackButton.Render(target);
-	m_StoryButton.Render(target);
-	m_ArenaButton.Render(target);
-
-	if (m_SelectSave)
+	if (!m_RenderDeleteForm)
 	{
-		m_Save0.Render(target);
-		m_Save1.Render(target);
-		m_Save2.Render(target);
+		target.draw(m_Frame);
+		m_BackButton.Render(target);
+		m_StoryButton.Render(target);
+		m_ArenaButton.Render(target);
 
-		sf::View view({ 0.f, 0.f, (float)GLOBAL::WIN_WIDTH, (float)GLOBAL::WIN_HEIGHT });
-		target.setView(view);
-		target.draw(m_Save0.GetText());
-		target.draw(m_Save1.GetText());
-		target.draw(m_Save2.GetText());
+		if (m_SelectSave)
+		{
+			m_Save0.Render(target);
+			m_Save1.Render(target);
+			m_Save2.Render(target);
 
-		target.setView(m_StaticCamera);
+			sf::View view({ 0.f, 0.f, (float)GLOBAL::WIN_WIDTH, (float)GLOBAL::WIN_HEIGHT });
+			target.setView(view);
+			target.draw(m_Save0.GetText());
+			target.draw(m_Save1.GetText());
+			target.draw(m_Save2.GetText());
+
+
+			target.setView(m_StaticCamera);
+		}
 	}
+	else
+	{
+		m_DeleteForm.Render(target);
+	}
+
+	m_RenderDeleteForm = false;
 }
 
 void SelectModeMenu::MoveButton(StateID& currentState, float dt)

@@ -17,6 +17,7 @@ public:
 	EntityID GetId() const override;
 
 	inline unsigned int GetCoin() const { return m_Coin; }
+	inline int GetHealth() const { return m_Health; }
 
 	void SetCurrentWeaponIndex(unsigned int index);
 	inline unsigned int GetCurrentWeaponIndex() { return m_WeaponIndex; }

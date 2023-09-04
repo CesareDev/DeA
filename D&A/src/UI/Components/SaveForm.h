@@ -1,5 +1,6 @@
 #pragma once
 #include "Core/ResourceManager.h"
+#include "Button.h"
 
 class SaveForm : public sf::Sprite
 {
@@ -17,6 +18,9 @@ public:
 	void SetPosition(float x, float y);
 	const sf::Text& GetText();
 
+	bool SubmitDelete();
+	void PerformDelete(bool canDelete);
+
 private:
 
 	bool m_Clicked = false;
@@ -26,4 +30,8 @@ private:
 
 	sf::Vector2f m_TextPosition;
 	sf::Text m_Text;
+
+	unsigned int m_SaveIndex;
+	Button m_DeleteButton;
+	bool m_Delete = false;
 };

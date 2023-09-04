@@ -24,16 +24,19 @@ void LevelManager::Init(const ResourceManager& resourceManager)
 	{
 		m_CurrentLevel = std::make_unique<Entrance>();
 		m_EntranceIndex = 0;
+		m_CurrentLevelId = LevelID::Entrance;
 		break;
 	}
 	case LevelID::Entrance:
 	{
 		m_CurrentLevel = std::make_unique<Entrance>();
+		m_CurrentLevelId = LevelID::Entrance;
 		break;
 	}
 	case LevelID::OrchsOne:
 	{
 		m_CurrentLevel = std::make_unique<OrchsOne>();
+		m_CurrentLevelId = LevelID::OrchsOne;
 		break;
 	}
 	default:
@@ -47,8 +50,7 @@ void LevelManager::Init(const ResourceManager& resourceManager)
 		m_Player.Init(resourceManager, { 0.f, 0.f });
 	
 	m_CurrentLevel->Init(resourceManager, m_Tree, m_Player, m_EntranceIndex);
-	m_OldLevelId = SAVE::LEVEL_ID;
-	m_CurrentLevelId = SAVE::LEVEL_ID;
+	m_OldLevelId = m_CurrentLevelId;
 	m_ChangingLevel = true;
 	m_Initialized = false; //flag usata per evitare il delay creato dall init del livello che causava un bug nel fade della transazione
 }

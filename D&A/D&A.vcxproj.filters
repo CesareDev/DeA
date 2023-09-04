@@ -216,6 +216,9 @@
     <ClCompile Include="src\Levels\OrchsOne.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\UI\Components\DeleteForm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\pch.h">
@@ -429,6 +432,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Levels\OrchsOne.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UI\Components\DeleteForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -55,9 +55,11 @@ void SaveManager::Save()
 		if (os.is_open())
 		{
 			os << json;
-			os.close();
 		}
+		os.close();
 	}
+
+	ResetVariables();
 }
 
 void SaveManager::LoadSave(unsigned int saveIndex)
@@ -84,4 +86,69 @@ void SaveManager::LoadSave(unsigned int saveIndex)
 		for (int i = 0; i < 8; ++i)
 			SAVE::WEAPON[i] = (EntityID)document["weapons"][i].GetUint();
 	}
+	is.close();
+}
+
+void SaveManager::DeleteSave(unsigned int saveIndex)
+{
+	std::string path = "..\\res\\saves\\save_" + std::to_string(saveIndex) + ".json";
+	std::string cmd = "del " + path;
+	system(cmd.c_str());
+}
+
+std::string SaveManager::GetInfo(unsigned int saveIndex)
+{
+	std::string s = "";
+	unsigned int health = 0;
+	unsigned int coin = 0;
+	LevelID level = LevelID::Null;
+
+	std::string path = "..\\res\\saves\\save_" + std::to_string(saveIndex) + ".json";
+	std::ifstream is;
+	is.open(path);
+	if (is.is_open())
+	{
+		std::stringstream buffer;
+		buffer << is.rdbuf();
+
+		Document document;
+		document.Parse(buffer.str().c_str());
+
+		health = document["health"].GetInt();
+		coin = document["coin"].GetUint();
+		level = (LevelID)document["level"].GetUint();
+
+		s += "Level: ";
+		switch (level)
+		{
+		case LevelID::Entrance:
+		{
+			s += "Entrance\n";
+			break;
+		}
+		case LevelID::OrchsOne:
+		{
+			s += "Orchs-1\n";
+			break;
+		}
+		default:
+			break;
+		}
+
+		s += "Health: " + std::to_string(health) + "\n";
+		s += "Coin: " + std::to_string(coin);
+	}
+	is.close();
+
+	return s;
+}
+
+void SaveManager::ResetVariables()
+{
+	SAVE::PLAYER_POS = { 0.f, 0.f };
+	SAVE::PLAYER_HEALTH = 100;
+	SAVE::COIN_NUMBER = 0;
+	SAVE::LEVEL_ID = LevelID::Null;
+	for (int i = 0; i < 8; ++i)
+		SAVE::WEAPON[i] = EntityID::Null;
 }

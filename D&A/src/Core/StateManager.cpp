@@ -14,7 +14,7 @@ void StateManager::Init(const ResourceManager& resourceManager)
 {
 	m_ResourceManager = &resourceManager;
 
-	m_CurrentState = std::make_unique<BeginState>();
+	m_CurrentState = std::make_unique<StartMenuState>();
 	m_CurrentStateId = StateID::BeginState;
 	m_OldStateId = StateID::BeginState;
 

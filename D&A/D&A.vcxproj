@@ -120,6 +120,7 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\UI\Components\DeleteForm.cpp" />
     <ClCompile Include="src\Levels\OrchsOne.cpp" />
     <ClCompile Include="src\Core\SaveManager.cpp" />
     <ClCompile Include="src\Entities\Environments\Coin.cpp" />
@@ -192,6 +193,7 @@
     <ClCompile Include="src\Entities\Weapons\Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\UI\Components\DeleteForm.h" />
     <ClInclude Include="src\Levels\OrchsOne.h" />
     <ClInclude Include="src\Core\SaveManager.h" />
     <ClInclude Include="src\Core\SaveVariables.h" />

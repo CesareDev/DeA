@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "SaveForm.h"
+#include <Windows.h>
 
 SaveForm::SaveForm()
 {
@@ -18,19 +19,36 @@ void SaveForm::Init(const ResourceManager& resourceManager, const sf::Vector2f& 
 	setTextureRect(m_TextureRect);
 
 	const auto& font = resourceManager.GetFont();
-	const_cast<sf::Texture&>(font.getTexture(100)).setSmooth(false);
+	const_cast<sf::Texture&>(font.getTexture(80)).setSmooth(false);
 	m_Text.setFont(font);
-	m_Text.setCharacterSize(100);
-	//SAVE::INFO
-	std::string s = "Save " + std::to_string(saveNumber);
-	m_Text.setString(s);
+	m_Text.setCharacterSize(80);
 
-	int x = int((getPosition().x * 5.f) + 200 - m_Text.getGlobalBounds().width / 2);
+	//SAVE::INFO
+	std::string s = SAVE::SAVE_MANAGER.GetInfo(saveNumber);
+	if (s == "")
+	{
+		m_Text.setString("Save: " + std::to_string(saveNumber));
+	}
+	else
+	{
+		const_cast<sf::Texture&>(font.getTexture(40)).setSmooth(false);
+		m_Text.setCharacterSize(40);
+		m_Text.setString(s);
+	}
+	
+	int x;
+	if (s == "")
+		x = int((getPosition().x * 5.f) + 200 - m_Text.getGlobalBounds().width / 2);
+	else
+		x = int((getPosition().x * 5.f) + 40);
 	int y = int((getPosition().y * 5.f) + 80 - m_Text.getGlobalBounds().height / 2);
 	m_TextPosition = { (float)x, (float)y };
 	m_Text.setPosition(m_TextPosition);
 	m_Text.setOutlineColor(sf::Color::Black);
 	m_Text.setOutlineThickness(5.f);
+
+	m_SaveIndex = saveNumber;
+	m_DeleteButton.Init(resourceManager, { 794, 357, 16, 16 }, getPosition() + sf::Vector2f(getGlobalBounds().getSize().x + 8.f, 8.f));
 }
 
 bool SaveForm::isClicked()
@@ -58,6 +76,26 @@ void SaveForm::SetPosition(float x, float y)
 const sf::Text& SaveForm::GetText()
 {
 	return m_Text;
+}
+
+bool SaveForm::SubmitDelete()
+{
+	return m_Delete;
+}
+
+void SaveForm::PerformDelete(bool canDelete)
+{
+	if (canDelete)
+	{
+		m_Text.setCharacterSize(80);
+		m_Text.setString("Save: " + std::to_string(m_SaveIndex));
+		int x = int((getPosition().x * 5.f) + 200 - m_Text.getGlobalBounds().width / 2);
+		int y = int((getPosition().y * 5.f) + 80 - m_Text.getGlobalBounds().height / 2);
+		m_TextPosition = { (float)x, (float)y };
+		m_Text.setPosition(m_TextPosition);
+		SAVE::SAVE_MANAGER.DeleteSave(m_SaveIndex);
+	}
+	m_Delete = false;
 }
 
 void SaveForm::Render(sf::RenderTarget& target)
@@ -92,5 +130,10 @@ void SaveForm::Render(sf::RenderTarget& target)
 	{
 		m_Pressed = false;
 	}
+
+	if (m_DeleteButton.isClicked() && m_Text.getString().getSize() > 7)
+		m_Delete = true;
+
 	target.draw(*this);
+	m_DeleteButton.Render(target);
 }
