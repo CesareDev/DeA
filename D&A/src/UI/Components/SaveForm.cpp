@@ -123,6 +123,7 @@ void SaveForm::Render(sf::RenderTarget& target)
 			{
 				m_Clicked = true;
 				m_Pressed = false;
+				MUSIC::CLICK_SOUND->play();
 			}
 		}
 	}

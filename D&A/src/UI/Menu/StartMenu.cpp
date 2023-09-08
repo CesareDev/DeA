@@ -80,7 +80,10 @@ void StartMenu::Update(StateID& currentState, float dt)
 	else if (m_OptionsButton.isClicked())
 		currentState = StateID::OptionsMenu;
 	else if (m_ExitButton.isClicked())
+	{
+		SAVE::SAVE_MANAGER.SaveConfig();
 		currentState = StateID::ExitState;
+	}
 }
 
 void StartMenu::Render(sf::RenderTarget& target)

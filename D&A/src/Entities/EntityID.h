@@ -29,6 +29,8 @@ enum class EntityID
 	Katana,
 	GreatSword,
 	ColossalSword,
+	GoldenSword,
+	ColossalGoldenSword,
 	GreatAxe,
 	Spear,
 	Bow,

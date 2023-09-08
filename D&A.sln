@@ -5,8 +5,6 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "D&A", "D&A\D&A.vcxproj", "{BF62F1BA-28E0-4B5D-9CA6-23525ADD525D}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CustomCharacterSprite", "CustomCharacterSprite\CustomCharacterSprite.vcxproj", "{B042D19C-6B46-42E5-B8A5-D1AE2092E25E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -17,10 +15,6 @@ Global
 		{BF62F1BA-28E0-4B5D-9CA6-23525ADD525D}.Debug|x64.Build.0 = Debug|x64
 		{BF62F1BA-28E0-4B5D-9CA6-23525ADD525D}.Release|x64.ActiveCfg = Release|x64
 		{BF62F1BA-28E0-4B5D-9CA6-23525ADD525D}.Release|x64.Build.0 = Release|x64
-		{B042D19C-6B46-42E5-B8A5-D1AE2092E25E}.Debug|x64.ActiveCfg = Debug|x64
-		{B042D19C-6B46-42E5-B8A5-D1AE2092E25E}.Debug|x64.Build.0 = Debug|x64
-		{B042D19C-6B46-42E5-B8A5-D1AE2092E25E}.Release|x64.ActiveCfg = Release|x64
-		{B042D19C-6B46-42E5-B8A5-D1AE2092E25E}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

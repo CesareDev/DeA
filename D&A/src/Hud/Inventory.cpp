@@ -53,6 +53,8 @@ void Inventory::Init(const ResourceManager& resourceManager, const Player& playe
 	m_CurrentIndex = GLOBAL::MOUSEWHELL_OFFSET;
 	m_Player->SetCurrentWeaponIndex(m_CurrentIndex);
 	m_CurrentIconFrame.setPosition(m_IconPos[m_CurrentIndex]);
+
+	Update(0.f);
 }
 
 void Inventory::Update(float dt)

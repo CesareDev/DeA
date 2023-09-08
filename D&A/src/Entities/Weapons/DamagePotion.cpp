@@ -80,7 +80,7 @@ void DamagePotion::UpdateAttackZone(UpdateArgs args, float dt)
 			if (en->obj->GetType() == EntityType::Character && en->obj->GetId() != EntityID::Player)
 			{
 				Character* c = (Character*)en->obj;
-				if (sf::distance(c->GetCenter(), getPosition()) < 16.f + (c->GetBounds().size.x / 2.f))
+				if (sf::distance(c->GetCenter(), getPosition()) < m_DamageArea.getRadius() + (c->GetBounds().size.x / 2.f))
 					c->TakeDamage(1);
 			}
 		}
@@ -89,6 +89,7 @@ void DamagePotion::UpdateAttackZone(UpdateArgs args, float dt)
 			m_DamageArea.setRadius(0.f);
 			m_Drinked = false;
 			m_ElapsedTime = 0.f;
+			m_IsFinished = true;
 		}
 	}
 }

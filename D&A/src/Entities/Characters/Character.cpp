@@ -21,7 +21,11 @@ void Character::TakeDamage(unsigned int damage)
 		m_DamageTaken.setString(std::to_string(damage));
 		m_Health -= damage;
 		m_Vulnerable = false;
-	}
+		if (GetId() == EntityID::Player)
+			MUSIC::PLAYER_DAMAGE_SOUND->play();
+		else
+			MUSIC::DAMAGE_SOUND->play();
+	}		
 }
 
 void Character::RenderDamage(sf::RenderTarget& target)

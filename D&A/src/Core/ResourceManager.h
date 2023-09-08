@@ -20,4 +20,21 @@ private:
 	sf::Font m_Font;
 	sf::Image m_CursorImg;
 	sf::Image m_Icon;
+
+	sf::SoundBuffer m_ClickSoundBuffer;
+	sf::Sound m_ClickSound;
+
+	sf::SoundBuffer m_GameTitleSoundBuffer;
+	sf::Sound m_GameTitleSound;
+
+	sf::SoundBuffer m_GameOverSoundBuffer;
+	sf::Sound m_GameOverSound;
+
+	sf::SoundBuffer m_DamageSoundBuffer;
+	sf::Sound m_DamageSound;
+
+	sf::SoundBuffer m_PlayerDamageSoundBuffer;
+	sf::Sound m_PlayerDamageSound;
+
+	sf::Music m_MainMenuMusic;
 };

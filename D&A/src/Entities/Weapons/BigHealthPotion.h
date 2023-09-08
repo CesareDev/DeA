@@ -14,6 +14,8 @@ public:
 	void Render(sf::RenderTarget& target) override;
 	void SetPosition(const sf::Vector2f& position) override;
 	EntityID GetId() const override;
+
+	inline bool IsFinished() { return m_Drinked; }
 	
 protected:
 

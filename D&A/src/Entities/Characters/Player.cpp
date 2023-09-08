@@ -1,9 +1,6 @@
 #include "pch.h"
 #include "Player.h"
-#include "Entities/Weapons/Bow.h"
-#include "Entities/Weapons/ColossalSword.h"
-#include "Entities/Weapons/BigDamagePotion.h"
-#include "Entities/Weapons/DamagePotion.h"
+#include "Entities/Weapons/WeaponInclude.h"
 
 Player::Player()
 {
@@ -15,6 +12,8 @@ Player::~Player()
 
 void Player::Init(const ResourceManager& resourceManager, const sf::Vector2f& position)
 {
+	m_ResourceManager = &resourceManager;
+
 	setTexture(resourceManager.GetTilesetTexture());
 	setOrigin(0.f, 8.f);
 	setTextureRect({ 0, 464, 16, 24 });
@@ -26,51 +25,83 @@ void Player::Init(const ResourceManager& resourceManager, const sf::Vector2f& po
 	m_TextureRect = getTextureRect();
 	m_Velocity = { 0.f, 0.f };
 
+	const auto& font = resourceManager.GetFont();
+	const_cast<sf::Texture&>(font.getTexture(40)).setSmooth(false);
+	m_DamageTaken.setFont(font);
+	m_DamageTaken.setCharacterSize(40);
+	m_DamageTaken.setScale(0.f, 0.f);
+	m_DamageTaken.setOutlineColor(sf::Color::Black);
+	m_DamageTaken.setOutlineThickness(4.f);
+
 	//SAVE::HEALTH
 	m_Health = SAVE::PLAYER_HEALTH;
 	m_Coin = SAVE::COIN_NUMBER;
 
 	//Switch SAVE::WEAPONS
 	m_Weapons.resize(8);
-	m_Weapons[m_WeaponIndex].reset(new Bow());
-	m_Weapons[m_WeaponIndex]->Init(resourceManager, m_Center);
-	m_Weapons[m_WeaponIndex + 1].reset(new BigDamagePotion());
-	m_Weapons[m_WeaponIndex + 1]->Init(resourceManager, m_Center);
-	m_Weapons[m_WeaponIndex + 2].reset(new ColossalSword());
-	m_Weapons[m_WeaponIndex + 2]->Init(resourceManager, m_Center);
 }
 
 void Player::Update(UpdateArgs args, float dt)
 {
-	m_Paused = false;
-	Movement(args, dt);
-	UpdateAnimation(dt);
-
-	if (m_Weapons[m_WeaponIndex])
-		m_Weapons[m_WeaponIndex]->Update(args, dt);
-
-	for (const auto& weapon : m_Weapons)
-		if (weapon)
-			if (weapon->GetId() == EntityID::BigDamagePotion)
-				((BigDamagePotion*)weapon.get())->UpdateAttackZone(args, dt);
-			else if (weapon->GetId() == EntityID::DamagePotion)
-				((DamagePotion*)weapon.get())->UpdateAttackZone(args, dt);
-
-	for (auto& en : args.qTree.search(m_Bounds))
+	if (m_Health > 0)
 	{
-		if (en->obj->GetId() == EntityID::Coin)
+		m_Paused = false;
+		Movement(args, dt);
+		UpdateAnimation(dt);
+
+		if (m_Weapons[m_WeaponIndex])
+			m_Weapons[m_WeaponIndex]->Update(args, dt);
+
+		for (auto& weapon : m_Weapons)
+			if (weapon)
+				if (weapon->GetId() == EntityID::BigDamagePotion)
+				{
+					((BigDamagePotion*)weapon.get())->UpdateAttackZone(args, dt);
+					if (((BigDamagePotion*)weapon.get())->IsFinished())
+						weapon.reset();
+				}
+				else if (weapon->GetId() == EntityID::DamagePotion)
+				{
+					((DamagePotion*)weapon.get())->UpdateAttackZone(args, dt);
+					if (((DamagePotion*)weapon.get())->IsFinished())
+						weapon.reset();
+				}
+				else if (weapon->GetId() == EntityID::BigHealthPotion)
+				{
+					if (((BigHealthPotion*)weapon.get())->IsFinished())
+						weapon.reset();
+				}
+				else if (weapon->GetId() == EntityID::HealthPotion)
+				{
+					if (((HealthPotion*)weapon.get())->IsFinished())
+						weapon.reset();
+				}
+
+		for (auto& en : args.qTree.search(m_Bounds))
 		{
-			Entity* p = en->obj;
-			args.qTree.remove(en);
-			m_Coin++;
-			delete p;
+			if (en->obj->GetId() == EntityID::Coin)
+			{
+				Entity* p = en->obj;
+				args.qTree.remove(en);
+				m_Coin++;
+				delete p;
+			}
 		}
+
+		DamageAnimation(dt);
+	}
+	else
+	{
+		DeathAnimation(dt);
+		if (m_IsDead)
+			args.currentState = StateID::GameOverState;
 	}
 }
 
 void Player::Render(sf::RenderTarget& target)
 {
 	target.draw(*this);
+	RenderDamage(target);
 }
 
 void Player::SetPosition(const sf::Vector2f& position)
@@ -86,6 +117,11 @@ void Player::SetPosition(const sf::Vector2f& position)
 EntityID Player::GetId() const
 {
 	return EntityID::Player;
+}
+
+void Player::SetCoin(unsigned int coin)
+{
+	m_Coin = coin;
 }
 
 void Player::SetCurrentWeaponIndex(unsigned int index)
@@ -122,6 +158,15 @@ void Player::RenderWeapon(sf::RenderTarget& target)
 			else if (weapon->GetId() == EntityID::DamagePotion)
 				((DamagePotion*)weapon.get())->RenderAttackZone(target);
 	m_Paused = true;
+}
+
+void Player::AddWeapon(Weapon* weapon)
+{
+	if (weapon->GetId() != EntityID::Null)
+	{
+		m_Weapons[m_WeaponIndex].reset(weapon);
+		m_Weapons[m_WeaponIndex]->Init(*m_ResourceManager, m_Center);
+	}
 }
 
 void Player::Movement(UpdateArgs args, float dt)

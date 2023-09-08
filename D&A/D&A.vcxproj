@@ -120,6 +120,10 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Entities\Weapons\ColossalGoldenSword.cpp" />
+    <ClCompile Include="src\Entities\Weapons\GoldenSword.cpp" />
+    <ClCompile Include="src\Hud\Shop.cpp" />
+    <ClCompile Include="src\States\GameOverState.cpp" />
     <ClCompile Include="src\UI\Components\DeleteForm.cpp" />
     <ClCompile Include="src\Levels\OrchsOne.cpp" />
     <ClCompile Include="src\Core\SaveManager.cpp" />
@@ -193,6 +197,12 @@
     <ClCompile Include="src\Entities\Weapons\Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Entities\Weapons\ColossalGoldenSword.h" />
+    <ClInclude Include="src\Entities\Weapons\GoldenSword.h" />
+    <ClInclude Include="src\Entities\Weapons\WeaponInclude.h" />
+    <ClInclude Include="src\Hud\Shop.h" />
+    <ClInclude Include="src\States\GameOverState.h" />
+    <ClInclude Include="src\Core\MusicVariables.h" />
     <ClInclude Include="src\UI\Components\DeleteForm.h" />
     <ClInclude Include="src\Levels\OrchsOne.h" />
     <ClInclude Include="src\Core\SaveManager.h" />

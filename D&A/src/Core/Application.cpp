@@ -3,10 +3,16 @@
 
 Application::Application()
 {
+	SAVE::SAVE_MANAGER.LoadConfig();
+
 	m_ResourceManager.Init();
-	
 	m_Window.Init(m_ResourceManager);
-	m_Window.create(sf::VideoMode(GLOBAL::WIN_WIDTH, GLOBAL::WIN_HEIGHT), "D&A", sf::Style::Default);
+
+
+	if (GLOBAL::FULLSCREEN)
+		m_Window.create(sf::VideoMode().getFullscreenModes()[0], "D&A", sf::Style::Fullscreen);
+	else
+		m_Window.create(sf::VideoMode(GLOBAL::WIN_WIDTH, GLOBAL::WIN_HEIGHT), "D&A", sf::Style::Default);
 
 	m_StateManager.Init(m_ResourceManager);
 }

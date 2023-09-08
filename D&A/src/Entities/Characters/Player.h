@@ -16,6 +16,7 @@ public:
 	void SetPosition(const sf::Vector2f& position);
 	EntityID GetId() const override;
 
+	void SetCoin(unsigned int coin);
 	inline unsigned int GetCoin() const { return m_Coin; }
 	inline int GetHealth() const { return m_Health; }
 
@@ -23,7 +24,8 @@ public:
 	inline unsigned int GetCurrentWeaponIndex() { return m_WeaponIndex; }
 	EntityID GetWeaponID(unsigned int index);
 	bool IsAttacking();
-	void RenderWeapon(sf::RenderTarget& target);	
+	void RenderWeapon(sf::RenderTarget& target);
+	void AddWeapon(Weapon* weapon);
 
 private:
 
@@ -32,6 +34,7 @@ private:
 
 private:
 
+	const ResourceManager* m_ResourceManager;
 	unsigned int m_Coin = 0;
 
 	unsigned int m_WeaponIndex = 0;

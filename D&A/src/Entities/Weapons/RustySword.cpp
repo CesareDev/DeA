@@ -77,13 +77,13 @@ void RustySword::Attack(float dt)
 			else
 				m_Angle = 90.f * sinf(2 * acos(-1.f) * m_ElapsedTime) + m_AttackAngle;
 		}
-		else if (m_ElapsedTime > 0.25f && m_ElapsedTime <= 0.35f)
+		else if (m_ElapsedTime > 0.25f && m_ElapsedTime <= 0.45f)
 		{
 			m_CanHit = true;
 			if (std::abs(m_AttackAngle) < 90.f)
-				m_Angle = 180.f * sinf(5 * acos(-1.f) * (m_ElapsedTime - 0.25f)) - 90.f + m_AttackAngle;
+				m_Angle = 180.f * sinf((5.f / 2.f) * acos(-1.f) * (m_ElapsedTime - 0.25f)) - 90.f + m_AttackAngle;
 			else
-				m_Angle = -180.f * sinf(5 * acos(-1.f) * (m_ElapsedTime - 0.25f)) + 90.f + m_AttackAngle;
+				m_Angle = -180.f * sinf((5.f / 2.f) * acos(-1.f) * (m_ElapsedTime - 0.25f)) + 90.f + m_AttackAngle;
 		}
 		else if (m_ElapsedTime > 0.45f && m_ElapsedTime <= 0.6f)
 		{

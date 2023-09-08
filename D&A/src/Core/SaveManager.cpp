@@ -94,6 +94,57 @@ void SaveManager::DeleteSave(unsigned int saveIndex)
 	std::string path = "..\\res\\saves\\save_" + std::to_string(saveIndex) + ".json";
 	std::string cmd = "del " + path;
 	system(cmd.c_str());
+	ResetVariables();
+}
+
+void SaveManager::SaveConfig()
+{
+	Document document;
+	document.SetObject();
+
+	auto& allocator = document.GetAllocator();
+
+	Value musicValue(GLOBAL::MUSIC_VOLUME);
+	Value soundValue(GLOBAL::SOUND_VOLUME);
+	Value fullscreen(GLOBAL::FULLSCREEN);
+
+	document.AddMember("music", musicValue, allocator);
+	document.AddMember("sound", soundValue, allocator);
+	document.AddMember("fullscreen", fullscreen, allocator);
+
+	StringBuffer buffer;
+	Writer<StringBuffer> writer(buffer);
+	document.Accept(writer);
+
+	const char* json = buffer.GetString();
+	std::string path = "..\\res\\config.txt";
+	std::ofstream os;
+	os.open(path);
+	if (os.is_open())
+	{
+		os << json;
+	}
+	os.close();
+}
+
+void SaveManager::LoadConfig()
+{
+	std::string path = "..\\res\\config.txt";
+	std::ifstream is;
+	is.open(path);
+	if (is.is_open())
+	{
+		std::stringstream buffer;
+		buffer << is.rdbuf();
+
+		Document document;
+		document.Parse(buffer.str().c_str());
+
+		GLOBAL::MUSIC_VOLUME = document["music"].GetUint();
+		GLOBAL::SOUND_VOLUME = document["sound"].GetUint();
+		GLOBAL::FULLSCREEN = document["fullscreen"].GetBool();
+	}
+	is.close();
 }
 
 std::string SaveManager::GetInfo(unsigned int saveIndex)

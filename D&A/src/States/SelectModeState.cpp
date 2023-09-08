@@ -13,6 +13,9 @@ void SelectModeState::Init(const ResourceManager& resourceManager)
 {
     m_Menu.Init(resourceManager);
     m_Transition.Init(resourceManager);
+
+    if (MUSIC::MAIN_MENU_MUSIC->getStatus() == sf::SoundSource::Stopped)
+        MUSIC::MAIN_MENU_MUSIC->play();
 }
 
 bool SelectModeState::OnEnter(float dt)

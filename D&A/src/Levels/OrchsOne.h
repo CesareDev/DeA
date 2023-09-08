@@ -1,6 +1,7 @@
 #pragma once
 #include "Level.h"
 #include "Entities/Environments/Ladder.h"
+#include "Entities/Characters/Demon.h"
 
 class OrchsOne : public Level
 {
@@ -19,5 +20,6 @@ public:
 private:
 
 	Ladder m_Ladder0;
+	Demon demon;
 };
 

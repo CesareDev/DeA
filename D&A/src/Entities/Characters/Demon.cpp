@@ -20,7 +20,7 @@ void Demon::Init(const ResourceManager& resourceManager, const sf::Vector2f& pos
 	m_ElapsedAnimationTime = 0.f;
 	m_TextureRect = getTextureRect();
 
-	m_Health = 1;
+	m_Health = 10;
 	const auto& font = resourceManager.GetFont();
 	const_cast<sf::Texture&>(font.getTexture(40)).setSmooth(false);
 	m_DamageTaken.setFont(font);
@@ -41,7 +41,6 @@ void Demon::Update(UpdateArgs args, float dt)
 		sf::Vector2f dir = { 0.f, 0.f };
 
 		sf::Vector2f pcenter;
-		bool findPlayer = false;
 		for (const auto& it : args.qTree.search(attackArea))
 		{
 			if (it->obj->GetType() == EntityType::Character)
@@ -49,7 +48,18 @@ void Demon::Update(UpdateArgs args, float dt)
 				if (it->obj->GetId() == EntityID::Player)
 				{
 					pcenter = it->obj->GetCenter();
-					findPlayer = true;
+					float mag = sf::distance(m_Center, pcenter);
+					if (mag > 0.5)
+					{
+						m_IsMoving = true;
+						dir = (pcenter - m_Center) / mag;
+						m_Velocity = dir * 32.f;
+					}
+					float radsum = 8.f + (it->obj->GetBounds().size.x / 2.f);
+					if (mag < radsum)
+					{
+						((Character*)it->obj)->TakeDamage(5);
+					}
 					continue;
 				}
 				if (it->obj != this && it->obj->GetId() != EntityID::Player && it->obj->GetId() != EntityID::Arrow)
@@ -71,10 +81,10 @@ void Demon::Update(UpdateArgs args, float dt)
 			}
 		}
 
-		if (findPlayer)
+		if (m_FindPath)
 		{
 			const auto& path = args.astar.calcolatePath(sf::Vector2i(m_Center), sf::Vector2i(pcenter));
-			if (path.size() > 0)
+			if (path.size() > 1)
 			{
 				sf::Vector2f target = sf::Vector2f(path.back()->position) + sf::Vector2f(8.f, 8.f);
 				float mag = sf::distance(m_Center, target);
@@ -84,6 +94,10 @@ void Demon::Update(UpdateArgs args, float dt)
 					dir = (target - m_Center) / mag;
 					m_Velocity = dir * 32.f;
 				}
+			}
+			else
+			{
+				m_FindPath = false;
 			}
 		}
 
@@ -106,7 +120,8 @@ void Demon::Update(UpdateArgs args, float dt)
 				if (m_IsMoving)
 				{
 					wallx = true;
-					wallVel.y = m_Velocity.y > 0.f ? 32.f : -32.f;
+					if (m_FindPath)
+						wallVel.y = m_Velocity.y > 0.f ? 32.f : -32.f;
 				}
 			}
 		}
@@ -120,7 +135,8 @@ void Demon::Update(UpdateArgs args, float dt)
 				if (m_IsMoving)
 				{
 					wallx = true;
-					wallVel.y = m_Velocity.y > 0.f ? 32.f : -32.f;
+					if (m_FindPath)
+						wallVel.y = m_Velocity.y > 0.f ? 32.f : -32.f;
 				}
 			}
 		}
@@ -135,7 +151,8 @@ void Demon::Update(UpdateArgs args, float dt)
 				if (m_IsMoving)
 				{
 					wally = true;
-					wallVel.x = m_Velocity.x > 0.f ? 32.f : -32.f;
+					if (m_FindPath)
+						wallVel.x = m_Velocity.x > 0.f ? 32.f : -32.f;
 				}
 			}
 		}
@@ -149,7 +166,8 @@ void Demon::Update(UpdateArgs args, float dt)
 				if (m_IsMoving)
 				{
 					wally = true;
-					wallVel.x = m_Velocity.x > 0.f ? 32.f : -32.f;
+					if (m_FindPath)
+						wallVel.x = m_Velocity.x > 0.f ? 32.f : -32.f;
 				}
 			}
 		}
@@ -181,15 +199,24 @@ void Demon::Update(UpdateArgs args, float dt)
 			}
 		}
 
-		if (wallx)
+		if (wallx && m_FindPath)
 			potentialPos.y = ((potentialPosInUnit.y * m_TextureRect.width) - m_Velocity.y * dt) + wallVel.y * dt;
 		else
 			potentialPos.y = potentialPosInUnit.y * m_TextureRect.width;
 
-		if (wally)
+		if (wally && m_FindPath)
 			potentialPos.x = ((potentialPosInUnit.x * m_TextureRect.width) - m_Velocity.x * dt) + wallVel.x * dt;
 		else
 			potentialPos.x = potentialPosInUnit.x * m_TextureRect.width;
+
+		if (wallx || wally)
+			m_FollowElapsedTime += dt;
+
+		if (m_FollowElapsedTime > 5.f)
+		{
+			m_FindPath = true;
+			m_FollowElapsedTime = 0.f;
+		}
 
 		SetPosition(potentialPos);
 

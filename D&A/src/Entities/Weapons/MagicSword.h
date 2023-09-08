@@ -18,5 +18,10 @@ public:
 protected:
 
 	void Attack(float dt) override;
+
+private:
+
+	sf::CircleShape m_MagicAttack;
+	bool m_IsMagicAttacking = false;
 };
 

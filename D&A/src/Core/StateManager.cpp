@@ -5,6 +5,7 @@
 #include "States/MainTitleState.h"
 #include "States/StartMenuState.h"
 #include "States/GameState.h"
+#include "States/GameOverState.h"
 #include "States/ArenaState.h"
 #include "States/ExitState.h"
 #include "States/OptionsMenuState.h"
@@ -14,9 +15,9 @@ void StateManager::Init(const ResourceManager& resourceManager)
 {
 	m_ResourceManager = &resourceManager;
 
-	m_CurrentState = std::make_unique<StartMenuState>();
-	m_CurrentStateId = StateID::BeginState;
-	m_OldStateId = StateID::BeginState;
+	m_CurrentState = std::make_unique<SelectModeState>();
+	m_CurrentStateId = StateID::SelectModeState;
+	m_OldStateId = StateID::SelectModeState;
 
 	m_CurrentState->Init(resourceManager);
 	m_ChangingState = true;
@@ -74,6 +75,9 @@ void StateManager::ChangeState(float dt)
 				break;
 			case StateID::ArenaState:
 				m_CurrentState.reset(new ArenaState());
+				break;
+			case StateID::GameOverState:
+				m_CurrentState.reset(new GameOverState());
 				break;
 			case StateID::ExitState:
 				m_CurrentState.reset(new ExitState());

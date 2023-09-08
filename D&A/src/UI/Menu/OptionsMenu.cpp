@@ -128,6 +128,11 @@ void OptionsMenu::Update(StateID& currentState, float dt)
 	m_SoundScrollBar.Update(dt);
 	m_MusicValue.setString(std::to_string(GLOBAL::MUSIC_VOLUME));
 	m_SoundValue.setString(std::to_string(GLOBAL::SOUND_VOLUME));
+
+	MUSIC::CLICK_SOUND->setVolume(GLOBAL::SOUND_VOLUME);
+	MUSIC::GAME_OVER_SOUND->setVolume(GLOBAL::MUSIC_VOLUME);
+	MUSIC::GAME_TITLE_SOUND->setVolume(GLOBAL::MUSIC_VOLUME);
+	MUSIC::MAIN_MENU_MUSIC->setVolume(GLOBAL::MUSIC_VOLUME);
 }
 
 void OptionsMenu::Render(sf::RenderTarget& target)

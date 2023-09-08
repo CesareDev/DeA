@@ -1,0 +1,11 @@
+#pragma once
+
+namespace MUSIC
+{
+	inline sf::Sound* GAME_TITLE_SOUND = nullptr;
+	inline sf::Sound* CLICK_SOUND = nullptr;
+	inline sf::Sound* GAME_OVER_SOUND = nullptr;
+	inline sf::Music* MAIN_MENU_MUSIC = nullptr;
+	inline sf::Sound* DAMAGE_SOUND = nullptr;
+	inline sf::Sound* PLAYER_DAMAGE_SOUND = nullptr;
+}

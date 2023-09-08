@@ -17,6 +17,7 @@ public:
 
 	void UpdateAttackZone(UpdateArgs args, float dt);
 	void RenderAttackZone(sf::RenderTarget& target);
+	inline bool IsFinished() { return m_IsFinished; }
 
 protected:
 
@@ -24,6 +25,7 @@ protected:
 
 private:
 
+	bool m_IsFinished = false;
 	bool m_Drinked = false;
 	sf::CircleShape m_DamageArea;
 };

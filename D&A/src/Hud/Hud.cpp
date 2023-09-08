@@ -30,23 +30,31 @@ void Hud::Init(const ResourceManager& resourceManager, const Player& player, con
 	m_CoinQuantity.setPosition(80.f, 100.f);
 	m_CoinQuantity.setOutlineColor(sf::Color::Black);
 	m_CoinQuantity.setOutlineThickness(4.f);
-	m_CoinQuantity.setString("0");
+
+
+	m_CoinQuantity.setString(std::to_string(m_Player->GetCoin()));
+	float w = (m_Player->GetHealth() / 100.f) * 59.f;
+	m_HealthBar.setSize({ w, 3.f });
+	m_HealthTail.setPosition(w + 8.f, 11.f);
 
 	m_StaticCamera.reset({ 0.f, 0.f, GLOBAL::WIN_WIDTH / 5.f, GLOBAL::WIN_HEIGHT / 5.f });
 
 	m_Inv.Init(resourceManager, player);
 
 	m_MiniMap.Init(resourceManager, map, player);
+
+	m_Shop.Init(resourceManager, player);
 }
 
 void Hud::Update(float dt)
 {
-	float h = (m_Player->GetHealth() / 100.f) * 59.f;
-	m_HealthBar.setSize({ h, 3.f });
-	m_HealthTail.setPosition(h + 8.f, 11.f);
+	float w = (m_Player->GetHealth() / 100.f) * 59.f;
+	m_HealthBar.setSize({ w, 3.f });
+	m_HealthTail.setPosition(w + 8.f, 11.f);
 	m_CoinQuantity.setString(std::to_string(m_Player->GetCoin()));
 	m_Inv.Update(dt);
 	m_MiniMap.Update(dt);
+	m_Shop.Update(dt);
 }
 
 void Hud::Render(sf::RenderTarget& target)
@@ -71,6 +79,7 @@ void Hud::Render(sf::RenderTarget& target)
 	target.setView(m_StaticCamera);
 
 	m_Inv.Render(target);
+	m_Shop.Render(target);
 
 	target.setView(currentCam);
 }

@@ -72,6 +72,7 @@ void CheckBox::Render(sf::RenderTarget& target)
 				m_Checked = !m_Checked;
 				m_Pressed = false;
 				m_Clicked = true;
+				MUSIC::CLICK_SOUND->play();
 			}
 		}
 	}

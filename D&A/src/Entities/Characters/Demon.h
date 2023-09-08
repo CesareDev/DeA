@@ -14,5 +14,9 @@ public:
 	void Render(sf::RenderTarget& target) override;
 	void SetPosition(const sf::Vector2f& position) override;
 	EntityID GetId() const override;
-};
+	
+private:
 
+	float m_FollowElapsedTime;
+	bool m_FindPath = false;
+};

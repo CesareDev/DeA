@@ -11,6 +11,9 @@ public:
 	void LoadSave(unsigned int saveIndex);
 	void DeleteSave(unsigned int saveIndex);
 
+	void SaveConfig();
+	void LoadConfig();
+
 	std::string GetInfo(unsigned int saveIndex);
 
 private:

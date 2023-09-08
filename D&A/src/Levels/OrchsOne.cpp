@@ -31,18 +31,20 @@ void OrchsOne::Init(const ResourceManager& resourceManager, sf::DynamicQuadTree<
 	m_Tree->resize({ 0.f, 0.f, (float)m_Map.getMapSize().x, (float)m_Map.getMapSize().y });
 
 	if (entranceIndex == 0)
-		m_Player->SetPosition({ 32.f, 16.f }); //starting point
+		m_Player->SetPosition({ 416.f, 224.f }); //starting point
 	
 	m_AStar.init(m_Map);
 	m_Hud.Init(resourceManager, player, m_Map);
 	m_Camera.Init(m_Player->GetCenter(), { 0.f, 0.f, (float)m_Map.getMapSize().x, (float)m_Map.getMapSize().y }, { 0.f, 0.f, GLOBAL::WIN_WIDTH / 5.f, GLOBAL::WIN_HEIGHT / 5.f });
 
-	m_Ladder0.Init(resourceManager, { 16.f, 16.f });
+	m_Ladder0.Init(resourceManager, { 432.f, 224.f });
 	m_Ladder0.SetTeleportLevel(LevelID::Entrance, 1);
+
+	demon.Init(resourceManager, { 192.f, 192.f });
 
 	m_Tree->insert(m_Player, m_Player->GetBounds());
 	m_Tree->insert(&m_Ladder0, m_Ladder0.GetBounds());
-
+	m_Tree->insert(&demon, demon.GetBounds());
 }
 
 void OrchsOne::Update(StateID& currentState, LevelID& currentLevel, int& entranceIndex, float dt)

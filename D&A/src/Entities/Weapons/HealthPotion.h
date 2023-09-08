@@ -3,6 +3,11 @@
 
 class HealthPotion : public Weapon
 {
+public:
+
+	HealthPotion();
+	~HealthPotion();
+
 	// Inherited via Weapon
 	void Init(const ResourceManager& resourceManager, const sf::Vector2f& position) override;
 	void Update(UpdateArgs args, float dt) override;
@@ -10,8 +15,14 @@ class HealthPotion : public Weapon
 	void SetPosition(const sf::Vector2f& position) override;
 	EntityID GetId() const override;
 
+	inline bool IsFinished() { return m_Drinked; }
+
 protected:
 
 	void Attack(float dt) override;
+
+private:
+
+	bool m_Drinked = false;
 };
 

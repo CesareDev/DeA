@@ -1,6 +1,7 @@
 #pragma once
 #include "Inventory.h"
 #include "MiniMap.h"
+#include "Shop.h"
 #include "Entities/Characters/Player.h"
 
 class Hud
@@ -27,4 +28,5 @@ private:
 
 	Inventory m_Inv;
 	MiniMap m_MiniMap;
+	Shop m_Shop;
 };

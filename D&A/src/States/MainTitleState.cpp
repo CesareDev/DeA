@@ -20,6 +20,8 @@ void MainTitleState::Init(const ResourceManager& resourceManager)
 	int x = (GLOBAL::WIN_WIDTH / 2) - (m_Title.getGlobalBounds().width / 2);
 	int y = (GLOBAL::WIN_HEIGHT / 2) - m_Title.getGlobalBounds().height;
 	m_Title.setPosition(x, y);
+
+	MUSIC::GAME_TITLE_SOUND->play();
 }
 
 bool MainTitleState::OnEnter(float dt)
@@ -35,6 +37,7 @@ bool MainTitleState::OnExit(float dt)
 void MainTitleState::Update(StateID& currentState, float dt)
 {
 	currentState = StateID::StartMenuState;
+	
 }
 
 void MainTitleState::Render(sf::RenderTarget& target)

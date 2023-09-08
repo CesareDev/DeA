@@ -24,7 +24,7 @@ void Ladder::Update(UpdateArgs args, float dt)
             if (d < 4.f)
             {
                 args.currentLevel = m_Teleport;
-                args.entranceIndex = m_EntranceIndex;
+                args.entranceIndex = m_TeleportEntranceIndex;
             }
         }
     }
@@ -46,8 +46,8 @@ EntityID Ladder::GetId() const
     return EntityID::Ladder;
 }
 
-void Ladder::SetTeleportLevel(LevelID teleportLevel, unsigned int entranceIndex)
+void Ladder::SetTeleportLevel(LevelID teleportLevel, unsigned int teleportEntranceIndex)
 {
     m_Teleport = teleportLevel;
-    m_EntranceIndex = entranceIndex;
+    m_TeleportEntranceIndex = teleportEntranceIndex;
 }

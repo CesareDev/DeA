@@ -1,6 +1,14 @@
 #include "pch.h"
 #include "HealthPotion.h"
 
+HealthPotion::HealthPotion()
+{
+}
+
+HealthPotion::~HealthPotion()
+{
+}
+
 void HealthPotion::Init(const ResourceManager& resourceManager, const sf::Vector2f& position)
 {
 	setTexture(resourceManager.GetTilesetTexture());
@@ -79,6 +87,7 @@ void HealthPotion::Attack(float dt)
 		{
 			m_IsAttacking = false;
 			m_ElapsedTime = 0.f;
+			m_Drinked = true;
 		}
 	}
 }
