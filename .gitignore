@@ -33,9 +33,9 @@ bld/
 [Ll]og/
 [Ll]ogs/
 
-#Custom file/dir
-bin-int/
-dist/
+# Custom file/dir
+.bin-int/
+.dist/
 
 
 # Visual Studio 2015/2017 cache/options directory
