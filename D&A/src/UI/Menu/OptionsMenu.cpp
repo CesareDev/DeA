@@ -133,6 +133,10 @@ void OptionsMenu::Update(StateID& currentState, float dt)
 	MUSIC::GAME_OVER_SOUND->setVolume(GLOBAL::MUSIC_VOLUME);
 	MUSIC::GAME_TITLE_SOUND->setVolume(GLOBAL::MUSIC_VOLUME);
 	MUSIC::MAIN_MENU_MUSIC->setVolume(GLOBAL::MUSIC_VOLUME);
+	MUSIC::DAMAGE_SOUND->setVolume(GLOBAL::SOUND_VOLUME);
+	MUSIC::PLAYER_DAMAGE_SOUND->setVolume(GLOBAL::SOUND_VOLUME);
+	MUSIC::ATTACK_SOUND->setVolume(GLOBAL::SOUND_VOLUME);
+	MUSIC::REGEN_SOUND->setVolume(GLOBAL::SOUND_VOLUME);
 }
 
 void OptionsMenu::Render(sf::RenderTarget& target)

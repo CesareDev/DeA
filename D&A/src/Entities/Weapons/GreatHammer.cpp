@@ -77,6 +77,8 @@ void GreatHammer::Attack(float dt)
 		}
 		else if (m_ElapsedTime > 0.6 && m_ElapsedTime <= 0.75)
 		{
+			if (!m_CanHit)
+				MUSIC::ATTACK_SOUND->play();
 			m_CanHit = true;
 			if (std::abs(m_AttackAngle) < 90.f)
 				m_Angle = 180.f * sinf((10.f / 3.f) * acos(-1.f) * (m_ElapsedTime - 0.6f)) - 90.f + m_AttackAngle;

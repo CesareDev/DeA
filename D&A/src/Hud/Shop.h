@@ -1,6 +1,6 @@
 #pragma once
 #include "Core/ResourceManager.h"
-#include "Entities/Characters/Player.h"
+#include "Entities/Characters/Other/Player.h"
 
 class Shop
 {
@@ -25,5 +25,7 @@ private:
 	sf::Sprite m_ItemList;
 	sf::Text m_ShopText;
 	sf::RectangleShape m_SelectedWeaponFrame;
+
+	unsigned int m_WeaponsCost[20];
 };
 

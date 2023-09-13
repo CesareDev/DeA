@@ -17,5 +17,6 @@ private:
 	float m_Right;
 	float m_Top;
 	float m_Bottom;
+	sf::FloatRect m_VisibleArea;
 };
 

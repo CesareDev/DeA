@@ -4,19 +4,6 @@ enum class EntityID
 {
 	Null,
 
-	//Characters
-	Player,
-	Slug,
-	DemonBoss,
-	SmallDemon,
-	HalfDemon,
-	Demon,
-
-	//Env
-	Ladder,
-	Door,
-	Coin,
-
 	//Weapon
 	Knife,
 	RustySword,
@@ -38,7 +25,33 @@ enum class EntityID
 	HealthPotion,
 	BigHealthPotion,
 	DamagePotion,
-	BigDamagePotion
+	BigDamagePotion,
+
+	//Characters
+	Player,
+	Slug,
+	SmallDemon,
+	HalfDemon,
+	Demon,
+	MagicDemon,
+	DemonBoss,
+	SmallOrc,
+	Orc,
+	MaskedOrc,
+	TribalOrc,
+	OrcBoss,
+	SmallUndead,
+	HalfUndead,
+	Undead,
+	UndeadSlime,
+	UndeadBoss,
+
+	//Env
+	Ladder,
+	Door,
+	Coin,
+	Chest,
+	Message
 };
 
 enum class EntityType

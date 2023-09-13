@@ -19,5 +19,6 @@ public:
 private:
 
 	sf::Text m_Title;
+	sf::Text m_MusicCredit;
 };
 

@@ -45,7 +45,7 @@
     <ClCompile Include="src\Entities\Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Entities\Characters\Player.cpp">
+    <ClCompile Include="src\Entities\Characters\Other\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\UI\Menu\Menu.cpp">
@@ -129,9 +129,6 @@
     <ClCompile Include="src\Entities\Characters\Character.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Entities\Characters\Slug.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Entities\Weapons\Knife.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -153,7 +150,7 @@
     <ClCompile Include="src\Entities\Weapons\ColossalSword.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Entities\Characters\DemonBoss.cpp">
+    <ClCompile Include="src\Entities\Characters\Demons\DemonBoss.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Entities\Weapons\Hammer.cpp">
@@ -174,7 +171,7 @@
     <ClCompile Include="src\Entities\Weapons\Bow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Entities\Characters\Arrow.cpp">
+    <ClCompile Include="src\Entities\Characters\Other\Arrow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Hud\Inventory.cpp">
@@ -192,13 +189,13 @@
     <ClCompile Include="src\Entities\Weapons\BigDamagePotion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Entities\Characters\Demon.cpp">
+    <ClCompile Include="src\Entities\Characters\Demons\Demon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Entities\Characters\HalfDemon.cpp">
+    <ClCompile Include="src\Entities\Characters\Demons\HalfDemon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Entities\Characters\SmallDemon.cpp">
+    <ClCompile Include="src\Entities\Characters\Demons\SmallDemon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Hud\MiniMap.cpp">
@@ -213,7 +210,7 @@
     <ClCompile Include="src\Core\SaveManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Levels\OrchsOne.cpp">
+    <ClCompile Include="src\Levels\OrcsOne.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\UI\Components\DeleteForm.cpp">
@@ -229,6 +226,51 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Entities\Weapons\ColossalGoldenSword.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entities\Environments\Chest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Levels\OrcsTwo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entities\Environments\Message.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Levels\OrcsBoss.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entities\Characters\Orcs\SmallOrc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entities\Characters\Orcs\Orc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entities\Characters\Orcs\MaskedOrc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entities\Characters\Orcs\TribalOrc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entities\Characters\Orcs\OrcBoss.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entities\Characters\Undeads\SmallUndead.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entities\Characters\Undeads\Undead.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entities\Characters\Undeads\UndeadSlime.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entities\Characters\Undeads\HalfUndead.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entities\Characters\Undeads\UndeadBoss.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entities\Characters\Demons\MagicDemon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -269,7 +311,7 @@
     <ClInclude Include="src\Entities\Entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Entities\Characters\Player.h">
+    <ClInclude Include="src\Entities\Characters\Other\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\UI\Menu\Menu.h">
@@ -356,9 +398,6 @@
     <ClInclude Include="src\Entities\Characters\Character.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Entities\Characters\Slug.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Entities\Weapons\Knife.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -380,7 +419,7 @@
     <ClInclude Include="src\Entities\Weapons\ColossalSword.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Entities\Characters\DemonBoss.h">
+    <ClInclude Include="src\Entities\Characters\Demons\DemonBoss.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Entities\Weapons\Hammer.h">
@@ -401,7 +440,7 @@
     <ClInclude Include="src\Entities\Weapons\Bow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Entities\Characters\Arrow.h">
+    <ClInclude Include="src\Entities\Characters\Other\Arrow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Hud\Inventory.h">
@@ -419,13 +458,13 @@
     <ClInclude Include="src\Entities\Weapons\BigDamagePotion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Entities\Characters\Demon.h">
+    <ClInclude Include="src\Entities\Characters\Demons\Demon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Entities\Characters\HalfDemon.h">
+    <ClInclude Include="src\Entities\Characters\Demons\HalfDemon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Entities\Characters\SmallDemon.h">
+    <ClInclude Include="src\Entities\Characters\Demons\SmallDemon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Hud\MiniMap.h">
@@ -443,7 +482,7 @@
     <ClInclude Include="src\Core\SaveVariables.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Levels\OrchsOne.h">
+    <ClInclude Include="src\Levels\OrcsOne.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\UI\Components\DeleteForm.h">
@@ -465,6 +504,51 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Entities\Weapons\WeaponInclude.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entities\Environments\Chest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Levels\OrcsTwo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entities\Environments\Message.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Levels\OrcsBoss.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entities\Characters\Orcs\SmallOrc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entities\Characters\Orcs\Orc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entities\Characters\Orcs\MaskedOrc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entities\Characters\Orcs\TribalOrc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entities\Characters\Orcs\OrcBoss.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entities\Characters\Undeads\SmallUndead.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entities\Characters\Undeads\Undead.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entities\Characters\Undeads\UndeadSlime.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entities\Characters\Undeads\HalfUndead.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entities\Characters\Undeads\UndeadBoss.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entities\Characters\Demons\MagicDemon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

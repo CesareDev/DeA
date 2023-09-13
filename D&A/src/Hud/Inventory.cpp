@@ -130,6 +130,16 @@ void Inventory::Update(float dt)
 			txCoord = { 376.f, 213.f };
 			break;
 		}
+		case EntityID::GoldenSword:
+		{
+			txCoord = { 360.f, 229.f };
+			break;
+		}
+		case EntityID::ColossalGoldenSword:
+		{
+			txCoord = { 368.f, 229.f };
+			break;
+		}
 		case EntityID::GreatAxe:
 		{
 			txCoord = { 360.f, 237.f };

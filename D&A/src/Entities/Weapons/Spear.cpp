@@ -75,6 +75,9 @@ void Spear::Attack(float dt)
 		m_ElapsedTime += dt;
 		if (m_ElapsedTime <= 0.15f)
 		{
+			if (!m_PlaySound)
+				MUSIC::ATTACK_SOUND->play();
+			m_PlaySound = true;
 			m_CanHit = true;
 			float mag = 15.f * sinf((10.f / 3.f) * acos(-1.f) * m_ElapsedTime);
 			const auto& pos = getPosition();
@@ -86,6 +89,9 @@ void Spear::Attack(float dt)
 		}
 		else if (m_ElapsedTime > 0.35f && m_ElapsedTime <= 0.5f)
 		{
+			if (m_PlaySound)
+				MUSIC::ATTACK_SOUND->play();
+			m_PlaySound = false;
 			float mag = 15.f * sinf((10.f / 3.f) * acos(-1.f) * (m_ElapsedTime - 0.35f));
 			const auto& pos = getPosition();
 			SetPosition({ pos.x + mag * cosf(m_Angle *acos(-1.f) / 180.f), pos.y + mag * sinf(m_Angle *acos(-1.f) / 180.f) });
@@ -96,6 +102,9 @@ void Spear::Attack(float dt)
 		}
 		else if (m_ElapsedTime > 0.7f && m_ElapsedTime <= 0.85f)
 		{
+			if (!m_PlaySound)
+				MUSIC::ATTACK_SOUND->play();
+			m_PlaySound = true;
 			float mag = 15.f * sinf((10.f / 3.f) * acos(-1.f) * (m_ElapsedTime - 0.7f));
 			const auto& pos = getPosition();
 			SetPosition({ pos.x + mag * cosf(m_Angle *acos(-1.f) / 180.f), pos.y + mag * sinf(m_Angle *acos(-1.f) / 180.f) });
@@ -107,6 +116,7 @@ void Spear::Attack(float dt)
 		else if (!m_MousePressed && m_ElapsedTime > 1.05f)
 		{
 			m_CanHit = false;
+			m_PlaySound = false;
 			m_ElapsedTime = 0.f;
 			m_IsAttacking = false;
 		}

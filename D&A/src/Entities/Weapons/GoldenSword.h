@@ -1,5 +1,6 @@
 #pragma once
 #include "Weapon.h"
+#include "DamagePotion.h"
 
 class GoldenSword : public Weapon
 {
@@ -15,5 +16,13 @@ public:
 	void SetPosition(const sf::Vector2f& position) override;
 	EntityID GetId() const override;
 	void Attack(float dt) override;
+
+private:
+
+	DamagePotion m_Potion;
+
+	bool m_Pressed = false;
+	float m_ChargingTime;
+	float m_RedChannel;
 };
 

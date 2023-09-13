@@ -2,7 +2,7 @@
 #include "Inventory.h"
 #include "MiniMap.h"
 #include "Shop.h"
-#include "Entities/Characters/Player.h"
+#include "Entities/Characters/Other/Player.h"
 
 class Hud
 {

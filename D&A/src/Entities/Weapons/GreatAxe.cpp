@@ -84,6 +84,8 @@ void GreatAxe::Attack(float dt)
 		}
 		if (m_ElapsedTime > 0.75f && m_ElapsedTime <= 1.15f)
 		{
+			if (!m_CanHit)
+				MUSIC::ATTACK_SOUND->play();
 			m_CanHit = true;
 			m_Angle = 450.f * sinf((5.f / 4.f) * acos(-1.f) * (m_ElapsedTime - 0.75f)) - 90.f + m_AttackAngle;
 			setRotation(m_Angle + 90.f);

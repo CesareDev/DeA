@@ -26,7 +26,12 @@ void ResourceManager::Init()
     m_DamageSound.setBuffer(m_DamageSoundBuffer);
     m_PlayerDamageSoundBuffer.loadFromFile("../res/sound-music/playerdamage.wav");
     m_PlayerDamageSound.setBuffer(m_PlayerDamageSoundBuffer);
-    m_MainMenuMusic.openFromFile("../res/sound-music/menumusic.wav");
+    m_AttackSoundBuffer.loadFromFile("../res/sound-music/attackswish.wav");
+    m_AttackSound.setBuffer(m_AttackSoundBuffer);
+    m_RegenSoundBuffer.loadFromFile("../res/sound-music/regen.wav");
+    m_RegenSound.setBuffer(m_RegenSoundBuffer);
+
+    m_MainMenuMusic.openFromFile("../res/sound-music/xDeviruchi - Mysterious Dungeon.wav");
     m_MainMenuMusic.setLoop(true);
 
     m_GameTitleSound.setVolume(GLOBAL::MUSIC_VOLUME);
@@ -35,6 +40,8 @@ void ResourceManager::Init()
     m_ClickSound.setVolume(GLOBAL::SOUND_VOLUME);
     m_DamageSound.setVolume(GLOBAL::SOUND_VOLUME);
     m_PlayerDamageSound.setVolume(GLOBAL::SOUND_VOLUME);
+    m_AttackSound.setVolume(GLOBAL::SOUND_VOLUME);
+    m_RegenSound.setVolume(GLOBAL::SOUND_VOLUME);
 
     MUSIC::GAME_TITLE_SOUND = &m_GameTitleSound;
     MUSIC::GAME_OVER_SOUND = &m_GameOverSound;
@@ -42,6 +49,8 @@ void ResourceManager::Init()
     MUSIC::CLICK_SOUND = &m_ClickSound;
     MUSIC::DAMAGE_SOUND = &m_DamageSound;
     MUSIC::PLAYER_DAMAGE_SOUND = &m_PlayerDamageSound;
+    MUSIC::ATTACK_SOUND = &m_AttackSound;
+    MUSIC::REGEN_SOUND = &m_RegenSound;
 }
 
 const sf::Texture& ResourceManager::GetTilesetTexture() const

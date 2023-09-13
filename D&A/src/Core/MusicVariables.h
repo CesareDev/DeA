@@ -8,4 +8,6 @@ namespace MUSIC
 	inline sf::Music* MAIN_MENU_MUSIC = nullptr;
 	inline sf::Sound* DAMAGE_SOUND = nullptr;
 	inline sf::Sound* PLAYER_DAMAGE_SOUND = nullptr;
+	inline sf::Sound* ATTACK_SOUND = nullptr;
+	inline sf::Sound* REGEN_SOUND = nullptr;
 }

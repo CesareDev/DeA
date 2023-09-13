@@ -77,6 +77,8 @@ void Hammer::Attack(float dt)
 		}
 		else if (m_ElapsedTime > 0.1f && m_ElapsedTime <= 0.2f)
 		{
+			if (!m_CanHit)
+				MUSIC::ATTACK_SOUND->play();
 			m_CanHit = true;
 			if (std::abs(m_AttackAngle) < 90.f)
 				m_Angle = 120.f * sinf(5.f* acos(-1.f) * (m_ElapsedTime - 0.1f)) - 60.f + m_AttackAngle;

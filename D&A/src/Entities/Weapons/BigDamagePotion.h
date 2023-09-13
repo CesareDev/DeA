@@ -19,6 +19,9 @@ public:
 	void RenderAttackZone(sf::RenderTarget& target);
 	inline bool IsFinished() { return m_IsFinished; }
 
+	inline bool IsDrinking() { return m_Drinked; }
+	void Drink();
+
 protected:
 
 	void Attack(float dt) override;

@@ -45,7 +45,7 @@ void SaveForm::Init(const ResourceManager& resourceManager, const sf::Vector2f& 
 	m_TextPosition = { (float)x, (float)y };
 	m_Text.setPosition(m_TextPosition);
 	m_Text.setOutlineColor(sf::Color::Black);
-	m_Text.setOutlineThickness(5.f);
+	m_Text.setOutlineThickness(4.f);
 
 	m_SaveIndex = saveNumber;
 	m_DeleteButton.Init(resourceManager, { 794, 357, 16, 16 }, getPosition() + sf::Vector2f(getGlobalBounds().getSize().x + 8.f, 8.f));

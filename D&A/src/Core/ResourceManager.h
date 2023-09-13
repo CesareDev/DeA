@@ -36,5 +36,12 @@ private:
 	sf::SoundBuffer m_PlayerDamageSoundBuffer;
 	sf::Sound m_PlayerDamageSound;
 
+	sf::SoundBuffer m_AttackSoundBuffer;
+	sf::Sound m_AttackSound;
+
+	sf::SoundBuffer m_RegenSoundBuffer;
+	sf::Sound m_RegenSound;
+
+
 	sf::Music m_MainMenuMusic;
 };

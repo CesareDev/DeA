@@ -81,8 +81,8 @@ void BigDamagePotion::UpdateAttackZone(UpdateArgs args, float dt)
 			if (en->obj->GetType() == EntityType::Character && en->obj->GetId() != EntityID::Player)
 			{
 				Character* c = (Character*)en->obj;
-				if (sf::distance(c->GetCenter(), getPosition()) < m_DamageArea.getRadius() + (c->GetBounds().size.x / 2.f))
-					c->TakeDamage(1);
+				if (sf::distance(c->GetCenter(), getPosition()) < m_DamageArea.getRadius() + 1.f + (c->GetBounds().size.x / 2.f))
+					c->TakeDamage(3);
 			}
 		}
 		if (m_ElapsedTime > 10.f)
@@ -99,6 +99,11 @@ void BigDamagePotion::RenderAttackZone(sf::RenderTarget& target)
 {
 	if (m_Drinked)
 		target.draw(m_DamageArea);
+}
+
+void BigDamagePotion::Drink()
+{
+	m_Drinked = true;
 }
 
 void BigDamagePotion::Attack(float dt)

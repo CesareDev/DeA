@@ -49,7 +49,7 @@ void Entrance::Init(const ResourceManager& resourceManager, sf::DynamicQuadTree<
 	m_Camera.Init(m_Player->GetCenter(), { 0.f, 0.f, (float)m_Map.getMapSize().x, (float)m_Map.getMapSize().y }, { 0.f, 0.f, GLOBAL::WIN_WIDTH / 5.f, GLOBAL::WIN_HEIGHT / 5.f });
 
 	m_Ladder1.Init(resourceManager, { 32.f, 240.f });
-	m_Ladder1.SetTeleportLevel(LevelID::OrchsOne, 0);
+	m_Ladder1.SetTeleportLevel(LevelID::OrcsOne, 0);
 
 	m_Tree->insert(m_Player, m_Player->GetBounds());
 	m_Tree->insert(&m_Ladder1, m_Ladder1.GetBounds());
@@ -73,8 +73,6 @@ void Entrance::Update(StateID& currentState, LevelID& currentLevel, int& entranc
 				{
 					if (((Character*)it->obj)->IsMoving())
 						m_Tree->relocate(it, it->obj->GetBounds());
-					if (it->obj->GetId() == EntityID::Player)
-						m_Camera.Update(it->obj->GetCenter(), dt);
 				}
 				break;
 			}
@@ -84,6 +82,7 @@ void Entrance::Update(StateID& currentState, LevelID& currentLevel, int& entranc
 		++it;
 	}
 
+	m_Camera.Update(m_Player->GetCenter(), dt);
 	m_Map.update(dt);
 	m_Hud.Update(dt);
 	m_Label.Update(dt);
@@ -105,5 +104,6 @@ void Entrance::Render(sf::RenderTarget& target)
 
 	m_Hud.Render(target);
 	m_Label.Render(target);
+
 	m_Transition.Render(target);
 }

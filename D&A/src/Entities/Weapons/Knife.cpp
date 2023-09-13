@@ -74,8 +74,10 @@ void Knife::Attack(float dt)
 		m_ElapsedTime += dt;
 		if (m_ElapsedTime < 0.2f)
 		{
+			if (!m_CanHit)
+				MUSIC::ATTACK_SOUND->play();
 			m_CanHit = true;
-			float mag = 5.f * sinf((5.f /2.f) * acos(-1.f) * m_ElapsedTime);
+			float mag = 5.f * sinf(5.f * acos(-1.f) * m_ElapsedTime);
 			const auto& pos = getPosition();
 			SetPosition({ pos.x + mag * cosf((m_Angle) * acos(-1.f) / 180.f), pos.y + mag * sinf((m_Angle) * acos(-1.f) / 180.f) });
 		}

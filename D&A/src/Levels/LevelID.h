@@ -5,5 +5,7 @@ enum class LevelID
 	Null,
 	Arena,
 	Entrance,
-	OrchsOne,
+	OrcsOne,
+	OrcsTwo,
+	OrcsBoss
 };

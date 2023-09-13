@@ -80,6 +80,8 @@ void Mace::Attack(float dt)
 		}
 		else if (m_ElapsedTime > 0.25f && m_ElapsedTime <= 0.35f)
 		{
+			if (!m_CanHit)
+				MUSIC::ATTACK_SOUND->play();
 			m_CanHit = true;
 			if (std::abs(m_AttackAngle) < 90.f)
 				m_Angle = 120 * sinf(5 * acos(-1.f) * (m_ElapsedTime - 0.25f)) - 60.f + m_AttackAngle;

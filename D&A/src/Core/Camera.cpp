@@ -61,6 +61,11 @@ bool Camera::Init(const sf::Vector2f& startPosition, const sf::FloatRect& limits
 	{
 		setCenter(startPosition);
 	}
+	m_VisibleArea.left = (getCenter() - getSize() / 2.f).x;
+	m_VisibleArea.top = (getCenter() - getSize() / 2.f).y;
+	m_VisibleArea.width = getSize().x;
+	m_VisibleArea.height = getSize().y;
+
 	return true;
 }
 
@@ -108,9 +113,12 @@ void Camera::Update(const sf::Vector2f& position, float dt)
 	{
 		setCenter(position);
 	}
+	sf::Vector2f pos = getCenter() - getSize() / 2.f;
+	m_VisibleArea.left = pos.x;
+	m_VisibleArea.top = pos.y;
 }
 
 const sf::FloatRect& Camera::GetVisibleArea() const
 {
-	return sf::FloatRect(getCenter() - getSize() / 2.f, getSize());
+	return m_VisibleArea;
 }

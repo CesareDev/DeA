@@ -42,6 +42,7 @@ void Bow::Update(UpdateArgs args, float dt)
 		setOrigin(-7.f, 13.f);
 		m_IsAttacking = true;
 		m_MousePressed = false;
+		MUSIC::ATTACK_SOUND->play();
 		m_ArrowsQueue.back().Shoot();
 		args.qTree.insert(&m_ArrowsQueue.back(), m_ArrowsQueue.back().GetBounds());
 	}

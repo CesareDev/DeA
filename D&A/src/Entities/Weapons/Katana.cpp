@@ -73,12 +73,18 @@ void Katana::Attack(float dt)
         m_ElapsedTime += dt;
         if (m_ElapsedTime <= 0.25f)
         {
+            if (!m_PlaySound)
+                MUSIC::ATTACK_SOUND->play();
+            m_PlaySound = true;
             m_CanHit = true;
             m_Angle = 360.f * sinf(2 * acos(-1.f) * m_ElapsedTime) + m_AttackAngle;
             setRotation(m_Angle + 90.f);
         }
         else if (m_ElapsedTime > 0.35f && m_ElapsedTime <= 0.5f)
         {
+            if (m_PlaySound)
+                MUSIC::ATTACK_SOUND->play();
+            m_PlaySound = false;
             float mag = 15.f * sinf((20.f / 3.f) * acos(-1.f) * (m_ElapsedTime - 0.35f));
             sf::Vector2f dir = { cosf(m_Angle * acos(-1.f) / 180.f), sinf(m_Angle * acos(-1.f) / 180.f) };
             SetPosition(getPosition() + mag * dir);

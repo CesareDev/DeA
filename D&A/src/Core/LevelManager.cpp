@@ -1,7 +1,9 @@
 #include "pch.h"
 #include "LevelManager.h"
 #include "Levels/Entrance.h"
-#include "Levels/OrchsOne.h"
+#include "Levels/OrcsOne.h"
+#include "Levels/OrcsTwo.h"
+#include "Levels/OrcsBoss.h"
 
 LevelManager::LevelManager()
 {
@@ -33,10 +35,22 @@ void LevelManager::Init(const ResourceManager& resourceManager)
 		m_CurrentLevelId = LevelID::Entrance;
 		break;
 	}
-	case LevelID::OrchsOne:
+	case LevelID::OrcsOne:
 	{
-		m_CurrentLevel = std::make_unique<OrchsOne>();
-		m_CurrentLevelId = LevelID::OrchsOne;
+		m_CurrentLevel = std::make_unique<OrcsOne>();
+		m_CurrentLevelId = LevelID::OrcsOne;
+		break;
+	}
+	case LevelID::OrcsTwo:
+	{
+		m_CurrentLevel = std::make_unique<OrcsTwo>();
+		m_CurrentLevelId = LevelID::OrcsTwo;
+		break;
+	}
+	case LevelID::OrcsBoss:
+	{
+		m_CurrentLevel = std::make_unique<OrcsBoss>();
+		m_CurrentLevelId = LevelID::OrcsBoss;
 		break;
 	}
 	default:
@@ -93,11 +107,19 @@ void LevelManager::ChangeLevel(float dt)
 				m_CurrentLevel.reset(new Entrance());
 				break;
 			}
-			case LevelID::OrchsOne:
+			case LevelID::OrcsOne:
 			{
-				m_CurrentLevel.reset(new OrchsOne());
+				m_CurrentLevel.reset(new OrcsOne());
 				break;
 			}
+			case LevelID::OrcsTwo:
+			{
+				m_CurrentLevel.reset(new OrcsTwo());
+				break;
+			}
+			case LevelID::OrcsBoss:
+				m_CurrentLevel.reset(new OrcsBoss());
+				break;
 			default:
 				break;
 			}

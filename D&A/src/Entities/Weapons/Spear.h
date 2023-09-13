@@ -22,5 +22,6 @@ protected:
 private:
 
 	bool m_MousePressed = false;
+	bool m_PlaySound = false;
 };
 

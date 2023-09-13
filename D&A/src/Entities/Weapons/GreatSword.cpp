@@ -78,6 +78,8 @@ void GreatSword::Attack(float dt)
 		else if (m_ElapsedTime > 0.35f && m_ElapsedTime <= 0.5f)
 		{
 			m_Angle = 330.f * sinf((10.f / 3.f) * acos(-1.f) * (m_ElapsedTime - 0.35f)) - 60.f + m_AttackAngle;
+			if (!m_CanHit)
+				MUSIC::ATTACK_SOUND->play();
 			m_CanHit = true;
 		}
 		else if (m_ElapsedTime > 0.5f && m_ElapsedTime <= 0.8f)

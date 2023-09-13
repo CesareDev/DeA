@@ -56,9 +56,7 @@ void DamagePotion::SetPosition(const sf::Vector2f& position)
 	sf::Vector2f dir = { cosf(m_Angle * acos(-1.f) / 180.f), sinf(m_Angle * acos(-1.f) / 180.f) };
 	m_Center = position + 11.f * dir;
 	m_Bounds.position = position - sf::Vector2f(16.f, 16.f);
-
-	if (m_Drinked)
-		m_DamageArea.setPosition(position - sf::Vector2f(m_DamageArea.getRadius(), m_DamageArea.getRadius()));
+	m_DamageArea.setPosition(position - sf::Vector2f(m_DamageArea.getRadius(), m_DamageArea.getRadius()));
 }
 
 EntityID DamagePotion::GetId() const
@@ -80,8 +78,8 @@ void DamagePotion::UpdateAttackZone(UpdateArgs args, float dt)
 			if (en->obj->GetType() == EntityType::Character && en->obj->GetId() != EntityID::Player)
 			{
 				Character* c = (Character*)en->obj;
-				if (sf::distance(c->GetCenter(), getPosition()) < m_DamageArea.getRadius() + (c->GetBounds().size.x / 2.f))
-					c->TakeDamage(1);
+				if (sf::distance(c->GetCenter(), getPosition()) < m_DamageArea.getRadius() + 1.f + (c->GetBounds().size.x / 2.f))
+					c->TakeDamage(3);
 			}
 		}
 		if (m_ElapsedTime > 5.f)
@@ -98,6 +96,11 @@ void DamagePotion::RenderAttackZone(sf::RenderTarget& target)
 {
 	if (m_Drinked)
 		target.draw(m_DamageArea);
+}
+
+void DamagePotion::Drink()
+{
+	m_Drinked = true;
 }
 
 void DamagePotion::Attack(float dt)

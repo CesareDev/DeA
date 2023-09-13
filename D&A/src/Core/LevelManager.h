@@ -1,7 +1,7 @@
 #pragma once
 #include "Core/ResourceManager.h"
 #include "Levels/Level.h"
-#include "Entities/Characters/Player.h"
+#include "Entities/Characters/Other/Player.h"
 
 class LevelManager
 {

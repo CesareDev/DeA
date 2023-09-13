@@ -79,6 +79,8 @@ void ColossalSword::Attack(float dt)
         }
         else if (m_ElapsedTime > 0.9f && m_ElapsedTime <= 1.4f)
         {
+            if (!m_CanHit)
+                MUSIC::ATTACK_SOUND->play();
             m_CanHit = true;
             m_Angle = 720 * sinf(acos(-1.f) * (m_ElapsedTime - 0.9f)) + m_AttackAngle;
             setRotation(m_Angle + 90.f);

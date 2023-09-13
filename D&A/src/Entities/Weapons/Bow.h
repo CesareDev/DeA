@@ -2,7 +2,7 @@
 #include <queue>
 
 #include "Weapon.h"
-#include "Entities/Characters/Arrow.h"
+#include "Entities/Characters/Other/Arrow.h"
 
 class Bow : public Weapon
 {

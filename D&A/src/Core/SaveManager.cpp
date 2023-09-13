@@ -177,9 +177,19 @@ std::string SaveManager::GetInfo(unsigned int saveIndex)
 			s += "Entrance\n";
 			break;
 		}
-		case LevelID::OrchsOne:
+		case LevelID::OrcsOne:
 		{
-			s += "Orchs-1\n";
+			s += "Orcs-1\n";
+			break;
+		}
+		case LevelID::OrcsTwo:
+		{
+			s += "Orcs-2\n";
+			break;
+		}
+		case LevelID::OrcsBoss:
+		{
+			s += "Orcs-Boss\n";
 			break;
 		}
 		default:

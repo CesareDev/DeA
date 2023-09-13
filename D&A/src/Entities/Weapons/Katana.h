@@ -18,4 +18,8 @@ public:
 protected:
 
 	void Attack(float dt) override;
+
+private:
+
+	bool m_PlaySound = false;
 };

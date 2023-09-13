@@ -2,7 +2,7 @@
 #include "Core/ResourceManager.h"
 #include "Core/Camera.h"
 #include "Effects/Transition.h"
-#include "Entities/Characters/Player.h"
+#include "Entities/Characters/Other/Player.h"
 #include "Hud/Hud.h"
 #include "Entities/Weapons/Weapon.h"
 #include "UI/Components/LevelLabel.h"

@@ -18,6 +18,9 @@ public:
 	void UpdateAttackZone(UpdateArgs args, float dt);
 	void RenderAttackZone(sf::RenderTarget& target);
 	inline bool IsFinished() { return m_IsFinished; }
+	
+	inline bool IsDrinking() { return m_Drinked; }
+	void Drink();
 
 protected:
 

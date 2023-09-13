@@ -28,6 +28,27 @@ void Shop::Init(const ResourceManager& resourceManager, const Player& player)
 	m_ShopText.setOutlineColor(sf::Color::Black);
 	m_ShopText.setOutlineThickness(4.f);
 	m_ShopText.setPosition(999.5 - m_ShopText.getGlobalBounds().width / 2.f, 370.f - m_ShopText.getGlobalBounds().height - 8.f);
+
+	m_WeaponsCost[0] = 0;
+	m_WeaponsCost[1] = 3;
+	m_WeaponsCost[2] = 7;
+	m_WeaponsCost[3] = 15;
+	m_WeaponsCost[4] = 18;
+	m_WeaponsCost[5] = 12;
+	m_WeaponsCost[6] = 8;
+	m_WeaponsCost[7] = 12;
+	m_WeaponsCost[8] = 20;
+	m_WeaponsCost[9] = 25;
+	m_WeaponsCost[10] = 30;
+	m_WeaponsCost[11] = 60;
+	m_WeaponsCost[12] = 80;
+	m_WeaponsCost[13] = 25;
+	m_WeaponsCost[14] = 20;
+	m_WeaponsCost[15] = 50;
+	m_WeaponsCost[16] = 10;
+	m_WeaponsCost[17] = 25;
+	m_WeaponsCost[18] = 5;
+	m_WeaponsCost[19] = 10;
 }
 
 void Shop::Update(float dt)
@@ -71,70 +92,82 @@ void Shop::Render(sf::RenderTarget& target)
 				else if (!sf::Mouse::isButtonPressed(sf::Mouse::Right) && m_MousePressd)
 				{
 					int index = j * 4 + i;
-					switch (index)
+					if (index >= 0 && index < 20)
 					{
-					case 0:
-						m_Player->AddWeapon(new Knife());
-						break;
-					case 1:
-						m_Player->AddWeapon(new RustySword());
-						break;
-					case 2:
-						m_Player->AddWeapon(new Sword());
-						break;
-					case 3:
-						m_Player->AddWeapon(new MagicSword());
-						break;
-					case 4:
-						m_Player->AddWeapon(new GreatHammer());
-						break;
-					case 5:
-						m_Player->AddWeapon(new Hammer());
-						break;
-					case 6:
-						m_Player->AddWeapon(new Mace());
-						break;
-					case 7:
-						m_Player->AddWeapon(new GreatMace());
-						break;
-					case 8:
-						m_Player->AddWeapon(new Katana());
-						break;
-					case 9:
-						m_Player->AddWeapon(new GreatSword());
-						break;
-					case 10:
-						m_Player->AddWeapon(new ColossalSword());
-						break;
-					case 11:
-						m_Player->AddWeapon(new GoldenSword());
-						break;
-					case 12:
-						m_Player->AddWeapon(new ColossalGoldenSword());
-						break;
-					case 13:
-						m_Player->AddWeapon(new GreatAxe());
-						break;
-					case 14:
-						m_Player->AddWeapon(new Spear());
-						break;
-					case 15:
-						m_Player->AddWeapon(new Bow());
-						break;
-					case 16:
-						m_Player->AddWeapon(new HealthPotion());
-						break;
-					case 17:
-						m_Player->AddWeapon(new BigHealthPotion());
-						break;
-					case 18:
-						m_Player->AddWeapon(new DamagePotion());
-						break;
-					case 19:
-						m_Player->AddWeapon(new BigDamagePotion());
-						break;
-					default:
-						break;
+						bool result = false;
+						if (m_Player->GetCoin() >= m_WeaponsCost[index])
+						{
+							switch (index)
+							{
+							case 0:
+								result = m_Player->AddWeapon(new Knife());
+								break;
+							case 1:
+								result = m_Player->AddWeapon(new RustySword());
+								break;
+							case 2:
+								result = m_Player->AddWeapon(new Sword());
+								break;
+							case 3:
+								result = m_Player->AddWeapon(new MagicSword());
+								break;
+							case 4:
+								result = m_Player->AddWeapon(new GreatHammer());
+								break;
+							case 5:
+								result = m_Player->AddWeapon(new Hammer());
+								break;
+							case 6:
+								result = m_Player->AddWeapon(new Mace());
+								break;
+							case 7:
+								result = m_Player->AddWeapon(new GreatMace());
+								break;
+							case 8:
+								result = m_Player->AddWeapon(new Katana());
+								break;
+							case 9:
+								result = m_Player->AddWeapon(new GreatSword());
+								break;
+							case 10:
+								result = m_Player->AddWeapon(new ColossalSword());
+								break;
+							case 11:
+								result = m_Player->AddWeapon(new GoldenSword());
+								break;
+							case 12:
+								result = m_Player->AddWeapon(new ColossalGoldenSword());
+								break;
+							case 13:
+								result = m_Player->AddWeapon(new GreatAxe());
+								break;
+							case 14:
+								result = m_Player->AddWeapon(new Spear());
+								break;
+							case 15:
+								result = m_Player->AddWeapon(new Bow());
+								break;
+							case 16:
+								result = m_Player->AddWeapon(new HealthPotion());
+								break;
+							case 17:
+								result = m_Player->AddWeapon(new BigHealthPotion());
+								break;
+							case 18:
+								result = m_Player->AddWeapon(new DamagePotion());
+								break;
+							case 19:
+								result = m_Player->AddWeapon(new BigDamagePotion());
+								break;
+							default:
+								break;
+							}
+							if (result)
+							{
+								m_Player->SetCoin(m_Player->GetCoin() - m_WeaponsCost[index]);
+								m_IsOpen = false;
+							}
+						}
 					}
 					m_MousePressd = false;
 				}

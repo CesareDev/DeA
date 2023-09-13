@@ -94,6 +94,8 @@ void MagicSword::Attack(float dt)
 		}
 		else if (m_ElapsedTime > 0.25f && m_ElapsedTime <= 0.45f)
 		{
+			if (!m_CanHit)
+				MUSIC::ATTACK_SOUND->play();
 			m_CanHit = true;
 			if (std::abs(m_AttackAngle) < 90.f)
 				m_Angle = 180.f * sinf((5.f / 2.f) * acos(-1.f) * (m_ElapsedTime - 0.25f)) - 90.f + m_AttackAngle;

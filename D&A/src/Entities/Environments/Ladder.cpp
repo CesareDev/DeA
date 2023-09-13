@@ -16,7 +16,7 @@ void Ladder::Init(const ResourceManager& resourceManager, const sf::Vector2f& po
 
 void Ladder::Update(UpdateArgs args, float dt)
 {
-    for (const auto& en : args.qTree.search(GetBounds()))
+    for (const auto& en : args.qTree.search(m_Bounds))
     {
         if (en->obj->GetId() == EntityID::Player)
         {
