@@ -2,6 +2,8 @@
 #include "Level.h"
 #include "Entities/Environments/Ladder.h"
 
+#include "Entities/Characters/Orcs/OrcBoss.h"
+
 class OrcsBoss : public Level
 {
 public:
@@ -19,5 +21,6 @@ public:
 private:
 
 	Ladder m_Ladder0;
+	OrcBoss o;
 };
 

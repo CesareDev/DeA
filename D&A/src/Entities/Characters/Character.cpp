@@ -9,6 +9,10 @@ Character::~Character()
 {
 }
 
+void Character::RenderWeapon(sf::RenderTarget& target)
+{
+}
+
 EntityType Character::GetType() const
 {
     return EntityType::Character;
@@ -38,6 +42,17 @@ void Character::RenderDamage(sf::RenderTarget& target)
 		target.draw(m_DamageTaken);
 		target.setView(currentCamera);
 	}
+}
+
+void Character::InitDamageText(const ResourceManager& resourceManager)
+{
+	const auto& font = resourceManager.GetFont();
+	const_cast<sf::Texture&>(font.getTexture(40)).setSmooth(false);
+	m_DamageTaken.setFont(font);
+	m_DamageTaken.setCharacterSize(40);
+	m_DamageTaken.setScale(0.f, 0.f);
+	m_DamageTaken.setOutlineColor(sf::Color::Black);
+	m_DamageTaken.setOutlineThickness(4.f);
 }
 
 void Character::DamageAnimation(float dt)

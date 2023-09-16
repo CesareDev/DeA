@@ -14,6 +14,7 @@ public:
 	virtual void Render(sf::RenderTarget& target) override = 0;
 	virtual void SetPosition(const sf::Vector2f& position) = 0;
 	virtual EntityID GetId() const override = 0;
+	virtual void RenderWeapon(sf::RenderTarget& target);
 	EntityType GetType() const override;
 
 	void TakeDamage(unsigned int damage);
@@ -26,6 +27,7 @@ protected:
 	void DamageAnimation(float dt);
 	void DeathAnimation(float dt);
 	void RenderDamage(sf::RenderTarget& target);
+	void InitDamageText(const ResourceManager& resourceManager);
 
 protected:
 
@@ -41,6 +43,9 @@ protected:
 	float m_VulnerableTime;
 	float m_IntervalTime;
 	bool m_Vulnerable = true;
+
+	float m_FollowElapsedTime;
+	bool m_FindPath = false;
 
 	sf::Text m_DamageTaken;
 };

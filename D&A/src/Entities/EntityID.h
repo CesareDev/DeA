@@ -27,9 +27,10 @@ enum class EntityID
 	DamagePotion,
 	BigDamagePotion,
 
+	OrcAxe,
+
 	//Characters
 	Player,
-	Slug,
 	SmallDemon,
 	HalfDemon,
 	Demon,

@@ -120,6 +120,8 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Entities\Characters\Other\Spawner.cpp" />
+    <ClCompile Include="src\Entities\Weapons\OrcAxe.cpp" />
     <ClCompile Include="src\Entities\Characters\Demons\MagicDemon.cpp" />
     <ClCompile Include="src\Entities\Characters\Undeads\HalfUndead.cpp" />
     <ClCompile Include="src\Entities\Characters\Undeads\UndeadSlime.cpp" />
@@ -211,6 +213,9 @@
     <ClCompile Include="src\Entities\Characters\Undeads\UndeadBoss.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Entities\Characters\Other\Spawner.h" />
+    <ClInclude Include="src\Entities\EntityInclude.h" />
+    <ClInclude Include="src\Entities\Weapons\OrcAxe.h" />
     <ClInclude Include="src\Entities\Characters\Demons\MagicDemon.h" />
     <ClInclude Include="src\Entities\Characters\Undeads\HalfUndead.h" />
     <ClInclude Include="src\Entities\Characters\Undeads\UndeadSlime.h" />

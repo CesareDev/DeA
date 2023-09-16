@@ -204,6 +204,30 @@ void Player::SetPosition(const sf::Vector2f& position)
 	m_Bounds.position = position;
 }
 
+void Player::RenderWeapon(sf::RenderTarget& target)
+{
+	if (m_Health > 0)
+	{
+		if (!m_Paused)
+			for (auto& weapon : m_Weapons)
+				if (weapon)
+					weapon->SetAngle(target);
+		if (m_Weapons[m_WeaponIndex])
+			m_Weapons[m_WeaponIndex]->Render(target);
+		for (const auto& weapon : m_Weapons)
+		{
+			if (weapon)
+			{
+				if (weapon->GetId() == EntityID::BigDamagePotion)
+					((BigDamagePotion*)weapon.get())->RenderAttackZone(target);
+				else if (weapon->GetId() == EntityID::DamagePotion)
+					((DamagePotion*)weapon.get())->RenderAttackZone(target);
+			}
+		}
+		m_Paused = true;
+	}
+}
+
 EntityID Player::GetId() const
 {
 	return EntityID::Player;
@@ -231,27 +255,6 @@ bool Player::IsAttacking()
 	if (m_Weapons[m_WeaponIndex])
 		return m_Weapons[m_WeaponIndex]->IsAttacking();
 	return false;
-}
-
-void Player::RenderWeapon(sf::RenderTarget& target)
-{
-	if (!m_Paused)
-		for (auto& weapon : m_Weapons)
-			if (weapon)
-				weapon->SetAngle(target);
-	if (m_Weapons[m_WeaponIndex])
-		m_Weapons[m_WeaponIndex]->Render(target);
-	for (const auto& weapon : m_Weapons)
-	{
-		if (weapon)
-		{
-			if (weapon->GetId() == EntityID::BigDamagePotion)
-				((BigDamagePotion*)weapon.get())->RenderAttackZone(target);
-			else if (weapon->GetId() == EntityID::DamagePotion)
-				((DamagePotion*)weapon.get())->RenderAttackZone(target);
-		}
-	}
-	m_Paused = true;
 }
 
 bool Player::AddWeapon(Weapon* weapon)
@@ -308,53 +311,93 @@ void Player::Movement(UpdateArgs args, float dt)
 		m_Velocity /= mag;
 	m_Velocity *= 64.f;
 
-	sf::Vector2f potentialPos = getPosition() + m_Velocity * dt;
+	sf::Vector2f potentialPos = m_Center + m_Velocity * dt;
 
 	sf::Vector2f potentialPosInUnit = { potentialPos.x / m_TextureRect.width, potentialPos.y / m_TextureRect.width };
-	sf::Vector2f positionInUnit = { getPosition().x / m_TextureRect.width, getPosition().y / m_TextureRect.width };
+	sf::Vector2f positionInUnit = { m_Center.x / m_TextureRect.width, m_Center.y / m_TextureRect.width };
 
-	//Left
-	if (m_Velocity.x < 0)
+	//TEST OTHER COLLISION
+	sf::Vector2i currentCell = sf::Vector2i(std::floor(positionInUnit.x), std::floor(positionInUnit.y));
+	sf::Vector2i targetCell = sf::Vector2i(potentialPosInUnit);
+	sf::Vector2i tl =
 	{
-		if (args.tileMap.isCellWall(sf::Vector2i(potentialPosInUnit.x, positionInUnit.y)) || args.tileMap.isCellWall(sf::Vector2i(potentialPosInUnit.x, positionInUnit.y + 0.9f)))
-		{
-			potentialPosInUnit.x = (int)potentialPosInUnit.x + 1;
-			m_Velocity.x = 0.f;
-		}
-	}
-	//Right
-	else
+		std::min(currentCell.x, targetCell.x) - 1,
+		std::min(currentCell.y, targetCell.y) - 1
+	};
+	sf::Vector2i br =
 	{
-		if (args.tileMap.isCellWall(sf::Vector2i(potentialPosInUnit.x + 1.f, positionInUnit.y)) || args.tileMap.isCellWall(sf::Vector2i(potentialPosInUnit.x + 1.f, positionInUnit.y + 0.9f)))
+		std::max(currentCell.x, targetCell.x) + 1,
+		std::max(currentCell.y, targetCell.y) + 1
+	};
+
+	sf::Vector2f rayToNearest;
+	sf::Vector2i cell;
+	for (cell.y = tl.y; cell.y <= br.y; cell.y++)
+	{
+		for (cell.x = tl.x; cell.x <= br.x; cell.x++)
 		{
-			potentialPosInUnit.x = (int)potentialPosInUnit.x;
-			m_Velocity.x = 0.f;
+			if (args.tileMap.isCellWall(cell))
+			{
+				sf::Vector2f nearestPoint =
+				{
+					std::max(float(cell.x), std::min(potentialPosInUnit.x, float(cell.x + 1))),
+					std::max(float(cell.y), std::min(potentialPosInUnit.y, float(cell.y + 1)))
+				};
+				rayToNearest = nearestPoint - potentialPosInUnit;
+				float rayMag = std::sqrtf(rayToNearest.x * rayToNearest.x + rayToNearest.y * rayToNearest.y);
+				float overlap = (m_Bounds.size.x / 32.f) - rayMag;
+				if (std::isnan(overlap))
+					overlap = 0.f;
+				if (overlap > 0.f)
+				{
+					potentialPosInUnit = potentialPosInUnit - (rayToNearest / rayMag) * overlap;
+				}
+			}
 		}
 	}
 
-	//Up
-	if (m_Velocity.y < 0)
-	{
-		if (args.tileMap.isCellWall(sf::Vector2i(potentialPosInUnit.x, potentialPosInUnit.y)) || args.tileMap.isCellWall(sf::Vector2i(potentialPosInUnit.x + 0.9f, potentialPosInUnit.y)))
-		{
-			potentialPosInUnit.y = (int)potentialPosInUnit.y + 1;
-			m_Velocity.y = 0.f;
-		}
-	}
-	//Down
-	else
-	{
-		if (args.tileMap.isCellWall(sf::Vector2i(potentialPosInUnit.x, potentialPosInUnit.y + 1.f)) || args.tileMap.isCellWall(sf::Vector2i(potentialPosInUnit.x + 0.9f, potentialPosInUnit.y + 1.f)))
-		{
-			potentialPosInUnit.y = (int)potentialPosInUnit.y;
-			m_Velocity.y = 0.f;
-		}
-	}
+	////Left
+	//if (m_Velocity.x < 0)
+	//{
+	//	if (args.tileMap.isCellWall(sf::Vector2i(potentialPosInUnit.x, positionInUnit.y)) || args.tileMap.isCellWall(sf::Vector2i(potentialPosInUnit.x, positionInUnit.y + 0.9f)))
+	//	{
+	//		potentialPosInUnit.x = (int)potentialPosInUnit.x + 1;
+	//		m_Velocity.x = 0.f;
+	//	}
+	//}
+	////Right
+	//else
+	//{
+	//	if (args.tileMap.isCellWall(sf::Vector2i(potentialPosInUnit.x + 1.f, positionInUnit.y)) || args.tileMap.isCellWall(sf::Vector2i(potentialPosInUnit.x + 1.f, positionInUnit.y + 0.9f)))
+	//	{
+	//		potentialPosInUnit.x = (int)potentialPosInUnit.x;
+	//		m_Velocity.x = 0.f;
+	//	}
+	//}
+
+	////Up
+	//if (m_Velocity.y < 0)
+	//{
+	//	if (args.tileMap.isCellWall(sf::Vector2i(potentialPosInUnit.x, potentialPosInUnit.y)) || args.tileMap.isCellWall(sf::Vector2i(potentialPosInUnit.x + 0.9f, potentialPosInUnit.y)))
+	//	{
+	//		potentialPosInUnit.y = (int)potentialPosInUnit.y + 1;
+	//		m_Velocity.y = 0.f;
+	//	}
+	//}
+	////Down
+	//else
+	//{
+	//	if (args.tileMap.isCellWall(sf::Vector2i(potentialPosInUnit.x, potentialPosInUnit.y + 1.f)) || args.tileMap.isCellWall(sf::Vector2i(potentialPosInUnit.x + 0.9f, potentialPosInUnit.y + 1.f)))
+	//	{
+	//		potentialPosInUnit.y = (int)potentialPosInUnit.y;
+	//		m_Velocity.y = 0.f;
+	//	}
+	//}
 
 	potentialPos.x = potentialPosInUnit.x * m_TextureRect.width;
 	potentialPos.y = potentialPosInUnit.y * m_TextureRect.width;
 
-	SetPosition(potentialPos);
+	SetPosition(potentialPos - sf::Vector2f(8.f, 8.f));
 
 	SAVE::PLAYER_POS = getPosition();
 	SAVE::PLAYER_HEALTH = m_Health;

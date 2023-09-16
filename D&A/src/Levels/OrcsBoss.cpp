@@ -23,7 +23,7 @@ void OrcsBoss::Init(const ResourceManager& resourceManager, sf::DynamicQuadTree<
 {
 	m_Transition.Init(resourceManager);
 	m_Label.Init(resourceManager, "Orchs-Boss");
-	m_Map.load("../res/map/OrcsBoss.tmx", &resourceManager.GetTilesetTexture());
+	m_Map.load("../res/map/orcsboss.tmx", &resourceManager.GetTilesetTexture());
 
 	m_Player = &player;
 
@@ -40,8 +40,12 @@ void OrcsBoss::Init(const ResourceManager& resourceManager, sf::DynamicQuadTree<
 	m_Ladder0.Init(resourceManager, { 32.f, 64.f });
 	m_Ladder0.SetTeleportLevel(LevelID::OrcsTwo, 1);
 
+	o.Init(resourceManager, { 256.f, 256.f });
+
 	m_Tree->insert(m_Player, m_Player->GetBounds());
 	m_Tree->insert(&m_Ladder0, m_Ladder0.GetBounds());
+
+	m_Tree->insert(&o, o.GetBounds());
 }
 
 void OrcsBoss::Update(StateID& currentState, LevelID& currentLevel, int& entranceIndex, float dt)
@@ -84,10 +88,17 @@ void OrcsBoss::Render(sf::RenderTarget& target)
 	m_Map.drawLayer(target, 0);
 	m_Map.drawLayer(target, 1);
 
-	for (const auto& en : m_Tree->search(m_Camera.GetVisibleArea()))
+	const auto& list = m_Tree->search(m_Camera.GetVisibleArea());
+
+	for (const auto& en : list)
 		en->obj->Render(target);
 
 	m_Map.drawLayer(target, 2);
+
+	for (const auto& en : list)
+		if (en->obj->GetType() == EntityType::Character)
+			((Character*)en->obj)->RenderWeapon(target);
+		
 
 	m_Player->RenderWeapon(target);
 

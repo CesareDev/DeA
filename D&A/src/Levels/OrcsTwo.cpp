@@ -24,7 +24,7 @@ void OrcsTwo::Init(const ResourceManager& resourceManager, sf::DynamicQuadTree<E
 {
 	m_Transition.Init(resourceManager);
 	m_Label.Init(resourceManager, "Orchs-2");
-	m_Map.load("../res/map/orchs2.tmx", &resourceManager.GetTilesetTexture());
+	m_Map.load("../res/map/orcs2.tmx", &resourceManager.GetTilesetTexture());
 
 	m_Player = &player;
 

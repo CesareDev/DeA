@@ -15,6 +15,7 @@ public:
 	void Render(sf::RenderTarget& target) override;
 	void SetPosition(const sf::Vector2f& position);
 	EntityID GetId() const override;
+	void RenderWeapon(sf::RenderTarget& target) override;
 
 	void SetCoin(unsigned int coin);
 	inline unsigned int GetCoin() const { return m_Coin; }
@@ -24,7 +25,6 @@ public:
 	inline unsigned int GetCurrentWeaponIndex() { return m_WeaponIndex; }
 	EntityID GetWeaponID(unsigned int index);
 	bool IsAttacking();
-	void RenderWeapon(sf::RenderTarget& target);
 	bool AddWeapon(Weapon* weapon);
 
 private:

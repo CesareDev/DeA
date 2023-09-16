@@ -23,7 +23,7 @@ void OrcsOne::Init(const ResourceManager& resourceManager, sf::DynamicQuadTree<E
 {
 	m_Transition.Init(resourceManager);
 	m_Label.Init(resourceManager, "Orchs-1");
-	m_Map.load("../res/map/orchs1.tmx", &resourceManager.GetTilesetTexture());
+	m_Map.load("../res/map/orcs1.tmx", &resourceManager.GetTilesetTexture());
 
 	m_Player = &player;
 
