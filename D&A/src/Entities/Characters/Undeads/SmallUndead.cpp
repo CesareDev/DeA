@@ -38,7 +38,7 @@ void SmallUndead::Update(UpdateArgs args, float dt)
 	{
 		//Moving
 		m_IsMoving = false;
-		sf::Rectangle attackArea = { m_Center - sf::Vector2f(16.f, 16.f), {32.f, 32.f} };
+		sf::Rectangle attackArea = { m_Center - sf::Vector2f(32.f, 32.f), {64.f, 64.f} };
 		m_Velocity = { 0.f, 0.f };
 		sf::Vector2f dir = { 0.f, 0.f };
 
@@ -59,8 +59,7 @@ void SmallUndead::Update(UpdateArgs args, float dt)
 							dir = (pcenter - m_Center) / mag;
 							m_Velocity = dir * 48.f;
 						}
-						float radsum = (m_Bounds.size.x / 2.f) + (it->obj->GetBounds().size.x / 2.f);
-						if (mag < radsum)
+						if (m_Bounds.overlaps(it->obj->GetBounds()))
 						{
 							((Character*)it->obj)->TakeDamage(2);
 						}
@@ -140,7 +139,7 @@ void SmallUndead::Update(UpdateArgs args, float dt)
 					};
 					rayToNearest = nearestPoint - potentialPosInUnit;
 					float rayMag = std::sqrtf(rayToNearest.x * rayToNearest.x + rayToNearest.y * rayToNearest.y);
-					float overlap = (m_Bounds.size.x / 32.f) - rayMag;
+					float overlap = 0.375f - rayMag;
 					if (std::isnan(overlap))
 						overlap = 0.f;
 					if (overlap > 0.f)

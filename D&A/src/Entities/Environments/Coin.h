@@ -25,4 +25,5 @@ private:
 
 	sf::IntRect m_TextureRect;
 	float m_ElapsedTime;
+	float m_BounceElapsedTime;
 };

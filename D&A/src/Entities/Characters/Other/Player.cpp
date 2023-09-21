@@ -18,7 +18,6 @@ void Player::Init(const ResourceManager& resourceManager, const sf::Vector2f& po
 	setOrigin(0.f, 8.f);
 	setTextureRect({ 0, 464, 16, 24 });
 	SetPosition(position);
-	m_Bounds.size = {16.f, 16.f};
 
 	m_IsMoving = false;
 	m_ElapsedAnimationTime = 0.f;
@@ -196,7 +195,16 @@ void Player::SetPosition(const sf::Vector2f& position)
 	for (const auto& weapon : m_Weapons)
 		if (weapon)
 			weapon->SetPosition(m_Center);
-	m_Bounds.position = position;
+	if (m_IsMoving)
+	{
+		m_Bounds.position = position + sf::Vector2f(3.f, -2.f);
+		m_Bounds.size = { 10.f, 18.f };
+	}
+	else
+	{
+		m_Bounds.position = position + sf::Vector2f(3.f, 0.f);
+		m_Bounds.size = { 10.f, 16.f };
+	}
 }
 
 void Player::RenderWeapon(sf::RenderTarget& target)
@@ -340,7 +348,7 @@ void Player::Movement(UpdateArgs args, float dt)
 				};
 				rayToNearest = nearestPoint - potentialPosInUnit;
 				float rayMag = std::sqrtf(rayToNearest.x * rayToNearest.x + rayToNearest.y * rayToNearest.y);
-				float overlap = (m_Bounds.size.x / 32.f) - rayMag;
+				float overlap = 0.5f - rayMag;
 				if (std::isnan(overlap))
 					overlap = 0.f;
 				if (overlap > 0.f)

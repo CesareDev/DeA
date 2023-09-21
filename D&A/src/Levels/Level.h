@@ -21,6 +21,8 @@ public:
 	virtual void Update(StateID& currentState, LevelID& currentLevel, int& entranceIndex, float dt) = 0;
 	virtual void Render(sf::RenderTarget& target) = 0;
 
+	void DeleteCoins();
+
 protected:
 
 	Camera m_Camera;

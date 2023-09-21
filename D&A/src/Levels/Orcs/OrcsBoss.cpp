@@ -40,6 +40,12 @@ void OrcsBoss::Init(const ResourceManager& resourceManager, sf::DynamicQuadTree<
 	m_Ladder0.Init(resourceManager, { 32.f, 64.f });
 	m_Ladder0.SetTeleportLevel(LevelID::OrcsTwo, 1);
 
+	if (!SAVE::ORC_BOSS_DEFEATED)
+	{
+		m_OrcBoss.Init(resourceManager, { 256.f, 244.f });
+		m_Tree->insert(&m_OrcBoss, m_OrcBoss.GetBounds());
+	}
+
 	m_Tree->insert(m_Player, m_Player->GetBounds());
 	m_Tree->insert(&m_Ladder0, m_Ladder0.GetBounds());
 }
@@ -94,9 +100,6 @@ void OrcsBoss::Render(sf::RenderTarget& target)
 	for (const auto& en : list)
 		if (en->obj->GetType() == EntityType::Character)
 			((Character*)en->obj)->RenderWeapon(target);
-		
-
-	m_Player->RenderWeapon(target);
 
 	m_Hud.Render(target);
 	m_Label.Render(target);

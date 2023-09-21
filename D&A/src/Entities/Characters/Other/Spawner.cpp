@@ -10,6 +10,11 @@ Spawner::Spawner()
 
 Spawner::~Spawner()
 {
+	while (!m_CharacterQueue.empty())
+	{
+		delete m_CharacterQueue.front();
+		m_CharacterQueue.pop();
+	}
 }
 
 void Spawner::Init(const ResourceManager& resourceManager, float minDistance, float maxDistance)

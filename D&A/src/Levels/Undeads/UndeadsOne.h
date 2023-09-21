@@ -1,6 +1,8 @@
 #pragma once
 #include "Levels/Level.h"
 #include "Entities/Environments/Ladder.h"
+#include "Entities/Characters/Undeads/SmallUndead.h"
+#include "Entities/Characters/Undeads/HalfUndead.h"
 
 class UndeadsOne : public Level
 {
@@ -20,5 +22,11 @@ private:
 
 	Ladder m_Ladder0;
 	Ladder m_Ladder1;
+
+	SmallUndead m_SmallUndead0;
+	SmallUndead m_SmallUndead1;
+	HalfUndead m_HalfUndead0;
+	HalfUndead m_HalfUndead1;
+	HalfUndead m_HalfUndead2;
 };
 

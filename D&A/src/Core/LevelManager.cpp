@@ -9,6 +9,8 @@
 #include "Levels/Undeads/UndeadsBoss.h"
 #include "Levels/Demons/DemonsOne.h"
 #include "Levels/Demons/DemonsTwo.h"
+#include "Levels/Demons/DemonsThree.h"
+#include "Levels/Demons/DemonsBoss.h"
 
 LevelManager::LevelManager()
 {
@@ -88,8 +90,25 @@ void LevelManager::Init(const ResourceManager& resourceManager)
 		m_CurrentLevelId = LevelID::DemonsTwo;
 		break;
 	}
-	default:
+	case LevelID::DemonsThree:
+	{
+		m_CurrentLevel = std::make_unique<DemonsThree>();
+		m_CurrentLevelId = LevelID::DemonsThree;
 		break;
+	}
+	case LevelID::DemonsBoss:
+	{
+		m_CurrentLevel = std::make_unique<DemonsBoss>();
+		m_CurrentLevelId = LevelID::DemonsBoss;
+		break;
+	}
+	default:
+	{
+		m_CurrentLevel = std::make_unique<Entrance>();
+		m_EntranceIndex = 0;
+		m_CurrentLevelId = LevelID::Entrance;
+		break;
+	}
 	}
 
 	//SAVE::PLAYER_POS
@@ -101,7 +120,7 @@ void LevelManager::Init(const ResourceManager& resourceManager)
 	m_CurrentLevel->Init(resourceManager, m_Tree, m_Player, m_EntranceIndex);
 	m_OldLevelId = m_CurrentLevelId;
 	m_ChangingLevel = true;
-	m_Initialized = false; //flag usata per evitare il delay creato dall init del livello che causava un bug nel fade della transazione
+	m_Initialized = false; //flag usata per evitare il delay creato dall'init del livello che causava un bug nel fade della transazione
 }
 
 void LevelManager::Update(StateID& currentState, float dt)
@@ -135,6 +154,8 @@ void LevelManager::ChangeLevel(float dt)
 
 		if (!m_CurrentLevel->OnExit(dt))
 		{
+			m_CurrentLevel->DeleteCoins(); //Because Coin are allocated on the heap
+
 			switch (m_CurrentLevelId)
 			{
 			case LevelID::Entrance:
@@ -180,6 +201,16 @@ void LevelManager::ChangeLevel(float dt)
 			case LevelID::DemonsTwo:
 			{
 				m_CurrentLevel.reset(new DemonsTwo());
+				break;
+			}
+			case LevelID::DemonsThree:
+			{
+				m_CurrentLevel.reset(new DemonsThree());
+				break;
+			}
+			case LevelID::DemonsBoss:
+			{
+				m_CurrentLevel.reset(new DemonsBoss());
 				break;
 			}
 			default:

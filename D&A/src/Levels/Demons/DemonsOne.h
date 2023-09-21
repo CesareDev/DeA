@@ -1,6 +1,9 @@
 #pragma once
 #include "Levels/Level.h"
 #include "Entities/Environments/Ladder.h"
+#include "Entities/Characters/Demons/SmallDemon.h"
+#include "Entities/Characters/Demons/HalfDemon.h"
+#include "Entities/Characters/Demons/Demon.h"
 
 class DemonsOne : public Level
 {
@@ -20,5 +23,11 @@ private:
 
 	Ladder m_Ladder0;
 	Ladder m_Ladder1;
+
+	SmallDemon m_SmallDemons[8];
+	SmallDemon m_HalfDemons[10];
+	Demon m_Demon0;
+	Demon m_Demon1;
+	Demon m_Demon2;
 };
 

@@ -44,9 +44,45 @@ void DemonsTwo::Init(const ResourceManager& resourceManager, sf::DynamicQuadTree
 	m_Ladder1.Init(resourceManager, { 592.f, 48.f });
 	m_Ladder1.SetTeleportLevel(LevelID::DemonsThree, 1);
 
+	m_SmallDemons[0].Init(resourceManager, { 432.f, 576.f });
+	m_SmallDemons[1].Init(resourceManager, { 512.f, 480.f });
+	m_SmallDemons[2].Init(resourceManager, { 256.f, 576.f });
+	m_SmallDemons[3].Init(resourceManager, { 336.f, 336.f });
+	m_SmallDemons[4].Init(resourceManager, { 352.f, 128.f });
+	m_SmallDemons[5].Init(resourceManager, { 80.f, 352.f });
+	m_SmallDemons[6].Init(resourceManager, { 16.f, 128.f });
+	m_SmallDemons[7].Init(resourceManager, { 464.f, 32.f });
+	m_HalfDemons[0].Init(resourceManager, { 384.f, 480.f });
+	m_HalfDemons[1].Init(resourceManager, { 256.f, 448.f });
+	m_HalfDemons[2].Init(resourceManager, { 32.f, 512.f });
+	m_HalfDemons[3].Init(resourceManager, { 32.f, 288.f });
+	m_HalfDemons[4].Init(resourceManager, { 80.f, 192.f });
+	m_HalfDemons[5].Init(resourceManager, { 224.f, 144.f });
+	m_HalfDemons[6].Init(resourceManager, { 464.f, 368.f });
+	m_HalfDemons[7].Init(resourceManager, { 528.f, 384.f });
+	m_HalfDemons[8].Init(resourceManager, { 560.f, 144.f });
+	m_Demons[0].Init(resourceManager, { 144.f, 448.f });
+	m_Demons[1].Init(resourceManager, { 128.f, 576.f });
+	m_Demons[2].Init(resourceManager, { 464.f, 272.f });
+	m_Demons[3].Init(resourceManager, { 560.f, 256.f });
+	m_Demons[4].Init(resourceManager, { 464.f, 176.f });
+	m_Demons[5].Init(resourceManager, { 32.f, 592.f });
+	m_Demons[6].Init(resourceManager, { 128.f, 48.f });
+	m_Demons[7].Init(resourceManager, { 256.f, 48.f });
+	m_Demons[8].Init(resourceManager, { 208.f, 272.f });
+
 	m_Tree->insert(m_Player, m_Player->GetBounds());
 	m_Tree->insert(&m_Ladder0, m_Ladder0.GetBounds());
 	m_Tree->insert(&m_Ladder1, m_Ladder1.GetBounds());
+
+	for (auto& sd : m_SmallDemons)
+		m_Tree->insert(&sd, sd.GetBounds());
+
+	for (auto& hd : m_HalfDemons)
+		m_Tree->insert(&hd, hd.GetBounds());
+
+	for (auto& d : m_Demons)
+		m_Tree->insert(&d, d.GetBounds());
 }
 
 void DemonsTwo::Update(StateID& currentState, LevelID& currentLevel, int& entranceIndex, float dt)
@@ -99,9 +135,6 @@ void DemonsTwo::Render(sf::RenderTarget& target)
 	for (const auto& en : list)
 		if (en->obj->GetType() == EntityType::Character)
 			((Character*)en->obj)->RenderWeapon(target);
-
-
-	m_Player->RenderWeapon(target);
 
 	m_Hud.Render(target);
 	m_Label.Render(target);

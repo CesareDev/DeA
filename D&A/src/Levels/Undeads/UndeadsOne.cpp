@@ -44,9 +44,21 @@ void UndeadsOne::Init(const ResourceManager& resourceManager, sf::DynamicQuadTre
 	m_Ladder1.Init(resourceManager, { 160.f, 400.f });
 	m_Ladder1.SetTeleportLevel(LevelID::UndeadsTwo, 0);
 
+	m_SmallUndead0.Init(resourceManager, { 192.f, 160.f });
+	m_SmallUndead1.Init(resourceManager, { 112.f, 112.f });
+	m_HalfUndead0.Init(resourceManager, { 160.f, 64.f });
+	m_HalfUndead1.Init(resourceManager, { 112.f, 304.f });
+	m_HalfUndead2.Init(resourceManager, { 192.f, 352.f });
+
 	m_Tree->insert(m_Player, m_Player->GetBounds());
 	m_Tree->insert(&m_Ladder0, m_Ladder0.GetBounds());
 	m_Tree->insert(&m_Ladder1, m_Ladder1.GetBounds());
+
+	m_Tree->insert(&m_SmallUndead0, m_SmallUndead0.GetBounds());
+	m_Tree->insert(&m_SmallUndead1, m_SmallUndead1.GetBounds());
+	m_Tree->insert(&m_HalfUndead0, m_HalfUndead0.GetBounds());
+	m_Tree->insert(&m_HalfUndead1, m_HalfUndead1.GetBounds());
+	m_Tree->insert(&m_HalfUndead2, m_HalfUndead2.GetBounds());
 }
 
 void UndeadsOne::Update(StateID& currentState, LevelID& currentLevel, int& entranceIndex, float dt)
@@ -99,9 +111,6 @@ void UndeadsOne::Render(sf::RenderTarget& target)
 	for (const auto& en : list)
 		if (en->obj->GetType() == EntityType::Character)
 			((Character*)en->obj)->RenderWeapon(target);
-
-
-	m_Player->RenderWeapon(target);
 
 	m_Hud.Render(target);
 	m_Label.Render(target);

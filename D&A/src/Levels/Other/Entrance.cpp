@@ -107,15 +107,18 @@ void Entrance::Render(sf::RenderTarget& target)
 	m_Map.drawLayer(target, 0);
 	m_Map.drawLayer(target, 1);
 
-	for (const auto& en : m_Tree->search(m_Camera.GetVisibleArea()))
+	const auto& list = m_Tree->search(m_Camera.GetVisibleArea());
+
+	for (const auto& en : list)
 		en->obj->Render(target);
 
 	m_Map.drawLayer(target, 2);
 
-	m_Player->RenderWeapon(target);
+	for (const auto& en : list)
+		if (en->obj->GetType() == EntityType::Character)
+			((Character*)en->obj)->RenderWeapon(target);
 
 	m_Hud.Render(target);
 	m_Label.Render(target);
-
 	m_Transition.Render(target);
 }

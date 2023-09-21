@@ -41,6 +41,8 @@ void PauseMenu::Render(sf::RenderTarget& target)
 {
 	if (m_Pause)
 	{
+		sf::View backView({ 0.f, 0.f, (float)GLOBAL::WIN_WIDTH, (float)GLOBAL::WIN_HEIGHT });
+		target.setView(backView);
 		target.draw(m_BackGround);
 
 		sf::View prevView = target.getView();

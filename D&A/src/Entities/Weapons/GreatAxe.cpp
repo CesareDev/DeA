@@ -25,9 +25,9 @@ void GreatAxe::Init(const ResourceManager& resourceManager, const sf::Vector2f& 
 void GreatAxe::Update(UpdateArgs args, float dt)
 {
 	Attack(dt);
-	for (const auto& it : args.qTree.search(m_Bounds))
+	if (m_CanHit)
 	{
-		if (m_CanHit)
+		for (const auto& it : args.qTree.search(m_Bounds))
 		{
 			if (it->obj->GetId() != EntityID::Player && it->obj->GetType() == EntityType::Character)
 			{

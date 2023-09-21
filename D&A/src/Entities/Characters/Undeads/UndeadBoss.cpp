@@ -64,8 +64,7 @@ void UndeadBoss::Update(UpdateArgs args, float dt)
 						dir = (pcenter - m_Center) / mag;
 						m_Velocity = dir * 16.f;
 					}
-					float radsum = (m_Bounds.size.x / 2.f) + (it->obj->GetBounds().size.x / 2.f);
-					if (mag < radsum)
+					if (m_Bounds.overlaps(it->obj->GetBounds()))
 					{
 						((Character*)it->obj)->TakeDamage(10);
 					}
@@ -177,7 +176,7 @@ void UndeadBoss::Update(UpdateArgs args, float dt)
 					};
 					rayToNearest = nearestPoint - potentialPosInUnit;
 					float rayMag = std::sqrtf(rayToNearest.x * rayToNearest.x + rayToNearest.y * rayToNearest.y);
-					float overlap = (m_Bounds.size.x / 32.f) - rayMag;
+					float overlap = 1.f - rayMag;
 					if (std::isnan(overlap))
 						overlap = 0.f;
 					if (overlap > 0.f)
@@ -248,6 +247,8 @@ void UndeadBoss::Update(UpdateArgs args, float dt)
 	{
 		DeathAnimation(dt);
 		SpawnCoins(args);
+		if (m_IsDead)
+			SAVE::UNDEAD_BOSS_DEFEATED = true;
 	}
 }
 

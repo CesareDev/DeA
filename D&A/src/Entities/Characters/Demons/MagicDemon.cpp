@@ -42,7 +42,7 @@ void MagicDemon::Update(UpdateArgs args, float dt)
 	{
 		//Moving
 		m_IsMoving = false;
-		sf::Rectangle attackArea = { m_Center - sf::Vector2f(48.f, 48.f), {96.f, 96.f} };
+		sf::Rectangle attackArea = { m_Center - sf::Vector2f(64.f, 64.f), {128.f, 128.f} };
 		m_Velocity = { 0.f, 0.f };
 		sf::Vector2f dir = { 0.f, 0.f };
 
@@ -68,8 +68,7 @@ void MagicDemon::Update(UpdateArgs args, float dt)
 							((Character*)it->obj)->TakeDamage(1);
 						}
 					}
-					float radsum = (m_Bounds.size.x / 2.f) + (it->obj->GetBounds().size.x / 2.f);
-					if (mag < radsum)
+					if (m_Bounds.overlaps(it->obj->GetBounds()))
 					{
 						((Character*)it->obj)->TakeDamage(8);
 						if (!m_CanMagicAttack)
@@ -160,7 +159,7 @@ void MagicDemon::Update(UpdateArgs args, float dt)
 					};
 					rayToNearest = nearestPoint - potentialPosInUnit;
 					float rayMag = std::sqrtf(rayToNearest.x * rayToNearest.x + rayToNearest.y * rayToNearest.y);
-					float overlap = (m_Bounds.size.x / 32.f) - rayMag;
+					float overlap = 0.5f - rayMag;
 					if (std::isnan(overlap))
 						overlap = 0.f;
 					if (overlap > 0.f)

@@ -1,16 +1,16 @@
 #pragma once
 #include "Levels/Level.h"
 #include "Entities/Environments/Ladder.h"
-#include "Entities/Characters/Demons/SmallDemon.h"
 #include "Entities/Characters/Demons/HalfDemon.h"
 #include "Entities/Characters/Demons/Demon.h"
+#include "Entities/Characters/Demons/MagicDemon.h"
 
-class DemonsTwo : public Level
+class DemonsThree : public Level
 {
 public:
 
-	DemonsTwo();
-	~DemonsTwo();
+	DemonsThree();
+	~DemonsThree();
 
 	// Inherited via Level
 	bool OnEnter(float dt) override;
@@ -23,9 +23,10 @@ private:
 
 	Ladder m_Ladder0;
 	Ladder m_Ladder1;
+	Ladder m_Ladder2;
 
-	SmallDemon m_SmallDemons[8];
-	HalfDemon m_HalfDemons[9];
-	Demon m_Demons[9];
+	HalfDemon m_HalfDemons[4];
+	Demon m_Demons[12];
+	MagicDemon m_MagicDemons[12];
 };
 

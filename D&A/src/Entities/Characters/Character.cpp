@@ -64,7 +64,7 @@ void Character::SpawnCoins(UpdateArgs args)
 			float angle = static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / 360.f));
 			sf::Vector2f dir = { cosf(angle * acos(-1.f) / 180.f), sinf(angle * acos(-1.f) / 180.f) };
 			dir *= 4.f;
-			c->SetSpawnY(m_Center.y);
+			c->SetSpawnY(m_Center.y + dir.y);
 			c->SetPosition(m_Center + dir);
 			args.qTree.insert(c, c->GetBounds());
 		}

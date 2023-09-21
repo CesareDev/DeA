@@ -120,6 +120,8 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Levels\Demons\DemonsBoss.cpp" />
+    <ClCompile Include="src\Levels\Demons\DemonsThree.cpp" />
     <ClCompile Include="src\Levels\Demons\DemonsTwo.cpp" />
     <ClCompile Include="src\Levels\Demons\DemonsOne.cpp" />
     <ClCompile Include="src\Core\Random.cpp" />
@@ -218,6 +220,8 @@
     <ClCompile Include="src\States\WinState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Levels\Demons\DemonsBoss.h" />
+    <ClInclude Include="src\Levels\Demons\DemonsThree.h" />
     <ClInclude Include="src\Levels\Demons\DemonsTwo.h" />
     <ClInclude Include="src\Levels\Demons\DemonsOne.h" />
     <ClInclude Include="src\Core\Random.h" />

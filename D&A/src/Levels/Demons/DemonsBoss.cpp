@@ -1,29 +1,29 @@
 #include "pch.h"
-#include "OrcsOne.h"
+#include "DemonsBoss.h"
 
-OrcsOne::OrcsOne()
+DemonsBoss::DemonsBoss()
 {
 }
 
-OrcsOne::~OrcsOne()
+DemonsBoss::~DemonsBoss()
 {
 }
 
-bool OrcsOne::OnEnter(float dt)
+bool DemonsBoss::OnEnter(float dt)
 {
-	return m_Transition.FadeIn(dt, 0.5f);
+    return m_Transition.FadeIn(dt, 0.5f);;
 }
 
-bool OrcsOne::OnExit(float dt)
+bool DemonsBoss::OnExit(float dt)
 {
-	return m_Transition.FadeOut(dt, 0.5f);
+    return m_Transition.FadeOut(dt, 0.5f);
 }
 
-void OrcsOne::Init(const ResourceManager& resourceManager, sf::DynamicQuadTree<Entity>& tree, Player& player, int entranceIndex)
+void DemonsBoss::Init(const ResourceManager& resourceManager, sf::DynamicQuadTree<Entity>& tree, Player& player, int entranceIndex)
 {
 	m_Transition.Init(resourceManager);
-	m_Label.Init(resourceManager, "Orcs-1");
-	m_Map.load("../res/map/orcs1.tmx", &resourceManager.GetTilesetTexture());
+	m_Label.Init(resourceManager, "Demons-Boss");
+	m_Map.load("../res/map/demonsboss.tmx", &resourceManager.GetTilesetTexture());
 
 	m_Player = &player;
 
@@ -31,37 +31,26 @@ void OrcsOne::Init(const ResourceManager& resourceManager, sf::DynamicQuadTree<E
 	m_Tree->resize({ 0.f, 0.f, (float)m_Map.getMapSize().x, (float)m_Map.getMapSize().y });
 
 	if (entranceIndex == 0)
-		m_Player->SetPosition({ 192.f, 224.f });
-	else if (entranceIndex == 1)
-		m_Player->SetPosition({ 96.f, 400.f });
+		m_Player->SetPosition({ 224.f, 416.f });
 
 	m_AStar.init(m_Map);
 	m_Hud.Init(resourceManager, player, m_Map);
 	m_Camera.Init(m_Player->GetCenter(), { 0.f, 0.f, (float)m_Map.getMapSize().x, (float)m_Map.getMapSize().y }, { 0.f, 0.f, GLOBAL::WIN_WIDTH / 5.f, GLOBAL::WIN_HEIGHT / 5.f });
 
-	m_Ladder0.Init(resourceManager, { 208.f, 224.f });
-	m_Ladder0.SetTeleportLevel(LevelID::Entrance, 1);
-	m_Ladder1.Init(resourceManager, { 80.f, 400.f });
-	m_Ladder1.SetTeleportLevel(LevelID::OrcsTwo, 0);
+	m_Ladder0.Init(resourceManager, { 208.f, 416.f });
+	m_Ladder0.SetTeleportLevel(LevelID::DemonsThree, 2);
 
-	m_SmallOrc0.Init(resourceManager, { 32.f, 112.f });
-	m_SmallOrc1.Init(resourceManager, { 128.f, 160.f });
-	m_SmallOrc2.Init(resourceManager, { 128.f, 336.f });
-	m_Orc0.Init(resourceManager, { 32.f, 288.f });
-	m_Orc1.Init(resourceManager, { 80.f, 48.f });
+	if (!SAVE::DEMON_BOSS_DEFEATED)
+	{
+		m_DemonBoss.Init(resourceManager, { 224.f, 224.f });
+		m_Tree->insert(&m_DemonBoss, m_DemonBoss.GetBounds());
+	}
 
 	m_Tree->insert(m_Player, m_Player->GetBounds());
 	m_Tree->insert(&m_Ladder0, m_Ladder0.GetBounds());
-	m_Tree->insert(&m_Ladder1, m_Ladder1.GetBounds());
-
-	m_Tree->insert(&m_SmallOrc0, m_SmallOrc0.GetBounds());
-	m_Tree->insert(&m_SmallOrc1, m_SmallOrc1.GetBounds());
-	m_Tree->insert(&m_SmallOrc2, m_SmallOrc2.GetBounds());
-	m_Tree->insert(&m_Orc0, m_Orc0.GetBounds());
-	m_Tree->insert(&m_Orc1, m_Orc1.GetBounds());
 }
 
-void OrcsOne::Update(StateID& currentState, LevelID& currentLevel, int& entranceIndex, float dt)
+void DemonsBoss::Update(StateID& currentState, LevelID& currentLevel, int& entranceIndex, float dt)
 {
 	for (auto it = m_Tree->begin(); it != m_Tree->end();)
 	{
@@ -94,7 +83,7 @@ void OrcsOne::Update(StateID& currentState, LevelID& currentLevel, int& entrance
 	m_Label.Update(dt);
 }
 
-void OrcsOne::Render(sf::RenderTarget& target)
+void DemonsBoss::Render(sf::RenderTarget& target)
 {
 	target.setView(m_Camera);
 

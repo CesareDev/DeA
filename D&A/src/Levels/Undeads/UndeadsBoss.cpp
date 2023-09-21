@@ -40,6 +40,12 @@ void UndeadsBoss::Init(const ResourceManager& resourceManager, sf::DynamicQuadTr
 	m_Ladder0.Init(resourceManager, { 432.f, 64.f });
 	m_Ladder0.SetTeleportLevel(LevelID::UndeadsTwo, 1);
 
+	if (!SAVE::UNDEAD_BOSS_DEFEATED)
+	{
+		m_UndeadBoss.Init(resourceManager, { 192.f, 224.f });
+		m_Tree->insert(&m_UndeadBoss, m_UndeadBoss.GetBounds());
+	}
+
 	m_Tree->insert(m_Player, m_Player->GetBounds());
 	m_Tree->insert(&m_Ladder0, m_Ladder0.GetBounds());
 }
@@ -94,9 +100,6 @@ void UndeadsBoss::Render(sf::RenderTarget& target)
 	for (const auto& en : list)
 		if (en->obj->GetType() == EntityType::Character)
 			((Character*)en->obj)->RenderWeapon(target);
-
-
-	m_Player->RenderWeapon(target);
 
 	m_Hud.Render(target);
 	m_Label.Render(target);

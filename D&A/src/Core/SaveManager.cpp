@@ -229,6 +229,16 @@ std::string SaveManager::GetInfo(unsigned int saveIndex)
 			s += "Demons-2\n";
 			break;
 		}
+		case LevelID::DemonsThree:
+		{
+			s += "Demons-3\n";
+			break;
+		}
+		case LevelID::DemonsBoss:
+		{
+			s += "Demons-Boss\n";
+			break;
+		}
 		default:
 			break;
 		}

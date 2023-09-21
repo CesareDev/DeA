@@ -46,9 +46,27 @@ void OrcsTwo::Init(const ResourceManager& resourceManager, sf::DynamicQuadTree<E
 	m_Ladder1.Init(resourceManager, { 32.f, 256.f });
 	m_Ladder1.SetTeleportLevel(LevelID::OrcsBoss, 0);
 
+	m_SmallOrc0.Init(resourceManager, { 32.f, 192.f });
+	m_SmallOrc1.Init(resourceManager, { 192.f, 192.f });
+	m_SmallOrc2.Init(resourceManager, { 416.f, 256.f });
+	m_Orc0.Init(resourceManager, { 32.f, 144.f });
+	m_MaskedOrc0.Init(resourceManager, { 32.f, 48.f });
+	m_MaskedOrc1.Init(resourceManager, { 192.f, 64.f });
+	m_TribalOrc0.Init(resourceManager, { 160.f, 256.f });
+	m_TribalOrc1.Init(resourceManager, { 432.f, 160 });
+
 	m_Tree->insert(m_Player, m_Player->GetBounds());
 	m_Tree->insert(&m_Ladder0, m_Ladder0.GetBounds());
 	m_Tree->insert(&m_Ladder1, m_Ladder1.GetBounds());
+
+	m_Tree->insert(&m_SmallOrc0, m_SmallOrc0.GetBounds());
+	m_Tree->insert(&m_SmallOrc1, m_SmallOrc1.GetBounds());
+	m_Tree->insert(&m_SmallOrc2, m_SmallOrc2.GetBounds());
+	m_Tree->insert(&m_Orc0, m_Orc0.GetBounds());
+	m_Tree->insert(&m_MaskedOrc0, m_MaskedOrc0.GetBounds());
+	m_Tree->insert(&m_MaskedOrc1, m_MaskedOrc1.GetBounds());
+	m_Tree->insert(&m_TribalOrc0, m_TribalOrc0.GetBounds());
+	m_Tree->insert(&m_TribalOrc1, m_TribalOrc1.GetBounds());
 }
 
 void OrcsTwo::Update(StateID& currentState, LevelID& currentLevel, int& entranceIndex, float dt)
@@ -101,9 +119,6 @@ void OrcsTwo::Render(sf::RenderTarget& target)
 	for (const auto& en : list)
 		if (en->obj->GetType() == EntityType::Character)
 			((Character*)en->obj)->RenderWeapon(target);
-
-
-	m_Player->RenderWeapon(target);
 
 	m_Hud.Render(target);
 	m_Label.Render(target);
