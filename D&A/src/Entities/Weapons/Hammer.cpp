@@ -33,7 +33,7 @@ void Hammer::Update(UpdateArgs args, float dt)
 			{
 				Character* en = (Character*)it->obj;
 				if (en->GetBounds().contains(m_HitPoints[0]))
-					en->TakeDamage(2);
+					en->TakeDamage(8);
 			}
 		}
 	}

@@ -34,7 +34,7 @@ void Sword::Update(UpdateArgs args, float dt)
 				Character* en = (Character*)it->obj;
 				for (const auto& p : m_HitPoints)
 					if (en->GetBounds().contains(p))
-						en->TakeDamage(3);
+						en->TakeDamage(4);
 			}
 		}
 	}

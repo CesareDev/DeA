@@ -20,8 +20,16 @@ void OrcBoss::Init(const ResourceManager& resourceManager, const sf::Vector2f& p
     m_ElapsedAnimationTime = 0.f;
     m_TextureRect = getTextureRect();
 
-    m_Health = 10;
+    m_Health = 80;
     InitDamageText(resourceManager);
+
+	int coinsCount = 10;
+	for (int i = 0; i < coinsCount; ++i)
+	{
+		Coin* c = new Coin();
+		c->Init(resourceManager, position);
+		m_Coins.push_back(c);
+	}
 
 	m_Spawner.Init(resourceManager, 24.f, 64.f);
 	m_Spawner.AddEntity(EntityID::SmallOrc);
@@ -36,7 +44,8 @@ void OrcBoss::Update(UpdateArgs args, float dt)
 	{
 		//Moving
 		m_IsMoving = false;
-		sf::Rectangle attackArea = { m_Center - sf::Vector2f(64.f, 64.f), {128.f, 128.f} };
+		sf::Vector2f offsetRect = sf::Vector2f(args.tileMap.getMapSize());
+		sf::Rectangle attackArea = { m_Center - offsetRect / 2.f, offsetRect };
 		m_Velocity = { 0.f, 0.f };
 		sf::Vector2f dir = { 0.f, 0.f };
 
@@ -58,7 +67,7 @@ void OrcBoss::Update(UpdateArgs args, float dt)
 					float radsum = (m_Bounds.size.x / 2.f) + (it->obj->GetBounds().size.x / 2.f);
 					if (mag < radsum)
 					{
-						((Character*)it->obj)->TakeDamage(5);
+						((Character*)it->obj)->TakeDamage(10);
 					}
 					continue;
 				}
@@ -83,19 +92,37 @@ void OrcBoss::Update(UpdateArgs args, float dt)
 
 		//Spawner
 		m_Spawner.Update();
-		if (m_Spawner.GetEntitiesCount() < 5)
+		if (m_Spawner.GetEntitiesCount() == 0)
 		{
-			m_SpawnTime += dt;
-			if (m_SpawnTime > 2.f)
+			if (!m_CanSpawn)
 			{
-				Character* c = m_Spawner.Spawn(args.tileMap, m_Center);
-				if (c)
-					args.qTree.insert(c, c->GetBounds());
-				m_SpawnTime = 0.f;
+				m_SpawnTime += dt;
+				if (m_SpawnTime > 5.f)
+				{
+					m_CanSpawn = true;
+					m_SpawnTime = 0.f;
+				}
 			}
 		}
-		else
-			m_SpawnTime = 0.f;
+		if (m_CanSpawn)
+		{
+			if (m_Spawner.GetEntitiesCount() < 5)
+			{
+				m_SpawnTime += dt;
+				if (m_SpawnTime > 2.f)
+				{
+					Character* c = m_Spawner.Spawn(args.tileMap, m_Center);
+					if (c)
+						args.qTree.insert(c, c->GetBounds());
+					m_SpawnTime = 0.f;
+				}
+			}
+			else
+			{
+				m_SpawnTime = 0.f;
+				m_CanSpawn = false;
+			}
+		}
 
 		if (m_FindPath)
 		{
@@ -221,6 +248,7 @@ void OrcBoss::Update(UpdateArgs args, float dt)
 	else
 	{
 		DeathAnimation(dt);
+		SpawnCoins(args);
 	}
 }
 

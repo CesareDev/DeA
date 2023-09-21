@@ -14,8 +14,8 @@ void StartMenuState::Init(const ResourceManager& resourceManager)
 	m_StartMenu.Init(resourceManager);
 	m_Transition.Init(resourceManager);
 
-	if (MUSIC::MAIN_MENU_MUSIC->getStatus() != sf::SoundSource::Playing)
-		MUSIC::MAIN_MENU_MUSIC->play();
+	if (MUSIC::MAIN_MUSIC->getStatus() != sf::SoundSource::Playing)
+		MUSIC::MAIN_MUSIC->play();
 }
 
 bool StartMenuState::OnEnter(float dt)

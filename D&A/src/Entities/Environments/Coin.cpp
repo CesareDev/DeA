@@ -15,7 +15,6 @@ void Coin::Init(const ResourceManager& resourceManager, const sf::Vector2f& posi
 	setTextureRect({ 445, 115, 8, 8 });
 	m_TextureRect = getTextureRect();
 
-	m_SpawnY = position.y;
 	m_Bounds.size = { 8.f, 8.f };
 
 	SetPosition(position);
@@ -70,4 +69,9 @@ EntityID Coin::GetId() const
 	if (m_CanBePicked)
 		return EntityID::Coin;
 	return EntityID::Null;
+}
+
+void Coin::SetSpawnY(float y)
+{
+	m_SpawnY = y;
 }

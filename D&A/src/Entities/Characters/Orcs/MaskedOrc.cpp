@@ -20,8 +20,16 @@ void MaskedOrc::Init(const ResourceManager& resourceManager, const sf::Vector2f&
 	m_ElapsedAnimationTime = 0.f;
 	m_TextureRect = getTextureRect();
 
-	m_Health = 10;
+	m_Health = 20;
 	InitDamageText(resourceManager);
+
+	int coinsCount = (rand() % 3) + 1;
+	for (int i = 0; i < coinsCount; ++i)
+	{
+		Coin* c = new Coin();
+		c->Init(resourceManager, position);
+		m_Coins.push_back(c);
+	}
 }
 
 void MaskedOrc::Update(UpdateArgs args, float dt)
@@ -30,7 +38,7 @@ void MaskedOrc::Update(UpdateArgs args, float dt)
 	{
 		//Moving
 		m_IsMoving = false;
-		sf::Rectangle attackArea = { m_Center - sf::Vector2f(64.f, 64.f), {128.f, 128.f} };
+		sf::Rectangle attackArea = { m_Center - sf::Vector2f(32.f, 32.f), {64.f, 64.f} };
 		m_Velocity = { 0.f, 0.f };
 		sf::Vector2f dir = { 0.f, 0.f };
 
@@ -49,10 +57,10 @@ void MaskedOrc::Update(UpdateArgs args, float dt)
 						dir = (pcenter - m_Center) / mag;
 						m_Velocity = dir * 16.f;
 					}
-					float radsum = 8.f + (it->obj->GetBounds().size.x / 2.f);
+					float radsum = (m_Bounds.size.x / 2.f) + (it->obj->GetBounds().size.x / 2.f);
 					if (mag < radsum)
 					{
-						((Character*)it->obj)->TakeDamage(5);
+						((Character*)it->obj)->TakeDamage(8);
 					}
 					continue;
 				}
@@ -200,6 +208,7 @@ void MaskedOrc::Update(UpdateArgs args, float dt)
 	else
 	{
 		DeathAnimation(dt);
+		SpawnCoins(args);
 	}
 }
 

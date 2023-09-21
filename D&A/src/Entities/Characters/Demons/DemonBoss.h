@@ -1,5 +1,6 @@
 #pragma once
 #include "Entities/Characters/Character.h"
+#include "Entities/Characters/Other/Spawner.h"
 
 class DemonBoss : public Character
 {
@@ -14,5 +15,11 @@ public:
 	void Render(sf::RenderTarget& target) override;
 	void SetPosition(const sf::Vector2f& position) override;
 	EntityID GetId() const override;
+
+private:
+
+	Spawner m_Spawner;
+	float m_SpawnTime;
+	bool m_CanSpawn = false;
 };
 

@@ -20,5 +20,6 @@ private:
 
 	Spawner m_Spawner;
 	float m_SpawnTime;
+	bool m_CanSpawn = false;
 };
 

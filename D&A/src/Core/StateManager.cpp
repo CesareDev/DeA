@@ -10,6 +10,7 @@
 #include "States/ExitState.h"
 #include "States/OptionsMenuState.h"
 #include "States/SelectModeState.h"
+#include "States/WinState.h"
 
 void StateManager::Init(const ResourceManager& resourceManager)
 {
@@ -85,6 +86,9 @@ void StateManager::ChangeState(float dt)
 				break;
 			case StateID::OptionsMenu:
 				m_CurrentState.reset(new OptionsMenuState());
+				break;
+			case StateID::WinState:
+				m_CurrentState.reset(new WinState());
 				break;
 			default:
 				break;

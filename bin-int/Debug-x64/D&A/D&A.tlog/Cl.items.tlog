@@ -1,3 +1,6 @@
+C:\Dev\VisualStudioProjects\D&A\D&A\src\Levels\Demons\DemonsTwo.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\DemonsTwo.obj
+C:\Dev\VisualStudioProjects\D&A\D&A\src\Levels\Demons\DemonsOne.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\DemonsOne.obj
+C:\Dev\VisualStudioProjects\D&A\D&A\src\Core\Random.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\Random.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Characters\Other\Spawner.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\Spawner.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Weapons\OrcAxe.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\OrcAxe.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Characters\Demons\MagicDemon.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\MagicDemon.obj
@@ -8,19 +11,17 @@ C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Characters\Orcs\OrcBoss.cpp;C:\
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Characters\Orcs\MaskedOrc.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\MaskedOrc.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Characters\Orcs\Orc.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\Orc.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Characters\Orcs\SmallOrc.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\SmallOrc.obj
-C:\Dev\VisualStudioProjects\D&A\D&A\src\Levels\OrcsBoss.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\OrcsBoss.obj
+C:\Dev\VisualStudioProjects\D&A\D&A\src\Levels\Orcs\OrcsBoss.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\OrcsBoss.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Environments\Message.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\Message.obj
-C:\Dev\VisualStudioProjects\D&A\D&A\src\Levels\OrcsTwo.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\OrcsTwo.obj
-C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Environments\Chest.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\Chest.obj
+C:\Dev\VisualStudioProjects\D&A\D&A\src\Levels\Orcs\OrcsTwo.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\OrcsTwo.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Weapons\ColossalGoldenSword.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\ColossalGoldenSword.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Weapons\GoldenSword.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\GoldenSword.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Hud\Shop.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\Shop.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\States\GameOverState.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\GameOverState.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\UI\Components\DeleteForm.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\DeleteForm.obj
-C:\Dev\VisualStudioProjects\D&A\D&A\src\Levels\OrcsOne.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\OrcsOne.obj
+C:\Dev\VisualStudioProjects\D&A\D&A\src\Levels\Orcs\OrcsOne.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\OrcsOne.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Core\SaveManager.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\SaveManager.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Environments\Coin.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\Coin.obj
-C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Environments\Door.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\Door.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Hud\MiniMap.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\MiniMap.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Characters\Demons\SmallDemon.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\SmallDemon.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Characters\Demons\HalfDemon.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\HalfDemon.obj
@@ -50,7 +51,7 @@ C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Weapons\Mace.cpp;C:\Dev\VisualS
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Weapons\Sword.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\Sword.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\UI\Components\LevelLabel.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\LevelLabel.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Environments\Ladder.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\Ladder.obj
-C:\Dev\VisualStudioProjects\D&A\D&A\src\Levels\Entrance.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\Entrance.obj
+C:\Dev\VisualStudioProjects\D&A\D&A\src\Levels\Other\Entrance.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\Entrance.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Core\LevelManager.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\LevelManager.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\States\ArenaState.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\ArenaState.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Levels\Level.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\Level.obj
@@ -86,3 +87,7 @@ C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Weapons\Weapon.cpp;C:\Dev\Visua
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Characters\Orcs\TribalOrc.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\TribalOrc.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Characters\Undeads\Undead.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\Undead.obj
 C:\Dev\VisualStudioProjects\D&A\D&A\src\Entities\Characters\Undeads\UndeadBoss.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\UndeadBoss.obj
+C:\Dev\VisualStudioProjects\D&A\D&A\src\Levels\Undeads\UndeadsOne.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\UndeadsOne.obj
+C:\Dev\VisualStudioProjects\D&A\D&A\src\Levels\Undeads\UndeadsTwo.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\UndeadsTwo.obj
+C:\Dev\VisualStudioProjects\D&A\D&A\src\Levels\Undeads\UndeadsBoss.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\UndeadsBoss.obj
+C:\Dev\VisualStudioProjects\D&A\D&A\src\States\WinState.cpp;C:\Dev\VisualStudioProjects\D&A\bin-int\Debug-x64\D&A\WinState.obj

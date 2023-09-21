@@ -30,6 +30,10 @@ void ResourceManager::Init()
     m_AttackSound.setBuffer(m_AttackSoundBuffer);
     m_RegenSoundBuffer.loadFromFile("../res/sound-music/regen.wav");
     m_RegenSound.setBuffer(m_RegenSoundBuffer);
+    m_CoinSoundBuffer.loadFromFile("../res/sound-music/coin.wav");
+    m_CoinSound.setBuffer(m_CoinSoundBuffer);
+    m_WinSoundBuffer.loadFromFile("../res/sound-music/xDeviruchi - Take some rest and eat some food!.wav");
+    m_WinSound.setBuffer(m_WinSoundBuffer);
 
     m_MainMenuMusic.openFromFile("../res/sound-music/xDeviruchi - Mysterious Dungeon.wav");
     m_MainMenuMusic.setLoop(true);
@@ -42,15 +46,19 @@ void ResourceManager::Init()
     m_PlayerDamageSound.setVolume(GLOBAL::SOUND_VOLUME);
     m_AttackSound.setVolume(GLOBAL::SOUND_VOLUME);
     m_RegenSound.setVolume(GLOBAL::SOUND_VOLUME);
+    m_CoinSound.setVolume(GLOBAL::SOUND_VOLUME);
+    m_WinSound.setVolume(GLOBAL::MUSIC_VOLUME);
 
     MUSIC::GAME_TITLE_SOUND = &m_GameTitleSound;
     MUSIC::GAME_OVER_SOUND = &m_GameOverSound;
-    MUSIC::MAIN_MENU_MUSIC = &m_MainMenuMusic;
+    MUSIC::MAIN_MUSIC = &m_MainMenuMusic;
     MUSIC::CLICK_SOUND = &m_ClickSound;
     MUSIC::DAMAGE_SOUND = &m_DamageSound;
     MUSIC::PLAYER_DAMAGE_SOUND = &m_PlayerDamageSound;
     MUSIC::ATTACK_SOUND = &m_AttackSound;
     MUSIC::REGEN_SOUND = &m_RegenSound;
+    MUSIC::COIN_SOUND = &m_CoinSound;
+    MUSIC::WIN_SOUND = &m_WinSound;
 }
 
 const sf::Texture& ResourceManager::GetTilesetTexture() const

@@ -108,7 +108,7 @@
     <ClCompile Include="src\Core\LevelManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Levels\Entrance.cpp">
+    <ClCompile Include="src\Levels\Other\Entrance.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Entities\Environments\Ladder.cpp">
@@ -201,16 +201,13 @@
     <ClCompile Include="src\Hud\MiniMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Entities\Environments\Door.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Entities\Environments\Coin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Core\SaveManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Levels\OrcsOne.cpp">
+    <ClCompile Include="src\Levels\Orcs\OrcsOne.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\UI\Components\DeleteForm.cpp">
@@ -228,16 +225,13 @@
     <ClCompile Include="src\Entities\Weapons\ColossalGoldenSword.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Entities\Environments\Chest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Levels\OrcsTwo.cpp">
+    <ClCompile Include="src\Levels\Orcs\OrcsTwo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Entities\Environments\Message.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Levels\OrcsBoss.cpp">
+    <ClCompile Include="src\Levels\Orcs\OrcsBoss.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Entities\Characters\Orcs\SmallOrc.cpp">
@@ -277,6 +271,27 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Entities\Characters\Other\Spawner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Random.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Levels\Undeads\UndeadsOne.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Levels\Undeads\UndeadsTwo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Levels\Undeads\UndeadsBoss.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\States\WinState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Levels\Demons\DemonsOne.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Levels\Demons\DemonsTwo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -380,7 +395,7 @@
     <ClInclude Include="src\Core\LevelManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Levels\Entrance.h">
+    <ClInclude Include="src\Levels\Other\Entrance.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Core\GlobalVariables.h">
@@ -476,9 +491,6 @@
     <ClInclude Include="src\Hud\MiniMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Entities\Environments\Door.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Entities\Environments\Coin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -488,7 +500,7 @@
     <ClInclude Include="src\Core\SaveVariables.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Levels\OrcsOne.h">
+    <ClInclude Include="src\Levels\Orcs\OrcsOne.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\UI\Components\DeleteForm.h">
@@ -512,16 +524,13 @@
     <ClInclude Include="src\Entities\Weapons\WeaponInclude.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Entities\Environments\Chest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Levels\OrcsTwo.h">
+    <ClInclude Include="src\Levels\Orcs\OrcsTwo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Entities\Environments\Message.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Levels\OrcsBoss.h">
+    <ClInclude Include="src\Levels\Orcs\OrcsBoss.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Entities\Characters\Orcs\SmallOrc.h">
@@ -564,6 +573,27 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Entities\EntityInclude.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Random.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Levels\Undeads\UndeadsOne.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Levels\Undeads\UndeadsTwo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Levels\Undeads\UndeadsBoss.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\States\WinState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Levels\Demons\DemonsOne.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Levels\Demons\DemonsTwo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

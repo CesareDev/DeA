@@ -15,6 +15,8 @@ public:
 	void SetPosition(const sf::Vector2f& position) override;
 	EntityID GetId() const override;
 
+	void SetSpawnY(float y);
+
 private:
 
 	float m_SpawnY;

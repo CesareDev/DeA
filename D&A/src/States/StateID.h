@@ -12,5 +12,6 @@ enum class StateID
 	GameState,
 	ArenaState,
 	GameOverState,
+	WinState,
 	ExitState
 };

@@ -1,13 +1,13 @@
 #pragma once
-#include "Level.h"
+#include "Levels/Level.h"
 #include "Entities/Environments/Ladder.h"
 
-class OrcsOne : public Level
+class Entrance : public Level
 {
 public:
 
-	OrcsOne();
-	~OrcsOne();
+	Entrance();
+	~Entrance();
 
 	// Inherited via Level
 	bool OnEnter(float dt) override;
@@ -18,7 +18,8 @@ public:
 
 private:
 
-	Ladder m_Ladder0;
 	Ladder m_Ladder1;
+	Ladder m_Ladder2;
+	Ladder m_Ladder3;
+	Ladder m_Ladder4;
 };
-

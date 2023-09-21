@@ -42,6 +42,11 @@ private:
 	sf::SoundBuffer m_RegenSoundBuffer;
 	sf::Sound m_RegenSound;
 
+	sf::SoundBuffer m_CoinSoundBuffer;
+	sf::Sound m_CoinSound;
+
+	sf::SoundBuffer m_WinSoundBuffer;
+	sf::Sound m_WinSound;
 
 	sf::Music m_MainMenuMusic;
 };

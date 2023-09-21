@@ -1,7 +1,10 @@
 #pragma once
+#include "Random.h"
 
 namespace GLOBAL
 {
+	inline Random RANDOM;
+
 	inline unsigned int WIN_WIDTH = 1280;
 	inline unsigned int WIN_HEIGHT = 720;
 	inline unsigned int SOUND_VOLUME = 50;

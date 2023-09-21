@@ -25,8 +25,8 @@ void GameOverState::Init(const ResourceManager& resourceManager)
 
 	m_GameOverText.setPosition({ (float)x, (float)y });
 
-	if (MUSIC::MAIN_MENU_MUSIC->getStatus() == sf::SoundSource::Playing)
-		MUSIC::MAIN_MENU_MUSIC->stop();
+	if (MUSIC::MAIN_MUSIC->getStatus() == sf::SoundSource::Playing)
+		MUSIC::MAIN_MUSIC->stop();
 	MUSIC::GAME_OVER_SOUND->play();
 }
 

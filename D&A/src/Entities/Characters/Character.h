@@ -1,5 +1,6 @@
 #pragma once
 #include "Entities/Entity.h"
+#include "Entities/Environments/Coin.h"
 
 class Character : public Entity
 {
@@ -28,6 +29,7 @@ protected:
 	void DeathAnimation(float dt);
 	void RenderDamage(sf::RenderTarget& target);
 	void InitDamageText(const ResourceManager& resourceManager);
+	void SpawnCoins(UpdateArgs args);
 
 protected:
 
@@ -48,5 +50,7 @@ protected:
 	bool m_FindPath = false;
 
 	sf::Text m_DamageTaken;
+
+	std::vector<Coin*> m_Coins;
 };
 

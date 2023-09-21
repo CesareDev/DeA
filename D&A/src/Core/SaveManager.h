@@ -15,6 +15,7 @@ public:
 	void LoadConfig();
 
 	std::string GetInfo(unsigned int saveIndex);
+	inline int GetSaveIndex() { return m_SaveIndex; }
 
 private:
 

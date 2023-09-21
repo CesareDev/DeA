@@ -33,7 +33,7 @@ void Spear::Update(UpdateArgs args, float dt)
 			{
 				Character* en = (Character*)it->obj;
 				if (en->GetBounds().contains(m_HitPoints[0]))
-					en->TakeDamage(1);
+					en->TakeDamage(12);
 			}
 		}
 	}

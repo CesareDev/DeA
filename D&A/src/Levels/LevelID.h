@@ -7,5 +7,12 @@ enum class LevelID
 	Entrance,
 	OrcsOne,
 	OrcsTwo,
-	OrcsBoss
+	OrcsBoss,
+	UndeadsOne,
+	UndeadsTwo,
+	UndeadsBoss,
+	DemonsOne,
+	DemonsTwo,
+	DemonsThree,
+	DemonsBoss
 };

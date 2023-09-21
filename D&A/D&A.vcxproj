@@ -120,6 +120,9 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Levels\Demons\DemonsTwo.cpp" />
+    <ClCompile Include="src\Levels\Demons\DemonsOne.cpp" />
+    <ClCompile Include="src\Core\Random.cpp" />
     <ClCompile Include="src\Entities\Characters\Other\Spawner.cpp" />
     <ClCompile Include="src\Entities\Weapons\OrcAxe.cpp" />
     <ClCompile Include="src\Entities\Characters\Demons\MagicDemon.cpp" />
@@ -130,19 +133,17 @@
     <ClCompile Include="src\Entities\Characters\Orcs\MaskedOrc.cpp" />
     <ClCompile Include="src\Entities\Characters\Orcs\Orc.cpp" />
     <ClCompile Include="src\Entities\Characters\Orcs\SmallOrc.cpp" />
-    <ClCompile Include="src\Levels\OrcsBoss.cpp" />
+    <ClCompile Include="src\Levels\Orcs\OrcsBoss.cpp" />
     <ClCompile Include="src\Entities\Environments\Message.cpp" />
-    <ClCompile Include="src\Levels\OrcsTwo.cpp" />
-    <ClCompile Include="src\Entities\Environments\Chest.cpp" />
+    <ClCompile Include="src\Levels\Orcs\OrcsTwo.cpp" />
     <ClCompile Include="src\Entities\Weapons\ColossalGoldenSword.cpp" />
     <ClCompile Include="src\Entities\Weapons\GoldenSword.cpp" />
     <ClCompile Include="src\Hud\Shop.cpp" />
     <ClCompile Include="src\States\GameOverState.cpp" />
     <ClCompile Include="src\UI\Components\DeleteForm.cpp" />
-    <ClCompile Include="src\Levels\OrcsOne.cpp" />
+    <ClCompile Include="src\Levels\Orcs\OrcsOne.cpp" />
     <ClCompile Include="src\Core\SaveManager.cpp" />
     <ClCompile Include="src\Entities\Environments\Coin.cpp" />
-    <ClCompile Include="src\Entities\Environments\Door.cpp" />
     <ClCompile Include="src\Hud\MiniMap.cpp" />
     <ClCompile Include="src\Entities\Characters\Demons\SmallDemon.cpp" />
     <ClCompile Include="src\Entities\Characters\Demons\HalfDemon.cpp" />
@@ -172,7 +173,7 @@
     <ClCompile Include="src\Entities\Weapons\Sword.cpp" />
     <ClCompile Include="src\UI\Components\LevelLabel.cpp" />
     <ClCompile Include="src\Entities\Environments\Ladder.cpp" />
-    <ClCompile Include="src\Levels\Entrance.cpp" />
+    <ClCompile Include="src\Levels\Other\Entrance.cpp" />
     <ClCompile Include="src\Core\LevelManager.cpp" />
     <ClCompile Include="src\States\ArenaState.cpp" />
     <ClCompile Include="src\Levels\Level.cpp" />
@@ -211,8 +212,15 @@
     <ClCompile Include="src\Entities\Characters\Orcs\TribalOrc.cpp" />
     <ClCompile Include="src\Entities\Characters\Undeads\Undead.cpp" />
     <ClCompile Include="src\Entities\Characters\Undeads\UndeadBoss.cpp" />
+    <ClCompile Include="src\Levels\Undeads\UndeadsOne.cpp" />
+    <ClCompile Include="src\Levels\Undeads\UndeadsTwo.cpp" />
+    <ClCompile Include="src\Levels\Undeads\UndeadsBoss.cpp" />
+    <ClCompile Include="src\States\WinState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Levels\Demons\DemonsTwo.h" />
+    <ClInclude Include="src\Levels\Demons\DemonsOne.h" />
+    <ClInclude Include="src\Core\Random.h" />
     <ClInclude Include="src\Entities\Characters\Other\Spawner.h" />
     <ClInclude Include="src\Entities\EntityInclude.h" />
     <ClInclude Include="src\Entities\Weapons\OrcAxe.h" />
@@ -224,10 +232,9 @@
     <ClInclude Include="src\Entities\Characters\Orcs\MaskedOrc.h" />
     <ClInclude Include="src\Entities\Characters\Orcs\Orc.h" />
     <ClInclude Include="src\Entities\Characters\Orcs\SmallOrc.h" />
-    <ClInclude Include="src\Levels\OrcsBoss.h" />
+    <ClInclude Include="src\Levels\Orcs\OrcsBoss.h" />
     <ClInclude Include="src\Entities\Environments\Message.h" />
-    <ClInclude Include="src\Levels\OrcsTwo.h" />
-    <ClInclude Include="src\Entities\Environments\Chest.h" />
+    <ClInclude Include="src\Levels\Orcs\OrcsTwo.h" />
     <ClInclude Include="src\Entities\Weapons\ColossalGoldenSword.h" />
     <ClInclude Include="src\Entities\Weapons\GoldenSword.h" />
     <ClInclude Include="src\Entities\Weapons\WeaponInclude.h" />
@@ -235,11 +242,10 @@
     <ClInclude Include="src\States\GameOverState.h" />
     <ClInclude Include="src\Core\MusicVariables.h" />
     <ClInclude Include="src\UI\Components\DeleteForm.h" />
-    <ClInclude Include="src\Levels\OrcsOne.h" />
+    <ClInclude Include="src\Levels\Orcs\OrcsOne.h" />
     <ClInclude Include="src\Core\SaveManager.h" />
     <ClInclude Include="src\Core\SaveVariables.h" />
     <ClInclude Include="src\Entities\Environments\Coin.h" />
-    <ClInclude Include="src\Entities\Environments\Door.h" />
     <ClInclude Include="src\Hud\MiniMap.h" />
     <ClInclude Include="src\Entities\Characters\Demons\SmallDemon.h" />
     <ClInclude Include="src\Entities\Characters\Demons\HalfDemon.h" />
@@ -269,7 +275,7 @@
     <ClInclude Include="src\UI\Components\LevelLabel.h" />
     <ClInclude Include="src\Entities\Environments\Ladder.h" />
     <ClInclude Include="src\Core\GlobalVariables.h" />
-    <ClInclude Include="src\Levels\Entrance.h" />
+    <ClInclude Include="src\Levels\Other\Entrance.h" />
     <ClInclude Include="src\Core\LevelManager.h" />
     <ClInclude Include="src\Entities\EntityID.h" />
     <ClInclude Include="src\States\ArenaState.h" />
@@ -308,6 +314,10 @@
     <ClInclude Include="src\Entities\Characters\Orcs\TribalOrc.h" />
     <ClInclude Include="src\Entities\Characters\Undeads\Undead.h" />
     <ClInclude Include="src\Entities\Characters\Undeads\UndeadBoss.h" />
+    <ClInclude Include="src\Levels\Undeads\UndeadsOne.h" />
+    <ClInclude Include="src\Levels\Undeads\UndeadsTwo.h" />
+    <ClInclude Include="src\Levels\Undeads\UndeadsBoss.h" />
+    <ClInclude Include="src\States\WinState.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\cursor.png" />

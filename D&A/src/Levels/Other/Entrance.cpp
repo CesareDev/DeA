@@ -36,13 +36,13 @@ void Entrance::Init(const ResourceManager& resourceManager, sf::DynamicQuadTree<
 	if (entranceIndex == 0)
 		m_Player->SetPosition({ 224.f, 432.f }); //starting point
 	else if (entranceIndex == 1)
-		m_Player->SetPosition({ 48.f, 240.f }); //starting point
+		m_Player->SetPosition({ 48.f, 240.f }); //orcs1
 	else if (entranceIndex == 2)
-		m_Player->SetPosition({ 160.f, 64.f }); //starting point
+		m_Player->SetPosition({ 176.f, 48.f }); //demons2
 	else if (entranceIndex == 3)
-		m_Player->SetPosition({ 304.f, 64.f }); //starting point
+		m_Player->SetPosition({ 288.f, 48.f }); //demons1
 	else if (entranceIndex == 4)
-		m_Player->SetPosition({ 416.f, 240.f }); //starting point
+		m_Player->SetPosition({ 416.f, 240.f }); //undeads1
 
 	m_AStar.init(m_Map);
 	m_Hud.Init(resourceManager, player, m_Map);
@@ -51,8 +51,20 @@ void Entrance::Init(const ResourceManager& resourceManager, sf::DynamicQuadTree<
 	m_Ladder1.Init(resourceManager, { 32.f, 240.f });
 	m_Ladder1.SetTeleportLevel(LevelID::OrcsOne, 0);
 
+	m_Ladder2.Init(resourceManager, { 160.f, 48.f });
+	m_Ladder2.SetTeleportLevel(LevelID::DemonsTwo, 0);
+
+	m_Ladder3.Init(resourceManager, { 304.f, 48.f });
+	m_Ladder3.SetTeleportLevel(LevelID::DemonsOne, 0);
+
+	m_Ladder4.Init(resourceManager, { 432.f, 240.f });
+	m_Ladder4.SetTeleportLevel(LevelID::UndeadsOne, 0);
+
 	m_Tree->insert(m_Player, m_Player->GetBounds());
 	m_Tree->insert(&m_Ladder1, m_Ladder1.GetBounds());
+	m_Tree->insert(&m_Ladder2, m_Ladder2.GetBounds());
+	m_Tree->insert(&m_Ladder3, m_Ladder3.GetBounds());
+	m_Tree->insert(&m_Ladder4, m_Ladder4.GetBounds());
 }
 
 void Entrance::Update(StateID& currentState, LevelID& currentLevel, int& entranceIndex, float dt)

@@ -39,7 +39,7 @@ void ColossalGoldenSword::Update(UpdateArgs args, float dt)
 						if (m_ChargingTime > 0.5f)
 							en->TakeDamage(m_ChargingTime * 10.f);
 						else
-							en->TakeDamage(5.f);
+							en->TakeDamage(7.f);
 			}
 		}
 	}

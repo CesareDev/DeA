@@ -25,13 +25,7 @@ void Player::Init(const ResourceManager& resourceManager, const sf::Vector2f& po
 	m_TextureRect = getTextureRect();
 	m_Velocity = { 0.f, 0.f };
 
-	const auto& font = resourceManager.GetFont();
-	const_cast<sf::Texture&>(font.getTexture(40)).setSmooth(false);
-	m_DamageTaken.setFont(font);
-	m_DamageTaken.setCharacterSize(40);
-	m_DamageTaken.setScale(0.f, 0.f);
-	m_DamageTaken.setOutlineColor(sf::Color::Black);
-	m_DamageTaken.setOutlineThickness(4.f);
+	InitDamageText(resourceManager);
 
 	//SAVE::HEALTH
 	m_Health = SAVE::PLAYER_HEALTH;
@@ -173,6 +167,7 @@ void Player::Update(UpdateArgs args, float dt)
 				Entity* p = en->obj;
 				args.qTree.remove(en);
 				m_Coin++;
+				MUSIC::COIN_SOUND->play();
 				delete p;
 			}
 		}

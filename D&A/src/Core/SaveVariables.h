@@ -19,6 +19,9 @@ namespace SAVE
 		EntityID::Null,
 		EntityID::Null,
 	};
+	inline bool ORC_BOSS_DEFEATED = false;
+	inline bool UNDEAD_BOSS_DEFEATED = false;
+	inline bool DEMON_BOSS_DEFEATED = false;
 
 	inline SaveManager SAVE_MANAGER;
 }

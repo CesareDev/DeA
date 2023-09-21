@@ -1,9 +1,14 @@
 #include "pch.h"
 #include "LevelManager.h"
-#include "Levels/Entrance.h"
-#include "Levels/OrcsOne.h"
-#include "Levels/OrcsTwo.h"
-#include "Levels/OrcsBoss.h"
+#include "Levels/Other/Entrance.h"
+#include "Levels/Orcs/OrcsOne.h"
+#include "Levels/Orcs/OrcsTwo.h"
+#include "Levels/Orcs/OrcsBoss.h"
+#include "Levels/Undeads/UndeadsOne.h"
+#include "Levels/Undeads/UndeadsTwo.h"
+#include "Levels/Undeads/UndeadsBoss.h"
+#include "Levels/Demons/DemonsOne.h"
+#include "Levels/Demons/DemonsTwo.h"
 
 LevelManager::LevelManager()
 {
@@ -51,6 +56,36 @@ void LevelManager::Init(const ResourceManager& resourceManager)
 	{
 		m_CurrentLevel = std::make_unique<OrcsBoss>();
 		m_CurrentLevelId = LevelID::OrcsBoss;
+		break;
+	}
+	case LevelID::UndeadsOne:
+	{
+		m_CurrentLevel = std::make_unique<UndeadsOne>();
+		m_CurrentLevelId = LevelID::UndeadsOne;
+		break;
+	}
+	case LevelID::UndeadsTwo:
+	{
+		m_CurrentLevel = std::make_unique<UndeadsTwo>();
+		m_CurrentLevelId = LevelID::UndeadsTwo;
+		break;
+	}
+	case LevelID::UndeadsBoss:
+	{
+		m_CurrentLevel = std::make_unique<UndeadsBoss>();
+		m_CurrentLevelId = LevelID::UndeadsBoss;
+		break;
+	}
+	case LevelID::DemonsOne:
+	{
+		m_CurrentLevel = std::make_unique<DemonsOne>();
+		m_CurrentLevelId = LevelID::DemonsOne;
+		break;
+	}
+	case LevelID::DemonsTwo:
+	{
+		m_CurrentLevel = std::make_unique<DemonsTwo>();
+		m_CurrentLevelId = LevelID::DemonsTwo;
 		break;
 	}
 	default:
@@ -118,8 +153,35 @@ void LevelManager::ChangeLevel(float dt)
 				break;
 			}
 			case LevelID::OrcsBoss:
+			{
 				m_CurrentLevel.reset(new OrcsBoss());
 				break;
+			}
+			case LevelID::UndeadsOne:
+			{
+				m_CurrentLevel.reset(new UndeadsOne());
+				break;
+			}
+			case LevelID::UndeadsTwo:
+			{
+				m_CurrentLevel.reset(new UndeadsTwo());
+				break;
+			}
+			case LevelID::UndeadsBoss:
+			{
+				m_CurrentLevel.reset(new UndeadsBoss());
+				break;
+			}
+			case LevelID::DemonsOne:
+			{
+				m_CurrentLevel.reset(new DemonsOne());
+				break;
+			}
+			case LevelID::DemonsTwo:
+			{
+				m_CurrentLevel.reset(new DemonsTwo());
+				break;
+			}
 			default:
 				break;
 			}

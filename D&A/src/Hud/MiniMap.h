@@ -19,6 +19,8 @@ private:
 
 	const Player* m_Player;
 	const sf::TileMap* m_TileMap;
+	sf::Vector2u m_TileSize;
+	sf::Vector2u m_MapSizeInTile;
 
 	std::vector<sf::Vertex> m_Map;
 	sf::RenderTexture m_RenderTexture;
@@ -26,5 +28,6 @@ private:
 	sf::RenderStates m_States;
 
 	sf::CircleShape m_PlayerPos;
+	sf::View m_MiniCamera;
 };
 

@@ -1,15 +1,13 @@
 #pragma once
-#include "Level.h"
+#include "Levels/Level.h"
 #include "Entities/Environments/Ladder.h"
 
-#include "Entities/Characters/Orcs/OrcBoss.h"
-
-class OrcsBoss : public Level
+class DemonsOne : public Level
 {
 public:
 
-	OrcsBoss();
-	~OrcsBoss();
+	DemonsOne();
+	~DemonsOne();
 
 	// Inherited via Level
 	bool OnEnter(float dt) override;
@@ -21,6 +19,6 @@ public:
 private:
 
 	Ladder m_Ladder0;
-	OrcBoss o;
+	Ladder m_Ladder1;
 };
 

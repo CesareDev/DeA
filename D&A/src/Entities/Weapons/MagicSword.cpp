@@ -39,7 +39,7 @@ void MagicSword::Update(UpdateArgs args, float dt)
 				Character* en = (Character*)it->obj;
 				for (const auto& p : m_HitPoints)
 					if (en->GetBounds().contains(p))
-						en->TakeDamage(3);
+						en->TakeDamage(7);
 			}
 		}
 		if (m_IsMagicAttacking && it->obj->GetId() != EntityID::Player && it->obj->GetType() == EntityType::Character)

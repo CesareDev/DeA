@@ -19,8 +19,16 @@ void UndeadSlime::Init(const ResourceManager& resourceManager, const sf::Vector2
 	m_ElapsedAnimationTime = 0.f;
 	m_TextureRect = getTextureRect();
 
-	m_Health = 10;
+	m_Health = 30;
 	InitDamageText(resourceManager);
+
+	int coinsCount = (rand() % 5) + 1;
+	for (int i = 0; i < coinsCount; ++i)
+	{
+		Coin* c = new Coin();
+		c->Init(resourceManager, position);
+		m_Coins.push_back(c);
+	}
 }
 
 void UndeadSlime::Update(UpdateArgs args, float dt)
@@ -29,7 +37,7 @@ void UndeadSlime::Update(UpdateArgs args, float dt)
 	{
 		//Moving
 		m_IsMoving = false;
-		sf::Rectangle attackArea = { m_Center - sf::Vector2f(64.f, 64.f), {128.f, 128.f} };
+		sf::Rectangle attackArea = { m_Center - sf::Vector2f(48.f, 48.f), {96.f, 96.f} };
 		m_Velocity = { 0.f, 0.f };
 		sf::Vector2f dir = { 0.f, 0.f };
 
@@ -215,6 +223,7 @@ void UndeadSlime::Update(UpdateArgs args, float dt)
 	else
 	{
 		DeathAnimation(dt);
+		SpawnCoins(args);
 	}
 }
 

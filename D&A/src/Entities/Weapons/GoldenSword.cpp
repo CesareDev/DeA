@@ -37,9 +37,9 @@ void GoldenSword::Update(UpdateArgs args, float dt)
 				for (const auto& p : m_HitPoints)
 					if (en->GetBounds().contains(p))
 						if (m_ChargingTime > 0.5f)
-							en->TakeDamage(m_ChargingTime * 5.f);
+							en->TakeDamage(m_ChargingTime * 8.f);
 						else
-							en->TakeDamage(2.f);
+							en->TakeDamage(5.f);
 			}
 		}
 	}

@@ -17,7 +17,6 @@ void Spawner::Init(const ResourceManager& resourceManager, float minDistance, fl
 	m_ResourceManager = &resourceManager;
 	m_MinDistance = minDistance;
 	m_MaxDistance = maxDistance;
-	srand((unsigned)time(NULL));
 }
 
 void Spawner::Update()
