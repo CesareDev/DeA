@@ -24,5 +24,8 @@ private:
 
 	std::vector<sf::Vertex> m_Icons;
 	sf::RenderStates m_States;
+
+	bool m_JostickButtonPressedL2 = true;
+	bool m_JostickButtonPressedR2 = true;
 };
 

@@ -65,6 +65,33 @@ void Inventory::Update(float dt)
 			GLOBAL::MOUSEWHELL_OFFSET = 0;
 		if (GLOBAL::MOUSEWHELL_OFFSET < 0)
 			GLOBAL::MOUSEWHELL_OFFSET = 7;
+
+		if (GLOBAL::JOYSTICK_AVAILABLE)
+		{
+			if (sf::Joystick::isButtonPressed(0, 6) && !m_JostickButtonPressedL2) //L2
+			{
+				GLOBAL::MOUSEWHELL_OFFSET--;
+				m_JostickButtonPressedL2 = true;
+			}
+			else if (!sf::Joystick::isButtonPressed(0, 6) && m_JostickButtonPressedL2) //R2
+			{
+				m_JostickButtonPressedL2 = false;
+			}
+			if (sf::Joystick::isButtonPressed(0, 7) && !m_JostickButtonPressedR2) //R2
+			{
+				GLOBAL::MOUSEWHELL_OFFSET++;
+				m_JostickButtonPressedR2 = true;
+			}
+			else if (!sf::Joystick::isButtonPressed(0, 7) && m_JostickButtonPressedR2) //R2
+			{
+				m_JostickButtonPressedR2 = false;
+			}
+			if (GLOBAL::MOUSEWHELL_OFFSET > 7)
+				GLOBAL::MOUSEWHELL_OFFSET = 0;
+			if (GLOBAL::MOUSEWHELL_OFFSET < 0)
+				GLOBAL::MOUSEWHELL_OFFSET = 7;
+		}
+
 		m_CurrentIndex = GLOBAL::MOUSEWHELL_OFFSET;
 		m_Player->SetCurrentWeaponIndex(m_CurrentIndex);
 		m_CurrentIconFrame.setPosition(m_IconPos[m_CurrentIndex]);

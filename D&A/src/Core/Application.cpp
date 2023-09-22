@@ -46,6 +46,8 @@ void Application::Update()
 {
 	m_ElapsedTime = m_Clock.restart().asSeconds();
 
+	HandleJoiystickInput(m_ElapsedTime);
+
 	m_StateManager.Update(m_ElapsedTime);
 }
 
@@ -56,4 +58,35 @@ void Application::Render()
 	m_StateManager.Render(m_Window);
 
 	m_Window.display();
+}
+
+void Application::HandleJoiystickInput(float dt)
+{
+	if (!GLOBAL::JOYSTICK_AVAILABLE)
+		GLOBAL::JOYSTICK_AVAILABLE = sf::Joystick::isConnected(0);
+	if (GLOBAL::JOYSTICK_AVAILABLE)
+	{
+		int rx = sf::Joystick::getAxisPosition(0, sf::Joystick::Z);
+		int ry = sf::Joystick::getAxisPosition(0, sf::Joystick::R);
+
+		sf::Vector2f mouseDir;
+
+		if (std::abs(rx) < 10)
+			mouseDir.x = 0.f;
+		else if (rx > 10)
+			mouseDir.x = (rx - 10.f) / 90.f;
+		else
+			mouseDir.x = (rx + 10.f) / 90.f;
+
+		if (std::abs(ry) < 10)
+			mouseDir.y = 0.f;
+		else if (ry > 10)
+			mouseDir.y = (ry - 10.f) / 90.f;
+		else
+			mouseDir.y = (ry + 10.f) / 90.f;
+
+		sf::Vector2f mouseNextPos = sf::Vector2f(sf::Mouse::getPosition()) + mouseDir * 1024.f * dt;
+		if (m_Window.hasFocus())
+			sf::Mouse::setPosition(sf::Vector2i(mouseNextPos));
+	}
 }

@@ -77,6 +77,11 @@ EntityID MagicSword::GetId() const
 
 void MagicSword::Attack(float dt)
 {
+	if (sf::Joystick::isButtonPressed(0, 5) && !m_IsAttacking && !m_IsMagicAttacking)
+	{
+		m_IsAttacking = true;
+		m_AttackAngle = m_Angle;
+	}
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !m_IsAttacking && !m_IsMagicAttacking)
 	{
 		m_IsAttacking = true;

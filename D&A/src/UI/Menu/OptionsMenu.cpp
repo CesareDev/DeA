@@ -185,6 +185,5 @@ void OptionsMenu::Render(sf::RenderTarget& target)
 		}
 	}
 
-	GLOBAL::JOYSTICK_AVAILABLE = sf::Joystick::isConnected(0);
 	m_JoystickCheckBox.SetChecked(GLOBAL::JOYSTICK_AVAILABLE);
 }

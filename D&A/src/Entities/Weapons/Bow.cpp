@@ -24,6 +24,28 @@ void Bow::Init(const ResourceManager& resourceManager, const sf::Vector2f& posit
 
 void Bow::Update(UpdateArgs args, float dt)
 {
+	if (sf::Joystick::isButtonPressed(0, 5) && !m_IsAttacking)
+	{
+		setTextureRect({ 305, 212, 14, 26 });
+		setOrigin(0.f, 13.f);
+		if (!m_MousePressed)
+		{
+			m_ArrowsQueue.emplace();
+			m_ArrowsQueue.back().Init(*m_ResourceManager, getPosition());
+		}
+		m_ArrowsQueue.back().Spawn(m_Angle, getPosition(), dt);
+		m_MousePressed = true;
+	}
+	else if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && !sf::Joystick::isButtonPressed(0, 5) && m_MousePressed)
+	{
+		setTextureRect({ 296, 212, 7, 26 });
+		setOrigin(-7.f, 13.f);
+		m_IsAttacking = true;
+		m_MousePressed = false;
+		MUSIC::ATTACK_SOUND->play();
+		m_ArrowsQueue.back().Shoot();
+		args.qTree.insert(&m_ArrowsQueue.back(), m_ArrowsQueue.back().GetBounds());
+	}
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !m_IsAttacking)
 	{
 		setTextureRect({ 305, 212, 14, 26 });
@@ -36,7 +58,7 @@ void Bow::Update(UpdateArgs args, float dt)
 		m_ArrowsQueue.back().Spawn(m_Angle, getPosition(), dt);
 		m_MousePressed = true;
 	}
-	else if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && m_MousePressed)
+	else if (!sf::Joystick::isButtonPressed(0, 5) && !sf::Mouse::isButtonPressed(sf::Mouse::Left) && m_MousePressed)
 	{
 		setTextureRect({ 296, 212, 7, 26 });
 		setOrigin(-7.f, 13.f);

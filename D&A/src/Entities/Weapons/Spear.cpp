@@ -60,13 +60,23 @@ EntityID Spear::GetId() const
 
 void Spear::Attack(float dt)
 {
+	if (sf::Joystick::isButtonPressed(0, 5) && !m_IsAttacking && !m_MousePressed)
+	{
+		m_IsAttacking = true;
+		m_MousePressed = true;
+		m_AttackAngle = m_Angle;
+	}
+	else if (!sf::Joystick::isButtonPressed(0, 5) && !sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		m_MousePressed = false;
+	}
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !m_IsAttacking && !m_MousePressed)
 	{
 		m_IsAttacking = true;
 		m_MousePressed = true;
 		m_AttackAngle = m_Angle;
 	}
-	else if (!sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	else if (!sf::Joystick::isButtonPressed(0, 5) && !sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
 		m_MousePressed = false;
 	}

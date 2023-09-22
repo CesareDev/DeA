@@ -108,7 +108,14 @@ void SaveForm::Render(sf::RenderTarget& target)
 	m_Clicked = false;
 	if (getGlobalBounds().contains(mpos))
 	{
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		if (sf::Joystick::isButtonPressed(0, 1))
+		{
+			setTextureRect({ m_TextureRect.left + 162, m_TextureRect.top, m_TextureRect.width + 2, m_TextureRect.height + 2 });
+			setPosition(m_Position.x - 1, m_Position.y);
+			m_Text.setPosition(m_TextPosition.x, m_TextPosition.y + 5);
+			m_Pressed = true;
+		}
+		else if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
 			setTextureRect({ m_TextureRect.left + 162, m_TextureRect.top, m_TextureRect.width + 2, m_TextureRect.height + 2 });
 			setPosition(m_Position.x - 1, m_Position.y);

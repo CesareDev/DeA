@@ -20,6 +20,7 @@ void Weapon::SetAngle(sf::RenderTarget& target)
     sf::Vector2f mpos = target.mapPixelToCoords(pixelPos);
     if (!m_IsAttacking)
         m_Angle = (atan2f(mpos.y - getPosition().y, mpos.x - getPosition().x) * 180.f / acos(-1.f));
+
     if (GetId() == EntityID::Bow)
     {
         setRotation(m_Angle);

@@ -17,6 +17,8 @@ private:
 	void Update();
 	void Render();
 
+	void HandleJoiystickInput(float dt);
+
 private:
 
 	Window m_Window;

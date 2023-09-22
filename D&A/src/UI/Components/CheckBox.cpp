@@ -41,7 +41,21 @@ void CheckBox::Render(sf::RenderTarget& target)
 
 	if (getGlobalBounds().contains(mpos))
 	{
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		if (sf::Joystick::isButtonPressed(0, 1))
+		{
+			if (m_Checked)
+			{
+				setTextureRect({ m_TextureRect.left + 80, m_TextureRect.top, m_TextureRect.width + 4, m_TextureRect.height + 3 });
+				setPosition(m_Position.x - 1.f, m_Position.y - 1.f);
+			}
+			else
+			{
+				setTextureRect({ m_TextureRect.left + 30, m_TextureRect.top, m_TextureRect.width + 2, m_TextureRect.height + 2 });
+				setPosition(m_Position.x - 1.f, m_Position.y);
+			}
+			m_Pressed = true;
+		}
+		else if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
 			if (m_Checked)
 			{

@@ -53,6 +53,18 @@ void Shop::Init(const ResourceManager& resourceManager, const Player& player)
 
 void Shop::Update(float dt)
 {
+	if (sf::Joystick::isButtonPressed(0, 0) && !m_Pressed)
+	{
+		m_Pressed = true;
+		if (m_IsOpen)
+			m_IsOpen = false;
+		else
+			m_IsOpen = true;
+	}
+	else if (!sf::Joystick::isButtonPressed(0, 0) && !sf::Keyboard::isKeyPressed(sf::Keyboard::E) && m_Pressed)
+	{
+		m_Pressed = false;
+	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::E) && !m_Pressed)
 	{
 		m_Pressed = true;
@@ -61,7 +73,7 @@ void Shop::Update(float dt)
 		else
 			m_IsOpen = true;
 	}
-	else if (!sf::Keyboard::isKeyPressed(sf::Keyboard::E) && m_Pressed)
+	else if (!sf::Joystick::isButtonPressed(0, 0) && !sf::Keyboard::isKeyPressed(sf::Keyboard::E) && m_Pressed)
 	{
 		m_Pressed = false;
 	}
@@ -85,6 +97,93 @@ void Shop::Render(sf::RenderTarget& target)
 			{
 				sf::Vector2f rectPos = { i * 22.f + 156.f, j * 11.f + 78.f };
 				m_SelectedWeaponFrame.setPosition(rectPos);
+
+				if (sf::Joystick::isButtonPressed(0, 1) && !m_JoystickPressed)
+				{
+					m_JoystickPressed = true;
+				}
+				else if (!sf::Joystick::isButtonPressed(0, 1) && m_JoystickPressed)
+				{
+					int index = j * 4 + i;
+					if (index >= 0 && index < 20)
+					{
+						bool result = false;
+						if (m_Player->GetCoin() >= m_WeaponsCost[index])
+						{
+							switch (index)
+							{
+							case 0:
+								result = m_Player->AddWeapon(new Knife());
+								break;
+							case 1:
+								result = m_Player->AddWeapon(new RustySword());
+								break;
+							case 2:
+								result = m_Player->AddWeapon(new Sword());
+								break;
+							case 3:
+								result = m_Player->AddWeapon(new MagicSword());
+								break;
+							case 4:
+								result = m_Player->AddWeapon(new GreatHammer());
+								break;
+							case 5:
+								result = m_Player->AddWeapon(new Hammer());
+								break;
+							case 6:
+								result = m_Player->AddWeapon(new Mace());
+								break;
+							case 7:
+								result = m_Player->AddWeapon(new GreatMace());
+								break;
+							case 8:
+								result = m_Player->AddWeapon(new Katana());
+								break;
+							case 9:
+								result = m_Player->AddWeapon(new GreatSword());
+								break;
+							case 10:
+								result = m_Player->AddWeapon(new ColossalSword());
+								break;
+							case 11:
+								result = m_Player->AddWeapon(new GoldenSword());
+								break;
+							case 12:
+								result = m_Player->AddWeapon(new ColossalGoldenSword());
+								break;
+							case 13:
+								result = m_Player->AddWeapon(new GreatAxe());
+								break;
+							case 14:
+								result = m_Player->AddWeapon(new Spear());
+								break;
+							case 15:
+								result = m_Player->AddWeapon(new Bow());
+								break;
+							case 16:
+								result = m_Player->AddWeapon(new HealthPotion());
+								break;
+							case 17:
+								result = m_Player->AddWeapon(new BigHealthPotion());
+								break;
+							case 18:
+								result = m_Player->AddWeapon(new DamagePotion());
+								break;
+							case 19:
+								result = m_Player->AddWeapon(new BigDamagePotion());
+								break;
+							default:
+								break;
+							}
+							if (result)
+							{
+								m_Player->SetCoin(m_Player->GetCoin() - m_WeaponsCost[index]);
+								m_IsOpen = false;
+							}
+						}
+					}
+					m_JoystickPressed = false;
+				}
 				if (sf::Mouse::isButtonPressed(sf::Mouse::Right) && !m_MousePressd)
 				{
 					m_MousePressd = true;

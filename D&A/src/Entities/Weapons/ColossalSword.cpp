@@ -64,6 +64,11 @@ EntityID ColossalSword::GetId() const
 
 void ColossalSword::Attack(float dt)
 {
+    if (sf::Joystick::isButtonPressed(0, 5) && !m_IsAttacking)
+    {
+        m_IsAttacking = true;
+        m_AttackAngle = m_Angle;
+    }
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !m_IsAttacking)
     {
         m_IsAttacking = true;
@@ -75,7 +80,6 @@ void ColossalSword::Attack(float dt)
         if (m_ElapsedTime <= 0.75f)
         {
             m_Angle = -120 * sinf((2.f / 3.f) * acos(-1.f) * m_ElapsedTime) + m_AttackAngle;
-            setRotation(m_Angle + 90.f);
         }
         else if (m_ElapsedTime > 0.9f && m_ElapsedTime <= 1.4f)
         {
@@ -83,7 +87,6 @@ void ColossalSword::Attack(float dt)
                 MUSIC::ATTACK_SOUND->play();
             m_CanHit = true;
             m_Angle = 720 * sinf(acos(-1.f) * (m_ElapsedTime - 0.9f)) + m_AttackAngle;
-            setRotation(m_Angle + 90.f);
         }
         else if (m_ElapsedTime > 1.4f)
         {
@@ -91,5 +94,6 @@ void ColossalSword::Attack(float dt)
             m_ElapsedTime = 0.f;
             m_IsAttacking = false;
         }
+        setRotation(m_Angle + 90.f);
     }
 }

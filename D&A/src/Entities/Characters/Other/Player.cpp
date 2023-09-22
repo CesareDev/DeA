@@ -312,6 +312,40 @@ void Player::Movement(UpdateArgs args, float dt)
 	float mag = std::sqrtf(m_Velocity.x * m_Velocity.x + m_Velocity.y * m_Velocity.y);
 	if (mag != 0.f)
 		m_Velocity /= mag;
+	
+
+	if (GLOBAL::JOYSTICK_AVAILABLE)
+	{
+		int rx = sf::Joystick::getAxisPosition(0, sf::Joystick::X);
+		int ry = sf::Joystick::getAxisPosition(0, sf::Joystick::Y);
+
+		if (rx > 10)
+		{
+			setOrigin(0.f, 8.f);
+			setScale(1.f, 1.f);
+			m_IsMoving = true;
+			m_Velocity.x = (rx - 10.f) / 90.f;
+		}
+		else if (rx < -10)
+		{
+			setOrigin(m_TextureRect.width, 8.f);
+			setScale(-1.f, 1.f);
+			m_IsMoving = true;
+			m_Velocity.x = (rx + 10.f) / 90.f;
+		}
+
+		if (ry > 10)
+		{
+			m_IsMoving = true;
+			m_Velocity.y = (ry - 10.f) / 90.f;
+		}
+		else if (ry < -10)
+		{
+			m_IsMoving = true;
+			m_Velocity.y = (ry + 10.f) / 90.f;
+		}
+	}
+
 	m_Velocity *= 64.f;
 
 	sf::Vector2f potentialPos = m_Center + m_Velocity * dt;

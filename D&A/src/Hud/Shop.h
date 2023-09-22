@@ -21,6 +21,7 @@ private:
 	int m_SelectedWeaponIndex;
 
 	bool m_MousePressd = false;
+	bool m_JoystickPressed = false;
 
 	sf::Sprite m_ItemList;
 	sf::Text m_ShopText;

@@ -70,11 +70,21 @@ EntityID GoldenSword::GetId() const
 
 void GoldenSword::Attack(float dt)
 {
+	if (sf::Joystick::isButtonPressed(0, 5) && !m_IsAttacking && !m_Pressed)
+	{
+		m_Pressed = true;
+	}
+	else if (!sf::Joystick::isButtonPressed(0, 5) && m_Pressed)
+	{
+		m_Pressed = false;
+		m_IsAttacking = true;
+		m_AttackAngle = m_Angle;
+	}
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !m_IsAttacking && !m_Pressed)
 	{
 		m_Pressed = true;
 	}
-	else if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && m_Pressed)
+	else if (!sf::Joystick::isButtonPressed(0, 5) && !sf::Mouse::isButtonPressed(sf::Mouse::Left) && m_Pressed)
 	{
 		m_Pressed = false;
 		m_IsAttacking = true;

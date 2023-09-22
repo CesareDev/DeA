@@ -25,7 +25,9 @@ void PauseMenu::Init(const ResourceManager& resourceManager)
 
 void PauseMenu::Update(StateID& currentState, float dt)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && !m_Pause)
+	if (sf::Joystick::isButtonPressed(0, 9) && !m_Pause)
+		m_Pause = true;
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && !m_Pause)
 		m_Pause = true;
 	else if (m_ResumeButton.isClicked())
 		m_Pause = false;

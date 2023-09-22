@@ -31,4 +31,6 @@ protected:
 	bool m_IsAttacking = false;
 	bool m_CanHit = false;
 	std::vector<sf::Vector2f> m_HitPoints;
+
+	sf::Vector2f m_JoystickDirection;
 };
