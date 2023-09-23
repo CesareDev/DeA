@@ -62,8 +62,7 @@ void Application::Render()
 
 void Application::HandleJoiystickInput(float dt)
 {
-	if (!GLOBAL::JOYSTICK_AVAILABLE)
-		GLOBAL::JOYSTICK_AVAILABLE = sf::Joystick::isConnected(0);
+	GLOBAL::JOYSTICK_AVAILABLE = sf::Joystick::isConnected(0);
 	if (GLOBAL::JOYSTICK_AVAILABLE)
 	{
 		int rx = sf::Joystick::getAxisPosition(0, sf::Joystick::Z);

@@ -1,4 +1,4 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "Entrance.h"
 #include "Entities/Environments/Coin.h"
 
@@ -22,11 +22,20 @@ bool Entrance::OnExit(float dt)
 
 void Entrance::Init(const ResourceManager& resourceManager, sf::DynamicQuadTree<Entity>& tree, Player& player, int entranceIndex)
 {
+	m_Player = &player;
 	m_Transition.Init(resourceManager);
 	m_Label.Init(resourceManager, "Entrance");
-	m_Map.load("../res/map/entrance.tmx", &resourceManager.GetTilesetTexture());
 
-	m_Player = &player;
+	if (SAVE::DEMON_BOSS_DEFEATED && SAVE::ORC_BOSS_DEFEATED && SAVE::UNDEAD_BOSS_DEFEATED)
+	{
+		m_Player->SetPosition({ m_Player->getPosition().x, m_Player->getPosition().y + 160.f });
+		m_Map.load("../res/map/entranceWin.tmx", &resourceManager.GetTilesetTexture());
+		m_Princess.Init(resourceManager, { 232.f, 80.f });
+		m_Princess.SetPlayer(player);
+	}
+	else
+		m_Map.load("../res/map/entrance.tmx", &resourceManager.GetTilesetTexture());
+
 
 	m_Tree = &tree; 
 	m_Tree->resize({ 0.f, 0.f, (float)m_Map.getMapSize().x, (float)m_Map.getMapSize().y });
@@ -60,15 +69,45 @@ void Entrance::Init(const ResourceManager& resourceManager, sf::DynamicQuadTree<
 	m_Ladder4.Init(resourceManager, { 432.f, 240.f });
 	m_Ladder4.SetTeleportLevel(LevelID::UndeadsOne, 0);
 
+	m_StoryMessage.Init(resourceManager, { 224.f, 384.f });
+	if (GLOBAL::JOYSTICK_AVAILABLE)
+		m_StoryMessage.SetText("Orcs demons and undeads\nhave invaded the castle.\nDefeat them and save the princess\n-- Press Space to close -- / -- X --");
+	else
+		m_StoryMessage.SetText("Orcs demons and undeads\nhave invaded the castle.\nDefeat them and save the princess\n-- Press Space to close --");
+
+	m_CommandMessage.Init(resourceManager, { 224.f, 304.f });
+	if (GLOBAL::JOYSTICK_AVAILABLE)
+		m_CommandMessage.SetText("Command / PS4 joystick:\nWASD to move / Left Analog\nLeft Mouse to attack / R1\nScrool to change weapon / L2 - R2\nE for the shop - Square");
+	else
+		m_CommandMessage.SetText("Command:\nWASD to move\nLeft Mouse to attack\nScrool to change weapon\nE for the shop");
+
 	m_Tree->insert(m_Player, m_Player->GetBounds());
 	m_Tree->insert(&m_Ladder1, m_Ladder1.GetBounds());
 	m_Tree->insert(&m_Ladder2, m_Ladder2.GetBounds());
 	m_Tree->insert(&m_Ladder3, m_Ladder3.GetBounds());
 	m_Tree->insert(&m_Ladder4, m_Ladder4.GetBounds());
+
+	m_Tree->insert(&m_StoryMessage, m_StoryMessage.GetBounds());
+	m_Tree->insert(&m_CommandMessage, m_CommandMessage.GetBounds());
+
+	if (SAVE::DEMON_BOSS_DEFEATED && SAVE::ORC_BOSS_DEFEATED && SAVE::UNDEAD_BOSS_DEFEATED)
+		m_Tree->insert(&m_Princess, m_Princess.GetBounds());
 }
 
 void Entrance::Update(StateID& currentState, LevelID& currentLevel, int& entranceIndex, float dt)
 {
+	//MESSAGE (ONLY FOR THIS LEVEL)
+	if (GLOBAL::JOYSTICK_AVAILABLE)
+	{
+		m_StoryMessage.SetText("Orcs demons and undeads\nhave invaded the castle.\nDefeat them and save the princess\n-- Press Space to close -- / -- X --");
+		m_CommandMessage.SetText("Command / PS4 joystick:\nWASD to move / Left Analog\nLeft Mouse to attack / R1\nScrool to change weapon / L2 - R2\nE for the shop - Square");
+	}
+	else
+	{
+		m_StoryMessage.SetText("Orcs demons and undeads\nhave invaded the castle.\nDefeat them and save the princess\n-- Press Space to close --");
+		m_CommandMessage.SetText("Command:\nWASD to move\nLeft Mouse to attack\nScrool to change weapon\nE for the shop");
+	}
+
 	for (auto it = m_Tree->begin(); it != m_Tree->end();)
 	{
 		it->obj->Update({ *m_Tree, m_Map, m_AStar, currentState, currentLevel, entranceIndex }, dt);
@@ -120,5 +159,9 @@ void Entrance::Render(sf::RenderTarget& target)
 
 	m_Hud.Render(target);
 	m_Label.Render(target);
+
+	m_StoryMessage.RenderText(target);
+	m_CommandMessage.RenderText(target);
+
 	m_Transition.Render(target);
 }

@@ -21,6 +21,21 @@ void Message::Init(const ResourceManager& resourceManager, const sf::Vector2f& p
     m_Text.setOutlineColor(sf::Color::Black);
     m_Text.setOutlineThickness(4.f);
 
+    const_cast<sf::Texture&>(font.getTexture(40)).setSmooth(false);
+    m_PressSpaceText.setFont(font);
+    m_PressSpaceText.setCharacterSize(40);
+    m_PressSpaceText.setOutlineColor(sf::Color::Black);
+    m_PressSpaceText.setOutlineThickness(4.f);
+    if (GLOBAL::JOYSTICK_AVAILABLE)
+    {
+        m_PressSpaceText.setString("Press Space to open / X to open");
+        m_PressSpaceText.setPosition(640.f - m_PressSpaceText.getGlobalBounds().width / 2.f, 680.f - m_PressSpaceText.getGlobalBounds().height);
+    }
+    else
+    {
+        m_PressSpaceText.setString("Press Space to open");
+        m_PressSpaceText.setPosition(640.f - m_PressSpaceText.getGlobalBounds().width / 2.f, 680.f - m_PressSpaceText.getGlobalBounds().height);
+    }
     m_TextFrame.setFillColor(sf::Color(211, 191, 169));
     m_TextFrame.setOutlineColor(sf::Color(34, 34, 34));
     m_TextFrame.setOutlineThickness(5.f);
@@ -30,6 +45,17 @@ void Message::Init(const ResourceManager& resourceManager, const sf::Vector2f& p
 
 void Message::Update(UpdateArgs args, float dt)
 {
+    if (GLOBAL::JOYSTICK_AVAILABLE)
+    {
+        m_PressSpaceText.setString("Press Space to open / X to open");
+        m_PressSpaceText.setPosition(640.f - m_PressSpaceText.getGlobalBounds().width / 2.f, 680.f - m_PressSpaceText.getGlobalBounds().height);
+    }
+    else
+    {
+        m_PressSpaceText.setString("Press Space to open");
+        m_PressSpaceText.setPosition(640.f - m_PressSpaceText.getGlobalBounds().width / 2.f, 680.f - m_PressSpaceText.getGlobalBounds().height);
+    }
+    m_PlayerCanInteract = false;
     for (const auto& en : args.qTree.search(m_Bounds))
     {
         if (en->obj->GetId() == EntityID::Player)
@@ -37,16 +63,27 @@ void Message::Update(UpdateArgs args, float dt)
             auto d = sf::distance(en->obj->GetCenter(), GetCenter());
             if (d < 24.f)
             {
+                m_PlayerCanInteract = true;
                 if (m_AutoRead)
                 {
                     m_Interact = true;
                     m_AutoRead = false;
                 }
+                if (sf::Joystick::isButtonPressed(0, 1) && !m_Pressed)
+                {
+                    m_Pressed = true;
+                }
+                else if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !sf::Joystick::isButtonPressed(0, 1) && m_Pressed)
+                {
+                    m_Pressed = false;
+                    m_Clicked = true;
+                    m_Interact = !m_Interact;
+                }
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !m_Pressed)
                 {
                     m_Pressed = true;
                 }
-                else if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && m_Pressed)
+                else if (!sf::Joystick::isButtonPressed(0, 1) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && m_Pressed)
                 {
                     m_Pressed = false;
                     m_Clicked = true;
@@ -96,10 +133,19 @@ void Message::RenderText(sf::RenderTarget& target)
     if (m_Interact)
     {
         auto c = target.getView();
-        sf::View v({ 0.f, 0.f, 1280, 720 });
+        sf::View v({ 0.f, 0.f, 1280.f, 720.f });
         target.setView(v);
         target.draw(m_TextFrame);
         target.draw(m_Text);
+        target.setView(c);
+    }
+
+    if (m_PlayerCanInteract && !m_Interact)
+    {
+        auto c = target.getView();
+        sf::View v({0.f, 0.f, 1280.f, 720.f});
+        target.setView(v);
+        target.draw(m_PressSpaceText);
         target.setView(c);
     }
 }

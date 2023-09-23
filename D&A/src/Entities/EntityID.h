@@ -31,6 +31,7 @@ enum class EntityID
 
 	//Characters
 	Player,
+	Princess,
 	SmallDemon,
 	HalfDemon,
 	Demon,

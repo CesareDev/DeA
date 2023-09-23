@@ -24,8 +24,10 @@ private:
 	bool m_Clicked = false;
 	bool m_Interact = false;
 	bool m_AutoRead = false;
+	bool m_PlayerCanInteract = false;
 
 	sf::Text m_Text;
+	sf::Text m_PressSpaceText;
 	sf::RectangleShape m_TextFrame;
 };
 

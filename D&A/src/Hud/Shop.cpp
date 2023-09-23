@@ -24,7 +24,10 @@ void Shop::Init(const ResourceManager& resourceManager, const Player& player)
 	const_cast<sf::Texture&>(resourceManager.GetFont().getTexture(40)).setSmooth(false);
 	m_ShopText.setFont(resourceManager.GetFont());
 	m_ShopText.setCharacterSize(40);
-	m_ShopText.setString("Shop (Right Button to Buy)");
+	if (GLOBAL::JOYSTICK_AVAILABLE)
+		m_ShopText.setString("Shop (Right Button to Buy / X)");
+	else
+		m_ShopText.setString("Shop (Right Button to Buy)");
 	m_ShopText.setOutlineColor(sf::Color::Black);
 	m_ShopText.setOutlineThickness(4.f);
 	m_ShopText.setPosition(999.5 - m_ShopText.getGlobalBounds().width / 2.f, 370.f - m_ShopText.getGlobalBounds().height - 8.f);
@@ -53,6 +56,11 @@ void Shop::Init(const ResourceManager& resourceManager, const Player& player)
 
 void Shop::Update(float dt)
 {
+	if (GLOBAL::JOYSTICK_AVAILABLE)
+		m_ShopText.setString("Shop (Right Button to Buy / X)");
+	else
+		m_ShopText.setString("Shop (Right Button to Buy)");
+	m_ShopText.setPosition(999.5 - m_ShopText.getGlobalBounds().width / 2.f, 370.f - m_ShopText.getGlobalBounds().height - 8.f);
 	if (sf::Joystick::isButtonPressed(0, 0) && !m_Pressed)
 	{
 		m_Pressed = true;

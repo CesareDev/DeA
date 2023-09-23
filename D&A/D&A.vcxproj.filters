@@ -303,6 +303,9 @@
     <ClCompile Include="src\Entities\Characters\Other\ArenaSpawner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Entities\Characters\Other\Princess.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\pch.h">
@@ -612,6 +615,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Entities\Characters\Other\ArenaSpawner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entities\Characters\Other\Princess.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
