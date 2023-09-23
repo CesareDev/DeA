@@ -57,7 +57,7 @@ void ColossalGoldenSword::SetPosition(const sf::Vector2f& position)
 {
 	setPosition(position);
 	m_Potion.SetPosition(position);
-	sf::Vector2f dir = { cosf(m_Angle * acos(-1.f) / 180.f), sinf(m_Angle * acos(-1.f) / 180.f) };
+	sf::Vector2f dir = { cosf(m_Angle * M_PI / 180.f), sinf(m_Angle * M_PI / 180.f) };
 	m_Center = position + 22.f * dir;
 	m_HitPoints[0] = position + 16.f * dir;
 	m_HitPoints[1] = m_Center;
@@ -117,14 +117,14 @@ void ColossalGoldenSword::Attack(float dt)
 		m_ElapsedTime += dt;
 		if (m_ElapsedTime <= 1.f)
 		{
-			m_Angle = -360.f * sinf(0.5f * acos(-1.f) * m_ElapsedTime) + m_AttackAngle;
+			m_Angle = -360.f * sinf(0.5f * M_PI * m_ElapsedTime) + m_AttackAngle;
 		}
 		else if (m_ElapsedTime > 1.f && m_ElapsedTime <= 1.5f)
 		{
 			if (!m_PlaySound)
 				MUSIC::ATTACK_SOUND->play();
 			m_PlaySound = true;
-			m_Angle = 720.f * sinf(acos(-1.f) * (m_ElapsedTime - 1.f)) - 360.f + m_AttackAngle;
+			m_Angle = 720.f * sinf(M_PI * (m_ElapsedTime - 1.f)) - 360.f + m_AttackAngle;
 			m_CanHit = true;
 		}
 		else if (m_ElapsedTime > 1.5f && m_ElapsedTime <= 2.f)
@@ -132,7 +132,7 @@ void ColossalGoldenSword::Attack(float dt)
 			if (m_PlaySound)
 				MUSIC::ATTACK_SOUND->play();
 			m_PlaySound = false;
-			m_Angle = -720.f * sinf(acos(-1.f) * (m_ElapsedTime - 1.5f)) + 360.f + m_AttackAngle;
+			m_Angle = -720.f * sinf(M_PI * (m_ElapsedTime - 1.5f)) + 360.f + m_AttackAngle;
 		}
 		else if (m_ElapsedTime > 2.f && m_ElapsedTime <= m_ChargingTime + 2.f)
 		{

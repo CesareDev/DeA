@@ -35,7 +35,7 @@ void BigHealthPotion::SetPosition(const sf::Vector2f& position)
 {
 	if (m_IsAttacking)
 	{
-		sf::Vector2f adir = { cosf(m_AttackAngle * acos(-1.f) / 180.f), sinf(m_AttackAngle * acos(-1.f) / 180.f) };
+		sf::Vector2f adir = { cosf(m_AttackAngle * M_PI / 180.f), sinf(m_AttackAngle * M_PI / 180.f) };
 		setOrigin(0.f, 5.5f);
 		setPosition(position + 7.f * adir);
 	}
@@ -48,7 +48,7 @@ void BigHealthPotion::SetPosition(const sf::Vector2f& position)
 		setOrigin(-7.f, 5.5f);
 		setPosition(position);
 	}
-	sf::Vector2f dir = { cosf(m_Angle * acos(-1.f) / 180.f), sinf(m_Angle * acos(-1.f) / 180.f) };
+	sf::Vector2f dir = { cosf(m_Angle * M_PI / 180.f), sinf(m_Angle * M_PI / 180.f) };
 	m_Center = position + 12.f * dir;
 	m_Bounds.position = position - sf::Vector2f(15.f, 15.f);
 }
@@ -76,17 +76,17 @@ void BigHealthPotion::Attack(float dt)
 		if (m_ElapsedTime <= 0.25f)
 		{
 			if (std::abs(m_AttackAngle) < 90.f)
-				m_Angle = -90.f * sinf(2 * acos(-1.f) * m_ElapsedTime) + m_AttackAngle;
+				m_Angle = -90.f * sinf(2 * M_PI * m_ElapsedTime) + m_AttackAngle;
 			else
-				m_Angle = 90.f * sinf(2 * acos(-1.f) * m_ElapsedTime) + m_AttackAngle;
+				m_Angle = 90.f * sinf(2 * M_PI * m_ElapsedTime) + m_AttackAngle;
 			setRotation(m_Angle);
 		}
 		else if (m_ElapsedTime > 1.25f && m_ElapsedTime <= 1.5f)
 		{
 			if (std::abs(m_AttackAngle) < 90.f)
-				m_Angle = 90.f * sinf(2 * acos(-1.f) * (m_ElapsedTime - 1.25f)) - 90.f + m_AttackAngle;
+				m_Angle = 90.f * sinf(2 * M_PI * (m_ElapsedTime - 1.25f)) - 90.f + m_AttackAngle;
 			else
-				m_Angle = -90.f * sinf(2 * acos(-1.f) * (m_ElapsedTime - 1.25f)) + 90.f + m_AttackAngle;
+				m_Angle = -90.f * sinf(2 * M_PI * (m_ElapsedTime - 1.25f)) + 90.f + m_AttackAngle;
 			setRotation(m_Angle);
 		}
 		else if (m_ElapsedTime > 1.5f)

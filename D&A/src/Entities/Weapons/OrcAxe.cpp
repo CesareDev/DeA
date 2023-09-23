@@ -47,7 +47,7 @@ void OrcAxe::Render(sf::RenderTarget& target)
 void OrcAxe::SetPosition(const sf::Vector2f& position)
 {
 	setPosition(position);
-	m_Center = { position.x + 17.5f * cosf((m_Angle + 13.2f) * acos(-1.f) / 180.f), position.y + 17.5f * sinf((m_Angle + 13.2f) * acos(-1.f) / 180.f) };
+	m_Center = { position.x + 17.5f * cosf((m_Angle + 13.2f) * M_PI / 180.f), position.y + 17.5f * sinf((m_Angle + 13.2f) * M_PI / 180.f) };
 	m_HitPoints[0] = m_Center;
 	m_Bounds.position = position - sf::Vector2f(21.f, 21.f);
 }
@@ -64,19 +64,19 @@ void OrcAxe::Attack(float dt)
 		m_ElapsedTime += dt;
 		if (m_ElapsedTime <= 0.25f)
 		{
-			m_Angle = -90.f * sinf(2.f * acos(-1.f) * m_ElapsedTime) + m_AttackAngle;
+			m_Angle = -90.f * sinf(2.f * M_PI * m_ElapsedTime) + m_AttackAngle;
 		}
 		else if (m_ElapsedTime > 0.25f && m_ElapsedTime <= 0.4f)
 		{
 			if (!m_CanHit)
 				MUSIC::ATTACK_SOUND->play();
 			m_CanHit = true;
-			m_Angle = 180.f * sinf((10.f / 3.f) * acos(-1.f) * (m_ElapsedTime - 0.25)) - 90.f + m_AttackAngle;
+			m_Angle = 180.f * sinf((10.f / 3.f) * M_PI * (m_ElapsedTime - 0.25)) - 90.f + m_AttackAngle;
 		}
 		else if (m_ElapsedTime > 0.4f && m_ElapsedTime <= 0.65f)
 		{
 			m_CanHit = false;
-			m_Angle = -90 * sinf(2.f * acos(-1.f) * (m_ElapsedTime - 0.4f)) + 90.f + m_AttackAngle;
+			m_Angle = -90 * sinf(2.f * M_PI * (m_ElapsedTime - 0.4f)) + 90.f + m_AttackAngle;
 		}
 		else if (m_ElapsedTime > 0.65f)
 		{
@@ -100,7 +100,7 @@ void OrcAxe::SetAxeAngle(const sf::Vector2f& playerPosition)
 {
 	if (!m_IsAttacking)
 	{
-		m_Angle = (atan2f(playerPosition.y - getPosition().y, playerPosition.x - getPosition().x) * 180.f / acos(-1.f));
+		m_Angle = (atan2f(playerPosition.y - getPosition().y, playerPosition.x - getPosition().x) * 180.f / M_PI);
 		setRotation(m_Angle + 90.f);
 	}
 }

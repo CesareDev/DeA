@@ -45,12 +45,32 @@ void TribalOrc::Update(UpdateArgs args, float dt)
 		sf::Vector2f dir = { 0.f, 0.f };
 
 		sf::Vector2f pcenter;
+		if (m_ArenaPlayer && args.currentState == StateID::ArenaState)
+		{
+			pcenter = m_ArenaPlayer->GetCenter();
+			float mag = sf::distance(m_Center, pcenter);
+			m_Axe.SetAxeAngle(pcenter);
+			m_Axe.Update(args, dt);
+			if (mag > 24.f)
+			{
+				m_IsMoving = true;
+				dir = (pcenter - m_Center) / mag;
+				m_Velocity = dir * 24.f;
+			}
+			if (mag < 32.f)
+				m_Axe.StartAttack();
+		}
 		for (const auto& it : args.qTree.search(attackArea))
 		{
 			if (it->obj->GetType() == EntityType::Character)
 			{
-				if (it->obj->GetId() == EntityID::Player)
+				if (!m_ArenaPlayer && it->obj->GetId() == EntityID::Player)
 				{
+					if (args.currentState == StateID::ArenaState)
+					{
+						if (!m_ArenaPlayer)
+							m_ArenaPlayer = (Character*)it->obj;
+					}
 					pcenter = it->obj->GetCenter();
 					float mag = sf::distance(m_Center, pcenter);
 					m_Axe.SetAxeAngle(pcenter);

@@ -33,9 +33,9 @@ void PauseMenu::Update(StateID& currentState, float dt)
 		m_Pause = false;
 	else if (m_MenuButton.isClicked())
 	{
-		currentState = StateID::StartMenuState;
 		if (currentState != StateID::ArenaState)
 			SAVE::SAVE_MANAGER.Save();
+		currentState = StateID::StartMenuState;
 	}
 }
 

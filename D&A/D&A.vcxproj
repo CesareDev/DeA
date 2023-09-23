@@ -120,6 +120,7 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Entities\Characters\Other\ArenaSpawner.cpp" />
     <ClCompile Include="src\Levels\Demons\DemonsBoss.cpp" />
     <ClCompile Include="src\Levels\Demons\DemonsThree.cpp" />
     <ClCompile Include="src\Levels\Demons\DemonsTwo.cpp" />
@@ -220,6 +221,7 @@
     <ClCompile Include="src\States\WinState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Entities\Characters\Other\ArenaSpawner.h" />
     <ClInclude Include="src\Levels\Demons\DemonsBoss.h" />
     <ClInclude Include="src\Levels\Demons\DemonsThree.h" />
     <ClInclude Include="src\Levels\Demons\DemonsTwo.h" />

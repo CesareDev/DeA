@@ -49,7 +49,7 @@ void Mace::Render(sf::RenderTarget& target)
 void Mace::SetPosition(const sf::Vector2f& position)
 {
 	setPosition(position);
-	sf::Vector2f dir = { cosf(m_Angle * acos(-1.f) / 180.f), sinf(m_Angle * acos(-1.f) / 180.f) };
+	sf::Vector2f dir = { cosf(m_Angle * M_PI / 180.f), sinf(m_Angle * M_PI / 180.f) };
 	m_Center = position + 17.f * dir;
 	m_HitPoints[0] = position + 18.f * dir;
 	m_HitPoints[1] = position + 26.f * dir;
@@ -79,9 +79,9 @@ void Mace::Attack(float dt)
 		if (m_ElapsedTime <= 0.25f)
 		{
 			if (std::abs(m_AttackAngle) < 90.f)
-				m_Angle = -60 * sinf(2 * acos(-1.f) * m_ElapsedTime) + m_AttackAngle;
+				m_Angle = -60 * sinf(2 * M_PI * m_ElapsedTime) + m_AttackAngle;
 			else
-				m_Angle = 60 * sinf(2 * acos(-1.f) * m_ElapsedTime) + m_AttackAngle;
+				m_Angle = 60 * sinf(2 * M_PI * m_ElapsedTime) + m_AttackAngle;
 		}
 		else if (m_ElapsedTime > 0.25f && m_ElapsedTime <= 0.35f)
 		{
@@ -89,17 +89,17 @@ void Mace::Attack(float dt)
 				MUSIC::ATTACK_SOUND->play();
 			m_CanHit = true;
 			if (std::abs(m_AttackAngle) < 90.f)
-				m_Angle = 120 * sinf(5 * acos(-1.f) * (m_ElapsedTime - 0.25f)) - 60.f + m_AttackAngle;
+				m_Angle = 120 * sinf(5 * M_PI * (m_ElapsedTime - 0.25f)) - 60.f + m_AttackAngle;
 			else
-				m_Angle = -120 * sinf(5 * acos(-1.f) * (m_ElapsedTime - 0.25f)) + 60.f + m_AttackAngle;
+				m_Angle = -120 * sinf(5 * M_PI * (m_ElapsedTime - 0.25f)) + 60.f + m_AttackAngle;
 		}
 		else if (m_ElapsedTime > 0.35f && m_ElapsedTime <= 0.5f)
 		{
 			m_CanHit = false;
 			if (std::abs(m_AttackAngle) < 90.f)
-				m_Angle = -60 * sinf((10.f / 3.f) * acos(-1.f) * (m_ElapsedTime - 0.35f)) + 60.f + m_AttackAngle;
+				m_Angle = -60 * sinf((10.f / 3.f) * M_PI * (m_ElapsedTime - 0.35f)) + 60.f + m_AttackAngle;
 			else
-				m_Angle = 60 * sinf((10.f / 3.f) * acos(-1.f) * (m_ElapsedTime - 0.35f)) - 60.f + m_AttackAngle;
+				m_Angle = 60 * sinf((10.f / 3.f) * M_PI * (m_ElapsedTime - 0.35f)) - 60.f + m_AttackAngle;
 		}
 		else
 		{

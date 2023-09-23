@@ -43,12 +43,32 @@ void MaskedOrc::Update(UpdateArgs args, float dt)
 		sf::Vector2f dir = { 0.f, 0.f };
 
 		sf::Vector2f pcenter;
+		if (m_ArenaPlayer && args.currentState == StateID::ArenaState)
+		{
+			pcenter = m_ArenaPlayer->GetCenter();
+			float mag = sf::distance(m_Center, pcenter);
+			if (mag > 0.5)
+			{
+				m_IsMoving = true;
+				dir = (pcenter - m_Center) / mag;
+				m_Velocity = dir * 32.f;
+			}
+			if (m_Bounds.overlaps(m_ArenaPlayer->GetBounds()))
+			{
+				(m_ArenaPlayer)->TakeDamage(8);
+			}
+		}
 		for (const auto& it : args.qTree.search(attackArea))
 		{
 			if (it->obj->GetType() == EntityType::Character)
 			{
-				if (it->obj->GetId() == EntityID::Player)
+				if (!m_ArenaPlayer && it->obj->GetId() == EntityID::Player)
 				{
+					if (args.currentState == StateID::ArenaState)
+					{
+						if (!m_ArenaPlayer)
+							m_ArenaPlayer = (Character*)it->obj;
+					}
 					pcenter = it->obj->GetCenter();
 					float mag = sf::distance(m_Center, pcenter);
 					if (mag > 0.5)

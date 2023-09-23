@@ -11,6 +11,9 @@
 #include <SFML/Extensions/SpriteBatch.h>
 #include <SFML/Extensions/AStar.h>
 
+#define _USE_MATH_DEFINES
+#include <math.h>
+
 #include <SFML/Audio.hpp>
 
 #include "States/StateID.h"

@@ -47,7 +47,7 @@ void GreatHammer::Render(sf::RenderTarget& target)
 void GreatHammer::SetPosition(const sf::Vector2f& position)
 {
 	setPosition(position);
-	sf::Vector2f dir = { cosf(m_Angle * acos(-1.f) / 180.f), sinf(m_Angle * acos(-1.f) / 180.f) };
+	sf::Vector2f dir = { cosf(m_Angle * M_PI / 180.f), sinf(m_Angle * M_PI / 180.f) };
 	m_Center = position + 25.5f * dir;
 	m_HitPoints[0] = position + 38.f * dir;
 	m_Bounds.position = position - sf::Vector2f(42.f, 42.f);
@@ -76,9 +76,9 @@ void GreatHammer::Attack(float dt)
 		if (m_ElapsedTime <= 0.5)
 		{
 			if (std::abs(m_AttackAngle) < 90.f)
-				m_Angle = -90.f * sinf(acos(-1.f) * m_ElapsedTime) + m_AttackAngle;
+				m_Angle = -90.f * sinf(M_PI * m_ElapsedTime) + m_AttackAngle;
 			else
-				m_Angle = 90.f * sinf(acos(-1.f) * m_ElapsedTime) + m_AttackAngle;
+				m_Angle = 90.f * sinf(M_PI * m_ElapsedTime) + m_AttackAngle;
 		}
 		else if (m_ElapsedTime > 0.6 && m_ElapsedTime <= 0.75)
 		{
@@ -86,17 +86,17 @@ void GreatHammer::Attack(float dt)
 				MUSIC::ATTACK_SOUND->play();
 			m_CanHit = true;
 			if (std::abs(m_AttackAngle) < 90.f)
-				m_Angle = 180.f * sinf((10.f / 3.f) * acos(-1.f) * (m_ElapsedTime - 0.6f)) - 90.f + m_AttackAngle;
+				m_Angle = 180.f * sinf((10.f / 3.f) * M_PI * (m_ElapsedTime - 0.6f)) - 90.f + m_AttackAngle;
 			else
-				m_Angle = -180.f * sinf((10.f / 3.f) * acos(-1.f) * (m_ElapsedTime - 0.6f)) + 90.f + m_AttackAngle;
+				m_Angle = -180.f * sinf((10.f / 3.f) * M_PI * (m_ElapsedTime - 0.6f)) + 90.f + m_AttackAngle;
 		}
 		else if (m_ElapsedTime > 0.9f && m_ElapsedTime <= 1.1f)
 		{
 			m_CanHit = false;
 			if (std::abs(m_AttackAngle) < 90.f)
-				m_Angle = -90.f * sinf((5.f / 2.f) * acos(-1.f) * (m_ElapsedTime - 0.9f)) + 90.f + m_AttackAngle;
+				m_Angle = -90.f * sinf((5.f / 2.f) * M_PI * (m_ElapsedTime - 0.9f)) + 90.f + m_AttackAngle;
 			else
-				m_Angle = 90.f * sinf((5.f / 2.f) * acos(-1.f) * (m_ElapsedTime - 0.9f)) - 90.f + m_AttackAngle;
+				m_Angle = 90.f * sinf((5.f / 2.f) * M_PI * (m_ElapsedTime - 0.9f)) - 90.f + m_AttackAngle;
 		}
 		else if (m_ElapsedTime > 1.1f)
 		{

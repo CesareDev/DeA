@@ -97,7 +97,7 @@ void Bow::Render(sf::RenderTarget& target)
 void Bow::SetPosition(const sf::Vector2f& position)
 {
 	setPosition(position);
-	sf::Vector2f dir = { cosf(m_Angle * acos(-1.f) / 180.f), sinf(m_Angle * acos(-1.f) / 180.f) };
+	sf::Vector2f dir = { cosf(m_Angle * M_PI / 180.f), sinf(m_Angle * M_PI / 180.f) };
 	m_Center = position + 11.f * dir;
 	m_Bounds.position = position - sf::Vector2f(13.f, 13.f);
 }

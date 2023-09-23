@@ -47,7 +47,7 @@ void Knife::Render(sf::RenderTarget& target)
 void Knife::SetPosition(const sf::Vector2f& position)
 {
 	setPosition(position);
-	m_Center = { position.x + 17.f * cosf((m_Angle) * acos(-1.f) / 180.f), position.y + 17.f * sinf((m_Angle) * acos(-1.f) / 180.f) };
+	m_Center = { position.x + 17.f * cosf((m_Angle) * M_PI / 180.f), position.y + 17.f * sinf((m_Angle) * M_PI / 180.f) };
 	m_HitPoints[0] = m_Center;
 	m_Bounds.position = position - sf::Vector2f(20.f, 20.f);
 }
@@ -87,9 +87,9 @@ void Knife::Attack(float dt)
 			if (!m_CanHit)
 				MUSIC::ATTACK_SOUND->play();
 			m_CanHit = true;
-			float mag = 5.f * sinf(5.f * acos(-1.f) * m_ElapsedTime);
+			float mag = 5.f * sinf(5.f * M_PI * m_ElapsedTime);
 			const auto& pos = getPosition();
-			SetPosition({ pos.x + mag * cosf((m_Angle) * acos(-1.f) / 180.f), pos.y + mag * sinf((m_Angle) * acos(-1.f) / 180.f) });
+			SetPosition({ pos.x + mag * cosf((m_Angle) * M_PI / 180.f), pos.y + mag * sinf((m_Angle) * M_PI / 180.f) });
 		}
 		else if (!m_MousePressed)
 		{

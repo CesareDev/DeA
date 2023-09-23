@@ -56,7 +56,7 @@ void GoldenSword::SetPosition(const sf::Vector2f& position)
 {
 	setPosition(position);
 	m_Potion.SetPosition(position);
-	sf::Vector2f dir = { cosf(m_Angle * acos(-1.f) / 180.f), sinf(m_Angle * acos(-1.f) / 180.f) };
+	sf::Vector2f dir = { cosf(m_Angle * M_PI / 180.f), sinf(m_Angle * M_PI / 180.f) };
 	m_Center = position + 18.f * dir;
 	m_HitPoints[0] = m_Center;
 	m_HitPoints[1] = m_Center + 9.f * dir;
@@ -113,11 +113,11 @@ void GoldenSword::Attack(float dt)
 		m_ElapsedTime += dt;
 		if (m_ElapsedTime <= 0.5f)
 		{
-			m_Angle = -180.f * sinf(acos(-1.f) * m_ElapsedTime) + m_AttackAngle;
+			m_Angle = -180.f * sinf(M_PI * m_ElapsedTime) + m_AttackAngle;
 		}
 		else if (m_ElapsedTime > 0.5f && m_ElapsedTime <= 1.f)
 		{
-			m_Angle = 720.f * sinf(acos(-1.f) * (m_ElapsedTime - 0.5f)) - 360.f + m_AttackAngle;
+			m_Angle = 720.f * sinf(M_PI * (m_ElapsedTime - 0.5f)) - 360.f + m_AttackAngle;
 			if (!m_CanHit)
 				MUSIC::ATTACK_SOUND->play();
 			m_CanHit = true;

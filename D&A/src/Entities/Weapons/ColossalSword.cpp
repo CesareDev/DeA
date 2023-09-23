@@ -48,7 +48,7 @@ void ColossalSword::Render(sf::RenderTarget& target)
 void ColossalSword::SetPosition(const sf::Vector2f& position)
 {
     setPosition(position);
-    sf::Vector2f dir = { cosf(m_Angle * acos(-1.f) / 180.f), sinf(m_Angle * acos(-1.f) / 180.f) };
+    sf::Vector2f dir = { cosf(m_Angle * M_PI / 180.f), sinf(m_Angle * M_PI / 180.f) };
     m_HitPoints[0] = position + 17.f * dir;
     m_HitPoints[1] = position + 22.f * dir;
     m_Center = m_HitPoints[1];
@@ -79,14 +79,14 @@ void ColossalSword::Attack(float dt)
         m_ElapsedTime += dt;
         if (m_ElapsedTime <= 0.75f)
         {
-            m_Angle = -120 * sinf((2.f / 3.f) * acos(-1.f) * m_ElapsedTime) + m_AttackAngle;
+            m_Angle = -120 * sinf((2.f / 3.f) * M_PI * m_ElapsedTime) + m_AttackAngle;
         }
         else if (m_ElapsedTime > 0.9f && m_ElapsedTime <= 1.4f)
         {
             if (!m_CanHit)
                 MUSIC::ATTACK_SOUND->play();
             m_CanHit = true;
-            m_Angle = 720 * sinf(acos(-1.f) * (m_ElapsedTime - 0.9f)) + m_AttackAngle;
+            m_Angle = 720 * sinf(M_PI * (m_ElapsedTime - 0.9f)) + m_AttackAngle;
         }
         else if (m_ElapsedTime > 1.4f)
         {

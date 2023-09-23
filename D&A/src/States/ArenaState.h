@@ -1,8 +1,10 @@
 #pragma once
 #include "State.h"
-#include "Entities/Characters/Other/Player.h"
 #include "Core/Camera.h"
 #include "UI/Menu/PauseMenu.h"
+#include "Hud/Hud.h"
+#include "Entities/Characters/Other/Player.h"
+#include "Entities/Characters/Other/ArenaSpawner.h"
 
 class ArenaState : public State
 {
@@ -23,8 +25,9 @@ private:
 
 	PauseMenu m_PauseMenu;
 	Transition m_Transition;
-
-	Player* m_Player;
+	Hud m_Hud;
+	ArenaSpawner m_Spawner;
+	Player m_Player;
 	Camera m_Camera;
 	sf::TileMap m_Arena;
 	sf::DynamicQuadTree<Entity> m_Tree;

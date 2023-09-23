@@ -48,7 +48,7 @@ void GreatSword::Render(sf::RenderTarget& target)
 void GreatSword::SetPosition(const sf::Vector2f& position)
 {
 	setPosition(position);
-	sf::Vector2f dir = { cosf(m_Angle * acos(-1.f) / 180.f), sinf(m_Angle * acos(-1.f) / 180.f) };
+	sf::Vector2f dir = { cosf(m_Angle * M_PI / 180.f), sinf(m_Angle * M_PI / 180.f) };
 	m_Center = position + 19.f * dir;
 	m_HitPoints[0] = position + 17.f * dir;
 	m_HitPoints[1] = position + 24.f * dir;
@@ -78,18 +78,18 @@ void GreatSword::Attack(float dt)
 		m_ElapsedTime += dt;
 		if (m_ElapsedTime <= 0.25f)
 		{
-			m_Angle = -60.f * sinf(2.f * acos(-1.f) * m_ElapsedTime) + m_AttackAngle;
+			m_Angle = -60.f * sinf(2.f * M_PI * m_ElapsedTime) + m_AttackAngle;
 		}
 		else if (m_ElapsedTime > 0.35f && m_ElapsedTime <= 0.5f)
 		{
-			m_Angle = 330.f * sinf((10.f / 3.f) * acos(-1.f) * (m_ElapsedTime - 0.35f)) - 60.f + m_AttackAngle;
+			m_Angle = 330.f * sinf((10.f / 3.f) * M_PI * (m_ElapsedTime - 0.35f)) - 60.f + m_AttackAngle;
 			if (!m_CanHit)
 				MUSIC::ATTACK_SOUND->play();
 			m_CanHit = true;
 		}
 		else if (m_ElapsedTime > 0.5f && m_ElapsedTime <= 0.8f)
 		{
-			m_Angle = -270.f * sinf((5.f / 3.f) * acos(-1.f) * (m_ElapsedTime - 0.5f)) + 270.f + m_AttackAngle;
+			m_Angle = -270.f * sinf((5.f / 3.f) * M_PI * (m_ElapsedTime - 0.5f)) + 270.f + m_AttackAngle;
 			m_CanHit = false;
 		}
 		else if (m_ElapsedTime > 0.8f)

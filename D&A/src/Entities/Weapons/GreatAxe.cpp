@@ -48,9 +48,9 @@ void GreatAxe::Render(sf::RenderTarget& target)
 void GreatAxe::SetPosition(const sf::Vector2f& position)
 {
 	setPosition(position);
-	m_Center = { position.x + 19.f * cosf(m_Angle * acos(-1.f) / 180.f), position.y + 19.f * sinf(m_Angle * acos(-1.f) / 180.f) };
-	m_HitPoints[0] = { position.x + 25.f * cosf((m_Angle - 12.f) * acos(-1.f) / 180.f), position.y + 25.f * sinf((m_Angle - 12.f) * acos(-1.f) / 180.f) };
-	m_HitPoints[1] = { position.x + 25.f * cosf((m_Angle + 12.f) * acos(-1.f) / 180.f), position.y + 25.f * sinf((m_Angle + 12.f) * acos(-1.f) / 180.f) };
+	m_Center = { position.x + 19.f * cosf(m_Angle * M_PI / 180.f), position.y + 19.f * sinf(m_Angle * M_PI / 180.f) };
+	m_HitPoints[0] = { position.x + 25.f * cosf((m_Angle - 12.f) * M_PI / 180.f), position.y + 25.f * sinf((m_Angle - 12.f) * M_PI / 180.f) };
+	m_HitPoints[1] = { position.x + 25.f * cosf((m_Angle + 12.f) * M_PI / 180.f), position.y + 25.f * sinf((m_Angle + 12.f) * M_PI / 180.f) };
 	m_Bounds.position = position - sf::Vector2f(31.f, 31.f);
 
 	//          /|
@@ -84,7 +84,7 @@ void GreatAxe::Attack(float dt)
 		m_ElapsedTime += dt;
 		if (m_ElapsedTime < 0.5f)
 		{
-			m_Angle = -90.f * sinf(acos(-1.f) * m_ElapsedTime) + m_AttackAngle;
+			m_Angle = -90.f * sinf(M_PI * m_ElapsedTime) + m_AttackAngle;
 			setRotation(m_Angle + 90.f);
 		}
 		if (m_ElapsedTime > 0.75f && m_ElapsedTime <= 1.15f)
@@ -92,7 +92,7 @@ void GreatAxe::Attack(float dt)
 			if (!m_CanHit)
 				MUSIC::ATTACK_SOUND->play();
 			m_CanHit = true;
-			m_Angle = 450.f * sinf((5.f / 4.f) * acos(-1.f) * (m_ElapsedTime - 0.75f)) - 90.f + m_AttackAngle;
+			m_Angle = 450.f * sinf((5.f / 4.f) * M_PI * (m_ElapsedTime - 0.75f)) - 90.f + m_AttackAngle;
 			setRotation(m_Angle + 90.f);
 		}
 		else if (m_ElapsedTime > 1.15f)

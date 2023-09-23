@@ -52,5 +52,10 @@ protected:
 	sf::Text m_DamageTaken;
 
 	std::vector<Coin*> m_Coins;
+
+	
+
+	//ARENA VARIABLES
+	Character* m_ArenaPlayer = nullptr;
 };
 
