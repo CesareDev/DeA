@@ -439,7 +439,6 @@ void Player::Movement(UpdateArgs args, float dt)
 	SAVE::PLAYER_POS = getPosition();
 	SAVE::PLAYER_HEALTH = m_Health;
 	SAVE::COIN_NUMBER = m_Coin;
-	SAVE::LEVEL_ID = args.currentLevel;
 	for (int i = 0; i < m_Weapons.size(); ++i)
 		if (m_Weapons[i])
 			SAVE::WEAPON[i] = m_Weapons[i]->GetId();

@@ -39,6 +39,8 @@ void SmallOrc::Update(UpdateArgs args, float dt)
 		//Moving
 		m_IsMoving = false;
 		sf::Rectangle attackArea = { m_Center - sf::Vector2f(32.f, 32.f), {64.f, 64.f} };
+		if (!m_ArenaPlayer && args.currentState == StateID::ArenaState)
+			attackArea = { 0.f, 0.f, (float)args.tileMap.getMapSize().x, (float)args.tileMap.getMapSize().x };
 		m_Velocity = { 0.f, 0.f };
 		sf::Vector2f dir = { 0.f, 0.f };
 

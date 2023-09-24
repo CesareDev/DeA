@@ -16,10 +16,9 @@ public:
 
 	std::string GetInfo(unsigned int saveIndex);
 	inline int GetSaveIndex() { return m_SaveIndex; }
+	void ResetVariables();
 
 private:
-
-	void ResetVariables();
 
 	int m_SaveIndex = 0;
 };

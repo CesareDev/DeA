@@ -28,6 +28,7 @@ private:
 	float m_MaxDistance;
 
 	float m_SpawnTime;
+	float m_SpawnInterval;
 	float m_ElapsedTime;
 	unsigned int m_MaxEntities;
 };

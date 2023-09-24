@@ -44,7 +44,10 @@ void GameOverState::Update(StateID& currentState, float dt)
 {		
 	m_ElapsedTime += dt;
 	if (m_ElapsedTime > 2.5f)
+	{
+		SAVE::SAVE_MANAGER.ResetVariables();
 		currentState = StateID::SelectModeState;
+	}
 }
 
 void GameOverState::Render(sf::RenderTarget& target)

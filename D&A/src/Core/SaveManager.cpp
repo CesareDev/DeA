@@ -104,8 +104,7 @@ void SaveManager::LoadSave(unsigned int saveIndex)
 void SaveManager::DeleteSave(unsigned int saveIndex)
 {
 	std::string path = "..\\res\\saves\\save_" + std::to_string(saveIndex) + ".json";
-	std::string cmd = "if exist " + path + " (del " + path + ")";
-	system(cmd.c_str());
+	std::remove(path.c_str());
 	ResetVariables();
 }
 

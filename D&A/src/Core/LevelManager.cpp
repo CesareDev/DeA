@@ -131,6 +131,8 @@ void LevelManager::Update(StateID& currentState, float dt)
 
 		//Udpate Level
 		m_CurrentLevel->Update(currentState, m_CurrentLevelId, m_EntranceIndex, dt);
+
+		SAVE::LEVEL_ID = m_CurrentLevelId;
 	}
 
 	ChangeLevel(dt);

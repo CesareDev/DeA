@@ -21,7 +21,6 @@ void MainTitleState::Init(const ResourceManager& resourceManager)
 	int y = (GLOBAL::WIN_HEIGHT / 2) - m_Title.getGlobalBounds().height;
 	m_Title.setPosition(x, y);
 
-
 	const_cast<sf::Texture&>(font.getTexture(30)).setSmooth(false);
 	m_MusicCredit.setFont(font);
 	m_MusicCredit.setString("Music by Marllon Silva (xDeviruchi)\nSound by ChipTone by SFBGames");
@@ -50,9 +49,12 @@ void MainTitleState::Update(StateID& currentState, float dt)
 
 void MainTitleState::Render(sf::RenderTarget& target)
 {
+	const auto v = target.getView();
+	target.setView(sf::View({ 0.f, 0.f, 1280.f, 720.f }));
 	target.draw(m_Title);
 	target.draw(m_MusicCredit);
 	m_Transition.Render(target);
+	target.setView(v);
 }
 
 StateID MainTitleState::GetStateID() const

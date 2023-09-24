@@ -1,1 +1,1 @@
-{"music":43,"sound":44,"fullscreen":false}
+{"music":25,"sound":50,"fullscreen":false}

@@ -16,6 +16,7 @@ void ArenaSpawner::Init(const ResourceManager& resourceManager, float minDistanc
     m_MinDistance = minDistance;
     m_MaxDistance = maxDistance;
 	m_MaxEntities = 25;
+	m_SpawnInterval = 5.f;
 
 	AddEntity(EntityID::SmallDemon);
 	AddEntity(EntityID::HalfDemon);
@@ -43,19 +44,26 @@ void ArenaSpawner::Update(sf::DynamicQuadTree<Entity>& tree, const sf::TileMap& 
 	if (tree.size() - 1 < m_MaxEntities)
 	{
 		m_SpawnTime += dt;
-		if (m_SpawnTime > 1.f)
+		if (m_SpawnTime > m_SpawnInterval)
 		{
 			Character* c = Spawn(tileMap, offset);
-			tree.insert(c, c->GetBounds());
-			m_SpawnTime = 0.f;
+			if (c)
+			{
+				tree.insert(c, c->GetBounds());
+				m_SpawnTime = 0.f;
+			}
 		}
 	}
 
 	if (m_ElapsedTime > 60.f)
 	{
 		if (m_MaxEntities < 200)
-		{ 
+		{
 			m_MaxEntities += 25;
+		}
+		if (m_SpawnInterval > 1.f)
+		{
+			m_SpawnInterval -= 0.5f;
 		}
 		m_ElapsedTime = 0.f;
 	}
