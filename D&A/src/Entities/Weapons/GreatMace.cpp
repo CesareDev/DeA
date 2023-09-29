@@ -20,6 +20,8 @@ void GreatMace::Init(const ResourceManager& resourceManager, const sf::Vector2f&
 	m_HitPoints.resize(2);
 
 	SetPosition(position);
+
+	m_Damage = CONFIG::WEAPONS_PARAM[GetId()];
 }
 
 void GreatMace::Update(UpdateArgs args, float dt)
@@ -34,7 +36,7 @@ void GreatMace::Update(UpdateArgs args, float dt)
 				Character* en = (Character*)it->obj;
 				for (const auto& p : m_HitPoints)
 					if (en->GetBounds().contains(p))
-						en->TakeDamage(7);
+						en->TakeDamage(m_Damage);
 			}
 		}
 	}

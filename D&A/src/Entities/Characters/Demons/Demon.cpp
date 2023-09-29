@@ -16,11 +16,7 @@ void Demon::Init(const ResourceManager& resourceManager, const sf::Vector2f& pos
 	setOrigin(0.f, 8.f);
 	SetPosition(position);
 
-	m_IsMoving = false;
-	m_ElapsedAnimationTime = 0.f;
-	m_TextureRect = getTextureRect();
-
-	m_Health = 20;
+	InitParameters();
 	InitDamageText(resourceManager);
 
 	int coinsCount = (rand() % 3) + 1;
@@ -53,11 +49,11 @@ void Demon::Update(UpdateArgs args, float dt)
 			{
 				m_IsMoving = true;
 				dir = (pcenter - m_Center) / mag;
-				m_Velocity = dir * 32.f;
+				m_Velocity = dir * m_VelocityFactor;
 			}
 			if (m_Bounds.overlaps(m_ArenaPlayer->GetBounds()))
 			{
-				(m_ArenaPlayer)->TakeDamage(8);
+				(m_ArenaPlayer)->TakeDamage(m_Damage);
 			}
 		}
 		for (const auto& it : args.qTree.search(attackArea))
@@ -77,11 +73,11 @@ void Demon::Update(UpdateArgs args, float dt)
 					{
 						m_IsMoving = true;
 						dir = (pcenter - m_Center) / mag;
-						m_Velocity = dir * 32.f;
+						m_Velocity = dir * m_VelocityFactor;
 					}
 					if (m_Bounds.overlaps(it->obj->GetBounds()))
 					{
-						((Character*)it->obj)->TakeDamage(8);
+						((Character*)it->obj)->TakeDamage(m_Damage);
 					}
 					continue;
 				}
@@ -111,11 +107,11 @@ void Demon::Update(UpdateArgs args, float dt)
 			{
 				sf::Vector2f target = sf::Vector2f(path.back()->position) + sf::Vector2f(8.f, 8.f);
 				float mag = sf::distance(m_Center, target);
-				if (mag > 0.5)
+				if (mag > 0.5f)
 				{
 					m_IsMoving = true;
 					dir = (target - m_Center) / mag;
-					m_Velocity = dir * 32.f;
+					m_Velocity = dir * m_VelocityFactor;
 				}
 			}
 			else

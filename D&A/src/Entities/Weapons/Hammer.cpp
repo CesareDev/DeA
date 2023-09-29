@@ -20,6 +20,8 @@ void Hammer::Init(const ResourceManager& resourceManager, const sf::Vector2f& po
 	m_HitPoints.resize(1);
 
 	SetPosition(position);
+
+	m_Damage = CONFIG::WEAPONS_PARAM[GetId()];
 }
 
 void Hammer::Update(UpdateArgs args, float dt)
@@ -33,7 +35,7 @@ void Hammer::Update(UpdateArgs args, float dt)
 			{
 				Character* en = (Character*)it->obj;
 				if (en->GetBounds().contains(m_HitPoints[0]))
-					en->TakeDamage(8);
+					en->TakeDamage(m_Damage);
 			}
 		}
 	}

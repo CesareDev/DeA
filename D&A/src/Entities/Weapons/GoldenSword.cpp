@@ -74,7 +74,7 @@ void GoldenSword::Attack(float dt)
 	{
 		m_Pressed = true;
 	}
-	else if (!sf::Joystick::isButtonPressed(0, 5) && m_Pressed)
+	else if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && !sf::Joystick::isButtonPressed(0, 5) && m_Pressed)
 	{
 		m_Pressed = false;
 		m_IsAttacking = true;

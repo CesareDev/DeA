@@ -16,11 +16,7 @@ void Orc::Init(const ResourceManager& resourceManager, const sf::Vector2f& posit
 	setOrigin(0.f, 8.f);
 	SetPosition(position);
 
-	m_IsMoving = false;
-	m_ElapsedAnimationTime = 0.f;
-	m_TextureRect = getTextureRect();
-
-	m_Health = 10;
+	InitParameters();
 	InitDamageText(resourceManager);
 
 	int coinsCount = rand() % 3;
@@ -53,11 +49,11 @@ void Orc::Update(UpdateArgs args, float dt)
 			{
 				m_IsMoving = true;
 				dir = (pcenter - m_Center) / mag;
-				m_Velocity = dir * 32.f;
+				m_Velocity = dir * m_VelocityFactor;
 			}
 			if (m_Bounds.overlaps(m_ArenaPlayer->GetBounds()))
 			{
-				(m_ArenaPlayer)->TakeDamage(8);
+				(m_ArenaPlayer)->TakeDamage(m_Damage);
 			}
 		}
 		for (const auto& it : args.qTree.search(attackArea))
@@ -77,11 +73,11 @@ void Orc::Update(UpdateArgs args, float dt)
 					{
 						m_IsMoving = true;
 						dir = (pcenter - m_Center) / mag;
-						m_Velocity = dir * 32.f;
+						m_Velocity = dir * m_VelocityFactor;
 					}
 					if (m_Bounds.overlaps(it->obj->GetBounds()))
 					{
-						((Character*)it->obj)->TakeDamage(5);
+						((Character*)it->obj)->TakeDamage(m_Damage);
 					}
 					continue;
 				}
@@ -115,7 +111,7 @@ void Orc::Update(UpdateArgs args, float dt)
 				{
 					m_IsMoving = true;
 					dir = (target - m_Center) / mag;
-					m_Velocity = dir * 32.f;
+					m_Velocity = dir * m_VelocityFactor;
 				}
 			}
 			else

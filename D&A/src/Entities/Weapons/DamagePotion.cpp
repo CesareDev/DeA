@@ -24,6 +24,8 @@ void DamagePotion::Init(const ResourceManager& resourceManager, const sf::Vector
 	m_DamageArea.setFillColor(sf::Color::Transparent);
 	m_DamageArea.setOutlineThickness(1.f);
 	m_DamageArea.setOutlineColor(sf::Color(250, 203, 52, 128));
+
+	m_Damage = CONFIG::WEAPONS_PARAM[GetId()];
 }
 
 void DamagePotion::Update(UpdateArgs args, float dt)
@@ -79,7 +81,7 @@ void DamagePotion::UpdateAttackZone(UpdateArgs args, float dt)
 			{
 				Character* c = (Character*)en->obj;
 				if (sf::distance(c->GetCenter(), getPosition()) < m_DamageArea.getRadius() + 1.f + (c->GetBounds().size.x / 2.f))
-					c->TakeDamage(3);
+					c->TakeDamage(m_Damage);
 			}
 		}
 		if (m_ElapsedTime > 5.f)

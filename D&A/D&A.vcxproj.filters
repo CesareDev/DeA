@@ -620,6 +620,9 @@
     <ClInclude Include="src\Entities\Characters\Other\Princess.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Core\ConfigVariables.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\cursor.png">

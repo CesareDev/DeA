@@ -18,6 +18,8 @@ void HealthPotion::Init(const ResourceManager& resourceManager, const sf::Vector
 	m_Bounds.size = { 30.f, 30.f };
 
 	SetPosition(position);
+
+	m_Damage = CONFIG::WEAPONS_PARAM[GetId()];
 }
 
 void HealthPotion::Update(UpdateArgs args, float dt)

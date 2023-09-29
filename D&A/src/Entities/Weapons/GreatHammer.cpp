@@ -20,6 +20,8 @@ void GreatHammer::Init(const ResourceManager& resourceManager, const sf::Vector2
 	m_HitPoints.resize(1);
 
 	SetPosition(position);
+
+	m_Damage = CONFIG::WEAPONS_PARAM[GetId()];
 }
 
 void GreatHammer::Update(UpdateArgs args, float dt)
@@ -33,7 +35,7 @@ void GreatHammer::Update(UpdateArgs args, float dt)
 			{
 				Character* en = (Character*)it->obj;
 				if (en->GetBounds().contains(m_HitPoints[0]))
-					en->TakeDamage(10);
+					en->TakeDamage(m_Damage);
 			}
 		}
 	}

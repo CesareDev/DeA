@@ -16,11 +16,7 @@ void TribalOrc::Init(const ResourceManager& resourceManager, const sf::Vector2f&
 	SetPosition(position);
 	setOrigin(0.f, 8.f);
 
-	m_IsMoving = false;
-	m_ElapsedAnimationTime = 0.f;
-	m_TextureRect = getTextureRect();
-
-	m_Health = 30;
+	InitParameters();
 	InitDamageText(resourceManager);
 
 	int coinsCount = (rand() % 5) + 1;
@@ -57,7 +53,7 @@ void TribalOrc::Update(UpdateArgs args, float dt)
 			{
 				m_IsMoving = true;
 				dir = (pcenter - m_Center) / mag;
-				m_Velocity = dir * 24.f;
+				m_Velocity = dir * m_VelocityFactor;
 			}
 			if (mag < 32.f)
 				m_Axe.StartAttack();
@@ -81,7 +77,7 @@ void TribalOrc::Update(UpdateArgs args, float dt)
 					{
 						m_IsMoving = true;
 						dir = (pcenter - m_Center) / mag;
-						m_Velocity = dir * 24.f;
+						m_Velocity = dir * m_VelocityFactor;
 					}
 					if (mag < 32.f)
 						m_Axe.StartAttack();
@@ -117,7 +113,7 @@ void TribalOrc::Update(UpdateArgs args, float dt)
 				{
 					m_IsMoving = true;
 					dir = (target - m_Center) / mag;
-					m_Velocity = dir * 24.f;
+					m_Velocity = dir * m_VelocityFactor;
 				}
 			}
 			else

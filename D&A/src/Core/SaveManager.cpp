@@ -108,7 +108,7 @@ void SaveManager::DeleteSave(unsigned int saveIndex)
 	ResetVariables();
 }
 
-void SaveManager::SaveConfig()
+void SaveManager::SaveOptions()
 {
 	Document document;
 	document.SetObject();
@@ -128,7 +128,7 @@ void SaveManager::SaveConfig()
 	document.Accept(writer);
 
 	const char* json = buffer.GetString();
-	std::string path = "..\\res\\config.txt";
+	std::string path = "..\\res\\options.json";
 	std::ofstream os;
 	os.open(path);
 	if (os.is_open())
@@ -138,9 +138,9 @@ void SaveManager::SaveConfig()
 	os.close();
 }
 
-void SaveManager::LoadConfig()
+void SaveManager::LoadOptions()
 {
-	std::string path = "..\\res\\config.txt";
+	std::string path = "..\\res\\options.json";
 	std::ifstream is;
 	is.open(path);
 	if (is.is_open())
@@ -154,6 +154,71 @@ void SaveManager::LoadConfig()
 		GLOBAL::MUSIC_VOLUME = document["music"].GetUint();
 		GLOBAL::SOUND_VOLUME = document["sound"].GetUint();
 		GLOBAL::FULLSCREEN = document["fullscreen"].GetBool();
+	}
+	is.close();
+}
+
+void SaveManager::LoadConfig()
+{
+	std::string path = "..\\res\\config.json";
+	std::ifstream is;
+	is.open(path);
+	if (is.is_open())
+	{
+		std::stringstream buffer;
+		buffer << is.rdbuf();
+
+		Document document;
+		document.Parse(buffer.str().c_str());
+
+		auto levels = document["levels"].GetArray();
+
+		auto& vec = CONFIG::LEVELS_ENTITIES_INFO;
+		vec.resize(levels.Capacity());
+
+		for (int i = 0; i < levels.Capacity(); ++i)
+		{
+			auto info = levels[i].GetArray();
+			vec[i].resize(info.Capacity());
+
+			for (int k = 0; k < info.Capacity(); ++k)
+			{
+				EntityID id = (EntityID)info[k]["id"].GetInt();
+				float x = info[k]["x"].GetFloat();
+				float y = info[k]["y"].GetFloat();
+
+				vec[i][k].id = id;
+				vec[i][k].position = { x, y };
+			}
+		}
+
+		auto parameters = document["parameters"].GetArray();
+
+		for (const auto& param : parameters)
+		{
+			auto obj = param.GetObject();
+
+			EntityID id = (EntityID)obj["id"].GetInt();
+			unsigned int health = obj["health"].GetUint();
+			unsigned int damage = obj["damage"].GetUint();
+			float vel = obj["velocity"].GetFloat();
+
+			std::pair<EntityID, EntityParameters> item(id, { health, damage, vel });
+			CONFIG::ENTITIES_PARAM.insert(item);
+		}
+
+		auto weaponParameters = document["weaponDamage"].GetArray();
+
+		for (const auto& param : weaponParameters)
+		{
+			auto obj = param.GetObject();
+
+			EntityID id = (EntityID)obj["id"].GetInt();
+			unsigned int damage = obj["damage"].GetUint();
+
+			std::pair<EntityID, unsigned int> item(id, damage);
+			CONFIG::WEAPONS_PARAM.insert(item);
+		}
 	}
 	is.close();
 }

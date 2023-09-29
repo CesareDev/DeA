@@ -15,11 +15,7 @@ void HalfUndead::Init(const ResourceManager& resourceManager, const sf::Vector2f
 	setTextureRect({ 192, 352, 16, 16 });
 	SetPosition(position);
 
-	m_IsMoving = false;
-	m_ElapsedAnimationTime = 0.f;
-	m_TextureRect = getTextureRect();
-
-	m_Health = 20;
+	InitParameters();
 	InitDamageText(resourceManager);
 
 	int coinsCount = rand() % 3;
@@ -52,11 +48,11 @@ void HalfUndead::Update(UpdateArgs args, float dt)
 			{
 				m_IsMoving = true;
 				dir = (pcenter - m_Center) / mag;
-				m_Velocity = dir * 32.f;
+				m_Velocity = dir * m_VelocityFactor;
 			}
 			if (m_Bounds.overlaps(m_ArenaPlayer->GetBounds()))
 			{
-				(m_ArenaPlayer)->TakeDamage(8);
+				(m_ArenaPlayer)->TakeDamage(m_Damage);
 			}
 		}
 		for (const auto& it : args.qTree.search(attackArea))
@@ -76,11 +72,11 @@ void HalfUndead::Update(UpdateArgs args, float dt)
 					{
 						m_IsMoving = true;
 						dir = (pcenter - m_Center) / mag;
-						m_Velocity = dir * 16.f;
+						m_Velocity = dir * m_VelocityFactor;
 					}
 					if (m_Bounds.overlaps(it->obj->GetBounds()))
 					{
-						((Character*)it->obj)->TakeDamage(5);
+						((Character*)it->obj)->TakeDamage(m_Damage);
 					}
 					continue;
 				}
@@ -114,7 +110,7 @@ void HalfUndead::Update(UpdateArgs args, float dt)
 				{
 					m_IsMoving = true;
 					dir = (target - m_Center) / mag;
-					m_Velocity = dir * 16.f;
+					m_Velocity = dir * m_VelocityFactor;
 				}
 			}
 			else

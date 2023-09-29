@@ -20,6 +20,8 @@ void RustySword::Init(const ResourceManager& resourceManager, const sf::Vector2f
 	m_HitPoints.resize(2);
 
 	SetPosition(position);
+
+	m_Damage = CONFIG::WEAPONS_PARAM[GetId()];
 }
 
 void RustySword::Update(UpdateArgs args, float dt)
@@ -34,7 +36,7 @@ void RustySword::Update(UpdateArgs args, float dt)
 				Character* en = (Character*)it->obj;
 				for (const auto& p : m_HitPoints)
 					if (en->GetBounds().contains(p))
-						en->TakeDamage(2);
+						en->TakeDamage(m_Damage);
 			}
 		}
 	}

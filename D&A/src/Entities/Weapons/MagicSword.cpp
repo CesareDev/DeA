@@ -25,6 +25,8 @@ void MagicSword::Init(const ResourceManager& resourceManager, const sf::Vector2f
 	m_MagicAttack.setFillColor(sf::Color::Transparent);
 	m_MagicAttack.setOutlineColor(sf::Color::Red);
 	m_MagicAttack.setOutlineThickness(1.f);
+
+	m_Damage = CONFIG::WEAPONS_PARAM[GetId()];
 }
 
 void MagicSword::Update(UpdateArgs args, float dt)
@@ -39,7 +41,7 @@ void MagicSword::Update(UpdateArgs args, float dt)
 				Character* en = (Character*)it->obj;
 				for (const auto& p : m_HitPoints)
 					if (en->GetBounds().contains(p))
-						en->TakeDamage(7);
+						en->TakeDamage(m_Damage);
 			}
 		}
 		if (m_IsMagicAttacking && it->obj->GetId() != EntityID::Player && it->obj->GetType() == EntityType::Character)

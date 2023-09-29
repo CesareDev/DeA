@@ -71,6 +71,17 @@ void Character::SpawnCoins(UpdateArgs args)
 	}
 }
 
+void Character::InitParameters()
+{
+	m_IsMoving = false;
+	m_ElapsedAnimationTime = 0.f;
+	m_TextureRect = getTextureRect();
+
+	m_Health = CONFIG::ENTITIES_PARAM[GetId()].health;
+	m_Damage = CONFIG::ENTITIES_PARAM[GetId()].damage;
+	m_VelocityFactor = CONFIG::ENTITIES_PARAM[GetId()].velocityFactor;
+}
+
 void Character::DamageAnimation(float dt)
 {
 	m_DamageTaken.setPosition(int(getPosition().x * 5.f - m_DamageTaken.getGlobalBounds().width / 2.f + (m_TextureRect.width / 2.f * 5.f)), int(getPosition().y * 5.f - m_DamageTaken.getGlobalBounds().height));

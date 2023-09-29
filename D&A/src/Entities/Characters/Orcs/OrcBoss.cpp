@@ -16,11 +16,7 @@ void OrcBoss::Init(const ResourceManager& resourceManager, const sf::Vector2f& p
     setOrigin(0.f, 16.f);
     SetPosition(position);
 
-    m_IsMoving = false;
-    m_ElapsedAnimationTime = 0.f;
-    m_TextureRect = getTextureRect();
-
-    m_Health = 80;
+	InitParameters();
     InitDamageText(resourceManager);
 
 	int coinsCount = 10;
@@ -62,11 +58,11 @@ void OrcBoss::Update(UpdateArgs args, float dt)
 					{
 						m_IsMoving = true;
 						dir = (pcenter - m_Center) / mag;
-						m_Velocity = dir * 4.f;
+						m_Velocity = dir * m_VelocityFactor;
 					}
 					if (m_Bounds.overlaps(it->obj->GetBounds()))
 					{
-						((Character*)it->obj)->TakeDamage(10);
+						((Character*)it->obj)->TakeDamage(m_Damage);
 					}
 					continue;
 				}
@@ -134,7 +130,7 @@ void OrcBoss::Update(UpdateArgs args, float dt)
 				{
 					m_IsMoving = true;
 					dir = (target - m_Center) / mag;
-					m_Velocity = dir * 4.f;
+					m_Velocity = dir * m_VelocityFactor;
 				}
 			}
 			else

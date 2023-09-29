@@ -25,6 +25,7 @@ protected:
 
 protected:
 
+	unsigned int m_Damage;
 	float m_Angle;
 	float m_AttackAngle;
 	float m_ElapsedTime;

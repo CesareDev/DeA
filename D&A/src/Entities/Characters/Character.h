@@ -30,6 +30,7 @@ protected:
 	void RenderDamage(sf::RenderTarget& target);
 	void InitDamageText(const ResourceManager& resourceManager);
 	void SpawnCoins(UpdateArgs args);
+	void InitParameters();
 
 protected:
 
@@ -40,10 +41,12 @@ protected:
 	sf::Vector2f m_Velocity;
 
 	int m_Health;
-	bool m_IsDead = false;
+	unsigned int m_Damage;
+	float m_VelocityFactor;
 
 	float m_VulnerableTime;
 	float m_IntervalTime;
+	bool m_IsDead = false;
 	bool m_Vulnerable = true;
 
 	float m_FollowElapsedTime;
@@ -52,8 +55,6 @@ protected:
 	sf::Text m_DamageTaken;
 
 	std::vector<Coin*> m_Coins;
-
-	
 
 	//ARENA VARIABLES
 	Character* m_ArenaPlayer = nullptr;

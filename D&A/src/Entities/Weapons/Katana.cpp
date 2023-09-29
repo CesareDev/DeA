@@ -20,6 +20,8 @@ void Katana::Init(const ResourceManager& resourceManager, const sf::Vector2f& po
     m_HitPoints.resize(3);
 
     SetPosition(position);
+
+    m_Damage = CONFIG::WEAPONS_PARAM[GetId()];
 }
 
 void Katana::Update(UpdateArgs args, float dt)
@@ -34,7 +36,7 @@ void Katana::Update(UpdateArgs args, float dt)
                 Character* en = (Character*)it->obj;
                 for (const auto& p : m_HitPoints)
                     if (en->GetBounds().contains(p))
-                        en->TakeDamage(12);
+                        en->TakeDamage(m_Damage);
             }
         }
     }

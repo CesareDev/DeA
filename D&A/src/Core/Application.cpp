@@ -3,6 +3,7 @@
 
 Application::Application()
 {
+	SAVE::SAVE_MANAGER.LoadOptions();
 	SAVE::SAVE_MANAGER.LoadConfig();
 
 	m_ResourceManager.Init();

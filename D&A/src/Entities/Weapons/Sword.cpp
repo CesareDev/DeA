@@ -20,6 +20,8 @@ void Sword::Init(const ResourceManager& resourceManager, const sf::Vector2f& pos
 	m_HitPoints.resize(2);
 
 	SetPosition(position);
+
+	m_Damage = CONFIG::WEAPONS_PARAM[GetId()];
 }
 
 void Sword::Update(UpdateArgs args, float dt)
@@ -34,7 +36,7 @@ void Sword::Update(UpdateArgs args, float dt)
 				Character* en = (Character*)it->obj;
 				for (const auto& p : m_HitPoints)
 					if (en->GetBounds().contains(p))
-						en->TakeDamage(4);
+						en->TakeDamage(m_Damage);
 			}
 		}
 	}

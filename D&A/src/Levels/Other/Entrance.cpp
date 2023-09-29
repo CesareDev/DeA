@@ -10,16 +10,6 @@ Entrance::~Entrance()
 {
 }
 
-bool Entrance::OnEnter(float dt)
-{
-	return m_Transition.FadeIn(dt, 0.5f);
-}
-
-bool Entrance::OnExit(float dt)
-{
-	return m_Transition.FadeOut(dt, 0.5f);
-}
-
 void Entrance::Init(const ResourceManager& resourceManager, sf::DynamicQuadTree<Entity>& tree, Player& player, int entranceIndex)
 {
 	m_Player = &player;
@@ -94,9 +84,16 @@ void Entrance::Init(const ResourceManager& resourceManager, sf::DynamicQuadTree<
 		m_Tree->insert(&m_Princess, m_Princess.GetBounds());
 }
 
+LevelID Entrance::GetId() const
+{
+	return LevelID::Entrance;
+}
+
 void Entrance::Update(StateID& currentState, LevelID& currentLevel, int& entranceIndex, float dt)
 {
-	//MESSAGE (ONLY FOR THIS LEVEL)
+	Level::Update(currentState, currentLevel, entranceIndex, dt);
+
+	//MESSAGE UPDATE(ONLY FOR THIS LEVEL)
 	if (GLOBAL::JOYSTICK_AVAILABLE)
 	{
 		m_StoryMessage.SetText("Orcs demons and undeads\nhave invaded the castle.\nDefeat them and save the princess\n-- Press Space to close -- / -- X --");
@@ -107,61 +104,14 @@ void Entrance::Update(StateID& currentState, LevelID& currentLevel, int& entranc
 		m_StoryMessage.SetText("Orcs demons and undeads\nhave invaded the castle.\nDefeat them and save the princess\n-- Press Space to close --");
 		m_CommandMessage.SetText("Command:\nWASD to move\nLeft Mouse to attack\nScrool to change weapon\nE for the shop");
 	}
-
-	for (auto it = m_Tree->begin(); it != m_Tree->end();)
-	{
-		it->obj->Update({ *m_Tree, m_Map, m_AStar, currentState, currentLevel, entranceIndex }, dt);
-		switch (it->obj->GetType())
-		{
-			case EntityType::Character:
-			{
-				if (((Character*)it->obj)->IsDead())
-				{
-					it = m_Tree->remove(it);
-					continue;
-				}
-				else
-				{
-					if (((Character*)it->obj)->IsMoving())
-						m_Tree->relocate(it, it->obj->GetBounds());
-				}
-				break;
-			}
-			default:
-				break;
-		}
-		++it;
-	}
-
-	m_Camera.Update(m_Player->GetCenter(), dt);
-	m_Map.update(dt);
-	m_Hud.Update(dt);
-	m_Label.Update(dt);
 }
 
 void Entrance::Render(sf::RenderTarget& target)
 {
-	target.setView(m_Camera);
+	Level::Render(target);
 
-	m_Map.drawLayer(target, 0);
-	m_Map.drawLayer(target, 1);
 
-	const auto& list = m_Tree->search(m_Camera.GetVisibleArea());
-
-	for (const auto& en : list)
-		en->obj->Render(target);
-
-	m_Map.drawLayer(target, 2);
-
-	for (const auto& en : list)
-		if (en->obj->GetType() == EntityType::Character)
-			((Character*)en->obj)->RenderWeapon(target);
-
-	m_Hud.Render(target);
-	m_Label.Render(target);
-
+	//MESSAGE RENDER (ONLY FOR THIS LEVEL)
 	m_StoryMessage.RenderText(target);
 	m_CommandMessage.RenderText(target);
-
-	m_Transition.Render(target);
 }

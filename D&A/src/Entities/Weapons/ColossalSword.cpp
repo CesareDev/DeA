@@ -20,6 +20,8 @@ void ColossalSword::Init(const ResourceManager& resourceManager, const sf::Vecto
     m_HitPoints.resize(4);
 
     SetPosition(position);
+
+    m_Damage = CONFIG::WEAPONS_PARAM[GetId()];
 }
 
 void ColossalSword::Update(UpdateArgs args, float dt)
@@ -34,7 +36,7 @@ void ColossalSword::Update(UpdateArgs args, float dt)
                 Character* en = (Character*)it->obj;
                 for (const auto& p : m_HitPoints)
                     if (en->GetBounds().contains(p))
-                        en->TakeDamage(18);
+                        en->TakeDamage(m_Damage);
             }
         }
     }

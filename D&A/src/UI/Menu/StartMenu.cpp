@@ -81,7 +81,7 @@ void StartMenu::Update(StateID& currentState, float dt)
 		currentState = StateID::OptionsMenu;
 	else if (m_ExitButton.isClicked())
 	{
-		SAVE::SAVE_MANAGER.SaveConfig();
+		SAVE::SAVE_MANAGER.SaveOptions();
 		currentState = StateID::ExitState;
 	}
 }

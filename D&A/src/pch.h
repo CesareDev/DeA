@@ -20,5 +20,6 @@
 #include "Levels/LevelID.h"
 
 #include "Core/GlobalVariables.h"
+#include "Core/ConfigVariables.h"
 #include "Core/SaveVariables.h"
 #include "Core/MusicVariables.h"

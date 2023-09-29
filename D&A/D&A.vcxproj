@@ -222,6 +222,7 @@
     <ClCompile Include="src\States\WinState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Core\ConfigVariables.h" />
     <ClInclude Include="src\Entities\Characters\Other\Princess.h" />
     <ClInclude Include="src\Entities\Characters\Other\ArenaSpawner.h" />
     <ClInclude Include="src\Levels\Demons\DemonsBoss.h" />

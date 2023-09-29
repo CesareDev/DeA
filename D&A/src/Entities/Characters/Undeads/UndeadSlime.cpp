@@ -15,11 +15,7 @@ void UndeadSlime::Init(const ResourceManager& resourceManager, const sf::Vector2
 	setTextureRect({ 128, 480, 16, 16 });
 	SetPosition(position);
 
-	m_IsMoving = false;
-	m_ElapsedAnimationTime = 0.f;
-	m_TextureRect = getTextureRect();
-
-	m_Health = 30;
+	InitParameters();
 	InitDamageText(resourceManager);
 
 	int coinsCount = (rand() % 5) + 1;
@@ -52,17 +48,11 @@ void UndeadSlime::Update(UpdateArgs args, float dt)
 			{
 				m_IsMoving = true;
 				dir = (pcenter - m_Center) / mag;
-				m_Velocity = dir * 32.f;
-			}
-			if (m_Bounds.overlaps(m_ArenaPlayer->GetBounds()))
-			{
-				m_ArenaPlayer->TakeDamage(8);
+				m_Velocity = dir * m_VelocityFactor;
 			}
 			if (m_Bounds.overlaps(m_ArenaPlayer->GetBounds()))
 			{
 				m_Poisoned = true;
-				if (!m_Player)
-					m_Player = (Player*)m_ArenaPlayer;
 			}
 		}
 		for (const auto& it : args.qTree.search(attackArea))
@@ -82,7 +72,7 @@ void UndeadSlime::Update(UpdateArgs args, float dt)
 					{
 						m_IsMoving = true;
 						dir = (pcenter - m_Center) / mag;
-						m_Velocity = dir * 8.f;
+						m_Velocity = dir * m_VelocityFactor;
 					}
 					if (m_Bounds.overlaps(it->obj->GetBounds()))
 					{
@@ -114,9 +104,19 @@ void UndeadSlime::Update(UpdateArgs args, float dt)
 		if (m_Poisoned)
 		{
 			m_PoisonedElapsedTime += dt;
-			if (m_Player->IsVulnerable())
+			if (m_ArenaPlayer)
 			{
-				m_Player->TakeDamage(1);
+				if (m_ArenaPlayer->IsVulnerable())
+				{
+					m_ArenaPlayer->TakeDamage(m_Damage);
+				}
+			}
+			else
+			{
+				if (m_Player->IsVulnerable())
+				{
+					m_Player->TakeDamage(m_Damage);
+				}
 			}
 			if (m_PoisonedElapsedTime > 3.f)
 			{
@@ -136,7 +136,7 @@ void UndeadSlime::Update(UpdateArgs args, float dt)
 				{
 					m_IsMoving = true;
 					dir = (target - m_Center) / mag;
-					m_Velocity = dir * 8.f;
+					m_Velocity = dir * m_VelocityFactor;
 				}
 			}
 			else
