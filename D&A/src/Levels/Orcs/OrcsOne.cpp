@@ -12,8 +12,8 @@ OrcsOne::~OrcsOne()
 void OrcsOne::Init(const ResourceManager& resourceManager, sf::DynamicQuadTree<Entity>& tree, Player& player, int entranceIndex)
 {
 	m_Transition.Init(resourceManager);
-	m_Label.Init(resourceManager, "Orcs-1");
-	m_Map.load("../res/map/orcs1.tmx", &resourceManager.GetTilesetTexture());
+	m_Label.Init(resourceManager, CONFIG::LEVELS_INFO[GetId()].name);
+	m_Map.load(CONFIG::LEVELS_INFO[GetId()].dir, &resourceManager.GetTilesetTexture());
 
 	m_Player = &player;
 

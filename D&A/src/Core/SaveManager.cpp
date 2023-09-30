@@ -219,6 +219,20 @@ void SaveManager::LoadConfig()
 			std::pair<EntityID, unsigned int> item(id, damage);
 			CONFIG::WEAPONS_PARAM.insert(item);
 		}
+
+		auto levelsInfo = document["levelsInfo"].GetArray();
+
+		for (const auto& info : levelsInfo)
+		{
+			auto obj = info.GetObject();
+
+			LevelID id = (LevelID)obj["id"].GetInt();
+			const char* name = obj["name"].GetString();
+			const char* dir = obj["dir"].GetString();
+
+			std::pair<LevelID, LevelInfo> item(id, { name, dir });
+			CONFIG::LEVELS_INFO.insert(item);
+		}
 	}
 	is.close();
 }

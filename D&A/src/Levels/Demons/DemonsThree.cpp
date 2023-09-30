@@ -12,8 +12,8 @@ DemonsThree::~DemonsThree()
 void DemonsThree::Init(const ResourceManager& resourceManager, sf::DynamicQuadTree<Entity>& tree, Player& player, int entranceIndex)
 {
 	m_Transition.Init(resourceManager);
-	m_Label.Init(resourceManager, "Demons-3");
-	m_Map.load("../res/map/demons3.tmx", &resourceManager.GetTilesetTexture());
+	m_Label.Init(resourceManager, CONFIG::LEVELS_INFO[GetId()].name);
+	m_Map.load(CONFIG::LEVELS_INFO[GetId()].dir, &resourceManager.GetTilesetTexture());
 
 	m_Player = &player;
 

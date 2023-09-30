@@ -728,5 +728,62 @@
       "id": 22,
       "damage": 8
     }
+  ],
+  "levelsInfo": [
+    {
+      "id": 2,
+      "name": "Entrance",
+      "dir": "../res/map/entrance.tmx"
+    },
+    {
+      "id": 3,
+      "name": "Orcs-1",
+      "dir": "../res/map/orcs1.tmx"
+    },
+    {
+      "id": 4,
+      "name": "Orcs-2",
+      "dir": "../res/map/orcs2.tmx"
+    },
+    {
+      "id": 5,
+      "name": "Orcs-Boss",
+      "dir": "../res/map/orcsboss.tmx"
+    },
+    {
+      "id": 6,
+      "name": "Undeads-1",
+      "dir": "../res/map/undeads1.tmx"
+    },
+    {
+      "id": 7,
+      "name": "Undeads-2",
+      "dir": "../res/map/undeads2.tmx"
+    },
+    {
+      "id": 8,
+      "name": "Undeads-Boss",
+      "dir": "../res/map/undeadsboss.tmx"
+    },
+    {
+      "id": 9,
+      "name": "Demons-1",
+      "dir": "../res/map/demons1.tmx"
+    },
+    {
+      "id": 10,
+      "name": "Demons-2",
+      "dir": "../res/map/demons2.tmx"
+    },
+    {
+      "id": 11,
+      "name": "Demons-3",
+      "dir": "../res/map/demons3.tmx"
+    },
+    {
+      "id": 12,
+      "name": "Demons-Boss",
+      "dir": "../res/map/demonsboss.tmx"
+    }
   ]
 }

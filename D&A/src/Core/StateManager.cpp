@@ -16,7 +16,7 @@ void StateManager::Init(const ResourceManager& resourceManager)
 {
 	m_ResourceManager = &resourceManager;
 
-	m_CurrentState = std::make_unique<BeginState>();
+	m_CurrentState = std::make_unique<SelectModeState>();
 	m_CurrentState->Init(resourceManager);
 
 	m_CurrentStateId = m_CurrentState->GetStateID();

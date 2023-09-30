@@ -14,7 +14,7 @@ void Entrance::Init(const ResourceManager& resourceManager, sf::DynamicQuadTree<
 {
 	m_Player = &player;
 	m_Transition.Init(resourceManager);
-	m_Label.Init(resourceManager, "Entrance");
+	m_Label.Init(resourceManager, CONFIG::LEVELS_INFO[GetId()].name);
 
 	if (SAVE::DEMON_BOSS_DEFEATED && SAVE::ORC_BOSS_DEFEATED && SAVE::UNDEAD_BOSS_DEFEATED)
 	{
@@ -24,7 +24,7 @@ void Entrance::Init(const ResourceManager& resourceManager, sf::DynamicQuadTree<
 		m_Princess.SetPlayer(player);
 	}
 	else
-		m_Map.load("../res/map/entrance.tmx", &resourceManager.GetTilesetTexture());
+		m_Map.load(CONFIG::LEVELS_INFO[GetId()].dir, &resourceManager.GetTilesetTexture());
 
 
 	m_Tree = &tree; 
