@@ -36,6 +36,10 @@ bld/
 
 bin-int/
 dist/
+options.json
+save_0.json
+save_1.json
+save_2.json
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
