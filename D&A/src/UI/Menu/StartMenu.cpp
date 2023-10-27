@@ -78,7 +78,7 @@ void StartMenu::Update(StateID& currentState, float dt)
 	if (m_PlayButton.isClicked())
 		currentState = StateID::SelectModeState;
 	else if (m_OptionsButton.isClicked())
-		currentState = StateID::OptionsMenu;
+		currentState = StateID::OptionsMenuState;
 	else if (m_ExitButton.isClicked())
 	{
 		SAVE::SAVE_MANAGER.SaveOptions();

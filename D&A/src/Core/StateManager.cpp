@@ -84,7 +84,7 @@ void StateManager::ChangeState(float dt)
 			case StateID::ExitState:
 				m_CurrentState.reset(new ExitState());
 				break;
-			case StateID::OptionsMenu:
+			case StateID::OptionsMenuState:
 				m_CurrentState.reset(new OptionsMenuState());
 				break;
 			case StateID::WinState:

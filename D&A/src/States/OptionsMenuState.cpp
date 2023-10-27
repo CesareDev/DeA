@@ -38,5 +38,5 @@ void OptionsMenuState::Render(sf::RenderTarget& target)
 
 StateID OptionsMenuState::GetStateID() const
 {
-	return StateID::OptionsMenu;
+	return StateID::OptionsMenuState;
 }
